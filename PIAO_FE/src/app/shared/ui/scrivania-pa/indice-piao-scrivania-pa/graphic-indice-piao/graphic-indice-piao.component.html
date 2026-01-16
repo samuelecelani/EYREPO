@@ -1,0 +1,26 @@
+<div class="piao-card">
+  <p class="title">{{ chartTitle | translate }}</p>
+  <div class="chart-wrapper">
+    <div
+      #chartEl
+      class="echarts-container"
+      aria-label="Pie graphic - Dettaglio avanzamento PIAO"
+    ></div>
+  </div>
+
+  <div class="legend">
+    <p class="legend-title">{{ legendTitle | translate }}</p>
+    <div class="legend-labels">
+      @for (item of labelsLegend; track $index) {
+        <div class="legend-item">
+          <span
+            [style.--legend-color]="colors[$index]"
+            class="legend-color-indicator"
+            aria-hidden="true"
+          ></span>
+          <p>{{ item | translate }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</div>

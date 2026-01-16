@@ -1,0 +1,26 @@
+@import url('italia.css');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* App base styles */
+:root {
+  --toast-success: #16a34a; /* green-600 */
+  --toast-error: #dc2626; /* red-600 */
+}
+
+/* Simple fade-in animation for toasts */
+.toast-enter {
+  animation: toast-in 0.2s ease-out;
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

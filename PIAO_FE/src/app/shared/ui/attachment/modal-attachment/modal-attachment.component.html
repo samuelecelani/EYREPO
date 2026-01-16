@@ -1,0 +1,154 @@
+<div class="main">
+  <p class="title">
+    @if (isDoc) {
+      {{ 'SCRIVANIA_PA.SERVIZI_PIAO.INDICE_PIAO.ATTACHMENT.MODAL.TITLE_DOC' | translate }}
+    } @else {
+      {{ 'SCRIVANIA_PA.SERVIZI_PIAO.INDICE_PIAO.ATTACHMENT.MODAL.TITLE_IMAGE' | translate }}
+    }
+  </p>
+  <p class="sub-title">
+    @if (isDoc) {
+      {{ 'MESSAGE.LOAD_DOC' | translate }}
+    } @else {
+      {{ 'MESSAGE.LOAD_IMAGE' | translate }}
+    }
+  </p>
+  <form [formGroup]="formGroup">
+    <label *ngIf="false" for="file" class="label">
+      {{ 'SCRIVANIA_PA.SERVIZI_PIAO.INDICE_PIAO.ATTACHMENT.MODAL.FILE' | translate }}
+    </label>
+
+    <div
+      class="dropzone"
+      (drop)="onDrop($event)"
+      (dragover)="onDragOver($event)"
+      (click)="formGroup.controls['fileName'].value ? null : fileInput.click()"
+      [class.disabled]="showName ? !formGroup.controls['name'].value : null"
+    >
+      <div class="upload">
+        @if (formGroup.controls['fileName'].value) {
+          <div class="file-selected">
+            <piao-svg
+              [icon]="'UpluedFile'"
+              [fillColor]="'#F5F5F5'"
+              [svgContainer]="'svg-icon-uplued'"
+            ></piao-svg>
+            <p class="label">
+              {{ formGroup.controls['fileName'].value + '.' + fileExtension }}
+            </p>
+            <button
+              type="button"
+              class="btn-close"
+              aria-label="Close"
+              [disabled]="!formGroup.controls['file'].value"
+              (click)="removeFile(); $event.stopPropagation()"
+            ></button>
+          </div>
+          <div class="progress-container">
+            <p class="label">
+              {{ formGroup.controls['size'].value }}
+              {{ 'SCRIVANIA_PA.SERVIZI_PIAO.INDICE_PIAO.ATTACHMENT.SIZE' | translate }}
+            </p>
+
+            <div class="piao-progress-track">
+              <div class="piao-progress-fill" [style.width.%]="uploadProgress || 0"></div>
+            </div>
+            <span class="progress-label">{{ uploadProgress }}%</span>
+          </div>
+        } @else {
+          <div class="container-icon">
+            <piao-svg
+              [icon]="'UploadFile'"
+              [fillColor]="'#F5F5F5'"
+              [svgContainer]="'svg-icon'"
+            ></piao-svg>
+          </div>
+
+          <p class="upload-title">
+            <span class="select-1">{{
+              'SCRIVANIA_PA.SERVIZI_PIAO.INDICE_PIAO.ATTACHMENT.MODAL.SELECT_FILE_1' | translate
+            }}</span>
+            {{ 'SCRIVANIA_PA.SERVIZI_PIAO.INDICE_PIAO.ATTACHMENT.MODAL.SELECT_FILE_2' | translate }}
+          </p>
+
+          @if (isDoc) {
+            <p class="wrap-p">
+              {{ 'SCRIVANIA_PA.SERVIZI_PIAO.INDICE_PIAO.ATTACHMENT.MODAL.DOC' | translate }}
+            </p>
+          } @else {
+            <p class="wrap-p">
+              {{ 'SCRIVANIA_PA.SERVIZI_PIAO.INDICE_PIAO.ATTACHMENT.MODAL.IMAGE' | translate }}
+            </p>
+          }
+        }
+      </div>
+    </div>
+
+    <input
+      id="file"
+      #fileInput
+      type="file"
+      [accept]="isDoc ? 'application/pdf' : '.svg,.png,.jpg,.jpeg,.gif'"
+      class="hidden"
+      (change)="onFileSelected($event)"
+    />
+
+    @if (showName || showDescription) {
+      <p class="alert-label">
+        {{ 'MESSAGE.ALERT_MANDATORY_FIELDS' | translate }}
+      </p>
+    }
+
+    @if (showDescription && showName) {
+      <div class="container-input">
+        <piao-text-box
+          [label]="labelTBNameAttachment"
+          [typeInput]="'text'"
+          [inputClass]="'input'"
+          [control]="formGroup.controls['name']"
+          [maxValidatorLength]="30"
+          [id]="'name'"
+          [descTooltip]="labelTBNameAttachment"
+          [isReadOnly]="formGroup.controls['fileName'].value"
+        >
+        </piao-text-box>
+
+        <piao-text-area
+          [label]="labelTADescAttachment"
+          [id]="'description'"
+          [textAreaClass]="classTADescAttachment"
+          [control]="formGroup.controls['description']"
+          [maxValidatorLength]="100"
+          [descTooltip]="labelTADescAttachment"
+        >
+        </piao-text-area>
+      </div>
+    } @else if (showName) {
+      <div class="container-ta-tb">
+        <piao-text-box
+          [label]="labelTBNameAttachment"
+          [typeInput]="'text'"
+          [inputClass]="'input'"
+          [control]="formGroup.controls['name']"
+          [maxValidatorLength]="30"
+          [id]="'name'"
+          [descTooltip]="labelTBNameAttachment"
+          [isReadOnly]="formGroup.controls['fileName'].value"
+        >
+        </piao-text-box>
+      </div>
+    } @else if (showDescription) {
+      <div class="container-ta-tb">
+        <piao-text-area
+          [label]="labelTADescAttachment"
+          [id]="'description'"
+          [textAreaClass]="classTADescAttachment"
+          [control]="formGroup.controls['description']"
+          [maxValidatorLength]="100"
+          [descTooltip]="labelTADescAttachment"
+        >
+        </piao-text-area>
+      </div>
+    }
+  </form>
+</div>

@@ -1,0 +1,30 @@
+@if (title) {
+  <p [ngClass]="titleClass">{{ title | translate }}</p>
+}
+
+@if (label) {
+  <label *ngIf="label" for="{{ id }}" class="label">
+    {{ label | translate }}
+    @if (descTooltip) {
+      <piao-tooltip [descTooltip]="descTooltip" [icon]="'InfoCircle'"> </piao-tooltip>
+    }
+  </label>
+}
+
+<div class="textarea-container">
+  <textarea
+    id="{{ id }}"
+    [ngClass]="textAreaClass"
+    [formControl]="control"
+    spellcheck="false"
+    (input)="handleUpdateCountValueLenght($event)"
+    [maxlength]="maxValidatorLength"
+    [readOnly]="isReadOnly"
+    [class.isReadOnly]="isReadOnly"
+  >
+  </textarea>
+
+  <div class="char-counter-row">
+    <span class="char-counter">{{ valueLength }}/{{ maxValidatorLength }}</span>
+  </div>
+</div>

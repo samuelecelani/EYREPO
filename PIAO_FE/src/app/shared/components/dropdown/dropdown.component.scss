@@ -1,0 +1,35 @@
+.piao-modal-redigi-drop-container {
+  max-width: 22.75rem;
+  padding-bottom: 2rem;
+}
+
+.piao-modal-redigi-drop {
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+.label {
+  display: block;
+  color: #17324d;
+  padding-top: 1rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+.label piao-tooltip {
+  padding-left: 0.5rem;
+}
+
+.drop-option {
+  font-weight: 400;
+  color: #2f475e;
+}
+
+.container-lab-tol {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  padding-top: 1rem;
+  align-items: baseline;
+}

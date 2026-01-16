@@ -1,0 +1,265 @@
+.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+  cursor: default;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+}
+
+.container-title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  padding-right: 1rem;
+}
+
+.container-text-area {
+  padding-top: 2rem;
+}
+
+.title {
+  font-weight: 600;
+  font-size: 1.75rem;
+  line-height: 2.25rem;
+}
+
+.sub-title {
+  padding-top: 1.5rem;
+  padding-left: 0.2rem;
+  font-weight: 400;
+  font-size: 1.125rem;
+}
+
+.open-modal {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  font-weight: 700;
+  font-size: 1rem;
+  color: #0066cc;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+::ng-deep .svg {
+  max-width: 1rem;
+  max-height: 1rem;
+}
+
+.table-attachment {
+  display: block;
+  width: 100%;
+  margin: 0 auto;
+  padding-top: 2rem;
+}
+
+.table-image {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table-image tr {
+  border-top: 1px solid #ccc;
+}
+
+.table-image td {
+  height: 4.6875rem;
+}
+
+.table-image td:nth-child(1) {
+  width: 35rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-align: left;
+}
+
+.table-image td:nth-child(2) {
+  width: 25rem;
+  font-size: 0.9rem;
+  font-family: 'Roboto Mono';
+  font-weight: 300;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.table-image td:nth-child(3) {
+  width: 25rem;
+  font-weight: 400;
+  text-align: right;
+}
+
+.table-att {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table-att tr {
+  border-top: 1px solid black;
+}
+
+.table-att tr + tr {
+  border-top: 1px solid #ccc; /* dal secondo in poi */
+}
+
+.table-att td {
+  padding-top: 0.5rem;
+  height: 4.6875rem;
+}
+
+.table-att th {
+  width: 20rem;
+  font-size: 0.9rem;
+  padding-bottom: 0.5rem;
+  font-weight: 600;
+  text-align: left;
+  white-space: pre-line;
+}
+
+.table-att td:nth-child(1) {
+  width: 30rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-align: left;
+  white-space: pre-line;
+}
+
+.table-att td:nth-child(2) {
+  width: 20rem;
+  font-size: 0.9rem;
+  font-family: 'Roboto Mono';
+  font-weight: 300;
+  font-size: 1rem;
+  text-align: left;
+}
+
+.table-att td:nth-child(3) {
+  width: 20rem;
+  font-size: 0.9rem;
+  font-family: 'Roboto Mono';
+  font-weight: 300;
+  font-size: 1rem;
+  text-align: left;
+}
+
+.table-att td:nth-child(4) {
+  width: 20rem;
+  font-size: 0.9rem;
+  font-family: 'Roboto Mono';
+  font-weight: 300;
+  font-size: 1rem;
+  text-align: left;
+}
+
+.table-att td:nth-child(5) {
+  width: 20rem;
+  font-weight: 400;
+  text-align: left;
+}
+
+.table-att-piao {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table-att-piao tr {
+  border-top: 1px solid black;
+}
+
+.table-att-piao td {
+  padding-top: 0.5rem;
+  height: 4.6875rem;
+}
+
+.table-att-piao th {
+  width: 16rem;
+  padding-bottom: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-align: left;
+  white-space: pre-line;
+}
+
+.table-att-piao td:nth-child(1) {
+  width: 20rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-align: left;
+  white-space: pre-line;
+}
+
+.table-att-piao td:nth-child(2) {
+  width: 20rem;
+  font-weight: 400;
+  font-size: 0.9rem;
+  text-align: left;
+  white-space: normal; /* permette il wrap */
+  overflow-wrap: anywhere; /* consente di spezzare ovunque per evitare overflow */
+  word-break: break-word; /* fallback per Safari vecchi e alcuni UA */
+}
+
+.table-att-piao td:nth-child(3) {
+  width: 15rem;
+  font-size: 0.9rem;
+  font-family: 'Roboto Mono';
+  font-weight: 300;
+  font-size: 1rem;
+  text-align: left;
+}
+
+.table-att-piao td:nth-child(4) {
+  width: 15rem;
+  font-size: 0.9rem;
+  font-family: 'Roboto Mono';
+  font-weight: 300;
+  font-size: 1rem;
+  text-align: left;
+}
+
+.table-att-piao td:nth-child(5) {
+  width: 15rem;
+  font-size: 0.9rem;
+  font-family: 'Roboto Mono';
+  font-weight: 300;
+  font-size: 1rem;
+  text-align: left;
+}
+
+.table-att-piao td:nth-child(6) {
+  width: 15rem;
+  font-weight: 400;
+  text-align: left;
+}
+
+.action-link {
+  display: inline-flex;
+  gap: 0.25rem;
+  color: #0066cc;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+  padding-right: 2rem;
+}
+
+::ng-deep .icon-modal {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+::ng-deep .text-area {
+  width: 100%;
+  height: 5.6rem;
+  border: 1px solid #5c6f82;
+  border-radius: 10px;
+}
+
+.title-att {
+  font-weight: 600;
+  font-size: 1.2rem;
+  padding-bottom: 1rem;
+}

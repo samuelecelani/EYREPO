@@ -1,0 +1,94 @@
+# SOGEI JAVA PIPELINE TEMPLATE UNICO
+# Modello di pipeline build JAVA SOGEI che utilizza il template unico Java
+
+# Wiki page: https://dev.azure.com/SogeiReferenceCollection/ALM-DevOps_Hub/_wiki/wikis/ALM-DevOps_Hub.wiki/413/java_template_unico
+
+# se è necessario un maggiore grado di libertà nell'impostazione della pipeline
+# è possibile utilizzare il file build-pipeline-template-task presente in questa directory
+
+name: $(System.TeamProject)_$(Build.DefinitionName)_$(Build.SourceBranchName)_$(Date:yyyyMMdd)$(Rev:.r)
+
+# definizione della risorsa con il repo dei template sogei
+resources:
+  repositories:
+    - repository: template_pipeline_catalog
+      type: git
+      name: DevOps-Tool/template-pipeline-catalog
+
+# triggering
+trigger: none #mettere none per disabilitare il trigger automatico
+
+# eventuali definizioni di variabili o variable group da usare nella pipeline
+parameters:
+- name: agent_pool
+  type: string
+  default: SOGEI-CLOUD
+  values:
+    - SOGEI-CLOUD
+    - SOGEI-INTERNO
+- name: "S2IhelmServiceConnection"
+  type: string
+  default: "OCP_HELM_devops_build"
+- name: area
+  default: cruscottops
+- name: servizioICT
+  #codice del servizio ict (es DFP-SA-0008)
+  default: DFP-SA-0008
+- name: codiceApplicazione
+  #codice dell'applicazione sul catalogone associata all'area nel portale alm (es. FU001)
+  default: FU_001
+- name: ImageBakeType
+  default: S2I # (none | dockerfile | S2I) eventuale modalità di creazione dell'immagine (mettere none se non si deve eseguire il task)
+
+# stage di compilazione e build con template java
+stages:
+  - stage: JAVA_BUILD
+    pool:
+      name: ${{parameters.agent_pool}}
+      demands:
+      - Agent.OS -equals Linux
+    jobs:
+      - job: JAVA_JOB
+        workspace:
+          clean: all
+
+        steps:
+        - checkout: self
+          fetchDepth: 0
+        - template: language_template/java_template.yaml@template_pipeline_catalog
+          parameters:
+              gitversionSemVerFormat: fullSemVer
+              areaName: ${{ parameters.area }}
+              servizioICT: ${{ parameters.servizioICT }}
+              codiceApplicazione: ${{ parameters.codiceApplicazione }} #codice dell'applicazione
+              ImageBakeType: ${{ parameters.ImageBakeType }}
+
+              # MAVEN PARAMETERS
+              mavenJdkVersion: 21
+              #mavenGoals: clean verify -DskipITs=true
+              mavenOptions: '-Drelease -Drevision=$(GitVersionOut.version) -Dmaven.compiler.fork=true'
+
+              # ANALISI STATICA PARAMETERS (SONARQUBE)
+
+              sonarqubeTemplateVersion: 2.0
+              sonarqubeEndpoint: sonarqube_2.0
+              sonarqubeScannerMode: Other
+
+              # ANALISI SICUREZZA PARAMETERS (CHECKMARX)
+
+              # BAKE IMMAGINE PARAMETERS (S2I o dockerfile)
+
+              S2IhelmServiceConnection: ${{ parameters.S2IhelmServiceConnection }}
+              S2ITemplateVersion: prismaCloud
+              S2IartifactFilePath: target/$(Build.Repository.Name)-$(GitVersionOut.version).jar #path del jar che deve essere utilizzato nel bake tramite s2i (non necessario se si utilizza il dockerfile o se non si esegue il bake)
+              S2IvalueFiles:
+              - release/build-values.yaml
+              - release/common-values.yaml
+
+              # PUBBLICAZIONE ARTEFATTI (per renderli disponibili alla pipeline di release)
+              publishFiles:
+                enable: true
+                pf:
+                  pathToPublish: 'release'
+                  artifactName: release
+                  publishLocation: 'Container'

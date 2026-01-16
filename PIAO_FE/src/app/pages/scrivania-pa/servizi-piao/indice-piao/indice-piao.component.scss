@@ -1,0 +1,66 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-top: 1rem;
+  padding-bottom: 4rem;
+}
+
+.title {
+  font-weight: 400;
+  font-size: 3rem;
+  line-height: 1.2;
+}
+
+.sub-title {
+  padding-top: 1rem;
+  color: #333;
+  font-weight: 400;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  white-space: pre-line;
+}
+
+.piao-info {
+  padding-top: 4rem;
+  display: flex;
+  flex-direction: row;
+  gap: 8rem;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.info-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: #555;
+}
+
+.value {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #000;
+}
+
+.piao-structure-indice-piao {
+  display: block;
+  width: 98%;
+  margin: 0 auto;
+  padding-top: 4rem;
+}
+
+.piao-attachment {
+  padding-top: 2rem;
+}
+
+.validation-button {
+  display: flex;
+  padding-top: 2rem;
+  padding-right: 0.5rem;
+  justify-content: flex-end;
+}

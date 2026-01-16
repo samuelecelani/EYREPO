@@ -1,0 +1,49 @@
+
+name: "DFP"
+
+# Definizione comune per le variabili d'ambiente dei servizi backend
+x-backend-env: &backend-env
+  SPRING_DATASOURCE_URL: "jdbc:postgresql://piaoserver.postgres.database.azure.com:5432/postgres?sslmode=require"
+  SPRING_DATASOURCE_USERNAME: "utentepiao"
+  SPRING_DATASOURCE_PASSWORD: "piaoSvil123"
+  # S3_ENDPOINT_URL: "http://host.docker.internal:19000"
+  # S3_CREDENTIAL_ACCESS_KEY: "omqcbZvfM4FTzpRvMinu"
+  # S3_CREDENTIAL_SECRET_KEY: "i6MuuUEQs8ournv4uPEfXYDdLnjZT5lmOsyOpVEW"
+
+# ================================ BACKEND ================================
+
+services:
+  backend-api:
+    image: piao_be:latest
+    build:
+      context: ./piao_be
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    environment: *backend-env
+
+  # backend-worker:
+    # image: semplificazione-procedure-worker:latest
+    # build:
+      # context: ./backend-worker
+      # dockerfile: Dockerfile
+    # ports:
+      # - "8081:8080"
+    # extra_hosts:
+      # - "host.docker.internal:host-gateway"
+    # environment: *backend-env
+
+# ================================ FRONTEND ================================
+
+  frontend-piao:
+    image: piao_fe:latest
+    build:
+      context: ./piao_fe
+      dockerfile: Dockerfile
+    ports:
+      - "3001:80"
+    environment:
+      ANGULAR_APP_API_URL: "http://backend-api:8080"
+

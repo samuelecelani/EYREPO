@@ -1,0 +1,15 @@
+{
+  "/dev/always-500": {
+    "target": "http://localhost:59999",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  },
+  "/api": {
+    "target": "http://localhost:9082",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true,
+    "pathRewrite": { "^/api": "" }
+  }
+}

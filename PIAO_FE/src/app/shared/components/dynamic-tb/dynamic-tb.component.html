@@ -1,0 +1,73 @@
+<div class="main">
+  @if (title) {
+    <p class="title">{{ title | translate }}</p>
+  }
+  @if (subTitle) {
+    <p class="sub-title">{{ subTitle | translate }}</p>
+  }
+
+  <div class="tb-container">
+    @for (x of arrayForm?.controls; track $index) {
+      @let i = $index + 1;
+      @let lengthArray = arrayForm?.controls?.length;
+
+      @let labelAndDescTool =
+        isMongo && !modalType
+          ? lengthArray > 1
+            ? i + '°' + dynamicTBConfig.labelTB
+            : dynamicTBConfig.labelTB
+          : modalType && isMongo
+            ? x.controls[dynamicTBConfig.controlTBMongo]?.value || dynamicTBConfig.controlTBMongo
+            : dynamicTBConfig.labelTB;
+
+      <piao-text-box
+        [label]="labelAndDescTool"
+        [typeInput]="dynamicTBConfig.typeTB"
+        [control]="x.controls[dynamicTBConfig.controlTB]"
+        [id]="dynamicTBConfig.idTB"
+        [inputClass]="dynamicTBConfig.classTB"
+        [maxValidatorLength]="dynamicTBConfig.maxValidatorLengthTB"
+        [descTooltip]="labelAndDescTool"
+        [isLabelTranslate]="false"
+      ></piao-text-box>
+
+      <p class="remove-button" (click)="handleRemoveForm($index)">
+        {{ removeForm | translate }}
+      </p>
+    }
+
+    @if (arrayForm.controls.length === 0) {
+      @if (notFoundMessage) {
+        <p class="not-found">
+          {{ notFoundMessage | translate }}
+        </p>
+      }
+    }
+  </div>
+
+  <div class="card-info-container">
+    <piao-card-info
+      [titleCardHeader]="titleCardInfo"
+      [piaoCardHeaderTitleClass]="'title-card-info'"
+      [titleLoadNewForm]="titleLoadNewForm"
+      [loadNewForm]="true"
+      [piaoCardHeaderContainerClass]="'piao-card-info-container-new-form'"
+      (clicked)="handleClickNewForm()"
+    ></piao-card-info>
+  </div>
+</div>
+
+<piao-modal
+  [isIcon]="true"
+  [icon]="iconPencil"
+  [iconStyle]="iconStyle"
+  [open]="openModal"
+  [disabledButtonConfirm]="disabledButtonConfirm"
+  [titleButtonConfirm]="'BUTTONS.INSERT'"
+  (closed)="this.openModal = false; this.child.formGroup.reset()"
+  (confirm)="handleAddNewForm(); this.child.formGroup.reset()"
+>
+  @if (modalType && modalType === 'ulterioreInfo') {
+    <piao-modal-new-field #child></piao-modal-new-field>
+  }
+</piao-modal>

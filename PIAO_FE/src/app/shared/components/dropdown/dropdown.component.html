@@ -1,0 +1,29 @@
+<div [class]="dropContainerClass">
+  @if (title) {
+    <label for="{{ formControlName }}" class="label">
+      {{ title | translate }}
+      @if (isTooltip) {
+        <piao-tooltip [descTooltip]="title" [icon]="'InfoCircle'"></piao-tooltip>
+      }
+    </label>
+  }
+
+  <select
+    id="{{ formControlName }}"
+    class="form-select"
+    [ngClass]="dropClass"
+    [disabled]="disabled"
+    [value]="value"
+    (change)="onSelectChange($event)"
+  >
+    >
+
+    <option *ngIf="!firstValue" value="" hidden selected>
+      {{ 'PLACEHOLDER.SELECT' | translate }}
+    </option>
+
+    <option *ngFor="let opt of dropdown" [value]="opt.value" class="drop-option">
+      {{ opt.label | translate }}
+    </option>
+  </select>
+</div>

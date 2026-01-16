@@ -1,0 +1,29 @@
+@if (label) {
+  <label *ngIf="label" for="{{ id }}" class="label">
+    @if (isLabelTranslate) {
+      {{ label | translate }}
+    } @else {
+      {{ label }}
+    }
+
+    @if (descTooltip) {
+      <piao-tooltip [descTooltip]="descTooltip" [icon]="'InfoCircle'"></piao-tooltip>
+    }
+  </label>
+}
+@if (isDetails) {
+  <span class="value">
+    {{ control.value }}
+  </span>
+} @else {
+  <input
+    id="{{ id }}"
+    [type]="typeInput"
+    [ngClass]="inputClass"
+    [formControl]="control"
+    spellcheck="false"
+    [maxlength]="maxValidatorLength"
+    [readOnly]="isReadOnly"
+    [class.isReadOnly]="isReadOnly"
+  />
+}

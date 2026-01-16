@@ -1,0 +1,14 @@
+{{- range $key, $_ := .Values.deployments }}
+{{- $default := $.Values.deploymentDefaults | deepCopy }}
+{{- $override := index $.Values.deployments $key }}
+{{- $values := mergeOverwrite $default $override }}
+---
+{{- with $values.cmValues }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ $key }}-cm
+data:
+  {{- toYaml $values.cmValues | nindent 2 }}
+{{- end }}
+{{- end }}

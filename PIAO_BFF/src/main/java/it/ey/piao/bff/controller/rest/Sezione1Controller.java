@@ -1,0 +1,32 @@
+package it.ey.piao.bff.controller.rest;
+
+import it.ey.dto.GenericResponseDTO;
+import it.ey.dto.Sezione1DTO;
+import it.ey.piao.bff.service.ISezione1Service;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Mono;
+
+@RestController
+@RequestMapping("/sezione1")
+public class Sezione1Controller {
+
+    private final ISezione1Service sezione1Service;
+
+
+    public Sezione1Controller(ISezione1Service sezione1Service) {
+        this.sezione1Service = sezione1Service;
+    }
+
+    @PostMapping("/save")
+    public Mono<ResponseEntity<GenericResponseDTO<Sezione1DTO>>> save(@RequestBody Sezione1DTO request) {
+        return sezione1Service.saveOrUpdate(request)
+                .map(ResponseEntity::ok);
+    }
+
+    @PatchMapping("/validazione/{id}")
+    public Mono<ResponseEntity<GenericResponseDTO<Void>>> richiestaDiValidazione(@PathVariable Long id) {
+        return sezione1Service.richiediValidazione(id).map(ResponseEntity::ok);
+    }
+
+}

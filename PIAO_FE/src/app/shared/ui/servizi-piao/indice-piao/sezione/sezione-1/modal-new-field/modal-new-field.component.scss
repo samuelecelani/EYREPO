@@ -1,0 +1,30 @@
+.main {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 400;
+  color: #1a1a1a;
+}
+
+.sub-title {
+  padding-top: 1rem;
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: #1a1a1a;
+  white-space: pre-line;
+}
+
+piao-text-box {
+  padding-top: 2rem;
+}
+
+::ng-deep .input {
+  width: 100%;
+  max-width: 25.06rem;
+  height: 2.5rem;
+  border: 1px solid #5c6f82;
+  border-radius: 10px;
+}

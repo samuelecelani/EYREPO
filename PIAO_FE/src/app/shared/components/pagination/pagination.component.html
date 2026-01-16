@@ -1,0 +1,100 @@
+<div class="pagination-container">
+  <!-- Double Chevron Left - Vai alla prima pagina -->
+  <button
+    class="pagination-btn"
+    [disabled]="currentPage === 1"
+    (click)="firstPage()"
+    [attr.aria-label]="'Prima pagina'"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="1.5"
+      stroke="currentColor"
+      class="chevron-icon"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M18.75 19.5l-7.5-7.5 7.5-7.5m-6 15L5.25 12l7.5-7.5"
+      />
+    </svg>
+  </button>
+
+  <!-- Chevron Left - Pagina precedente -->
+  <button
+    class="pagination-btn"
+    [disabled]="!hasPreviousPage()"
+    (click)="previousPage()"
+    [attr.aria-label]="'Pagina precedente'"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="1.5"
+      stroke="currentColor"
+      class="chevron-icon"
+    >
+      <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+    </svg>
+  </button>
+
+  <!-- Page Numbers (max 5 visibili) -->
+  <div class="page-numbers">
+    @for (page of pageNumbers; track page) {
+      <button
+        class="page-number-btn"
+        [class.active]="isCurrentPage(page)"
+        (click)="goToPage(page)"
+        [attr.aria-label]="'Pagina ' + page"
+        [attr.aria-current]="isCurrentPage(page) ? 'page' : null"
+      >
+        {{ page }}
+      </button>
+    }
+  </div>
+
+  <!-- Chevron Right - Pagina successiva -->
+  <button
+    class="pagination-btn"
+    [disabled]="!hasNextPage()"
+    (click)="nextPage()"
+    [attr.aria-label]="'Pagina successiva'"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="1.5"
+      stroke="currentColor"
+      class="chevron-icon"
+    >
+      <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+    </svg>
+  </button>
+
+  <!-- Double Chevron Right - Vai all'ultima pagina -->
+  <button
+    class="pagination-btn"
+    [disabled]="currentPage === totalPages"
+    (click)="lastPage()"
+    [attr.aria-label]="'Ultima pagina'"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="1.5"
+      stroke="currentColor"
+      class="chevron-icon"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M5.25 4.5l7.5 7.5-7.5 7.5m6-15l7.5 7.5-7.5 7.5"
+      />
+    </svg>
+  </button>
+</div>

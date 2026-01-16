@@ -1,0 +1,63 @@
+.badge {
+  display: inline-block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.2;
+  border: 1px solid;
+  border-radius: 0.25rem;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.badge--no-border {
+  border: none !important;
+}
+
+.badge-primary {
+  background-color: #bed4eb;
+  border-color: #132d4b;
+  color: #132d4b;
+}
+
+.badge-secondary {
+  background-color: #bdbbec;
+  border-color: #38366f;
+  color: #38366f;
+}
+
+.badge-success {
+  background-color: #d4f6dd;
+  border-color: #4c706d;
+  color: #19403c;
+}
+
+.badge-success-light {
+  background-color: #d7ecea;
+  border-color: #19403c;
+  color: #19403c;
+}
+
+.badge-expiry {
+  background-color: #f9d6c2;
+  color: #6a3515;
+}
+
+.badge-alert {
+  background-color: #eedfed;
+  color: #461645;
+}
+
+/* .badge-warning {
+  background-color: ;
+  color: ;
+}
+
+.badge-danger {
+  background-color: ;
+  color: ;
+}
+
+.badge-info {
+  background-color: ;
+  color: ;
+} */

@@ -1,0 +1,176 @@
+.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+  cursor: default;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-top: 1rem;
+  width: 50rem;
+}
+
+.title {
+  font-weight: 400;
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.sub-title {
+  padding-top: 1rem;
+  color: #333;
+  font-weight: 400;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  white-space: pre-line;
+  padding-bottom: 1rem;
+}
+
+.label {
+  color: #17324d;
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+.dropzone {
+  width: 100%;
+  min-height: 11.5rem;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+}
+
+::ng-deep .text-area {
+  width: 100%;
+  height: 5.6rem;
+  border: 1px solid #5c6f82;
+  border-radius: 10px;
+}
+
+.file-selected {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 2rem;
+  padding-top: 1rem;
+}
+
+.file-selected .btn-close {
+  padding: 0 !important;
+}
+
+@media (max-width: 1000px) {
+  .main {
+    max-width: 100%;
+  }
+}
+
+::ng-deep .svg-container {
+  width: none !important;
+  height: none !important;
+}
+::ng-deep .svg-icon-uplued {
+  width: 2rem;
+  height: 2rem;
+}
+
+.select-1 {
+  font-weight: 600;
+  color: #0066cc;
+}
+
+.upload {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.progress-container {
+  padding-top: 0.5rem;
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.5rem;
+}
+
+.piao-progress-track {
+  flex: 1 1 20rem; /* si espande, ma non meno di 160px */
+  height: 0.5rem;
+  background: #e6e6e6; /* grigio track */
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+/* Il “riempimento” blu */
+.piao-progress-fill {
+  height: 100%;
+  width: 0%;
+  background: #0066cc; /* blu */
+  border-radius: 999px;
+  transition: width 0.25s ease;
+}
+
+.progress-label {
+  font-size: 0.9rem;
+  color: #003366;
+  font-weight: 600;
+}
+
+::ng-deep .input {
+  width: 100%;
+  max-width: 25.06rem;
+  height: 2.5rem;
+  border: 1px solid #5c6f82;
+  border-radius: 10px;
+}
+
+.container-input {
+  display: flex;
+  flex-direction: column;
+}
+
+.alert-label {
+  color: #222222;
+  padding-top: 2rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+.wrap-p {
+  white-space: normal;
+}
+
+.container-icon {
+  padding-bottom: 1rem;
+}
+
+.container-ta-tb {
+  padding-top: 2rem;
+}
+
+.upload-title {
+  font-size: 1rem;
+}
+
+@media (max-width: 520px) {
+  .upload-title {
+    font-size: 0.9rem;
+    word-break: break-word;
+  }
+  .file-selected {
+    gap: 0.3rem;
+  }
+  .label {
+    font-size: 0.7rem;
+    word-break: break-word;
+  }
+}

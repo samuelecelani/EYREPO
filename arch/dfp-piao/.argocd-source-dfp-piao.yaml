@@ -1,0 +1,14 @@
+helm:
+  parameters:
+  - name: deployments.frontend.image.name
+    value: localhost:8081/dfp-docker-repo/dfp-piao-fe
+    forcestring: true
+  - name: deployments.frontend.image.tag
+    value: 0.0.0
+    forcestring: true
+  - name: deployments.gateway.image.name
+    value: localhost:8081/dfp-docker-repo/dfp-gateway
+    forcestring: true
+  - name: deployments.gateway.image.tag
+    value: 0.0.0
+    forcestring: true

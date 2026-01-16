@@ -1,0 +1,31 @@
+<div class="main" role="button" tabindex="0" (click)="handleOpenModal()">
+  @if (isTitle) {
+    <p class="title">
+      {{ 'SCRIVANIA_PA.SERVIZI_PIAO.INDICE_PIAO.SEZIONE.ACTIONS.TITLE' | translate }}
+    </p>
+  }
+
+  <!-- CONTENITORE ICONA = TRIGGER DEL POPUP -->
+  <span
+    class="icon-trigger"
+    aria-haspopup="menu"
+    [attr.aria-expanded]="openModal ? 'true' : 'false'"
+  >
+    <piao-svg class="ellipsis" [icon]="icon" [fillColor]="'#0066CC'" [svgContainer]="'icon-svg'">
+    </piao-svg>
+
+    <!-- Popup ancorato all'icona -->
+    <div *ngIf="openModal" class="popup-panel" role="menu" (click)="$event.stopPropagation()">
+      <div>
+        <p
+          *ngFor="let x of verticalEllipsis"
+          role="menuitem"
+          tabindex="0"
+          (click)="handleGoToActions(x); $event.stopPropagation()"
+        >
+          {{ x.label | translate }}
+        </p>
+      </div>
+    </div>
+  </span>
+</div>

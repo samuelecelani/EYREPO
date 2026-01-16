@@ -1,0 +1,43 @@
+<div class="main">
+  <p class="title">{{ 'SCRIVANIA_PA.SERVIZI_PIAO.INDICE_PIAO.TITLE' | translate }}</p>
+  <p class="sub-title">{{ 'SCRIVANIA_PA.SERVIZI_PIAO.INDICE_PIAO.SUB_TITLE' | translate }}</p>
+  <div class="piao-info">
+    @for (x of labelValueConfig; track $index) {
+      <div class="info-block">
+        <span class="label">{{ x.label | translate }}</span>
+        @if ($index !== 3) {
+          <span class="value">{{ x.value }}</span>
+        } @else {
+          <piao-status [status]="x.value"></piao-status>
+        }
+      </div>
+    }
+  </div>
+
+  <div class="piao-structure-indice-piao">
+    <piao-structure-indice-piao [showColAction]="true"></piao-structure-indice-piao>
+  </div>
+
+  <div class="piao-attachment">
+    <piao-attachment
+      [title]="attachmentTitle"
+      [loadAttachment]="attachmentLoadAttachment"
+      [idPiao]="piaoDTO.id"
+      [isDoc]="true"
+      [showDescription]="true"
+      [showName]="true"
+      [codTipologia]="codTipologia"
+      [codTipologiaAllegato]="codTipologiaAllegato"
+    ></piao-attachment>
+  </div>
+
+  <piao-button
+    body
+    class="validation-button"
+    [variant]="'primary'"
+    [size]="'lg'"
+    (clicked)="handleValidationPiao()"
+    [disabled]="disablebuttonValidation"
+    >{{ 'BUTTONS.VALIDATION_ALL_PIAO' | translate }}</piao-button
+  >
+</div>

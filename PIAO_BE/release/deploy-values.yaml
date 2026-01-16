@@ -1,0 +1,191 @@
+## Define network policies for application
+# ingressNetworkPolicies:
+#   - "namespace1"
+#   - "namespace2"
+
+## Number of pod replicas to deploy
+# replicas: 1
+## Depth of history of deployments
+# historyLimit: 10
+## Timeout for deployments
+# timeout: 600
+
+## Define configmaps for application
+# configMaps:
+#   - configMap:
+#       name: &configMap1 my-config-map
+#       variables:
+#         - key: my-key
+#          value: my-value
+#       files:
+#         - 'file.properties'
+
+## Freeform init containers: More information: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/
+# initContainers:
+#  - name: my-init-container
+#    command: ["echo", "hello"]
+#    image: registry.redhat.io/ubi8/ubi-minimal
+
+## Application container configuration
+container:
+
+  ## Docker registry where image are pulled in order to deploy
+  # imageRepo: alm-repos.sogei.it:8082
+
+  resources:
+    requests:
+      cpu: 250m
+      memory: 256Mi
+  ports:
+    - name: 9081-http
+      port: 9081
+      targetPort: 9081
+      protocol: TCP
+
+  ## Freeform Liveness Probe. More information: https://docs.openshift.com/container-platform/4.6/applications/application-health.html#application-health-about_application-health
+  readinessProbe:
+    httpGet:
+      path: "/health/ready"
+      port: 9081
+    initialDelaySeconds: 300
+    timeoutSeconds: 440
+
+  ## Freeform Readiness Probe. More information: https://docs.openshift.com/container-platform/4.6/applications/application-health.html#application-health-about_application-health
+  livenessProbe:
+    httpGet:
+      path: "/health/live"
+      port: 9081
+    initialDelaySeconds: 300
+    timeoutSeconds: 440
+
+  ## Freeform env for the application app. More information: https://kubernetes.io/docs/tasks/inject-data-application/define-environment-variable-container/
+  # env:
+  #  - name: VAR_NAME
+  #    value: var-value
+  #  - name: VAR_CONFIG_MAP
+  #      valueFrom:
+  #        configMapKeyRef:
+  #          name: *configMap
+  #          key: my-key
+  #  - name: SECRET_USERNAME
+  #      valueFrom:
+  #        secretKeyRef:
+  #          name: my-secret
+  #          key: username
+  env:
+    - name: AB_JOLOKIA_OFF
+      value: "true"
+    - name: JAVA_TOOL_OPTIONS
+      value: "-Xms128m -Xmx350m"
+    - name: JAVA_INITIAL_HEAP_SIZE
+      value: "128m"
+    - name: JAVA_MAX_HEAP_SIZE
+      value: "512m"
+    - name: GC_MAX_METASPACE_SIZE
+      value: "256"
+    - name: GC_METASPACE_SIZE
+      value: "96"
+    - name: spring_profiles_active
+      value: "release"
+    - name: JAVA_TOOL_OPTIONS
+      value: "-Djavax.net.ssl.trustStore=/config/resources/security/truststore.jks -Djavax.net.ssl.trustStorePassword=changeit"
+    - name: ORACLE_URL
+      valueFrom:
+        secretKeyRef:
+          name: oracle-secret
+          key: ORACLE_URL
+    - name: ORACLE_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: oracle-secret
+          key: ORACLE_PASSWORD
+    - name: ORACLE_USER
+      valueFrom:
+        secretKeyRef:
+          name: oracle-secret
+          key: ORACLE_USER
+    - name: S3_ENDPOINT
+      valueFrom:
+        secretKeyRef:
+          name: s3
+          key: S3_ENDPOINT
+    - name: S3_BUCKET
+      valueFrom:
+        secretKeyRef:
+          name: s3
+          key: S3_BUCKET
+    - name: S3_ACCESS_KEY
+      valueFrom:
+        secretKeyRef:
+          name: s3
+          key: S3_ACCESS_KEY
+    - name: S3_SECRET_KEY
+      valueFrom:
+        secretKeyRef:
+          name: s3
+          key: S3_SECRET_KEY
+    - name: API_AUTENTICAZIONE
+      valueFrom:
+        secretKeyRef:
+          name: autenticazione
+          key: API_AUTENTICAZIONE
+    - name: AUTENTICAZIONE_CLIENT_ID
+      valueFrom:
+        secretKeyRef:
+          name: autenticazione
+          key: AUTENTICAZIONE_CLIENT_ID
+    - name: ORACLE_URL_AUTH
+      valueFrom:
+        secretKeyRef:
+          name: oracle-secret-auth
+          key: ORACLE_URL_AUTH
+    - name: ORACLE_PASSWORD_AUTH
+      valueFrom:
+        secretKeyRef:
+          name: oracle-secret-auth
+          key: ORACLE_PASSWORD_AUTH
+    - name: ORACLE_USER_AUTH
+      valueFrom:
+        secretKeyRef:
+          name: oracle-secret-auth
+          key: ORACLE_USER_AUTH
+
+  ## Freeform envFrom for the application app. More information: https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#configure-all-key-value-pairs-in-a-configmap-as-container-environment-variables
+  #  - configMapRef:
+  #      name: &configMap portale-ms-repository-cm
+
+  ## Freeform volume mounts. More information: https://kubernetes.io/docs/concepts/storage/volumes/
+  volumeMounts:
+    - name: api-dashboard-build-volume
+      mountPath: /deployments/application.properties
+      subPath: application.properties
+    - name: truststore-volume
+      mountPath: /config/resources/security/truststore.jks
+      subPath: truststore.jks
+
+  ## Freeform volumes. More information: https://kubernetes.io/docs/concepts/storage/volumes/
+  volumes:
+    - name: api-dashboard-build-volume
+      configMap:
+        name: api-dashboard-build
+        defaultMode: 420
+        items:
+          - key: "application.properties"
+            path: "application.properties"
+    - name: truststore-volume
+      configMap:
+        name: jks-api-dashboard-build
+        defaultMode: 420
+        items:
+          - key: "truststore.jks"
+            path: "truststore.jks"
+
+## For creating a Route, allowing your application to be accessed from outside the OCP cluster
+route:
+  ## Specifies if route has to be created.
+  create: true
+  ## Name of the port.
+  servicePort: 9081-http
+
+  termination:
+    type: edge

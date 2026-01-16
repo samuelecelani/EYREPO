@@ -1,0 +1,31 @@
+<div class="main">
+  <p class="title"> {{ 'SCRIVANIA_PA.SERVIZI_PIAO.MODAL.REDIGI.TITLE' | translate}}</p>
+  <p class="sub-title"> {{ 'SCRIVANIA_PA.SERVIZI_PIAO.MODAL.REDIGI.SUB_TITLE' | translate}}</p>
+  <form [formGroup]="formGroup">
+
+    <div class="content-choice">
+      @for (x of inputContent; track $index) {
+
+      <label class="radio-option">
+        <input type="radio" [formControlName]="x.formControlName" [value]="x.value" name="choice"
+          (change)="handleChoice(x.value)">
+        <span class="custom-radio"></span>
+        <span class="label-text">{{ x.label | translate }}</span>
+      </label>
+
+      }
+    </div>
+
+    <div *ngIf="showChoiceNumberOfEmployees">
+      <p class="alert-label">
+        {{ 'MESSAGE.ALERT_MANDATORY_FIELDS' | translate}}
+      </p>
+
+
+      <piao-dropdown formControlName="numberOfEmployess" [formControlName]="'numberOfEmployess'" [dropdown]="dropDown"
+        [title]="titleDropdown"></piao-dropdown>
+
+    </div>
+
+  </form>
+</div>

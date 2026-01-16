@@ -1,0 +1,35 @@
+<aside class="sidebar-menu">
+  <nav class="sidebar-nav">
+    <div class="menu-group">
+      <a
+        *ngFor="let item of menuItems.slice(0, -2)"
+        [routerLink]="item.route"
+        class="menu-item"
+        [class.active]="isActive(item.route)"
+        [attr.title]="item.label"
+      >
+        <piao-svg
+          [icon]="item.icon"
+          [fillColor]="isActive(item.route) ? '#FFFFFF' : '#003366'"
+        ></piao-svg>
+        <span class="menu-label">{{ item.label }}</span>
+      </a>
+    </div>
+    <div class="menu-group">
+      <hr class="menu-divider" />
+      <a
+        *ngFor="let item of menuItems.slice(-2)"
+        [routerLink]="item.route"
+        class="menu-item"
+        [class.active]="isActive(item.route)"
+        [attr.title]="item.label"
+      >
+        <piao-svg
+          [icon]="item.icon"
+          [fillColor]="isActive(item.route) ? '#FFFFFF' : '#003366'"
+        ></piao-svg>
+        <span class="menu-label">{{ item.label }}</span>
+      </a>
+    </div>
+  </nav>
+</aside>

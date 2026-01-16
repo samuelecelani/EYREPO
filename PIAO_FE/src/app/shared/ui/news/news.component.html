@@ -1,0 +1,41 @@
+<div class="news-card">
+  <div class="news-content">
+    <!-- Icon Section -->
+    <div class="news-icon">
+      <piao-icon
+        [icon]="icon"
+        [iconContainerClass]="'icon-container-news'"
+        [iconImgClass]="'icon-img-news'"
+        [iconColor]="'#0e3468'"
+      >
+      </piao-icon>
+    </div>
+
+    <!-- Main Content Section -->
+    <div class="news-main">
+      <!-- Badge -->
+      <div class="news-badge">
+        <piao-badge [text]="badgeText" [variant]="badgeVariant"></piao-badge>
+      </div>
+
+      <!-- Title -->
+      <h2 class="news-title">
+        <a [routerLink]="titleLink" class="news-title-link">{{ title }}</a>
+      </h2>
+
+      <!-- Description -->
+      <p class="news-description">{{ description }}</p>
+
+      <!-- Date -->
+      <p class="news-date">{{ date }}</p>
+    </div>
+
+    <!-- Action Section -->
+    <div class="news-action">
+      <a [routerLink]="readMoreLink" class="news-link">
+        {{ 'SCRIVANIA_PA.NOVITA.ACTION' | translate }}
+        <piao-svg [icon]="'ArrowRight'" [fillColor]="'#0066CC'"></piao-svg>
+      </a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,52 @@
+.main {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-weight: 400;
+  font-size: 2.8rem;
+}
+
+.sub-title-ult-info {
+  padding-top: 1.5rem;
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: #1a1a1a;
+}
+
+::ng-deep .subTitle {
+  padding-top: 2rem;
+  font-weight: 400;
+  font-size: 2rem;
+}
+
+::ng-deep .subTitle-missione {
+  padding-top: 2rem;
+  font-weight: 400;
+  font-size: 2rem;
+  padding-bottom: 1rem;
+}
+
+.container-form {
+  padding-top: 2rem;
+}
+
+::ng-deep .text-area {
+  width: 100%;
+  height: 5.6rem;
+  border: 1px solid #5c6f82;
+  border-radius: 10px;
+}
+
+::ng-deep .title-card-info {
+  font-weight: 400;
+  font-size: 1.25rem;
+  color: #1a1a1a;
+}
+
+::ng-deep .class-title-logo {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1a1a1a;
+}

@@ -1,0 +1,72 @@
+<div class="notification-dropdown" (click)="$event.stopPropagation()">
+  <!-- Header del dropdown -->
+  <div class="notification-dropdown__header">
+    <h6 class="notification-dropdown__title">{{ 'NOTIFICATION.LABELS.NOTIFICATIONS' | translate }}</h6>
+
+    @if (notificaService.unreadNotifications() > 0) {
+      <div class="notification-dropdown__subtitle">
+        <span class="notification-dropdown__count">
+          {{ notificaService.unreadNotifications() }}
+        </span>
+        <span class="notification-dropdown__label">
+          {{
+            notificaService.unreadNotifications() === 1
+              ? ('NOTIFICATION.LABELS.SINGLE_UNREAD' | translate)
+              : ('NOTIFICATION.LABELS.MULTIPLE_UNREAD' | translate)
+          }}
+        </span>
+      </div>
+    }
+  </div>
+
+  <!-- Lista notifiche -->
+  <div class="notification-dropdown__list">
+    @if (notificaService.notificationsList().length === 0) {
+      <div class="notification-dropdown__empty">
+        <svg
+          width="48"
+          height="48"
+          fill="currentColor"
+          class="notification-dropdown__empty-icon"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z"
+          />
+        </svg>
+        <p class="notification-dropdown__empty-text">{{ 'NOTIFICATION.LABELS.NO_NOTIFICATION' | translate }}</p>
+      </div>
+    } @else {
+      @for (notification of displayedNotifications(); track notification.id; let idx = $index) {
+        <piao-notification-item
+          [notification]="notification"
+          [compact]="true"
+          location="dropdown-notification"
+          (clicked)="onNotificationClick(idx)"
+        ></piao-notification-item>
+      }
+    }
+  </div>
+
+  <!-- Footer del dropdown -->
+  @if (notificaService.notificationsList().length > 0) {
+    <div class="notification-dropdown__footer">
+      <button class="notification-dropdown__view-all" (click)="onViewAllClick()">
+        <span class="notification-dropdown__view-all-text">
+          {{ 'NOTIFICATION.LABELS.VIEW_ALL' | translate }} ({{ totalNotifications() }})
+        </span>
+        <svg
+          width="12"
+          height="12"
+          viewBox="0 0 16 16"
+          fill="currentColor"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"
+          />
+        </svg>
+      </button>
+    </div>
+  }
+</div>

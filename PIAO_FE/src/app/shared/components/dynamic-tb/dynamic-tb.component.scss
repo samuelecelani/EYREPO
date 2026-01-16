@@ -1,0 +1,74 @@
+.main {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-weight: 400;
+  font-size: 2rem;
+  color: #1a1a1a;
+}
+
+.sub-title {
+  padding-top: 1.5rem;
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: #1a1a1a;
+}
+
+.tb-container {
+  padding-top: 1rem;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: last baseline;
+}
+
+piao-text-box {
+  width: 100%;
+  max-width: 21rem;
+}
+
+::ng-deep .input {
+  height: 2.5rem;
+  border: 1px solid #5c6f82;
+  border-radius: 10px;
+}
+
+.card-info-container {
+  padding-top: 1.5rem;
+}
+
+::ng-deep .title-card-info {
+  font-weight: 400;
+  font-size: 1.25rem;
+  color: #1a1a1a;
+}
+
+::ng-deep .svg {
+  max-width: 1rem;
+  max-height: 1rem;
+}
+
+.remove-button {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-decoration: underline;
+  color: #0066cc;
+  cursor: pointer;
+}
+
+.not-found {
+  padding-top: 2rem;
+  padding-bottom: 1rem;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 1.1rem;
+}
+
+::ng-deep .icon-modal {
+  width: 2.5rem;
+  height: 2.5rem;
+}

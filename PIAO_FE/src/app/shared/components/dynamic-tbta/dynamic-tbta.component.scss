@@ -1,0 +1,71 @@
+.main {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-weight: 600;
+  font-size: 1.57rem;
+  color: #1a1a1a;
+}
+
+.sub-title {
+  padding-top: 1rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  padding-left: 0.5rem;
+  padding-bottom: 1rem;
+}
+
+::ng-deep .text-area {
+  width: 100%;
+  height: 5.6rem;
+  border: 1px solid #5c6f82;
+  border-radius: 10px;
+}
+
+piao-text-box {
+  width: 100%;
+  max-width: 25.06rem;
+  padding-bottom: 0.6rem;
+}
+
+::ng-deep .input {
+  height: 2.5rem;
+  border: 1px solid #5c6f82;
+  border-radius: 10px;
+}
+
+.card-info-container {
+  padding-top: 1.5rem;
+}
+
+::ng-deep .title-card-info {
+  font-weight: 400;
+  font-size: 1.25rem;
+  color: #1a1a1a;
+}
+
+::ng-deep .svg {
+  max-width: 1rem;
+  max-height: 1rem;
+}
+
+.delete-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.delete-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #cc334d;
+  gap: 0.5rem;
+  cursor: pointer;
+  align-items: center;
+}

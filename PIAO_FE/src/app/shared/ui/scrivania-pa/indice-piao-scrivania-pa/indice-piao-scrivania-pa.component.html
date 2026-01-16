@@ -1,0 +1,26 @@
+<div class="main" *ngIf="piaoDTO">
+
+  <div>
+    <p class="title">{{ 'SCRIVANIA_PA.INDICE_PIAO_CARD.TITLE' | translate }}</p>
+    <div class="header-section"></div>
+    <p class="sub-title">{{ 'SCRIVANIA_PA.INDICE_PIAO_CARD.SUB_TITLE' | translate }}</p>
+  </div>
+
+  <piao-dropdown [dropdown]="dropdown" [title]="titleDropdown" (isChange)="changePiao($event)"
+    [formControlName]="'piao'" [firstValue]="piaoDTO.denominazione"></piao-dropdown>
+
+  <div class="indice-piao-main">
+
+    <div class="indice-piao-structure">
+      <piao-structure-indice-piao [sezioni]="sezioni" [showColAction]="false"></piao-structure-indice-piao>
+    </div>
+
+
+    <div class="graphic-indice-piao">
+      <piao-graphic-indice-piao *ngIf="statusSezioniGrapich"
+        [statusSezioniGrapich]="statusSezioniGrapich"></piao-graphic-indice-piao>
+    </div>
+
+  </div>
+
+</div>

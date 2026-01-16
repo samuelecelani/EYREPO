@@ -1,0 +1,40 @@
+name: Release_$(System.TeamProject)_$(Build.DefinitionName)_$(Build.SourceBranchName)_$(Date:yyyyMMdd)$(Rev:.r)
+
+trigger:
+- none
+
+resources:
+  repositories:
+    - repository: template_pipeline_catalog
+      type: git
+      name: DevOps-Tool/template-pipeline-catalog
+
+  pipelines:
+    - pipeline: buildpipeline
+      source: api-dashboard-build
+      trigger: true
+
+pool:
+    name: SOGEI-INTERNO
+    demands:
+    - agent.os -equals Linux
+
+# esempio utilizzando solo il template del task helm
+variables:
+#  - group: DFP-SA-0008_FU_001
+  - name: runid
+    value: $(resources.pipeline.buildpipeline.runID)
+stages:
+
+  - template: release_templates/helm_deploy_stage_template.yaml@template_pipeline_catalog
+    parameters:
+      #chartVersion: 3.1.0
+      #enableQualityCheck: false
+      listTag:
+      - env_test
+      environment: ocp5test
+      areaName: cruscottops
+      valueFiles:
+        - common-values.yaml
+        - deploy-values.yaml
+      codiceC3: '00377/2025'

@@ -1,0 +1,58 @@
+<div class="main">
+  @if (title) {
+    <p class="title">{{ title | translate }}</p>
+  }
+
+  @for (x of arrayForm?.controls; track $index) {
+    @let i = $index + 1;
+
+    <p class="sub-title">{{ i + '.' }}{{ subTitle | translate }}</p>
+
+    <div class="tb-container">
+      <piao-text-box
+        [label]="dynamicTBTBConfig.labelTB"
+        [typeInput]="dynamicTBTBConfig.typeTB"
+        [control]="x.controls[dynamicTBTBConfig.controlTB]"
+        [id]="dynamicTBTBConfig.idTB"
+        [inputClass]="dynamicTBTBConfig.classTB"
+        [maxValidatorLength]="dynamicTBTBConfig.maxValidatorLengthTB"
+        [descTooltip]="dynamicTBTBConfig.descTooltipTB"
+      ></piao-text-box>
+
+      <piao-text-box
+        [label]="dynamicTBTBConfig.labelTB2"
+        [typeInput]="dynamicTBTBConfig.typeTB2"
+        [control]="x.controls[dynamicTBTBConfig.controlTB2]"
+        [id]="dynamicTBTBConfig.idTB2"
+        [inputClass]="dynamicTBTBConfig.classTB2"
+        [maxValidatorLength]="dynamicTBTBConfig.maxValidatorLengthTB2"
+        [descTooltip]="dynamicTBTBConfig.descTooltipTB2"
+      ></piao-text-box>
+    </div>
+
+    @if (i != 1) {
+      <div class="delete-container">
+        <p></p>
+        <p class="delete-item" (click)="handleRemoveForm($index)">
+          {{ 'BUTTONS.DELETE' | translate }}
+          <piao-svg
+            [icon]="'MinusCircle'"
+            [svgContainer]="'svg'"
+            [fillColor]="'#cc334d'"
+          ></piao-svg>
+        </p>
+      </div>
+    }
+  }
+
+  <div class="card-info-container">
+    <piao-card-info
+      [titleCardHeader]="titleCardInfo"
+      [piaoCardHeaderTitleClass]="'title-card-info'"
+      [titleLoadNewForm]="titleLoadNewForm"
+      [loadNewForm]="true"
+      [piaoCardHeaderContainerClass]="'piao-card-info-container-new-form'"
+      (clicked)="handleClickNewForm()"
+    ></piao-card-info>
+  </div>
+</div>

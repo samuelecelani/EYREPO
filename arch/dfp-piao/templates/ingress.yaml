@@ -1,0 +1,49 @@
+{{- $default := .Values.deploymentDefaults | deepCopy }}
+{{- range $key, $ingress := .Values.ingress }}
+{{- if $ingress.enabled }}
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ include "dfp-piao.fullname" $ }}-{{ $key }}
+  labels:
+    {{- include "dfp-piao.labels" $ | nindent 4 }}-{{ $key }}
+  {{- with $ingress.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  {{- with $ingress.className }}
+  ingressClassName: {{ . }}
+  {{- end }}
+  {{- if $ingress.tls }}
+  tls:
+    {{- range $ingress.tls }}
+    - hosts:
+        {{- range .hosts }}
+        - {{ . | quote }}
+        {{- end }}
+      secretName: {{ .secretName }}
+    {{- end }}
+  {{- end }}
+  rules:
+    {{- range $host := $ingress.hosts }}
+    - host: {{ $host.host | quote }}
+      http:
+        paths:
+          {{- range $host.paths }}
+          - path: {{ .path }}
+            {{- with .pathType }}
+            pathType: {{ . }}
+            {{- end }}
+            backend:
+              service:
+                name: {{ $.Release.Name }}-{{ $host.service }}-svc
+                port:
+                  {{- $override := index $.Values.deployments ($host.service | quote) | default dict }}
+                  {{- $values := mergeOverwrite $default $override }}
+                  number: {{ $values.service.port }}
+          {{- end }}
+    {{- end }}
+{{- end }}
+{{- end }}

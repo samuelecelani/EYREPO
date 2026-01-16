@@ -1,0 +1,67 @@
+.container-lab-tol {
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  padding-top: 1rem;
+  align-items: baseline;
+}
+
+.title {
+  font-weight: 600;
+  font-size: 1.57rem;
+  color: #1a1a1a;
+  padding-bottom: 0.5rem;
+}
+
+.label {
+  display: block;
+  color: #17324d;
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+.label piao-tooltip {
+  padding-left: 0.5rem;
+}
+
+.container-tooltip {
+  padding-right: 0.25rem;
+}
+
+.textarea-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.char-counter-row {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 0.25rem;
+}
+
+.char-counter {
+  font-weight: 400;
+  font-size: 0.875rem;
+  color: #2f475e;
+}
+
+textarea {
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  padding-left: 0.2rem;
+}
+
+textarea:focus {
+  outline: none;
+}
+
+.isReadOnly {
+  background-color: #d9d9d9; /* grigio chiaro */
+  border: none; /* nessun bordo visibile */
+  cursor: default; /* niente cursore testo */
+  caret-color: transparent; /* nasconde il cursore di digitazione */
+  pointer-events: none; /* niente click/focus */
+}

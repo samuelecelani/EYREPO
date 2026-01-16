@@ -1,0 +1,35 @@
+## Specifies where the image base will be pulled
+input:
+  # Specifies base image used to build the application
+  baseImage: "redhat/ubi9/openjdk-21:1.21-3.1733995526"
+  # Specifies url of the repo
+  # pullRepo: "alm-repos.sogei.it"
+  ## Image pull secret. More information: https://docs.openshift.com/container-platform/4.6/openshift_images/managing_images/using-image-pull-secrets.html
+  # pullSecret:
+  ## Freeform env for the OCP build. More information: https://kubernetes.io/docs/tasks/inject-data-application/define-environment-variable-container/
+  # env:
+  #  - name: VAR_NAME
+  #    value: var-value
+
+  ## Specifies where the image will be pushed to once built
+  ## More information: https://docs.openshift.com/container-platform/4.6/builds/managing-build-output.html
+# output:
+  ## Choices: ImageStreamTag, DockerImage
+  ## ImageStreamTag publishes to the internal registry
+  ## DockerImage publishes to an external registry (referred to by image.name and image.tag)
+  # kind: DockerImage
+  ## Specifies url of the repo where target image has to be pushed (prerelease)
+  # pushRepo: "alm-repos.sogei.it:8090"
+  ## Push secret name, used only if kind == "DockerImage"
+  # pushSecret: registry-push-secret
+
+## Depth of history of success builds
+# successHistoryLimit: 5
+## Depth of history of failed builds
+# failedHistoryLimit: 5
+
+## Freeform resources for the OCP build. More information: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+resources:
+  requests:
+    cpu: 800m
+    memory: 512Mi

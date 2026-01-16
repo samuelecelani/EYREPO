@@ -1,0 +1,108 @@
+<div class="table-att">
+  <p class="title">{{ 'GESTIONALE.DETTAGLIO_ATTIVITA.TITLE' | translate }}</p>
+</div>
+<div>
+  <p class="sub-title">{{ 'GESTIONALE.DETTAGLIO_ATTIVITA.SUB_TITLE' | translate }}</p>
+</div>
+
+<div class="profilo-wrapper">
+  <div class="profilo-bg-figma"></div>
+
+  <div class="profilo-container">
+    <form [formGroup]="form">
+      <div class="grid">
+        <piao-text-box
+          [label]="'Profilo utente'"
+          [typeInput]="'text'"
+          [inputClass]="'input'"
+          [control]="form.controls['profiloUtente']"
+          [maxValidatorLength]="50"
+          [id]="'ProfiloUtente'"
+          [isDetails]="!isEditing"
+        >
+        </piao-text-box>
+        <div class="field">
+          <label>Sezione PIAO</label>
+          @if (isEditing) {
+            <input type="text" formControlName="sezionePiao" class="edit-input" />
+          } @else {
+            <span class="value">{{ v.sezionePiao }}</span>
+          }
+        </div>
+        <div class="field">
+          <label>Amministrazione</label>
+          @if (isEditing) {
+            <input type="text" formControlName="amministrazione" class="edit-input" />
+          } @else {
+            <span class="value">{{ v.amministrazione }}</span>
+          }
+        </div>
+        <div class="field">
+          <label>Nome</label>
+          @if (isEditing) {
+            <input type="text" formControlName="nome" class="edit-input" />
+          } @else {
+            <span class="value">{{ v.nome }}</span>
+          }
+        </div>
+        <div class="field">
+          <label>Cognome</label>
+          @if (isEditing) {
+            <input type="text" formControlName="cognome" class="edit-input" />
+          } @else {
+            <span class="value">{{ v.cognome }}</span>
+          }
+        </div>
+        <div class="field">
+          <label>Codice Fiscale</label>
+          @if (isEditing) {
+            <input type="text" formControlName="codiceFiscale" class="edit-input" />
+          } @else {
+            <span class="value">{{ v.codiceFiscale }}</span>
+          }
+        </div>
+        <div class="field field-offset-top">
+          <label>Data di nascita</label>
+          @if (isEditing) {
+            <input
+              type="text"
+              formControlName="dataNascita"
+              placeholder="gg/mm/aaaa"
+              class="edit-input"
+            />
+          } @else {
+            <span class="value">{{ v.dataNascita }}</span>
+          }
+        </div>
+        <div class="field field-offset-top">
+          <label>Luogo di nascita</label>
+          @if (isEditing) {
+            <input type="text" formControlName="luogoNascita" class="edit-input" />
+          } @else {
+            <span class="value">{{ v.luogoNascita }}</span>
+          }
+        </div>
+        <div class="field field-offset-top">
+          <label>Email istituzionale</label>
+          @if (isEditing) {
+            <input type="email" formControlName="emailIstituzionale" class="edit-input" />
+          } @else {
+            <span class="value">{{ v.emailIstituzionale }}</span>
+          }
+        </div>
+      </div>
+    </form>
+
+    <div class="button">
+      @if (!isEditing) {
+        <piao-button (click)="handleEditProfile()">{{
+          'BUTTONS.EDIT_PROFILE' | translate
+        }}</piao-button>
+      } @else {
+        <piao-button (click)="handleSaveProfile()">{{
+          'BUTTONS.SAVE_EDIT_PROFILE' | translate
+        }}</piao-button>
+      }
+    </div>
+  </div>
+</div>

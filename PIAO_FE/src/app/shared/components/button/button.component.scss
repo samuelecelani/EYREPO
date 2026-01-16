@@ -1,0 +1,13 @@
+.border-custom-blue {
+  border: 0.1rem solid #0066cc !important;
+}
+
+.border-custom-gray {
+  border: 0.1rem solid #5c6f82 !important;
+}
+
+.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+  cursor: default;
+}

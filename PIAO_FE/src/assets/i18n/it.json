@@ -1,0 +1,496 @@
+{
+  "INDEX_PAGE": {
+    "HEADER": {
+      "TITLE": "Portale PIAO",
+      "SUB_TITLE": "Piano Integrato di Attività e Organizzazione"
+    },
+    "MAIN": {
+      "TITLE": "Index"
+    },
+    "CARD_NAVIGATION": {
+      "TITLE": {
+        "1": "1.",
+        "2": "2.",
+        "3": "3."
+      },
+      "SUB_TITLE": {
+        "TITLE_CARD_PUBLIC": "Area pubblica",
+        "TITLE_CARD_PA": "Area privata - Profilo PA",
+        "TITLE_CARD_DFP": "Area privata - Profilo DFP"
+      }
+    }
+  },
+  "SCRIVANIA_PA": {
+    "HEADER": {
+      "WELCOME": "Benvenuto {{name}}"
+    },
+    "ALERT": {
+      "NEWS_ALERT": "Hai dei nuovi avvisi da leggere",
+      "TITLE": "Attenzione!",
+      "SUB_TITLE": "Scadenza compilazione PIAO. ",
+      "SECOND_SUB_TITLE": " Invia entro 31/12/{{year}}. Completa tutti i dati per evitare ritardi. Per segnalazioni, accedi alla pagina della",
+      "TEXT_HREF": "Dichiarazione di mancata/ritardata compilazione."
+    },
+    "INDICE_PIAO_CARD": {
+      "TITLE": "Monitoraggio dello stato di avanzamento PIAO",
+      "SUB_TITLE": "In questa sezione puoi monitorare lo stato di avanzamento del tuo documento PIAO. Il tracciamento ti permette di verificare le fasi completate e quelle ancora in \nlavorazione, consultare le date di aggiornamento della compilazione, fino alla validazione e pubblicazione finale all'interno del portale.",
+      "DROPDOWN": {
+        "TITLE": "Seleziona PIAO"
+      }
+    },
+    "GRAPHIC_INDICE_PIAO": {
+      "TITLE": "Dettaglio avanzamento PIAO",
+      "LEGEND": "LEGENDA",
+      "LABELS": {
+        "IN_VALIDATION": "Sezioni e\n sottosezioni\n in validazione",
+        "VALIDATE": "Sezioni e\n sottosezioni\n validate",
+        "TO_COMPILATION": "Sezioni e\n sottosezioni \nda compilare",
+        "IN_COMPILATION": "Sezioni e\n sottosezioni \nin compilazione",
+        "COMPILATION": "Sezioni e\n sottosezioni\n compilate"
+      }
+    },
+    "SERVIZI_PIAO": {
+      "TITLE": "Servizi PIAO",
+      "SUB_TITLE": "In questa sezione puoi consultare i documenti PIAO pubblicati, redigere o\n modificare il nuovo piano per il prossimo ciclo di programmazione e aggiornare\n l'ultimo documento pubblicato.",
+      "CARD_ACTIONS": {
+        "CONSULTA": {
+          "TITLE": "Consulta i \nPIAO pubblicati",
+          "SUB_TITLE": "Consulta i documenti PIAO disponibili e accedi ai cruscotti di analisi per analizzare tutti i dati e le informazioni riportate nei documenti."
+        },
+        "REDIGI": {
+          "TITLE": "Redigi o completa \nun nuovo PIAO",
+          "SUB_TITLE": "Avvia la redazione di un nuovo PIAO, compilandolo online o caricando un file."
+        },
+        "AGGIORNA": {
+          "TITLE": "Aggiorna il PIAO \ndell'anno corrente",
+          "SUB_TITLE": "Visualizza l'ultimo PIAO pubblicato dell'anno corrente, aggiorna i dati inseriti nelle diverse sezioni e pubblica."
+        }
+      },
+      "INDICE_PIAO": {
+        "TITLE": "Indice del PIAO",
+        "SUB_TITLE": "In questa sezione puoi accedere al dettaglio delle sezioni e sottosezioni del PIAO, visualizzare lo stato di compilazione e la data dell'ultima modifica. Inoltre, puoi caricare \neventuali documenti allegati e richiedere o validare tutto il PIAO.",
+        "INFO": {
+          "DESCRIPTION": "Denominazione PIAO",
+          "VERSION": "Versione PIAO",
+          "DETAILS": "Dettaglio PIAO",
+          "STATUS": "Stato PIAO",
+          "DETAILS_DESCRIPTION_REDIGI": "Redigi o completa un nuovo PIAO {{emp}}",
+          "DETAILS_DESCRIPTION_AGG": "Aggiornamento del PIAO dell'anno corrente"
+        },
+        "TABLE": {
+          "SEZ_SOTT_SEZ_TH": "Sezione/Sottosezione",
+          "DAT_U_MOD_TH": "Data ultima modifica",
+          "STAT_TH": "Stato",
+          "ACT_TH": "Azioni",
+          "PLACEHOLDER_ACT": "Vai al dettaglio"
+        },
+        "ATTACHMENT": {
+          "TITLE": "Carica eventuali documenti allegati al PIAO",
+          "OPEN_MODAL": "CARICA IL DOCUMENTO",
+          "MODAL": {
+            "TITLE_DOC": "Carica un documento",
+            "TITLE_IMAGE": "Carica un immagine",
+            "FILE": "Allegato *",
+            "FILE_NAME": "Nome allegato *",
+            "SELECT_FILE_1": "Fare click per caricare",
+            "SELECT_FILE_2": " o trascina e rilascia il documento",
+            "DOC": "PDF (max. 20 MB)",
+            "IMAGE": "SVG, PNG, JPG o GIF (max. 800x400px)"
+          },
+          "SIZE": "MB",
+          "DESC_ATTACHMENT": "Descrizione allegato",
+          "DESC_ATTACHMENT_REQUIRED": "Descrizione allegato*",
+          "NAME_ATTACHMENT": "Nome documento*"
+        },
+        "SEZIONE": {
+          "T_REDIGI_COMPLETA": "Redigi o completa un nuovo PIAO",
+          "ST_REDIGI_COMPLETA": "In questa sezione puoi avviare la redazione di un nuovo documento PIAO per il prossimo triennio. Compila di seguito tutti i campi disponibili.",
+          "T_AGGIORNA": "Aggiorna il PIAO dell'anno corrente",
+          "ST_AGGIORNA": "In questa sezione puoi visualizzare i documenti PIAO in fase di redazione, monitorare l'avanzamento della compilazione e verificare le sezioni completate. Puoi navigare liberamente tra le sezioni ancora da compilare cliccando sul relativo tab, senza dover seguire un ordine sequenziale.",
+          "ACTIONS": {
+            "TITLE": "AZIONI",
+            "VIEW_CHANGE_HISTORY": "Visualizza storico modifiche",
+            "RECOVER_INFO_PIAO": "Recupera info PIAO precedente",
+            "DOWNLOAD_DRAFT_PDF": "Scarica bozza in PDF",
+            "DOWNLOAD_TEMPLATE": "Scarica template copertina",
+            "SECTION_GUIDE": "Guida alla sezione"
+          },
+          "ATTACHMENT": {
+            "TITLE_ATTACHMENT": "Allegato",
+            "SUB_TITLE_ATTACHMENT": "In questa sezione puoi procedere con il caricamento di un allegato unico e inserire la sua descrizione nell'apposito campo di testo.",
+            "TITLE_ATTACHMENTS": "Allegati",
+            "LOAD_ATTACHMENT": "CARICA UN ALLEGATO",
+            "LOAD_LOGO": "CARICA UN LOGO",
+            "LOAD_IMAGE": "CARICA UN IMMAGINE"
+          },
+          "SEZIONE_1": {
+            "TITLE": "1 Presentazione metodologica e Anagrafica",
+            "SUB_TITLE_PREMESSA": "Premessa metodologica e obiettivo del documento",
+            "SUB_TITLE_PRIORITA": "Priorità politiche",
+            "SUB_TITLE_AREE_ORGANIZZATIVE": "Aree Organizzative",
+            "SUB_TITLE_STAKEHOLDER": "Stakeholder",
+            "ANAGRAFICA": {
+              "TITLE": "Scheda Anagrafica",
+              "SUB_TITLE_DATA": "Dati anagrafici",
+              "SUB_TITLE_LOGIC": "Assetto logistico",
+              "SUB_TITLE_CONTACT": "Contatti",
+              "SUB_TITLE_DATA_RPCT": "Dati RPCT (Responsabile della Prevenzione della Corruzione e della Trasparenza)",
+              "SUB_TITLE_DATA_RTD": "Dati RPCT (Responsabile della Transazione Digitale)"
+            },
+            "MATRICE": {
+              "TITLE": "Matrice: Priorità politiche - aree organizzative - obiettivi VP",
+              "SUB_TITLE": "La matrice collega le priorità politiche, le aree organizzative e gli obiettivi di valore pubblico.",
+              "HEADER_1": "Priorità Politiche",
+              "HEADER_2": "Aree Organizzative",
+              "ALERT": {
+                "SUB_TITLE": "La matrice è generata in automatico dal portale e i contenuti al suo interno saranno visibili solo dopo aver inserito le informazioni nelle sezioni di riferimento. Inoltre, cliccando sugli ID degli obiettivi di valore pubblico è possibile consultarne i dettagli all'interno della modale"
+              }
+            },
+            "NUOVO_CAMPO": {
+              "LABEL": "Nome campo*",
+              "TITLE": "Aggiungi un nuovo campo",
+              "SUB_TITLE": "Di seguito puoi aggiungere un nuovo campo, specificandone il nome. Il campo potrà essere compilato solo dopo il suo\n inserimento nella sezione."
+            },
+            "TEXT_AREA": {
+              "QUADRO_NORMATIVO": {
+                "TITLE": "Quadro normativo, istituzionale e scientifico per la redazione del PIAO",
+                "LABEL": "Descrizione quadro normativo, istituzionale e scientifico per la redazione del PIAO"
+              },
+              "STRUTTURA_PROGRAMMATICA": {
+                "TITLE": "Struttura, contenuti e logica programmatica del PIAO",
+                "LABEL": "Descrizione della struttura, contenuti e logica programmatica del PIAO"
+              },
+              "CRONOPROGRAMMA": {
+                "TITLE": "Cronoprogramma per la predisposizione del PIAO",
+                "LABEL": "Descrizione del cronoprogramma per la predisposizione del PIAO"
+              },
+              "MISSIONE": {
+                "TITLE": "Missione istituzionale",
+                "LABEL": "Missione istituzionale"
+              }
+            },
+            "TEXT_BOX": {
+              "ANAGRAFICA": {
+                "ENTE": "Denominazione dell'Ente",
+                "PA": "Acronimo della PA",
+                "CF": "Codice fiscale",
+                "IPA": "Codice IPA",
+                "TIP_PA": "Tipologia di PA",
+                "IVA": "Partita IVA",
+                "IND_S_L": "Indirizzo sede legale",
+                "IND_UFF_R_P": "Indirizzo Ufficio Relazioni con il Pubblico",
+                "WEB": "Sito web",
+                "EMAIL": "Email",
+                "TEL": "Contatto telefonico",
+                "PEC": "PEC",
+                "SOCIAL": "Social media",
+                "NAME_RPCT": "Nome RPCT",
+                "SURNAME_RPCT": "Cognome RPCT",
+                "ROLE_RPCT": "Ruolo svolto all'interno dell'Ente RPCT",
+                "DATE_RCPT": "Data dell'atto di nomina",
+                "N_RTD": "Nominativo RTD",
+                "S_R_RTD": "Struttura di riferimento RTD"
+              }
+            },
+            "DROPDOWN": {
+              "ANAGRAFICA": {
+                "COMUNI": "Comuni",
+                "REGIONI": "Regioni",
+                "PROVINCE": "Province",
+                "CITTA": "Citta metropolitane",
+                "UNIVERSITA": "Università e Enti di ricerca",
+                "ISTITUTI": "Istituti",
+                "AGENZIE": "Agenzie",
+                "MINISTRI": "Ministri",
+                "ALTRE_ENTI": "Altri enti che redigono il PIAO"
+              }
+            },
+            "DYNAMIC_TBTA": {
+              "PRINCIPIO_GUIDA": {
+                "TITLE": "Principi guida per la redazione del PIAO",
+                "TEXT_BOX": {
+                  "LABEL": "Principio guida"
+                },
+                "TEXT_AREA": {
+                  "LABEL": "Descrizione principio guida"
+                },
+                "CARD_INFO": {
+                  "TITLE": "Vuoi aggiungere un altro principio guida?",
+                  "ADD": "AGGIUNGI PRINCIPIO GUIDA"
+                }
+              },
+              "PRIORITA_POLITICHE": {
+                "TITLE": "Elenco priorità politiche",
+                "TEXT_BOX": {
+                  "LABEL": "Priorità politica"
+                },
+                "TEXT_AREA": {
+                  "LABEL": "Descrizione priorità politica"
+                },
+                "CARD_INFO": {
+                  "TITLE": "Vuoi aggiungere un'altra priorità politica?",
+                  "ADD": "AGGIUNGI PRIORITÀ POLITICA"
+                }
+              },
+              "AREE_ORGANIZZATIVE": {
+                "TITLE": "Area organizzativa",
+                "TEXT_BOX": {
+                  "LABEL": "Denominazione area organizzativa"
+                },
+                "TEXT_AREA": {
+                  "LABEL": "Descrizione area organizzativa"
+                },
+                "CARD_INFO": {
+                  "TITLE": "Vuoi aggiungere un'altra area organizzativa?",
+                  "ADD": "AGGIUNGI AREA ORGANIZZATIVA"
+                }
+              }
+            },
+            "DYNAMIC_TBTB": {
+              "INTEGRATION_TEAM": {
+                "TITLE": "Composizione dell'Integration Team",
+                "TEXT_BOX": {
+                  "LABEL": "Membro dell'Integration Team"
+                },
+                "TEXT_BOX2": {
+                  "LABEL": "Ruolo"
+                },
+                "CARD_INFO": {
+                  "TITLE": "Vuoi aggiungere un altro membro dell'Integration Team?",
+                  "ADD": "AGGIUNGI MEMBRO DELL'INTEGRATION TEAM"
+                }
+              },
+              "ORGANO_POLITICO": {
+                "TITLE": "Organo politico e gestionale di vertice",
+                "TEXT_BOX": {
+                  "LABEL": "Organo politico"
+                },
+                "TEXT_BOX2": {
+                  "LABEL": "Ruolo organo politico"
+                },
+                "CARD_INFO": {
+                  "TITLE": "Vuoi aggiungere un altro organo politico?",
+                  "ADD": "AGGIUNGI ORGANO POLITICO"
+                }
+              },
+              "STAKEHOLDER": {
+                "TITLE": "Stakeholder",
+                "TEXT_BOX": {
+                  "LABEL": "Stakeholder"
+                },
+                "TEXT_BOX2": {
+                  "LABEL": "Relazione con la PA"
+                },
+                "CARD_INFO": {
+                  "TITLE": "Vuoi aggiungere un altro stakeholder?",
+                  "ADD": "AGGIUNGI STAKEHOLDER"
+                }
+              }
+            },
+            "DYNAMIC_TB": {
+              "ULTERIORE_INFO": {
+                "TITLE": "Ulteriori informazioni",
+                "SUB_TITLE": "In questa sezione è possibile inserire informazioni aggiuntive. Per farlo, è necessario digitare il nome del nuovo campo desiderato nella modale e compilare il relativo\n contenuto nell'area dedicata.",
+                "TEXT_BOX": {
+                  "LABEL": "Nome campo"
+                },
+                "CARD_INFO": {
+                  "TITLE": "Vuoi aggiungere un'altra ulteriore informazione?",
+                  "ADD": "AGGIUNGI ULTERIORE INFORMAZIONE"
+                },
+                "CARD_ALERT": {
+                  "TITLE": "Attenzione!",
+                  "SUB_TITLE": "In questa sezione puoi inserire le informazioni relative al Quadro normativo di riferimento."
+                }
+              }
+            }
+          },
+          "SEZIONE-3.3.1": {
+            "TITLE": "3.3.1 Piano triennali dei fabbisogni del personale",
+            "SUB_TITLE": "Parte Generale",
+            "CARD_INFO_MINERVA": {
+              "TITLE": "Attenzione!",
+              "SUB_TITLE": "Per compilare o modificare accedi alla piattaforma Minerva."
+            },
+            "OPEN_TABLE_MINERVA": "Tabella da valorizzare su minerva",
+            "ACCORDION": {
+              "1": {
+                "TAB_1": "Valore finanziario della dotazione organica al 31.12 dell'anno precedente*",
+                "TAB_2": "Rappresentazione della consistenza di personale dirigenziale al 31.12 dell'anno precedente*"
+              }
+            },
+            "MODAL": {
+              "MODAL_DATA_NF_MINERVA": {
+                "TITLE_1": "Dati non rilevati sul sistema esterno. ",
+                "HREF": "Clicca qui ",
+                "TITLE_2": "per compilare i valori su Minerva."
+              }
+            }
+          }
+        },
+        "VALIDATION": {
+          "MODAL_TWO_ACTIONS": {
+            "TITLE": "Validazione",
+            "SUB_TITLE": "Seleziona l'azione che vuoi compiere. Puoi richiedere la validazione della sezione {{idSection}} del PIAO\n o validarla.",
+            "RADIO_BUTTONS": {
+              "CHOICE_1": "Richiedi Validazione",
+              "CHOICE_2": "Valida"
+            }
+          }
+        }
+      },
+      "MODAL": {
+        "REDIGI": {
+          "TITLE": "Redigi un nuovo PIAO",
+          "SUB_TITLE": "Redigi un nuovo documento del PIAO, scegliendo se compilarlo direttamente sulla \npiattaforma oppure caricarlo in formato pdf.",
+          "RADIO_BUTTONS": {
+            "CHOICE_1": "Compila il PIAO on-line",
+            "CHOICE_2": "Carica il PIAO in formato pdf"
+          },
+          "DROPDOWN": {
+            "TITLE": "Seleziona il numero dei dipendenti*",
+            "PLACEHOLDER": "Seleziona",
+            "UP_50": "> 50 dipendenti",
+            "DOWN_50": "< 50 dipendenti"
+          }
+        }
+      }
+    },
+    "NOVITA": {
+      "TITLE": "Novità",
+      "BUTTON": "VAI ALLE NOVITÀ",
+      "ACTION": "LEGGI"
+    },
+    "AVVISI": {
+      "TITLE": "Avvisi"
+    }
+  },
+  "NOVITA_PA": {
+    "TITLE": "Novità",
+    "SUB_TITLE": "In questa sezione puoi esplorare le ultime novità sul PIAO, con aggiornamenti, approfondimenti e comunicazioni ufficiali per supportare amministrazioni e stakeholder nell'attuazione del Piano Integrato di Attività e Organizzazione"
+  },
+
+  "GESTIONALE": {
+    "CARD_HEADER": {
+      "TITLE": "Gestionale",
+      "SUB_TITLE": "In questa sezione puoi assegnare o revocare i profili degli utenti per l’accesso al\n portale PIAO. Seleziona il profilo utente desiderato, inserisci i dati richiesti e\n conferma l'operazione desiderata."
+    },
+    "ELENCO_ATTIVITA": {
+      "TITLE": "Elenco Attività",
+      "TABLE": {
+        "ID_ACTIVITY_TH": "ID attività",
+        "PROFILE_TH": "Profilo utente",
+        "NAME_TH": "Nome",
+        "SURNAME_TH": "Cognome",
+        "FISCAL_CODE_TH": "Codice Fiscale",
+        "ACTIONS_TH": "Azioni",
+        "DETTAGLIO_TH": "Vedi dettaglio",
+        "PROFILO_TH": "Revoca Profilo Utente"
+      },
+      "NO_DATA": "Nessuna attività disponibile"
+    },
+    "DETTAGLIO_ATTIVITA": {
+      "TITLE": "Dettaglio Attività",
+      "SUB_TITLE": "In questa sezione puoi visualizzare e gestire tutte le attività eseguite di assegnazione o revoca dei profili utente per l’accesso al portale PIAO. Puoi consultarne i dettagli ed effettuarne di nuove."
+    }
+  },
+  "BUTTONS": {
+    "CONFIRM": "CONFERMA",
+    "CANCEL": "ANNULLA",
+    "ALERT": "VAI AGLI AVVISI",
+    "DETAILS": "VAI AL DETTAGLIO",
+    "DOWNLOAD": "Scarica",
+    "DELETE": "Elimina",
+    "VALIDATION_ALL_PIAO": "VALIDAZIONE DI TUTTO IL PIAO",
+    "GO_TO_MINERVA": "VAI SU MINERVA",
+    "VALIDATION": "VALIDAZIONE",
+    "TO_VALIDATION": "INVIA IN VALIDAZIONE",
+    "REQ_VALIDATION": "RICHIEDI VALIDAZIONE",
+    "SAVE_TO_DRAFT": "SALVA IN BOZZA",
+    "NEXT_SECTION": "SOTTO SEZIONE SUCCESSIVA",
+    "PREVIUOS_SECTION": "SEZIONE PRECEDENTE",
+    "REMOVE": "Rimuovi",
+    "ADD_SOCIAL": "Aggiungi social",
+    "INSERT": "INSERISCI",
+    "NEW_PROFILE": "NUOVO PROFILO",
+    "EDIT_PROFILE": "MODIFICA PROFILO",
+    "SAVE_EDIT_PROFILE": "SALVA "
+  },
+  "TH_ATTACHMENTS": {
+    "DETAILS_DOC": "Dettaglio documento",
+    "NAME": "Nome documento",
+    "DESC": "Descrizione documento",
+    "TYPE": "Tipo",
+    "DATE": "Data caricamento",
+    "USER": "Profilo utente di chi ha\n effettuato il caricamento",
+    "SIZE": "Dimensione e\n estensione",
+    "ACTIONS": "Azioni"
+  },
+  "PLACEHOLDER": {
+    "SELECT": "Seleziona"
+  },
+  "MESSAGE": {
+    "ALERT_MANDATORY_FIELDS": "I campi contrassegnati con asterisco (*) sono obbligatori",
+    "ALERT_WARNING_FIELD_NOT_SAVE": "Sei sicuro di proseguire senza salvare? I dati non salvati andranno persi.",
+    "ATTENTION": "Attenzione",
+    "NOT_FOUND_ULTERIORE_INFO": "Non sono presenti ulteriori informazioni",
+    "LOAD_IMAGE": "Carica e inserisci un immagine all'analisi del contesto",
+    "LOAD_DOC": "Carica e inserisci un documento all'analisi del contesto"
+  },
+  "NOTIFICATION": {
+    "ERROR": {
+      "NOTIFICATION_NOT_FOUND": "Notifica non trovata all'indice:",
+      "MARK_AS_READ_ERROR": "Errore marcatura notifica:",
+      "MARK_AS_UNREAD_ERROR": "Errore marcatura notifica come da leggere:",
+      "CONNECTION_ERROR": "Errore nella connessione alle notifiche:",
+      "PARSING_ERROR": "Errore nell'elaborazione delle notifiche:",
+      "UNKNOWN_RESPONSE": "Struttura risposta non riconosciuta:"
+    },
+    "STATUS": {
+      "MARKED_AS_READ": "Notifica marcata come letta:",
+      "MARKED_AS_UNREAD": "Notifica marcata come da leggere:",
+      "NEW_NOTIFICATION": "Nuova notifica ricevuta:",
+      "NOTIFICATION_UPDATED": "Notifica aggiornata:",
+      "SERVICE_READY": "Servizio notifiche inizializzato correttamente",
+      "SERVICE_ERROR": "Errore nell'inizializzazione del servizio notifiche"
+    },
+    "LABELS": {
+      "UNREAD_COUNT": "notifiche non lette",
+      "TOTAL_COUNT": "notifiche totali",
+      "LOADING": "Caricamento notifiche...",
+      "NO_NOTIFICATIONS": "Nessuna notifica disponibile",
+      "ALL_READ": "Tutte le notifiche lette",
+      "NOTIFICATIONS": "Notifiche",
+      "SINGLE_UNREAD": "Notifica da leggere",
+      "MULTIPLE_UNREAD": "Notifiche da leggere",
+      "NO_NOTIFICATION": "Nessuna notifica",
+      "VIEW_ALL": "VEDI TUTTE",
+      "TO_READ": "Da leggere",
+      "MARK_AS_READ": "SEGNA COME GIÀ LETTA",
+      "MARK_AS_UNREAD": "SEGNA COME DA LEGGERE",
+      "NOW": "Adesso",
+      "MINUTES_AGO": "min fa",
+      "HOUR_AGO": "ora fa",
+      "HOURS_AGO": "ore fa",
+      "DAY_AGO": "giorno fa",
+      "DAYS_AGO": "giorni fa"
+    },
+    "HEADER": {
+      "NOTIFICATIONS": "Notifiche",
+      "UNREAD": "non lette",
+      "SEARCH": "Cerca",
+      "PROFILE": "Profilo",
+      "SETTINGS": "Impostazioni",
+      "CHANGE_ORGANIZATION": "Cambia organizzazione",
+      "LOGOUT": "Logout"
+    }
+  },
+  "ERRORS": {
+    "REQUIRED": "Questo campo è obbligatorio",
+    "MAX_LENGTH": "Massimo {{max}} caratteri",
+    "MIN_LENGTH": "Minimo {{min}} caratteri",
+    "PATTERN": "Sono consentiti solo: {{allowed}}",
+    "CUSTOM": "Valore non consentito",
+    "SERVER": "Errore di validazione dal server"
+  }
+}

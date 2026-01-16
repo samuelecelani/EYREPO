@@ -1,0 +1,40 @@
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+
+}
+
+.table th,
+.table td {
+  height: 3.75rem;
+  border-bottom: 1px solid #ddd;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  white-space: normal;
+  word-break: break-word;
+
+
+}
+
+.td-children {
+  padding-left: 1.875rem;
+}
+
+
+.table thead {
+  border-bottom: 2px solid black;
+}
+
+
+a {
+  color: var(--bs-link-color);
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+a:hover {
+  color: var(--bs-link-hover-color);
+}

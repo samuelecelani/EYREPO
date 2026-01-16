@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: dfp-piao
+  namespace: commons
+spec:
+  description: Project for dfp-piao applications
+  sourceRepos:
+  - 'https://github.com/samuelecelani/EYREPO.git'
+  destinations:
+  - namespace: '*'
+    server: https://kubernetes.default.svc
+
+  clusterResourceWhitelist:
+  - group: '*'
+    kind: '*'
+    
+  namespaceResourceWhitelist:
+  - group: '*'
+    kind: '*'

@@ -1,0 +1,115 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-top: 1rem;
+  width: 50rem;
+}
+
+.title {
+  font-weight: 400;
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.sub-title {
+  padding-top: 1rem;
+  color: #333;
+  font-weight: 400;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  white-space: pre-line;
+}
+
+.content-choice {
+  padding-top: 2rem;
+  display: flex;
+  flex-direction: row;
+  gap: 4rem;
+  align-items: flex-start;
+}
+
+.radio-option input[type="radio"] {
+  display: none;
+}
+
+.radio-option {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+
+.custom-radio {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #666;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 8px;
+  position: relative;
+}
+
+.radio-option input[type="radio"]:checked+.custom-radio {
+  border-color: #004080;
+}
+
+.radio-option input[type="radio"]:checked+.custom-radio::after {
+  content: "";
+  width: 0.625rem;
+  height: 0.625rem;
+  background-color: #004080;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.label-text {
+  color: #003366;
+  font-size: 1rem;
+}
+
+.radio-option input[type="radio"]:checked~.label-text {
+  color: #004080;
+  font-weight: 500;
+}
+
+
+.content-select {
+  padding-top: 2rem;
+  display: flex;
+  justify-content: flex-start;
+}
+
+
+.alert-label {
+  color: #222222;
+  padding-top: 2rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+.drop-container {
+  max-width: 22.75rem;
+  padding-bottom: 2rem;
+}
+
+.drop {
+  border-radius: 10px;
+}
+
+.drop-label {
+  color: #17324D;
+  padding-top: 1rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+
+@media (max-width: 1000px) {
+  .main {
+    max-width: 100%;
+  }
+}

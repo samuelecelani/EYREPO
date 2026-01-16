@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: registry-security
+type: kubernetes.io/dockerconfigjson
+data:
+  .dockerconfigjson: "e2F1dGhzOntsb2NhbGhvc3Q6ODA4MS9kZnAtZG9ja2VyLXJlcG8vOnthdXRoOlpHWndPbEJBYzNOM01ISmt9fX0="

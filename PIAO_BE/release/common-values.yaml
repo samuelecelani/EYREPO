@@ -1,0 +1,10 @@
+##Azure Pipeline should provide these values
+# teamProject: my-tp
+# tfsArea: my-area
+# repoGit: my-repo
+# tag: 2020
+# env: test
+
+## Project metadata values
+servizioICT: DFP-SA-0008
+codiceApplicazione: DFP-SA-0008_FU_001

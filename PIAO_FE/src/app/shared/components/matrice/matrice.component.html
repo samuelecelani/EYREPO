@@ -1,0 +1,40 @@
+<div class="main">
+  <p class="title">{{ title | translate }}</p>
+  <p class="sub-title">{{ subTitle | translate }}</p>
+
+  <piao-card-alert
+    [icon]="iconAlert"
+    [titleCardHeader]="titleAlert"
+    [subTitleCardHeader]="subTitleAlert"
+    [subTitleClass]="'piao-card-sub-title'"
+  ></piao-card-alert>
+
+  <div class="table-container">
+    <table class="table table-bordered">
+      <thead>
+        <tr class="header">
+          <th rowspan="2">Priorità Politiche</th>
+          <th colspan="5">Aree Organizzative</th>
+        </tr>
+        <tr class="subHeader org-are">
+          <th class="vp-cell" *ngFor="let col of column">{{ col }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let row of matrice">
+          <td class="subHeader vp-cell prop-pol">{{ row.politicalPriority }}</td>
+          <td class="vp-cell org-are" *ngFor="let col of column">
+            <ng-container *ngIf="row.organisationalAreas[col].length > 0">
+              <div *ngFor="let vp of row.organisationalAreas[col]">
+                <div class="vp-content">
+                  {{ vp.code }}
+                  <piao-tooltip [descTooltip]="vp.code" [icon]="'InfoCircle'"></piao-tooltip>
+                </div>
+              </div>
+            </ng-container>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
