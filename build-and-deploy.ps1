@@ -4,13 +4,13 @@
 
 #docker builder prune -a -f
 
-Write-Host "Costruisco l'immagine Docker per dfp-gateway..."
-docker build -t dfp-gateway:1.0.0 "./dfp-gateway"
+#Write-Host "Costruisco l'immagine Docker per dfp-gateway..."
+#docker build -t dfp-gateway:1.0.0 "./dfp-gateway"
 
 #docker builder prune -a -f
 
 Write-Host "Costruisco l'immagine Docker per dfp-piao-fe..."
-docker build -t dfp-performance-fe:1.0.0 "./dfp-piao-fe"
+docker build -t dfp-piao-fe:1.0.0 "./dfp-piao-fe"
 
 # Avvia docker-compose solo dopo il completamento delle build
 Write-Host "Avvio docker-compose..."
@@ -32,3 +32,5 @@ docker push localhost:8081/dfp-docker-repo/dfp-gateway:1.0.0
 
 
 Write-Host "Pushed"
+
+

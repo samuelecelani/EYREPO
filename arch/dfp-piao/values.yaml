@@ -29,15 +29,10 @@ serviceAccount:
   annotations: {}
 
 deployments:
-  gateway:
-    image:
-      repository: localhost:8081/dfp-docker-repo/dfp-gateway
-    cmValues: {
-      SPRING_PROFILES_ACTIVE: bip
-    }
   frontend:
     image:
       repository: localhost:8081/dfp-docker-repo/dfp-piao-fe
+      tag: "1.0.0"
     readinessProbe:
       httpGet:
         path: /health
