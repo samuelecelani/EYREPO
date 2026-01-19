@@ -4,15 +4,15 @@
 
 # This block is for setting up the ingress
 ingress:
-  public:
-    enabled: true
-    className: "nginx"
-    hosts:
-    - host: "dfp-piao.ey.test"
-      paths:
-        - path: /
-          pathType: Prefix
-      service: frontend
+#  public:
+#    enabled: true
+#    className: "nginx"
+#    hosts:
+#    - host: "dfp-piao.ey.test"
+#      paths:
+#        - path: /
+#          pathType: Prefix
+#      service: frontend
   private:
     enabled: true
     className: "nginx"
@@ -29,17 +29,22 @@ serviceAccount:
   annotations: {}
 
 deployments:
-  frontend:
+  gateway:
     image:
-      repository: localhost:8081/dfp-docker-repo/dfp-piao-fe
-      tag: "1.0.0"
-    readinessProbe:
-      httpGet:
-        path: /health
-    livenessProbe:
-      httpGet:
-        path: /health
-        port: http
+      repository: localhost:8081/dfp-docker-repo/dfp-gateway
+    cmValues: {
+      SPRING_PROFILES_ACTIVE: bip
+    }
+#  frontend:
+#    image:
+#      repository: nexus.bip.test/dfp-docker-repo/dfp-piao-fe
+#    readinessProbe:
+#      httpGet:
+#        path: /health
+#    livenessProbe:
+#      httpGet:
+#        path: /health
+#        port: http
 
 
 
