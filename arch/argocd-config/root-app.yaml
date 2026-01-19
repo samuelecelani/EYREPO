@@ -1,7 +1,7 @@
   apiVersion: argoproj.io/v1alpha1
   kind: Application
   metadata:
-    name: dfp-piao-fe
+    name: dfp-root-app
     namespace: argocd
   spec:
     project: default
@@ -11,7 +11,7 @@
       path: arch/argocd-config/apps
     destination:
       server: https://kubernetes.default.svc
-      namespace: argocd
+      namespace: dfp-piao
     syncPolicy:
       automated:
         prune: true
