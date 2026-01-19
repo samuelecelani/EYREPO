@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: git@github.com:samuelecelani/EYREPO.git
     targetRevision: main
-    path: arch/dfp-piao-fe
+    path: arch/argocd-config/apps
   destination:
     server: https://kubernetes.default.svc
     namespace: commons
