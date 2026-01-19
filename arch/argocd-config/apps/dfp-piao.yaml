@@ -10,7 +10,7 @@ metadata:
     argocd-image-updater.argoproj.io/update-strategy: latest
     argocd-image-updater.argoproj.io/write-back-method: git
   name: dfp-piao
-  namespace: commons
+  namespace: argocd
 spec:
   destination:
     namespace: dfp-piao

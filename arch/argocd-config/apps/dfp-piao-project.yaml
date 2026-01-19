@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
   name: dfp-piao
-  namespace: commons
+  namespace: argocd
 spec:
   description: Project for dfp-piao applications
   sourceRepos:

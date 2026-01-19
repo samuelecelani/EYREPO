@@ -2,7 +2,7 @@
   kind: Application
   metadata:
     name: dfp-piao-fe
-    namespace: commons
+    namespace: argocd
   spec:
     project: default
     source:
@@ -11,7 +11,7 @@
       path: arch/argocd-config/apps
     destination:
       server: https://kubernetes.default.svc
-      namespace: commons
+      namespace: argocd
     syncPolicy:
       automated:
         prune: true
