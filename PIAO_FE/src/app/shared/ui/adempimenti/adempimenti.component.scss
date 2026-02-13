@@ -1,0 +1,144 @@
+.accordion-section {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+
+  // Override accordion styles
+  ::ng-deep {
+    // Smaller title font size
+    .accordion-title {
+      font-size: 1.5rem !important; // Slightly smaller
+    }
+
+    // When accordion is open - blue background
+    .accordion.is-open .accordion-content {
+      background-color: #e7eff7; // Light blue background
+    }
+
+    // When accordion is closed - match page background with separator
+    .accordion.is-closed {
+      border-bottom: 1px solid #d0d0d0; // Add separator line
+
+      .accordion-header {
+        background-color: #fafafa !important; // Very light gray to match page
+
+        &:hover {
+          background-color: #f5f5f5 !important;
+        }
+      }
+    }
+  }
+
+  // Add border-top only for first accordion when closed
+  &.is-first-accordion ::ng-deep .accordion.is-closed {
+    border-top: 1px solid #d0d0d0;
+  }
+}
+
+.container-form-adempimento {
+  display: flex;
+  flex-direction: column;
+  overflow: visible !important;
+  background-color: transparent;
+}
+
+.section-subtitle {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0 0 0.5rem 0;
+  padding-bottom: 0.75rem;
+}
+
+.empty-state-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding-top: 0.5rem;
+}
+
+.empty-message {
+  font-size: 0.875rem;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+.table-att-container {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: auto;
+}
+
+.table-att {
+  width: 100%;
+  border-collapse: collapse;
+  margin-left: 0;
+  border-bottom: 1px solid #ccc;
+
+  tr {
+    border-top: 1px solid black;
+
+    & + tr {
+      border-top: 1px solid #ccc;
+    }
+  }
+
+  td {
+    padding-top: 0.5rem;
+    height: 4.6875rem;
+  }
+
+  th {
+    font-size: 0.9rem;
+    padding-bottom: 0.5rem;
+    font-weight: 600;
+    text-align: left;
+    white-space: pre-line;
+  }
+
+  th:nth-child(1),
+  td:nth-child(1) {
+    width: 40%;
+    min-width: 20rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-align: left;
+  }
+
+  th:nth-child(2),
+  td:nth-child(2) {
+    width: 50%;
+    min-width: 25rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-align: left;
+  }
+
+  th:nth-child(3),
+  td:nth-child(3) {
+    width: 10%;
+    min-width: 5rem;
+  }
+}
+
+.azioni-list {
+  margin: 0;
+  padding-left: 1.25rem;
+  list-style-type: disc;
+
+  li {
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: #1a1a1a;
+    margin-bottom: 0.25rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}

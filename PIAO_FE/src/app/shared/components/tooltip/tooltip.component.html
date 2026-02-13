@@ -1,0 +1,21 @@
+<div class="tooltip-wrapper">
+  <span #trigger class="tooltip-trigger" (mouseenter)="showTooltip()" (mouseleave)="hideTooltip()">
+    <piao-svg [icon]="icon" [fillColor]="'#003366'" [svgContainer]="'tooltip-icon'"></piao-svg>
+  </span>
+</div>
+
+<ng-template #tooltipTemplate>
+  <div
+    class="tooltip-text-overlay"
+    (mouseenter)="onTooltipMouseEnter()"
+    (mouseleave)="onTooltipMouseLeave()"
+  >
+    @if (isInnerHTML) {
+      <div class="tooltip-text" [innerHTML]="descTooltip | translate: translateParams || {}"></div>
+    } @else {
+      <div class="tooltip-text tooltip-text-fixed">
+        {{ descTooltip | translate: translateParams || {} }}
+      </div>
+    }
+  </div>
+</ng-template>

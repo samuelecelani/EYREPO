@@ -1,0 +1,23 @@
+<p class="title-modal">
+  {{ title | translate }}
+</p>
+
+<p class="sub-title-modal">{{ subTitle | translate: { idSection: activeSectionId } }}</p>
+
+<form [formGroup]="formGroup">
+  <div class="content-choice">
+    @for (x of inputContent; track $index) {
+      <label class="radio-option">
+        <input
+          type="radio"
+          [formControlName]="x.formControlName"
+          [value]="x.value"
+          name="choice"
+          (change)="handleChoice(x.value)"
+        />
+        <span class="custom-radio"></span>
+        <span class="label-text">{{ x.label | translate }}</span>
+      </label>
+    }
+  </div>
+</form>

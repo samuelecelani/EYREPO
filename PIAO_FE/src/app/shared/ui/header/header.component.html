@@ -1,0 +1,186 @@
+<div>
+  <!-- Top Bar -->
+  <div class="bg-dark text-white py-2">
+    <div class="container-fluid px-4">
+      <small>{{ headerLabels.bannerTitle }}</small>
+    </div>
+  </div>
+
+  <!-- Main Header -->
+  <header class="bg-primary text-white py-3 shadow-sm">
+    <div class="container-fluid px-4">
+      <div class="row align-items-center">
+        <!-- Logo and Brand -->
+        <div class="col-auto">
+          <div class="d-flex align-items-center gap-3">
+            <img
+              src="assets/italian-republic-logo-blue.svg"
+              alt="Logo Repubblica Italiana"
+              class="header-logo"
+            />
+            <div>
+              <h1 class="h4 mb-0 header-title">
+                {{ headerLabels.title }}
+              </h1>
+              <p class="mb-0 small header-subtitle">
+                {{ headerLabels.subTitle }}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Actions -->
+        <div class="col">
+          <!-- Increased gap here to add more space between elements -->
+          <div class="d-flex align-items-center justify-content-end gap-3">
+            <!-- Notifications -->
+            <div class="position-relative">
+              <button
+                (click)="toggleDropdown()"
+                class="btn btn-link text-white p-2 border-0 position-relative notification-button"
+                [attr.aria-label]="
+                  ('NOTIFICATION.HEADER.NOTIFICATIONS' | translate) +
+                  (notificaService.unreadNotifications() > 0
+                    ? ' - ' +
+                      notificaService.unreadNotifications() +
+                      ' ' +
+                      ('NOTIFICATION.HEADER.UNREAD' | translate)
+                    : '')
+                "
+              >
+                <svg
+                  width="15"
+                  height="15"
+                  viewBox="0 0 15 15"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g clip-path="url(#clip0_1110_2413)">
+                    <path
+                      d="M13.612 11.25H1.11242C0.929096 11.25 0.766601 11.1292 0.712436 10.9542C0.658271 10.7792 0.729102 10.5875 0.879097 10.4875C0.895763 10.475 2.77487 9.11667 2.77487 4.58333C2.77487 3.35833 3.24985 2.20833 4.11649 1.34167C4.9873 0.475 6.13726 0 7.36222 0C8.58718 0 9.73715 0.475 10.6038 1.34167C11.4704 2.20833 11.9454 3.35833 11.9454 4.58333C11.9454 9.11667 13.8287 10.475 13.8453 10.4875C13.9953 10.5917 14.062 10.7833 14.0078 10.9542C13.9537 11.125 13.7953 11.2458 13.612 11.2458V11.25ZM2.08323 10.4167H12.6412C11.9787 9.525 11.1121 7.75417 11.1121 4.58333C11.1121 3.58333 10.7204 2.64167 10.0121 1.93333C9.30383 1.225 8.36219 0.833333 7.36222 0.833333C6.36225 0.833333 5.42062 1.225 4.71231 1.93333C4.004 2.64167 3.61234 3.58333 3.61234 4.58333C3.61234 7.75417 2.7457 9.525 2.08323 10.4167Z"
+                      fill="white"
+                    />
+                    <path
+                      d="M7.36221 14.7209C7.04555 14.7209 6.73306 14.6375 6.46224 14.4792C6.18725 14.3209 5.95809 14.0959 5.80392 13.8209C5.68726 13.6209 5.75809 13.3667 5.95392 13.25C6.15391 13.1334 6.40807 13.2042 6.52473 13.4C6.60807 13.5459 6.73306 13.6709 6.87889 13.7542C7.17471 13.925 7.55387 13.925 7.84969 13.7542C7.99969 13.6709 8.12052 13.5459 8.20385 13.4C8.32051 13.2 8.57467 13.1334 8.77466 13.25C8.97466 13.3667 9.04132 13.6209 8.92466 13.8209C8.76633 14.0959 8.53717 14.3209 8.26218 14.4792C7.98719 14.6375 7.67886 14.7209 7.36221 14.7209Z"
+                      fill="white"
+                    />
+                    <path
+                      d="M0.416653 5.0001C0.187494 5.0001 0 4.8126 0 4.58344C0 2.95427 0.508317 1.4251 1.47495 0.162604C1.61661 -0.0207297 1.87494 -0.0540631 2.05827 0.0834369C2.24159 0.225104 2.27493 0.483437 2.13743 0.66677C1.28329 1.78344 0.833307 3.13344 0.833307 4.57927C0.833307 4.80844 0.645813 4.99594 0.416653 4.99594V5.0001Z"
+                      fill="white"
+                    />
+                    <path
+                      d="M14.3037 5.00004C14.0745 5.00004 13.887 4.81254 13.887 4.58338C13.887 3.17921 13.4245 1.78754 12.5829 0.66671C12.4454 0.483377 12.4829 0.220877 12.6662 0.0833765C12.8495 -0.0541235 13.112 -0.0166235 13.2495 0.16671C14.1995 1.43338 14.7203 3.00004 14.7203 4.58338C14.7203 4.81254 14.5328 5.00004 14.3037 5.00004Z"
+                      fill="white"
+                    />
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_1110_2413">
+                      <rect width="14.7204" height="14.7208" fill="white" />
+                    </clipPath>
+                  </defs>
+                </svg>
+
+                <!-- Badge con contatore notifiche non lette -->
+                @if (notificaService.unreadNotifications() > 0) {
+                  <span
+                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger notification-badge"
+                  >
+                    {{
+                      notificaService.unreadNotifications() > 9
+                        ? '9+'
+                        : notificaService.unreadNotifications()
+                    }}
+                  </span>
+                }
+              </button>
+
+              <!-- Dropdown notifiche -->
+              @if (isDropdownOpen()) {
+                <piao-notification-dropdown (close)="closeDropdown()"></piao-notification-dropdown>
+              }
+            </div>
+
+            <!-- User Badge Button -->
+            <button class="btn text-white border-0 user-badge-button" aria-label="Profilo utente">
+              MR
+            </button>
+
+            <!-- Organization Dropdown -->
+            <div class="dropdown">
+              <a
+                class="text-white text-decoration-none d-flex align-items-center gap-1 cursor-pointer organization-dropdown-link"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <span class="organization-dropdown-text">Comune di Rimini</span>
+                <!-- Chevron Down -->
+                <svg
+                  width="12"
+                  height="12"
+                  viewBox="0 0 16 16"
+                  fill="#5B6F82"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"
+                  />
+                </svg>
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a class="dropdown-item" href="#">{{
+                    'NOTIFICATION.HEADER.PROFILE' | translate
+                  }}</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">{{
+                    'NOTIFICATION.HEADER.SETTINGS' | translate
+                  }}</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">{{
+                    'NOTIFICATION.HEADER.CHANGE_ORGANIZATION' | translate
+                  }}</a>
+                </li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <a class="dropdown-item" href="#">{{
+                    'NOTIFICATION.HEADER.LOGOUT' | translate
+                  }}</a>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Search -->
+            <button
+              class="btn btn-link text-white border-0 search-button"
+              [attr.aria-label]="'NOTIFICATION.HEADER.SEARCH' | translate"
+            >
+              <svg
+                width="15"
+                height="15"
+                viewBox="0 0 16 16"
+                fill="white"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+</div>
+
+<!-- Overlay per chiudere il dropdown cliccando fuori -->
+@if (isDropdownOpen()) {
+  <div
+    class="position-fixed top-0 start-0 w-100 h-100 dropdown-overlay"
+    (click)="closeDropdown()"
+    aria-hidden="true"
+  ></div>
+}

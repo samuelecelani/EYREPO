@@ -1,0 +1,71 @@
+@if (open) {
+  <div class="piao-modal show d-block" tabindex="-1">
+    <div class="piao-modal-dialog piao-modal-dialog-centered">
+      <div class="piao-modal-container">
+        <div class="piao-modal-content">
+          <div class="piao-modal-header">
+            <piao-icon
+              *ngIf="isIcon"
+              [icon]="icon"
+              [iconColor]="'#003366'"
+              [iconImgClass]="iconStyle"
+            ></piao-icon>
+            <button
+              type="button"
+              class="btn-close"
+              aria-label="Close"
+              (click)="handleClose()"
+            ></button>
+          </div>
+
+          <div class="piao-modal-body">
+            <ng-content></ng-content>
+          </div>
+
+          <div class="piao-modal-footer">
+            <piao-button
+              *ngIf="showButtonCancel"
+              [variant]="'primary-outline-modal'"
+              [size]="'lg'"
+              (clicked)="handleClose()"
+              >{{ 'BUTTONS.CANCEL' | translate }}</piao-button
+            >
+
+            <piao-button
+              *ngIf="showButtonNotSave"
+              [variant]="'primary-outline-modal'"
+              [size]="'lg'"
+              (clicked)="handleNotSave()"
+              >{{ 'BUTTONS.NOT_SAVE' | translate }}</piao-button
+            >
+
+            <piao-button
+              *ngIf="showButtonClose"
+              [variant]="'primary-modal'"
+              [size]="'lg-plus'"
+              (clicked)="handleClose()"
+              >{{ 'BUTTONS.CLOSE' | translate }}</piao-button
+            >
+            <piao-button
+              *ngIf="showButtonCloseOutline"
+              [variant]="'primary-outline-modal'"
+              [size]="'lg-plus'"
+              (clicked)="handleClose()"
+              >{{ 'BUTTONS.CLOSE' | translate }}</piao-button
+            >
+
+            <piao-button
+              *ngIf="showButtonConfirm"
+              [variant]="'primary-modal'"
+              [size]="'lg-plus'"
+              (clicked)="handleConfirm()"
+              [disabled]="disabledButtonConfirm"
+              [customClass]="'button-confirm-fixed'"
+              >{{ titleButtonConfirm | translate }}</piao-button
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+}

@@ -1,0 +1,94 @@
+<div [ngClass]="main">
+  <p class="title">{{ title | translate }}</p>
+  <p class="sub-title pt-2">{{ subTitle | translate }}</p>
+  <form [formGroup]="formGroup">
+    <div class="d-flex flex-column pt-4">
+      <piao-dropdown
+        [dropdown]="dropdown"
+        [title]="labelDenominazione"
+        [formControlName]="'denominazioneDropdown'"
+        [formControl]="formGroup.controls['denominazioneDropdown']"
+        [isTooltip]="true"
+        [isTranslate]="false"
+        [dropContainerClass]="'container-width-30'"
+        [isRequired]="true"
+        (change)="handleChoice()"
+      ></piao-dropdown>
+
+      @if (formGroup.get('denominazioneDropdown')?.value === FaseEnum.AGGIUNGI_NUOVA) {
+        <div class="pt-3">
+          <piao-text-box
+            [label]="labelNewDenominazione"
+            [typeInput]="'text'"
+            [inputClass]="'input'"
+            [control]="formGroup.controls['denominazione']"
+            [maxValidatorLength]="100"
+            [id]="'denominazione'"
+            [descTooltip]="labelNewDenominazione"
+            [required]="true"
+            [containerClass]="'container-width-30'"
+          >
+          </piao-text-box>
+        </div>
+      }
+
+      <div class="pt-2">
+        <piao-text-area
+          [label]="labelDescrizione"
+          [control]="formGroup.controls['descrizione']"
+          [id]="'descrizione'"
+          textAreaClass="text-area"
+          [maxValidatorLength]="'500'"
+          [descTooltip]="labelDescrizione"
+          [containerClass]="'container-width-full'"
+        ></piao-text-area>
+      </div>
+
+      <div class="pt-4">
+        <piao-text-box
+          [label]="labelTempi"
+          [typeInput]="'text'"
+          [inputClass]="'input'"
+          [control]="formGroup.controls['tempi']"
+          [maxValidatorLength]="50"
+          [id]="'tempi'"
+          [descTooltip]="labelTempi"
+          [containerClass]="'container-width-30'"
+        >
+        </piao-text-box>
+      </div>
+
+      <piao-dynamic-tb-fields
+        [formGroup]="formGroup"
+        [dynamicTBConfig]="attoriConfig"
+        [nameArrayForm]="'attore.properties'"
+        [containerInputClass]="'container-width-25'"
+        [propertiesPath]="'attore.properties'"
+        [titleLabel]="'SEZIONE_22.FASI.MODAL.ATTORI_COINVOLTI_TITLE'"
+        [notFoundLabel]="'SEZIONE_22.FASI.MODAL.NOT_FOUND_ATTORI_COINVOLTI'"
+        [addFieldLabel]="'SEZIONE_22.FASI.MODAL.ADD_ATTORI_COINVOLTI'"
+        [isTooltip]="true"
+        (modalDeleteOpened)="handleAddModalOpened()"
+        (modalDeleteClosed)="handleAddModalClosed()"
+        [columnClass]="'col-12 col-xl-6 col-lg-6'"
+      >
+      </piao-dynamic-tb-fields>
+
+      <piao-dynamic-tb-fields
+        [formGroup]="formGroup"
+        [dynamicTBConfig]="attivitaConfig"
+        [nameArrayForm]="'attivita.properties'"
+        [containerInputClass]="'container-width-25'"
+        [propertiesPath]="'attivita.properties'"
+        [titleLabel]="'SEZIONE_22.FASI.MODAL.ATTIVITA_TITLE'"
+        [notFoundLabel]="'SEZIONE_22.FASI.MODAL.NOT_FOUND_ATTIVITA'"
+        [addFieldLabel]="'SEZIONE_22.FASI.MODAL.ADD_ATTIVITA'"
+        [isTooltip]="true"
+        (modalDeleteOpened)="handleAddModalOpened()"
+        (modalDeleteClosed)="handleAddModalClosed()"
+        [columnClass]="'col-12 col-xl-6 col-lg-6'"
+      >
+      </piao-dynamic-tb-fields>
+    </div>
+  </form>
+</div>

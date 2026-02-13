@@ -1,0 +1,161 @@
+<div class="table-att">
+  <p class="title">{{ 'GESTIONALE.DETTAGLIO_ATTIVITA.TITLE' | translate }}</p>
+</div>
+<div>
+  <p class="sub-title">{{ 'GESTIONALE.DETTAGLIO_ATTIVITA.SUB_TITLE' | translate }}</p>
+</div>
+
+<div class="profilo-wrapper">
+  <div class="profilo-bg-figma" style="z-index: 0; pointer-events: none"></div>
+
+  <div class="profilo-container" style="position: relative; z-index: 1">
+    <form [formGroup]="form">
+      <div class="grid">
+        @if (!isEditing) {
+          <piao-text-box
+            [label]="'GESTIONALE.DETTAGLIO_ATTIVITA.PROFILO_UTENTE' | translate"
+            [typeInput]="'text'"
+            [inputClass]="'input'"
+            [control]="form.controls['profiloUtente']"
+            [maxValidatorLength]="50"
+            [id]="'ProfiloUtente'"
+            [isDetails]="true"
+          ></piao-text-box>
+        } @else {
+          <piao-dropdown
+            [dropdown]="profiloDropdownOptions"
+            [title]="'GESTIONALE.DETTAGLIO_ATTIVITA.PROFILO_UTENTE' | translate"
+            formControlName="profiloUtente"
+            [id]="'ProfiloUtente'"
+            (isChange)="handleChange($event)"
+            [dropContainerClass]="'piao-modal-redigi-drop-container profilo-utente-drop-container'"
+          ></piao-dropdown>
+        }
+
+        @if (!isEditing) {
+          <piao-text-box
+            [label]="'GESTIONALE.DETTAGLIO_ATTIVITA.SEZIONE_PIAO' | translate"
+            [typeInput]="'text'"
+            [inputClass]="'input'"
+            [control]="form.controls['sezionePiaoDisplay']"
+            [maxValidatorLength]="50"
+            [id]="'SezionePiao'"
+            [isDetails]="true"
+          ></piao-text-box>
+        } @else {
+          <piao-dropdown
+            [dropdown]="sezionePiaoOptions"
+            [title]="'GESTIONALE.DETTAGLIO_ATTIVITA.SEZIONE_PIAO' | translate"
+            formControlName="sezionePiao"
+            [id]="'SezionePiao'"
+            [isMulti]="true"
+            [hasHierarchy]="true"
+            [showSelectAll]="true"
+            [selectAllLabel]="'GESTIONALE.DETTAGLIO_ATTIVITA.SELEZIONA_TUTTI' | translate"
+            (isChange)="handleChange($event)"
+            [dropContainerClass]="'piao-modal-redigi-drop-container profilo-utente-drop-container'"
+          ></piao-dropdown>
+        }
+        @if (!isEditing) {
+          <piao-text-box
+            [label]="'GESTIONALE.DETTAGLIO_ATTIVITA.AMMINISTRAZIONE' | translate"
+            [typeInput]="'text'"
+            [inputClass]="'input'"
+            [control]="form.controls['amministrazione']"
+            [maxValidatorLength]="50"
+            [id]="'Amministrazione'"
+            [isDetails]="!isEditing"
+          >
+          </piao-text-box>
+        } @else {
+          <piao-dropdown
+            [dropdown]="amministrazioneOptions"
+            [title]="'GESTIONALE.DETTAGLIO_ATTIVITA.AMMINISTRAZIONE' | translate"
+            formControlName="amministrazione"
+            [id]="'Amministrazione'"
+            (isChange)="handleChange($event)"
+            [dropContainerClass]="'piao-modal-redigi-drop-container profilo-utente-drop-container'"
+          ></piao-dropdown>
+        }
+        <piao-text-box
+          [label]="'GESTIONALE.DETTAGLIO_ATTIVITA.NOME' | translate"
+          [typeInput]="'text'"
+          [inputClass]="'input'"
+          [control]="form.controls['nome']"
+          [maxValidatorLength]="50"
+          [id]="'Nome'"
+          [isDetails]="!isEditing"
+        >
+        </piao-text-box>
+
+        <piao-text-box
+          [label]="'GESTIONALE.DETTAGLIO_ATTIVITA.COGNOME' | translate"
+          [typeInput]="'text'"
+          [inputClass]="'input'"
+          [control]="form.controls['cognome']"
+          [maxValidatorLength]="50"
+          [id]="'Cognome'"
+          [isDetails]="!isEditing"
+        >
+        </piao-text-box>
+
+        <piao-text-box
+          [label]="'GESTIONALE.DETTAGLIO_ATTIVITA.CODICE_FISCALE' | translate"
+          [typeInput]="'text'"
+          [inputClass]="'input'"
+          [control]="form.controls['codiceFiscale']"
+          [maxValidatorLength]="50"
+          [id]="'CodiceFiscale'"
+          [isDetails]="!isEditing"
+        >
+        </piao-text-box>
+
+        <piao-text-box
+          [label]="'GESTIONALE.DETTAGLIO_ATTIVITA.DATA_NASCITA' | translate"
+          [typeInput]="'text'"
+          [inputClass]="'input'"
+          [control]="form.controls['dataNascita']"
+          [maxValidatorLength]="50"
+          [id]="'DataNascita'"
+          [isDetails]="!isEditing"
+        >
+        </piao-text-box>
+        <piao-text-box
+          [label]="'GESTIONALE.DETTAGLIO_ATTIVITA.LUOGO_NASCITA' | translate"
+          [typeInput]="'text'"
+          [inputClass]="'input'"
+          [control]="form.controls['luogoNascita']"
+          [maxValidatorLength]="50"
+          [id]="'LuogoNascita'"
+          [isDetails]="!isEditing"
+        >
+        </piao-text-box>
+        <piao-text-box
+          [label]="'GESTIONALE.DETTAGLIO_ATTIVITA.EMAIL_ISTITUZIONALE' | translate"
+          [typeInput]="'text'"
+          [inputClass]="'input'"
+          [control]="form.controls['emailIstituzionale']"
+          [maxValidatorLength]="50"
+          [id]="'EmailIstituzionale'"
+          [isDetails]="!isEditing"
+        >
+        </piao-text-box>
+      </div>
+    </form>
+
+    <div class="button">
+      @if (!isEditing) {
+        <piao-button (click)="handleEditProfile()">{{
+          'BUTTONS.EDIT_PROFILE' | translate
+        }}</piao-button>
+      } @else {
+        <piao-button (click)="handleSaveProfile()">{{
+          isNewUser
+            ? ('BUTTONS.SAVE_PROFILE' | translate)
+            : ('BUTTONS.SAVE_EDIT_PROFILE' | translate)
+        }}</piao-button>
+      }
+    </div>
+  </div>
+</div>
+<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />

@@ -1,0 +1,220 @@
+.main {
+  display: flex;
+  flex-direction: column;
+}
+
+// SWOT Grid Layout
+.swot-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  padding-top: 1.5rem;
+
+  @media (max-width: 1110px) {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+// Card per aggiungere elementi
+.card-add-element {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f2f7fc;
+  border-radius: 8px;
+  padding: 1rem 1.5rem;
+  margin-top: 1rem;
+
+  span {
+    font-size: 1rem;
+    color: #1a1a1a;
+  }
+}
+
+// Bottoni
+.btn-add {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: none;
+  border: none;
+  color: #0066cc;
+  font-weight: 600;
+  font-size: 0.875rem;
+  cursor: pointer;
+  text-transform: uppercase;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.btn-add-campo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: none;
+  border: none;
+  color: #0066cc;
+  font-weight: 600;
+  font-size: 0.875rem;
+  cursor: pointer;
+  text-transform: uppercase;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.btn-upload {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: none;
+  border: none;
+  color: #0066cc;
+  font-weight: 600;
+  font-size: 0.875rem;
+  cursor: pointer;
+  text-transform: uppercase;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+// Header con titolo e bottone
+.ulteriori-info-header,
+.allegato-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+// Upload section
+.upload-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 1rem 1.5rem;
+
+  .upload-description {
+    font-size: 0.875rem;
+    color: #5c6f82;
+    margin: 0;
+    padding: 0;
+    max-width: 80%;
+  }
+}
+
+// Tabella allegati
+.table-title {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #1a1a1a;
+  padding-bottom: 1rem;
+}
+
+.table-allegati {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+
+  thead {
+    background-color: #f8f9fa;
+
+    th {
+      text-align: left;
+      padding: 1rem;
+      font-weight: 600;
+      font-size: 0.875rem;
+      color: #5c6f82;
+      border-bottom: 2px solid #e0e0e0;
+    }
+  }
+
+  tbody {
+    tr {
+      border-bottom: 1px solid #e0e0e0;
+
+      &:hover {
+        background-color: #f8f9fa;
+      }
+    }
+
+    td {
+      padding: 1rem;
+      font-size: 0.875rem;
+      color: #1a1a1a;
+      vertical-align: middle;
+    }
+  }
+
+  .actions {
+    display: flex;
+    gap: 1rem;
+  }
+}
+
+.btn-action {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  background: none;
+  border: none;
+  color: #0066cc;
+  font-size: 0.875rem;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &.btn-delete {
+    color: #d9534f;
+  }
+}
+
+// Icons
+::ng-deep .icon-plus {
+  width: 1rem;
+  height: 1rem;
+}
+
+::ng-deep .icon-action {
+  width: 1rem;
+  height: 1rem;
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .card-add-element {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  .ulteriori-info-header,
+  .allegato-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .upload-section {
+    flex-direction: column;
+    gap: 1rem;
+
+    .upload-description {
+      max-width: 100%;
+    }
+  }
+
+  .table-allegati {
+    display: block;
+    overflow-x: auto;
+  }
+}

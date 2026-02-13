@@ -1,0 +1,58 @@
+.title-list-indicatori {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.title-indicatore {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.table-container {
+  overflow-x: auto;
+  overflow-y: auto;
+}
+
+.table-custom {
+  table-layout: fixed;
+  width: 100%;
+}
+
+.table-custom th,
+.table-custom td {
+  height: 4.75rem !important;
+  width: 9rem !important;
+  min-width: 9rem;
+  max-width: 9rem;
+  padding: 0.75rem;
+  vertical-align: middle;
+}
+
+.table-custom thead tr {
+  border-bottom: 2px solid #5c6f82;
+}
+
+.table-custom tbody tr {
+  border-bottom: 1px solid #ccc; /* dal secondo in poi */
+}
+
+.table-custom thead th:last-child,
+.table-custom tbody td:last-child {
+  position: sticky;
+  right: 0;
+  z-index: 2;
+  background-color: #e7eff7;
+  width: 4rem !important;
+  min-width: 4rem !important;
+
+  /* ombra verso sinistra (negativa su X) */
+  box-shadow:
+    0 0 18px -14px #5c6f82,
+    /* morbida */ -4px 0 8px -6px #5c6f82; /* rinforzo vicino al bordo */
+}
+
+.table-custom thead th:last-child {
+  z-index: 3;
+}

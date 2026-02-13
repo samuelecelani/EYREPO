@@ -1,0 +1,189 @@
+.title {
+  font-weight: 400;
+  font-size: 2.6rem;
+  color: #1a1a1a;
+  padding-bottom: 0.5rem;
+}
+
+.table-att {
+  border-bottom: 2px solid black;
+}
+
+.sub-title {
+  display: block;
+  width: 100%;
+  margin-top: 1rem;
+  font-size: 1.125rem;
+  padding-bottom: 0.5rem;
+}
+
+.profilo-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  min-height: 0;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.profilo-bg-figma {
+  position: absolute;
+  inset: 0;
+  background-color: #f2f7fc;
+  z-index: 0;
+  pointer-events: none;
+
+  -webkit-mask-image: url('/assets/img/cardBodyProfile.png');
+  mask-image: url('/assets/img/cardBodyProfile.png');
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+
+  -webkit-mask-size: 102% 100%;
+  mask-size: 102% 100%;
+  -webkit-mask-position: right top -2px;
+  mask-position: right top -2px;
+
+  mask-mode: alpha;
+  border-radius: inherit;
+}
+piao-dropdown {
+  width: 100%;
+  max-width: 25.06rem;
+}
+::ng-deep .profilo-utente-drop-container {
+  max-width: 25.06rem;
+}
+/* Fallback: mostra direttamente la nuova shape come background */
+@supports not (-webkit-mask-image: url('/assets/img/cardBodyProfile.png')) {
+  .profilo-bg-figma {
+    /* fallback con gli stessi parametri */
+    background: #f2f7fc url('/assets/img/cardBodyProfile.png') right center / 100% 100% no-repeat;
+  }
+}
+
+.profilo-container {
+  position: relative;
+  z-index: 1;
+  padding: 3rem 2.5rem 11rem;
+  // niente border-radius qui: il contorno lo crea la mask
+}
+
+/* Override label styles of the nested dropdown */
+piao-dropdown {
+  --dropdown-label-pt: 0rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  /* riduci solo lo spacing verticale tra le righe */
+  column-gap: 1.5rem;
+  row-gap: 0.5rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+}
+
+.field-offset-top {
+  margin-top: 0.5rem; // piccolo spazio sopra
+  padding-bottom: 2rem; // nuovo spazio sotto per distanziare dal bordo azzurro
+}
+
+label {
+  font-size: 0.875rem;
+  color: #5b6b7b;
+  /* meno spazio sotto la key */
+  margin-bottom: 0.125rem;
+}
+
+piao-text-box {
+  width: 100%;
+  max-width: 25.06rem;
+}
+
+::ng-deep .input {
+  height: 2.5rem;
+  border: 1px solid #5c6f82;
+  border-radius: 10px;
+}
+
+.edit-input:focus {
+  border-bottom: 2px solid #1976d2; // colore evidenziato quando attivo
+}
+
+.value {
+  font-weight: 600;
+  color: #0b1f33;
+  /* meno spazio sopra/sotto il valore */
+  padding: 0.25rem 0;
+}
+
+.button {
+  position: absolute;
+  right: 2rem;
+  bottom: 2rem;
+  padding-top: 0;
+  display: flex;
+  justify-content: flex-end;
+  width: calc(100% - 4rem);
+  background: none;
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .title {
+    font-size: 2.2rem;
+  }
+
+  .profilo-container {
+    padding: 2.5rem 2rem 4rem;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .profilo-bg-figma {
+    -webkit-mask-size: 108% 102%;
+    mask-size: 108% 102%;
+    -webkit-mask-position: right center;
+    mask-position: right center;
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .title {
+    font-size: 1.6rem;
+  }
+
+  .sub-title {
+    font-size: 1rem;
+  }
+
+  .profilo-container {
+    padding: 1.5rem 1rem 2rem;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    row-gap: 0.75rem;
+  }
+
+  .button {
+    position: static;
+    width: 100%;
+    margin-top: 1rem;
+    justify-content: flex-end;
+  }
+
+  .profilo-bg-figma {
+    -webkit-mask-size: 125% 108%;
+    mask-size: 125% 108%;
+    -webkit-mask-position: right center;
+    mask-position: right center;
+  }
+}

@@ -1,0 +1,41 @@
+.main {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-weight: 600;
+  font-size: 1.57rem;
+  color: #1a1a1a;
+}
+
+.sub-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  padding-left: 0.5rem;
+  padding-bottom: 1rem;
+}
+
+::ng-deep .svg {
+  max-width: 1rem;
+  max-height: 1rem;
+}
+
+.delete-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.delete-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #cc334d;
+  gap: 0.5rem;
+  cursor: pointer;
+  align-items: center;
+}

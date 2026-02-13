@@ -1,0 +1,125 @@
+.alert-card {
+  padding: 1.5rem;
+  transition: box-shadow 0.3s ease;
+}
+
+.alert-card.alert-non-visualizzato {
+  background-color: #f0f8ff;
+  border-left: 4px solid #0066cc;
+}
+
+.alert-content {
+  display: flex;
+  gap: 1.5rem;
+  /* align-items: center; */
+}
+
+/* Icon Section */
+.alert-icon {
+  flex-shrink: 0;
+}
+
+::ng-deep .icon-container-alert {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 8px !important;
+  background-color: #c3dfff !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem;
+  border: none !important;
+}
+
+::ng-deep .icon-img-alert {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+/* Main Content Section */
+.alert-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.alert-badge {
+  display: flex;
+}
+
+.alert-title {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.alert-title-link {
+  color: #003366;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.alert-title-link:hover {
+  color: #0073e6;
+  text-decoration: underline;
+}
+
+.alert-description {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #5c6f82;
+}
+
+/* Date Container - Right aligned and vertically centered */
+.alert-date-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-shrink: 0;
+  min-width: 100px;
+}
+
+.alert-date {
+  font-family: 'Roboto Mono', sans-serif !important;
+  margin: 0;
+  font-size: 0.875rem;
+  color: #5c6f82;
+  white-space: nowrap;
+}
+
+/* Action Section */
+.alert-action {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+
+.alert-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #0066cc;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.alert-link svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .alert-content {
+    flex-direction: column;
+  }
+
+  .alert-action {
+    align-self: flex-start;
+  }
+}

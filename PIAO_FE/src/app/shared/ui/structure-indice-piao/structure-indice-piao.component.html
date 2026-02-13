@@ -1,0 +1,137 @@
+<div class="main">
+  <div class="table-responsive">
+    <table class="table" *ngIf="piaoDTO">
+      <thead>
+        <tr>
+          <th>{{ 'SCRIVANIA_PA.SERVIZI_PIAO.INDICE_PIAO.TABLE.SEZ_SOTT_SEZ_TH' | translate }}</th>
+          <th>{{ 'SCRIVANIA_PA.SERVIZI_PIAO.INDICE_PIAO.TABLE.DAT_U_MOD_TH' | translate }}</th>
+          <th>
+            {{ 'SCRIVANIA_PA.SERVIZI_PIAO.INDICE_PIAO.TABLE.STAT_TH' | translate }}
+            @if (tooltipStatus) {
+              <piao-tooltip
+                [descTooltip]="'TOOLTIP.GRAPHIC_STATE'"
+                [isInnerHTML]="true"
+                [icon]="'InfoCircle'"
+                class="tooltip-gap"
+              ></piao-tooltip>
+            }
+          </th>
+          <th *ngIf="showColAction" class="th-actions">
+            {{ 'SCRIVANIA_PA.SERVIZI_PIAO.INDICE_PIAO.TABLE.ACT_TH' | translate }}
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let sezione of sezioni">
+          <ng-container *ngIf="!showColAction; else indiceComplete">
+            <tr *ngIf="sezione.numeroSezione != '2' && sezione.numeroSezione != '3'">
+              <td>{{ sezione.numeroSezione }} {{ sezione.testo }}</td>
+
+              <td *ngIf="sezione.updatedTs != null; else noUpdateTsSezione">
+                {{ sezione.updatedTs | date: 'dd/MM/yyyy' }}
+              </td>
+              <ng-template #noUpdateTsSezione>
+                <td>{{ sezione.createdTs | date: 'dd/MM/yyyy' }}</td>
+              </ng-template>
+
+              <td>
+                <piao-status
+                  [status]="sezione.statoSezione ? sezione.statoSezione : statusDaCompilare"
+                ></piao-status>
+              </td>
+
+              <td
+                *ngIf="
+                  showColAction &&
+                    sezione.numeroSezione &&
+                    sezione.numeroSezione !== '2' &&
+                    sezione.numeroSezione !== '3';
+                  else noHrefSezione
+                "
+              >
+                <piao-azioni [isTitle]="false"></piao-azioni>
+              </td>
+              <ng-template *ngIf="showColAction" #noHrefSezione>
+                <td>-</td>
+              </ng-template>
+            </tr>
+          </ng-container>
+
+          <ng-template #indiceComplete>
+            <tr>
+              <td>{{ sezione.numeroSezione }} {{ sezione.testo }}</td>
+
+              <td *ngIf="sezione.updatedTs != null; else noUpdateTsSezione">
+                {{ sezione.updatedTs | date: 'dd/MM/yyyy' }}
+              </td>
+              <ng-template #noUpdateTsSezione>
+                <td>{{ sezione.createdTs | date: 'dd/MM/yyyy' }}</td>
+              </ng-template>
+
+              <td>
+                <piao-status
+                  [status]="sezione.statoSezione ? sezione.statoSezione : statusDaCompilare"
+                ></piao-status>
+              </td>
+
+              <td
+                *ngIf="
+                  showColAction &&
+                    sezione.numeroSezione &&
+                    sezione.numeroSezione !== '2' &&
+                    sezione.numeroSezione !== '3';
+                  else noHrefSezione
+                "
+                class="td-actions"
+              >
+                <piao-azioni
+                  [isTitle]="false"
+                  [verticalEllipsis]="getAction(sezione.numeroSezione)"
+                ></piao-azioni>
+              </td>
+              <ng-template #noHrefSezione>
+                <td *ngIf="showColAction" class="td-actions">-</td>
+              </ng-template>
+            </tr>
+          </ng-template>
+
+          <ng-container *ngIf="sezione.children?.length > 0">
+            <ng-container *ngFor="let child of sezione.children">
+              <tr>
+                <td [ngClass]="showColAction ? 'td-children' : null">
+                  {{ child.numeroSezione }} {{ child.testo }}
+                </td>
+
+                <td *ngIf="child.updatedTs != null; else noUpdateTsChild">
+                  {{ child.updatedTs | date: 'dd/MM/yyyy' }}
+                </td>
+                <ng-template #noUpdateTsChild>
+                  <td>{{ child.createdTs | date: 'dd/MM/yyyy' }}</td>
+                </ng-template>
+
+                <td>
+                  <piao-status
+                    [status]="child.statoSezione ? child.statoSezione : statusDaCompilare"
+                  ></piao-status>
+                </td>
+
+                <td
+                  *ngIf="showColAction && child.numeroSezione; else noHrefChild"
+                  class="td-actions"
+                >
+                  <piao-azioni
+                    [isTitle]="false"
+                    [verticalEllipsis]="getAction(child.numeroSezione)"
+                  ></piao-azioni>
+                </td>
+                <ng-template #noHrefChild>
+                  <td *ngIf="showColAction" class="td-actions">-</td>
+                </ng-template>
+              </tr>
+            </ng-container>
+          </ng-container>
+        </ng-container>
+      </tbody>
+    </table>
+  </div>
+</div>

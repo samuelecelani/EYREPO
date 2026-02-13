@@ -1,0 +1,24 @@
+package it.ey.piao.api.service;
+
+import it.ey.dto.OVPStrategiaDTO;
+import it.ey.dto.OVPStrategiaIndicatoreDTO;
+import it.ey.entity.OVPStrategia;
+
+import java.util.List;
+
+public interface IOVPStrategiaService {
+
+    OVPStrategiaDTO save(OVPStrategiaDTO request, Long idOVP);
+
+    void delete(Long id);
+
+    OVPStrategiaDTO enrichWithRelations(OVPStrategia entity); // Usato solo per il salvataggio
+
+    /**
+     * Sincronizza la lista di Indicatori della strategia.
+     * Gli indicatori vengono impostati con il back-reference verso la strategia.
+     */
+    void syncIndicatori(OVPStrategia parent, List<OVPStrategiaIndicatoreDTO> dtoList);
+
+    void loadMongoDataForStrategia(OVPStrategiaDTO strategiaDTO); // Carica solo i dati MongoDB (indicatori)
+}

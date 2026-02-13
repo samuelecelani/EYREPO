@@ -1,0 +1,34 @@
+<div [ngClass]="main">
+  <p class="title">{{ title | translate }}</p>
+  <p class="sub-title pt-2">{{ subTitle | translate }}</p>
+  <p class="alert-label pt-4">
+    {{ 'MESSAGE.ALERT_MANDATORY_FIELDS' | translate }}
+  </p>
+  <form [formGroup]="formGroup">
+    <div class="d-flex flex-column pt-3">
+      <div class="pt-2">
+        <piao-text-area
+          [required]="true"
+          [label]="labelNormativa"
+          [control]="formGroup.controls['normativa']"
+          [id]="'normativa'"
+          textAreaClass="text-area"
+          [maxValidatorLength]="'500'"
+          [descTooltip]="labelNormativa"
+          [containerClass]="'container-width-full'"
+        ></piao-text-area>
+
+        <piao-text-area
+          [required]="true"
+          [label]="labelAzionePrevista"
+          [control]="formGroup.controls['azione']"
+          [id]="'azionePrevista'"
+          textAreaClass="text-area"
+          [maxValidatorLength]="'500'"
+          [descTooltip]="labelAzionePrevista"
+          [containerClass]="'container-width-full'"
+        ></piao-text-area>
+      </div>
+    </div>
+  </form>
+</div>

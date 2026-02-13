@@ -1,0 +1,125 @@
+<div [ngClass]="main">
+  <p class="title">{{ labelTitle | translate }}</p>
+  <p class="sub-title pt-3">{{ labelSubTitle | translate }}</p>
+  <p class="alert-label pt-3">
+    {{ 'MESSAGE.ALERT_MANDATORY_FIELDS' | translate }}
+  </p>
+  <form [formGroup]="formGroup">
+    <div class="pt-4">
+      <div class="container-full">
+        <div class="row">
+          <div class="col-12 col-xl-6 col-lg-6">
+            <piao-text-box
+              [label]="labelDatoPubblicare | translate"
+              [typeInput]="'text'"
+              [inputClass]="'input'"
+              [control]="formGroup.controls['datoPubblicare']"
+              [id]="'datoPubblicare'"
+              [maxValidatorLength]="250"
+              [required]="true"
+              [containerClass]="'container-width-full'"
+              [descTooltip]="labelDatoPubblicare"
+            >
+            </piao-text-box>
+          </div>
+          <div class="col-12 col-xl-6 col-lg-6">
+            <piao-dropdown
+              [title]="labelTipologiaDato | translate"
+              [formControl]="formGroup.controls['tipologiaDato']"
+              [dropdown]="dropdownTipologiaDato"
+              [isTooltip]="true"
+              [dropContainerClass]="'container-width-full'"
+              [isRequired]="true"
+            >
+            </piao-dropdown>
+          </div>
+        </div>
+
+        <div class="pt-2">
+          <div class="row">
+            <div class="col-12 col-xl-6 col-lg-6">
+              <piao-text-box
+                [label]="labelResponsabileTrasmissione | translate"
+                [typeInput]="'text'"
+                [inputClass]="'input'"
+                [control]="formGroup.controls['responsabileTrasmissione']"
+                [id]="'responsabileTrasmissione'"
+                [maxValidatorLength]="250"
+                [required]="true"
+                [containerClass]="'container-width-full'"
+                [descTooltip]="labelResponsabileTrasmissione"
+              >
+              </piao-text-box>
+            </div>
+            <div class="col-12 col-xl-6 col-lg-6">
+              <piao-text-box
+                [label]="labelTerminiScadenza | translate"
+                [typeInput]="'text'"
+                [inputClass]="'input'"
+                [control]="formGroup.controls['terminiScadenza']"
+                [id]="'terminiScadenza'"
+                [maxValidatorLength]="250"
+                [required]="true"
+                [containerClass]="'container-width-full'"
+                [descTooltip]="labelTerminiScadenza"
+              >
+              </piao-text-box>
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-2">
+          <div class="row">
+            <div class="col-12 col-xl-6 col-lg-6">
+              <piao-text-box
+                [label]="labelModalitaMonitoraggio | translate"
+                [typeInput]="'text'"
+                [inputClass]="'input'"
+                [control]="formGroup.controls['modalitaMonitoraggio']"
+                [id]="'modalitaMonitoraggio'"
+                [maxValidatorLength]="500"
+                [required]="true"
+                [containerClass]="'container-width-full'"
+                [descTooltip]="labelModalitaMonitoraggio"
+              >
+              </piao-text-box>
+            </div>
+            <div class="col-12 col-xl-6 col-lg-6">
+              <!-- Colonna vuota -->
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-4">
+          <piao-text-area
+            [label]="labelMotivazioneImpossibilita"
+            [control]="formGroup.controls['motivazioneImpossibilita']"
+            [id]="'motivazioneImpossibilita'"
+            textAreaClass="text-area"
+            [maxValidatorLength]="500"
+            [descTooltip]="labelMotivazioneImpossibilita"
+            [containerClass]="'container-width-full'"
+          >
+          </piao-text-area>
+        </div>
+
+        <!-- Campi aggiuntivi -->
+        <div class="pt-4">
+          <piao-dynamic-tb-fields
+            [formGroup]="formGroup"
+            [dynamicTBConfig]="ulterioriInfoConfig"
+            [nameArrayForm]="'ulterioriInfo.properties'"
+            [modalType]="'ulterioreInfo'"
+            [containerInputClass]="'container-width-18-5'"
+            [propertiesPath]="'ulterioriInfo.properties'"
+            [titleLabel]="titleUlterioriInfo"
+            [notFoundLabel]="labelNonInseritiCampi"
+            [addFieldLabel]="labelAggiungiCampi"
+            [columnClass]="'col-12 col-xl-6 col-lg-6'"
+          >
+          </piao-dynamic-tb-fields>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

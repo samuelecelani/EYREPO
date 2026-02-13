@@ -1,0 +1,176 @@
+<div class="notifiche-page">
+  <div class="notifiche-page__container">
+    <!-- Titolo -->
+    <h1 class="notifiche-page__title">Le tue notifiche</h1>
+
+    <!-- Header con Tab e Azioni -->
+    <div class="notifiche-page__header">
+      <!-- Tab Navigation -->
+      <nav class="notifiche-page__tabs" role="tablist">
+        <button
+          class="notifiche-page__tab"
+          [class.notifiche-page__tab--active]="activeTab() === 'all'"
+          (click)="setActiveTab('all')"
+          role="tab"
+          [attr.aria-selected]="activeTab() === 'all'"
+        >
+          Tutte
+          <sup
+            ><span class="notifiche-page__tab-count">({{ totalNotifications() }})</span></sup
+          >
+        </button>
+        <button
+          class="notifiche-page__tab"
+          [class.notifiche-page__tab--active]="activeTab() === 'unread'"
+          (click)="setActiveTab('unread')"
+          role="tab"
+          [attr.aria-selected]="activeTab() === 'unread'"
+        >
+          Da leggere
+          <sup
+            ><span class="notifiche-page__tab-count"
+              >({{ notificaService.unreadNotifications() }})</span
+            ></sup
+          >
+        </button>
+      </nav>
+
+      <!-- Azione: Segna tutte come lette -->
+      @if (notificaService.unreadNotifications() > 0) {
+        <button class="notifiche-page__mark-all-btn" (click)="markAllAsRead()">
+          <span>SEGNA TUTTE COME LETTE</span>
+          <piao-svg icon="MailOpen" fillColor="#0066cc" svgContainer="mark-all-icon"></piao-svg>
+        </button>
+      }
+    </div>
+
+    <!-- Lista notifiche -->
+    <div class="notifiche-page__content">
+      @if (filteredNotifications().length === 0) {
+        <div class="notifiche-page__empty">
+          <svg
+            width="64"
+            height="64"
+            fill="currentColor"
+            class="notifiche-page__empty-icon"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z"
+            />
+          </svg>
+          <h3 class="notifiche-page__empty-title">
+            @if (activeTab() === 'unread') {
+              Nessuna notifica da leggere
+            } @else {
+              Nessuna notifica
+            }
+          </h3>
+          <p class="notifiche-page__empty-text">
+            @if (activeTab() === 'unread') {
+              Tutte le notifiche sono state lette
+            } @else {
+              Non hai ancora ricevuto notifiche
+            }
+          </p>
+        </div>
+      } @else {
+        <div class="notifiche-page__list">
+          @for (notification of paginatedNotifications(); track notification.id; let idx = $index) {
+            <piao-notification-item
+              [notification]="notification"
+              [showActionButton]="true"
+              location="page-notification"
+              (clicked)="onNotificationClick(notification)"
+              (toggleRead)="onToggleNotificationRead(notification)"
+            ></piao-notification-item>
+          }
+        </div>
+
+        <!-- Paginazione -->
+        @if (totalPages() > 1) {
+          <nav class="notifiche-page__pagination" aria-label="Paginazione notifiche">
+            <!-- Prima pagina -->
+            <button
+              class="notifiche-page__pagination-btn"
+              [disabled]="currentPage() === 1"
+              (click)="goToPage(1)"
+              title="Prima pagina"
+            >
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                <path
+                  fill-rule="evenodd"
+                  d="M11.854 3.646a.5.5 0 0 1 0 .708L8.207 8l3.647 3.646a.5.5 0 0 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 0 1 .708 0z"
+                />
+                <path
+                  fill-rule="evenodd"
+                  d="M7.854 3.646a.5.5 0 0 1 0 .708L4.207 8l3.647 3.646a.5.5 0 0 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 0 1 .708 0z"
+                />
+              </svg>
+            </button>
+
+            <!-- Pagina precedente -->
+            <button
+              class="notifiche-page__pagination-btn"
+              [disabled]="currentPage() === 1"
+              (click)="goToPage(currentPage() - 1)"
+              title="Pagina precedente"
+            >
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                <path
+                  fill-rule="evenodd"
+                  d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"
+                />
+              </svg>
+            </button>
+
+            <!-- Numeri pagina -->
+            @for (page of getPageNumbers(); track page) {
+              <button
+                class="notifiche-page__pagination-number"
+                [class.notifiche-page__pagination-number--active]="currentPage() === page"
+                (click)="goToPage(page)"
+              >
+                {{ page }}
+              </button>
+            }
+
+            <!-- Pagina successiva -->
+            <button
+              class="notifiche-page__pagination-btn"
+              [disabled]="currentPage() === totalPages()"
+              (click)="goToPage(currentPage() + 1)"
+              title="Pagina successiva"
+            >
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                <path
+                  fill-rule="evenodd"
+                  d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"
+                />
+              </svg>
+            </button>
+
+            <!-- Ultima pagina -->
+            <button
+              class="notifiche-page__pagination-btn"
+              [disabled]="currentPage() === totalPages()"
+              (click)="goToPage(totalPages())"
+              title="Ultima pagina"
+            >
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                <path
+                  fill-rule="evenodd"
+                  d="M4.146 3.646a.5.5 0 0 0 0 .708L7.793 8l-3.647 3.646a.5.5 0 0 0 .708.708l4-4a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708 0z"
+                />
+                <path
+                  fill-rule="evenodd"
+                  d="M8.146 3.646a.5.5 0 0 0 0 .708L11.793 8l-3.647 3.646a.5.5 0 0 0 .708.708l4-4a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708 0z"
+                />
+              </svg>
+            </button>
+          </nav>
+        }
+      }
+    </div>
+  </div>
+</div>

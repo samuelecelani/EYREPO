@@ -1,0 +1,89 @@
+.container-elenco-adempimento-normativo {
+  display: flex;
+  flex-direction: column;
+}
+
+.empty-state-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding-top: 0.5rem;
+}
+
+.load-form {
+  display: flex;
+  flex-direction: row;
+  font-weight: 700;
+  font-size: 1rem;
+  color: #0066cc;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.table-elenco-container {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: auto;
+}
+
+.table-elenco {
+  width: 100%;
+  min-width: 60rem;
+  border-collapse: collapse;
+  margin-left: 0;
+
+  thead tr {
+    border-bottom: 0.125rem solid #5c6f82;
+  }
+
+  tbody tr {
+    border-bottom: 0.0625rem solid #d9dadb;
+  }
+
+  td {
+    padding: 1.5rem 1rem;
+    min-height: 6.5rem;
+    font-size: 0.9rem;
+    font-weight: 400;
+    text-align: left;
+    vertical-align: middle;
+  }
+
+  th {
+    font-size: 0.9rem;
+    padding: 0.75rem 1rem;
+    font-weight: 600;
+    text-align: left;
+    white-space: pre-line;
+  }
+
+  // Colonna Normativa
+  th:nth-child(1),
+  td:nth-child(1) {
+    width: 20rem;
+    min-width: 20rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  // Colonna Azione prevista
+  th:nth-child(2),
+  td:nth-child(2) {
+    width: 20rem;
+    min-width: 20rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  // Colonna Azioni
+  th:nth-child(3),
+  td:nth-child(3) {
+    width: 6rem;
+    min-width: 6rem;
+    text-align: center;
+  }
+}

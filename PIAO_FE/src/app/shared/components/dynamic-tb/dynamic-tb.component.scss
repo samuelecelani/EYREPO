@@ -1,0 +1,69 @@
+.main {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-weight: 400;
+  font-size: 2rem;
+  color: #1a1a1a;
+}
+
+.sub-title {
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: #1a1a1a;
+}
+
+.tb-container {
+  padding-top: 1rem;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: last baseline;
+}
+
+::ng-deep .svg {
+  max-width: 1rem;
+  max-height: 1rem;
+}
+
+.field-wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  align-items: flex-start;
+}
+
+.text-box-wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: flex-end;
+  width: 100%;
+
+  piao-text-box {
+    flex: 1;
+  }
+
+  .link-blue {
+    white-space: nowrap;
+    margin: 0;
+    padding-bottom: 0.5rem;
+  }
+}
+
+.not-found {
+  padding-top: 2rem;
+  padding-bottom: 1rem;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 1.1rem;
+}
+
+::ng-deep .icon-modal {
+  width: 2.5rem;
+  height: 2.5rem;
+}

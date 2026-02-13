@@ -1,0 +1,40 @@
+<div class="main d-flex flex-column justify-content-center align-items-center">
+  <!-- Header -->
+  <header class="py-4 py-md-5 w-100">
+    <div class="container d-flex flex-column align-items-center">
+      <div class="row w-100">
+        <div class="col-12 text-center">
+          <div class="d-flex align-items-center justify-content-center gap-3 mb-2">
+            <img src="assets/italian-republic-logo-white.svg" alt="Logo Repubblica Italiana" class="img" />
+            <div class="text-start">
+              <h1 class="h2 mb-0 text-white fw-bold">{{ 'INDEX_PAGE.HEADER.TITLE' | translate}}</h1>
+              <small class="subtTitle text-white d-block">{{ 'INDEX_PAGE.HEADER.SUB_TITLE' | translate}}</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="py-5 w-100 d-flex flex-column align-items-center">
+    <div class="container d-flex flex-column align-items-center">
+      <!-- Title -->
+      <div class="row mb-5 w-100 d-flex justify-content-center">
+        <div class="col-12 text-center">
+          <h2 class="display-5 text-white mb-0 fw-normal">{{ 'INDEX_PAGE.MAIN.TITLE' | translate}}</h2>
+        </div>
+      </div>
+
+      <!-- Cards -->
+      <div class="row justify-content-center g-3 w-100 d-flex flex-row align-items-center">
+        <div class="col-12 col-md-4 col-lg-3 d-flex justify-content-center" *ngFor="let card of cardNavigation">
+          <piao-card [title]="card.title" [subTitle]="card.subTitle" [piaoCardContainer]="cardContainerClass"
+            [piaoCardBody]="cardBodyClass" [piaoCardTitle]="cardTitleClass" [piaoCardSubTitle]="cardSubTitleClass"
+            [isClickable]="true" [disabled]="card.disabled" (cardClick)="navigateTo(card.path)">
+          </piao-card>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>

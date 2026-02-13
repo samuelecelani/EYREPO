@@ -1,0 +1,23 @@
+# Build output
+dist/
+out-tsc/
+
+# Cache/artefatti Angular
+.angular/
+**/.angular/
+
+
+# Dipendenze
+node_modules/
+
+# Cache strumenti
+.eslintcache
+.jest-cache/
+
+# IDE/editor (facoltativo)
+.vscode/
+.idea/
+
+# OS (facoltativo)
+.DS_Store
+Thumbs.db

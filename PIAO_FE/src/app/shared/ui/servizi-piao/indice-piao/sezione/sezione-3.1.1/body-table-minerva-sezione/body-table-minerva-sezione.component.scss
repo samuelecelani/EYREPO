@@ -1,0 +1,38 @@
+.main {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333333;
+}
+
+.subtitle {
+  display: inline;
+  font-size: 1rem;
+  font-style: italic;
+  color: #5a6a7a;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.subtitle:hover {
+  text-decoration: underline;
+}
+
+.table-minerva {
+  padding-top: 1rem;
+  max-width: 90%;
+  display: flex;
+  justify-content: center;
+  padding-left: 4rem;
+}
+
+::ng-deep .icon-modal {
+  width: 2.5rem;
+  height: 2.5rem;
+}

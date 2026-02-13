@@ -1,0 +1,83 @@
+databaseChangeLog:
+  - changeSet:
+      id: 006-create-table-piao
+      author: developer
+      comment: "Creazione tabella Piao con campi tecnici"
+      changes:
+        - createTable:
+            tableName: Piao
+            columns:
+              # Chiave primaria
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: pk_piao
+                    nullable: false
+                    
+              # Campi business
+              - column:
+                  name: codPAFK
+                  type: VARCHAR(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: Denominazione
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: Versione
+                  type: VARCHAR(50)
+              - column:
+                  name: Tipologia
+                  type: VARCHAR(50)
+              - column:
+                  name: TipologiaOnline
+                  type: VARCHAR(50)
+              - column:
+                  name: DataScadenza
+                  type: DATE
+              - column:
+                  name: IdStato
+                  type: BIGINT
+                  
+              # Campi tecnici (ereditati da CampiTecnici)
+              - column:
+                  name: X_VALIDITY_IN
+                  type: BOOLEAN
+                  defaultValueBoolean: true
+                  constraints:
+                    nullable: false
+              - column:
+                  name: X_CREATEDBY
+                  type: VARCHAR(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: X_CREATED_TS
+                  type: DATE
+                  constraints:
+                    nullable: false
+              - column:
+                  name: X_UPDATEDBY
+                  type: VARCHAR(20)
+              - column:
+                  name: X_UPDATED_TS
+                  type: DATE
+                  
+        - createIndex:
+            tableName: Piao
+            indexName: idx_piao_codpafk
+            columns:
+              - column:
+                  name: codPAFK
+                  
+        - createIndex:
+            tableName: Piao
+            indexName: idx_piao_validity
+            columns:
+              - column:
+                  name: X_VALIDITY_IN

@@ -1,0 +1,82 @@
+<p class="subTitle pt-4">{{ subTitleFondiEuropei | translate }}</p>
+<p class="description">{{ descriptionFondiEuropei | translate }}</p>
+
+<div class="pt-3">
+  <piao-text-area
+    [label]="labelTAIntroduzioneFondiEuropei"
+    [control]="form.controls['introFondiEuropei']"
+    [id]="'introFondiEuropei'"
+    textAreaClass="text-area"
+    [maxValidatorLength]="'1000'"
+    [descTooltip]="labelTAIntroduzioneFondiEuropei"
+    [containerClass]="'container-width-full'"
+  ></piao-text-area>
+
+  <div class="pt-3">
+    @if (fondiEuropeiArray && fondiEuropeiArray.length > 0) {
+      @for (fondoEuropeo of fondiEuropeiArray.controls; track $index) {
+        <div class="row-grid-3 pt-3">
+          <piao-text-area
+            [label]="labelTBProgettoFinanziato"
+            [control]="fondoEuropeo.controls['progettoFinanziato']"
+            [id]="'descrizione-' + $index"
+            textAreaClass="text-area-small"
+            [maxValidatorLength]="'250'"
+            [descTooltip]="labelTBProgettoFinanziato"
+            [containerClass]="'container-flex-1'"
+          ></piao-text-area>
+
+          <piao-text-area
+            [label]="labelTADescrizioneFondi"
+            [control]="fondoEuropeo.controls['descrizione']"
+            [id]="'descrizione-' + $index"
+            textAreaClass="text-area-small"
+            [maxValidatorLength]="'1000'"
+            [descTooltip]="labelTADescrizioneFondi"
+            [containerClass]="'container-flex-1'"
+          ></piao-text-area>
+
+          <piao-text-box
+            [label]="labelTBFondiStanziati"
+            [typeInput]="'text'"
+            [inputClass]="'input'"
+            [control]="fondoEuropeo.controls['fondiStanziati']"
+            [maxValidatorLength]="20"
+            [id]="'fondiStanziati-' + $index"
+            [containerClass]="'container-width-full'"
+          ></piao-text-box>
+
+          <div class="btn-remove-container">
+            <p class="link-blue" (click)="handleOpenModalDelete(fondoEuropeo)">
+              {{ labelBtnRimuovi | translate }}
+            </p>
+          </div>
+        </div>
+      }
+    }
+
+    <div class="pt-2">
+      <piao-card-info
+        [titleCardHeader]="titleCardFondiEuropei"
+        [piaoCardHeaderTitleClass]="'title-card-info'"
+        [titleLoadNewForm]="labelBtnAddFondiEuropei"
+        [loadNewForm]="true"
+        [piaoCardHeaderContainerClass]="'piao-card-info-container-new-form'"
+        (clicked)="handleAddFondiEuropei()"
+      ></piao-card-info>
+    </div>
+  </div>
+</div>
+
+@if (openModalDelete) {
+  <piao-modal-delete
+    [icon]="'AlertCircle'"
+    [title]="'MODAL_REMOVE.TITLE'"
+    [message]="'MODAL_REMOVE.MESSAGE'"
+    [subMessage]="'MODAL_REMOVE.CONFIRM_OPERATION'"
+    [openModalDelete]="openModalDelete"
+    [elementToDelete]="elementToDelete"
+    (confirm)="handleRemoveFondiEuropei($event); openModalDelete = false"
+    (closed)="handleCloseModalDelete()"
+  ></piao-modal-delete>
+}

@@ -1,0 +1,78 @@
+/* Top Bar */
+.bg-dark {
+  background-color: #003366 !important;
+}
+
+/* Main Header */
+.bg-primary {
+  background-color: white !important;
+}
+
+/* Logo */
+.header-logo {
+  height: 50px;
+}
+
+/* Title and Subtitle */
+.header-title {
+  color: #003366 !important;
+  font-weight: 700;
+}
+
+.header-subtitle {
+  color: #003366 !important;
+  font-weight: 600;
+}
+
+/* Notification Button */
+.notification-button {
+  background-color: #003366;
+  width: 34px;
+  height: 34px;
+  justify-items: center;
+}
+
+/* Notification Badge */
+.notification-badge {
+  font-size: 0.7rem;
+}
+
+/* User Badge Button */
+.user-badge-button {
+  background-color: #003366;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 300;
+  font-size: 0.75rem;
+}
+
+/* Organization Dropdown */
+.organization-dropdown-link {
+  font-weight: 400;
+  cursor: pointer;
+}
+
+.organization-dropdown-text {
+  color: #003366 !important;
+  font-weight: 600;
+}
+
+/* Search Button */
+.search-button {
+  background-color: #003366;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Overlay */
+.dropdown-overlay {
+  z-index: 1040;
+}

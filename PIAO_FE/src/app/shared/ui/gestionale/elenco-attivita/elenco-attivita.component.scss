@@ -1,0 +1,155 @@
+.title {
+  font-weight: 400;
+  font-size: 2.6rem;
+  color: #1a1a1a;
+  padding-bottom: 3.5rem;
+}
+
+.table-att {
+  width: 100%;
+  border-collapse: collapse;
+  overflow-x: auto;
+  overflow-y: auto;
+}
+
+.table-att tr {
+  border-top: 1px solid black;
+}
+
+.table-att tr + tr {
+  border-top: 1px solid #ccc; /* dal secondo in poi */
+}
+.table-att td {
+  padding-top: 0.5rem;
+  height: 4.6875rem;
+}
+
+.table-att th {
+  width: 16rem;
+  font-size: 0.9rem;
+  padding-bottom: 0.5rem;
+  font-weight: 600;
+  text-align: left;
+  white-space: pre-line;
+}
+
+.table-att td:nth-child(1) {
+  width: 16rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-align: left;
+  white-space: pre-line;
+}
+
+.table-att td:nth-child(2) {
+  width: 16rem;
+  font-size: 0.9rem;
+  font-family: 'Roboto Mono';
+  font-weight: 300;
+  font-size: 1rem;
+  text-align: left;
+}
+
+.table-att td:nth-child(3) {
+  width: 16rem;
+  font-size: 0.9rem;
+  font-family: 'Roboto Mono';
+  font-weight: 300;
+  font-size: 1rem;
+  text-align: left;
+}
+
+.table-att td:nth-child(4) {
+  width: 16rem;
+  font-size: 0.9rem;
+  font-family: 'Roboto Mono';
+  font-weight: 300;
+  font-size: 1rem;
+  text-align: left;
+}
+
+.table-att td:nth-child(5) {
+  width: 16rem;
+  font-weight: 400;
+  text-align: left;
+}
+
+.table-att-piao {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table-att-piao tr {
+  border-top: 1px solid black;
+}
+
+.table-att-piao td {
+  padding-top: 0.5rem;
+  height: 4.6875rem;
+}
+
+.table-att-piao th {
+  width: 16rem;
+  padding-bottom: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-align: left;
+  white-space: pre-line;
+}
+
+.table-att-piao td:nth-child(1) {
+  width: 16rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-align: left;
+  white-space: pre-line;
+}
+
+.table-att-piao td:nth-child(2) {
+  width: 16rem;
+  font-weight: 400;
+  font-size: 0.9rem;
+  text-align: left;
+  white-space: normal; /* permette il wrap */
+  overflow-wrap: anywhere; /* consente di spezzare ovunque per evitare overflow */
+  word-break: break-word; /* fallback per Safari vecchi e alcuni UA */
+}
+
+.table-att-piao td:nth-child(3) {
+  width: 16rem;
+  font-size: 0.9rem;
+  font-family: 'Roboto Mono';
+  font-weight: 300;
+  font-size: 1rem;
+  text-align: left;
+}
+
+.table-att-piao td:nth-child(4) {
+  width: 16rem;
+  font-size: 0.9rem;
+  font-family: 'Roboto Mono';
+  font-weight: 300;
+  font-size: 1rem;
+  text-align: left;
+}
+
+.table-att-piao td:nth-child(5) {
+  width: 16rem;
+  font-size: 0.9rem;
+  font-family: 'Roboto Mono';
+  font-weight: 300;
+  font-size: 1rem;
+  text-align: left;
+}
+
+.table-att-piao td:nth-child(6) {
+  width: 16rem;
+  font-weight: 400;
+  text-align: left;
+}
+
+.button {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 2rem;
+}

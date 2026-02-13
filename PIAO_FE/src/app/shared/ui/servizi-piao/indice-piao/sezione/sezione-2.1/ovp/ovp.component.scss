@@ -1,0 +1,58 @@
+.description {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #1a1a1a;
+  padding-top: 1rem;
+  line-height: 1.5;
+}
+
+::ng-deep .subTitle {
+  padding-top: 2rem;
+  font-weight: 400;
+  font-size: 2rem;
+}
+
+.container-title-ovp {
+  padding-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.title-ovp {
+  font-weight: 400;
+  font-size: 1.8rem;
+  color: #1a1a1a;
+}
+
+.container-buttons-ovp {
+  display: flex;
+  gap: 1rem;
+  flex-direction: row;
+  align-items: center;
+}
+.buttons-ovp {
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: underline;
+  color: #0066cc;
+  cursor: pointer;
+}
+
+.label-ovp {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.container-textbox-textarea {
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.label {
+  font-size: 1.2rem;
+}

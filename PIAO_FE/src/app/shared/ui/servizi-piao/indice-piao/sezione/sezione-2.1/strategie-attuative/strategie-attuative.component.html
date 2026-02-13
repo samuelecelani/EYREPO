@@ -1,0 +1,103 @@
+<span class="label">
+  {{ labelStrategieAttuative | translate }}*
+  <piao-tooltip [descTooltip]="labelStrategieAttuative" [icon]="'InfoCircle'"></piao-tooltip>
+</span>
+
+<div class="pt-2">
+  @for (strategia of strategieAttuative.controls; track i; let i = $index) {
+    <div [ngClass]="i > 0 ? 'accordion-section-double' : 'accordion-section'">
+      <piao-accordion
+        [index]="i + 1"
+        [title]="'Strategia attuativa ' + (strategia.get('denominazioneStrategia')?.value || '')"
+        [isOpen]="openAccordionIndex === i + 1"
+        [isButton]="true"
+        (clickButton)="handleOpenModalDelete(i)"
+      >
+        <p class="sub-title pt-4">{{ subTitleStrategiaAttuativa | translate }}</p>
+        <div class="pt-3">
+          <div class="container-form-strategia">
+            <div class="container-textbox-textarea">
+              <piao-text-box
+                [label]="labelIdStrategia"
+                [typeInput]="'text'"
+                [inputClass]="'input'"
+                [control]="setCodStrategia(strategia.controls['codStrategia'], i + 1)"
+                [maxValidatorLength]="20"
+                [id]="'idStrategia_' + i"
+                [descTooltip]="labelIdStrategia"
+                [isReadOnly]="true"
+                [containerClass]="'container-width-id-strategia'"
+              >
+              </piao-text-box>
+              <piao-text-area
+                [label]="labelStrategiaAttuativa"
+                [textAreaClass]="'text-area-small'"
+                [control]="strategia.controls['denominazioneStrategia']"
+                [maxValidatorLength]="250"
+                [id]="'nameStrategia_' + i"
+                [descTooltip]="labelStrategiaAttuativa"
+                [required]="true"
+                [containerClass]="'container-flex-1'"
+              >
+              </piao-text-area>
+            </div>
+
+            <piao-text-area
+              [label]="labelStrategiaDescrizione"
+              [textAreaClass]="'text-area-small'"
+              [control]="strategia.controls['descrizioneStrategia']"
+              [maxValidatorLength]="500"
+              [id]="'descrizioneStrategia_' + i"
+              [descTooltip]="labelStrategiaDescrizione"
+              [required]="false"
+              [containerClass]="'container-width-full'"
+            >
+            </piao-text-area>
+            <piao-text-box
+              [label]="labelStrategiaSoggettoResponsabile"
+              [typeInput]="'text'"
+              [inputClass]="'input'"
+              [control]="strategia.controls['soggettoResponsabile']"
+              [maxValidatorLength]="100"
+              [id]="'soggettoResponsabile_' + i"
+              [descTooltip]="labelStrategiaSoggettoResponsabile"
+            >
+            </piao-text-box>
+
+            <div class="pt-2">
+              <piao-indicatori
+                [indicatoriControls]="strategia.controls['indicatori']"
+                [codTipologiaFK]="codTipologiaFK"
+                [idEntitaFK]="idOVP"
+                [formParent]="strategia"
+                [codTipologiaIndicatoreFK]="codTipologiaIndicatoreFK"
+                [sectionEnum]="sectionEnum"
+              ></piao-indicatori>
+            </div>
+          </div>
+        </div>
+      </piao-accordion>
+    </div>
+  }
+</div>
+
+<div class="pt-4">
+  <piao-card-info
+    [titleCardHeader]="titleCardInfoStrategiaAttuativa"
+    [piaoCardHeaderTitleClass]="'title-card-info'"
+    [titleLoadNewForm]="subTitleAddStrategiaAttuativa"
+    [loadNewForm]="true"
+    [piaoCardHeaderContainerClass]="'piao-card-info-container-new-form'"
+    (clicked)="handleAddStrategiaAttuativa()"
+  ></piao-card-info>
+</div>
+
+<piao-modal-delete
+  [icon]="'AlertCircle'"
+  [title]="'MODAL_REMOVE.TITLE_DELETE_ELEMENT'"
+  [message]="'MODAL_REMOVE.STRATEGIA_ATTUATIVA.MESSAGE'"
+  [openModalDelete]="openModalDelete"
+  [elementToDelete]="elementToDelete"
+  (confirm)="handleRemoveStrategia($event)"
+  (closed)="handleCloseModalDelete()"
+></piao-modal-delete>

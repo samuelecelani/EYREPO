@@ -1,0 +1,29 @@
+<button
+  (click)="onButtonClick()"
+  [class]="getButtonClasses()"
+  [disabled]="disabled || loading"
+  [attr.title]="title"
+  [attr.aria-label]="title"
+  type="button"
+>
+  <!-- Icona a sinistra o spinner di caricamento -->
+  @if (loading && iconPosition === 'left') {
+    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+  } @else if (hasIcon() && iconPosition === 'left') {
+    <span [class]="getIconClasses()" [innerHTML]="getSanitizedIcon()"></span>
+  }
+
+  <!-- Contenuto del bottone (testo) -->
+  @if (!iconOnly) {
+    <span>
+      <ng-content></ng-content>
+    </span>
+  }
+
+  <!-- Icona a destra o spinner di caricamento -->
+  @if (loading && iconPosition === 'right') {
+    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+  } @else if (hasIcon() && iconPosition === 'right') {
+    <span [class]="getIconClasses()" [innerHTML]="getSanitizedIcon()"></span>
+  }
+</button>

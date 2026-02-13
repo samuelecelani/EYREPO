@@ -1,0 +1,36 @@
+:host {
+  display: flex;
+  justify-content: center;
+  width: 90%;
+}
+
+table {
+  width: 90%;
+}
+
+th {
+  border-bottom: 2px solid black;
+}
+
+th,
+td {
+  height: 4rem;
+  word-break: break-word;
+  vertical-align: middle;
+}
+
+/* Alterna i tr: dispari */
+.odd-tr {
+  background: #e7eff7;
+}
+/* Alterna i tr: pari */
+.even-tr {
+  background: #fafafa;
+}
+
+/* Ultimo tr della riga */
+.last-tr {
+  font-weight: 600;
+  color: #fff;
+  background: #17324d;
+}

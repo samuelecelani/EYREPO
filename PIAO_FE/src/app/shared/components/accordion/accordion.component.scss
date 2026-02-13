@@ -1,0 +1,137 @@
+/* ===== ACCORDION COMPONENT ===== */
+.accordion {
+  width: 100%;
+  transition: all 0.3s ease;
+
+  /* ===== STATO APERTO ===== */
+  &.is-open {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+    .accordion-header {
+      background-color: #004b87;
+      border-radius: 8px 8px 0 0;
+
+      &:hover {
+        background-color: #003d6e;
+      }
+    }
+
+    .accordion-title {
+      color: white;
+    }
+
+    .accordion-icon svg path {
+      stroke: white;
+    }
+  }
+
+  /* ===== STATO CHIUSO ===== */
+  &.is-closed {
+    border-radius: 0;
+    box-shadow: none;
+
+    .accordion-header {
+      background-color: white;
+
+      &:hover {
+        background-color: #f5f5f5;
+      }
+    }
+
+    .accordion-title {
+      color: #004b87;
+    }
+
+    .accordion-icon svg path {
+      stroke: #004b87;
+    }
+  }
+}
+
+/* ===== ACCORDION HEADER ===== */
+.accordion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+/* ===== ACCORDION TITLE ===== */
+.accordion-title {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  font-size: 1.75rem;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.accordion-buttons-icon {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: center;
+}
+
+.accordion-index {
+  font-weight: 700;
+}
+
+.accordion-title-text {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* ===== ACCORDION ICON ===== */
+.accordion-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+
+  svg path {
+    transition: stroke 0.3s ease;
+  }
+}
+
+/* ===== ACCORDION CONTENT ===== */
+.accordion-content {
+  background-color: white;
+
+  .accordion.is-open & {
+    border-radius: 0 0 8px 8px;
+  }
+}
+
+/* ===== ACCORDION BODY ===== */
+.accordion-body {
+  padding: 1.5rem;
+  color: #333;
+  line-height: 1.6;
+  overflow: visible;
+
+  p {
+    margin: 0 0 1rem 0;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  /* ===== DESCRIPTION LABEL ===== */
+  .description-label {
+    font-size: 0.875rem;
+    color: #666;
+    margin-bottom: 0.5rem;
+  }
+
+  /* ===== DESCRIPTION TEXT ===== */
+  .description-text {
+    font-weight: 600;
+    color: #004b87;
+  }
+}

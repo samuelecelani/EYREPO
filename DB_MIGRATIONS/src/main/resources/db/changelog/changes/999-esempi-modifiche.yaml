@@ -1,0 +1,55 @@
+databaseChangeLog:
+  - changeSet:
+      id: 009-esempi-modifiche-future
+      author: developer
+      comment: "Esempi di come modificare tabelle esistenti"
+      preConditions:
+        onFail: MARK_RAN
+      changes:
+        # Esempio: Aggiungere una colonna
+        - addColumn:
+            tableName: Piao
+            columns:
+              - column:
+                  name: note_interne
+                  type: TEXT
+                  remarks: "Note interne per il PIAO"
+                  
+  - changeSet:
+      id: 010-esempio-modifica-colonna
+      author: developer
+      comment: "Esempio di modifica tipo colonna"
+      preConditions:
+        onFail: MARK_RAN
+      changes:
+        # Esempio: Modificare tipo di una colonna
+        - modifyDataType:
+            tableName: Piao
+            columnName: Versione
+            newDataType: VARCHAR(100)
+            
+  - changeSet:
+      id: 011-esempio-rename-column
+      author: developer
+      comment: "Esempio di rinomina colonna"
+      preConditions:
+        onFail: MARK_RAN
+      changes:
+        # Esempio: Rinominare colonna
+        - renameColumn:
+            tableName: stakeholder
+            oldColumnName: relazionepa
+            newColumnName: relazione_pa
+            columnDataType: TEXT
+            
+  - changeSet:
+      id: 012-esempio-drop-column
+      author: developer
+      comment: "Esempio di eliminazione colonna"
+      preConditions:
+        onFail: MARK_RAN
+      changes:
+        # Esempio: Eliminare colonna
+        - dropColumn:
+            tableName: Piao
+            columnName: note_interne

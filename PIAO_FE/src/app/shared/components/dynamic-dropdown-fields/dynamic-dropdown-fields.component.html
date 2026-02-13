@@ -1,0 +1,42 @@
+<div class="pt-4 d-flex flex-column">
+  @if (titleLabel) {
+    <div class="title-with-tooltip">
+      <p class="title-dropdown-fields">
+        {{ titleLabel | translate }}
+      </p>
+      @if (isTooltip) {
+        <piao-tooltip [descTooltip]="titleLabel" [icon]="'InfoCircle'"></piao-tooltip>
+      }
+    </div>
+  }
+  <div class="pb-2">
+    <piao-dynamic-dropdown
+      [form]="formGroup"
+      [dynamicTBConfig]="dynamicTBConfig"
+      [nameArrayForm]="nameArrayForm"
+      [showAddCardInfo]="false"
+      [isFirstRemove]="isFirstRemove"
+      [isAddButtonInContainer]="false"
+      [containerInputClass]="containerInputClass"
+      [columnClass]="columnClass"
+      [dropdown]="dropdown"
+      [removeForm]="removeForm"
+      (fieldAdded)="handleResetModal()"
+      (closed)="handleResetModal()"
+      (modalDeleteOpened)="handleModalDeleteOpened()"
+      (modalDeleteClosed)="handleModalDeleteClosed()"
+    >
+    </piao-dynamic-dropdown>
+  </div>
+
+  <div class="pt-2 d-flex flex-column justify-content-center align-items-center">
+    @if (!properties?.value || properties?.value.length === 0) {
+      <p>
+        {{ notFoundLabel | translate }}
+      </p>
+    }
+    <p class="link-blue" (click)="handleAddNewField()">
+      {{ addFieldLabel | translate }}
+    </p>
+  </div>
+</div>
