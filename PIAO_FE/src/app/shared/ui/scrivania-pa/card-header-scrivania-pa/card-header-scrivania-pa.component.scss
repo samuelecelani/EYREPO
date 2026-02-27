@@ -1,0 +1,58 @@
+.card-avvisi-container {
+  background-color: #f2f7fc;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 34.75rem;
+  border-radius: 0.625rem;
+  height: 6.5rem;
+  padding: 1.5rem;
+  gap: 0.625rem;
+  box-sizing: border-box;
+}
+
+.card-avvisi-body {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+  max-width: 31.75rem;
+  min-height: 4rem;
+  color: black;
+}
+
+::ng-deep .piao-card-header-scrivania-container {
+  color: #fff;
+  width: 100%;
+  min-height: 8rem;
+  border-radius: 0.625rem;
+  padding: 1rem 1.5rem;
+  box-sizing: border-box;
+}
+
+::ng-deep .piao-card-header-scrivania-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: auto;
+  padding: 0;
+}
+
+::ng-deep .piao-card-header-scrivania-title {
+  margin: 0;
+  font-size: 4rem;
+  font-weight: 400;
+  line-height: 1;
+}
+
+::ng-deep .piao-card-header-scrivania-subTitle {
+  font-size: 1.8rem;
+  font-weight: 700;
+  line-height: 2.5rem;
+  letter-spacing: 0;
+  margin: 1.5rem 0 0;
+}

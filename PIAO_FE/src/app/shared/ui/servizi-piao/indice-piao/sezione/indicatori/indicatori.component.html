@@ -1,0 +1,177 @@
+<div class="pt-4">
+  <p class="title-list-indicatori">{{ labelElencoIndicatori | translate }}</p>
+
+  <p class="title-indicatore pt-4">{{ labelIndicatori | translate }}</p>
+
+  @if (indicatori.length > 0) {
+    <div class="pt-2 table-container">
+      <table class="table-custom align-center">
+        <thead>
+          <tr>
+            <th>
+              <div class="d-flex flex-row align-items-center header-with-icon">
+                {{ 'INDICATORI.TH_INDICATORI.DENOMINAZIONE' | translate }}
+                <div class="pointer" (click)="handleSortList()">
+                  <piao-svg
+                    [svgContainer]="'icon-svg-arrow-table-indicatori'"
+                    [icon]="'ArrowBottom'"
+                    [fillColor]="'#0066CC'"
+                  ></piao-svg>
+                </div>
+              </div>
+            </th>
+            @if (codTipologiaFK !== 'OBB_PER_IND' && codTipologiaFK !== 'OBB_2_3') {
+              <th>
+                {{ 'INDICATORI.TH_INDICATORI.DIMENSIONE' | translate }}
+              </th>
+            }
+            @if (codTipologiaFK === 'OBB') {
+              <th>
+                {{ 'INDICATORI.TH_INDICATORI.SUB_DIMENSIONE' | translate }}
+              </th>
+            }
+            <th>
+              {{ 'INDICATORI.TH_INDICATORI.UNITA_MISURA' | translate }}
+            </th>
+            <th>
+              {{ 'INDICATORI.TH_INDICATORI.FORMULA' | translate }}
+            </th>
+            <th>
+              {{ 'INDICATORI.TH_INDICATORI.PESO' | translate }}
+            </th>
+            <th>
+              {{ 'INDICATORI.TH_INDICATORI.POLARITA' | translate }}
+            </th>
+            <th>
+              {{ 'INDICATORI.TH_INDICATORI.BASELINE' | translate }}
+            </th>
+            <th>
+              {{ 'INDICATORI.TH_INDICATORI.CONSUNTIVO' | translate }}
+            </th>
+            <th>{{ 'INDICATORI.TH_INDICATORI.ANDAMENTO' | translate }} {{ years[0] }}</th>
+            <th>{{ 'INDICATORI.TH_INDICATORI.VALORE' | translate }} {{ years[0] }}</th>
+
+            @if (codTipologiaFK !== 'OBB_PER_IND') {
+              <th>{{ 'INDICATORI.TH_INDICATORI.ANDAMENTO' | translate }} {{ years[1] }}</th>
+              <th>{{ 'INDICATORI.TH_INDICATORI.VALORE' | translate }} {{ years[1] }}</th>
+              <th>{{ 'INDICATORI.TH_INDICATORI.ANDAMENTO' | translate }} {{ years[2] }}</th>
+              <th>{{ 'INDICATORI.TH_INDICATORI.VALORE' | translate }} {{ years[2] }}</th>
+            }
+
+            <th>
+              {{ 'INDICATORI.TH_INDICATORI.FONTE_DATI' | translate }}
+            </th>
+            <th>
+              {{ 'INDICATORI.TH_INDICATORI.RILEVANTE' | translate }}
+            </th>
+            <th class="text-center">Azioni</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (indicatore of indicatori.controls; track $index) {
+            <tr>
+              <td>
+                <strong>{{ indicatore.value.indicatore?.denominazione }}</strong>
+              </td>
+              @if (codTipologiaFK !== 'OBB_PER_IND' && codTipologiaFK !== 'OBB_2_3') {
+                <td>{{ getDimensioneLabel(indicatore.value.indicatore?.idDimensioneFK) }}</td>
+              }
+              @if (codTipologiaFK === 'OBB') {
+                <td>
+                  {{ getSubDimensioneLabel(indicatore.value.indicatore?.idSubDimensioneFK) }}
+                </td>
+              }
+              <td>{{ indicatore.value.indicatore?.unitaMisura || '' }}</td>
+              <td>{{ indicatore.value.indicatore?.formula || '' }}</td>
+              <td>
+                {{
+                  indicatore.value.indicatore?.peso ? indicatore.value.indicatore.peso + '%' : ''
+                }}
+              </td>
+              <td>{{ indicatore.value.indicatore?.polarita || '' }}</td>
+              <td>{{ indicatore.value.indicatore?.baseLine || '' }}</td>
+              <td>{{ indicatore.value.indicatore?.consuntivo || '' }}</td>
+              <td>{{ getTargetLabel(indicatore.value.indicatore?.tipAndValAnno1?.idTargetFK) }}</td>
+              <td>{{ indicatore.value.indicatore?.tipAndValAnno1?.valore || '' }}</td>
+              @if (codTipologiaFK !== 'OBB_PER_IND') {
+                <td>
+                  {{ getTargetLabel(indicatore.value.indicatore?.tipAndValAnno2?.idTargetFK) }}
+                </td>
+                <td>{{ indicatore.value.indicatore?.tipAndValAnno2?.valore || '' }}</td>
+                <td>
+                  {{
+                    getTargetLabel(indicatore.value.indicatore?.tipAndValAnnoCorrente?.idTargetFK)
+                  }}
+                </td>
+                <td>{{ indicatore.value.indicatore?.tipAndValAnnoCorrente?.valore || '' }}</td>
+              }
+
+              <td>{{ indicatore.value.indicatore?.fonteDati || '' }}</td>
+              <td>{{ indicatore.value.indicatore?.rilevante ? 'Si' : 'No' || 'No' }}</td>
+              <td class="text-center">
+                <piao-azioni
+                  [isTitle]="false"
+                  [verticalEllipsis]="getActionsFor(indicatore.value)"
+                ></piao-azioni>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <div class="pt-3 pb-2 d-flex justify-content-end">
+      <p class="link-blue" (click)="handleOpenModalIndicatore()">
+        {{ labelAddIndicatori | translate }}
+      </p>
+    </div>
+  } @else {
+    <div class="pt-3 pb-2 d-flex flex-row justify-content-between align-items-center flex-wrap">
+      <p>{{ 'INDICATORI.NOT_FOUND' | translate }}</p>
+      <p class="link-blue" (click)="handleOpenModalIndicatore()">
+        {{ labelAddIndicatori | translate }}
+      </p>
+    </div>
+  }
+</div>
+
+@if (openModalIndicatore) {
+  <piao-modal
+    [isIcon]="true"
+    [icon]="icon"
+    [iconStyle]="iconStyle"
+    [open]="openModalIndicatore"
+    [disabledButtonConfirm]="disabledButtonConfirm"
+    (closed)="this.openModalIndicatore = false; (this.child.formGroup.reset)"
+    (confirm)="handleAddIndicatore()"
+  >
+    <piao-modal-body-indicatore
+      #child
+      [codTipologiaFK]="codTipologiaFK"
+      [codTipologiaIndicatoreFK]="codTipologiaIndicatoreFK"
+      [idEntitaFK]="idEntitaFK"
+      [indicatoriControls]="indicatoriControls"
+      [isAddNewIndicatore]="isAddNewIndicatore"
+      [indicatoreToEdit]="indicatoreToEdit!"
+      [years]="years"
+      [targetDropdown]="targetDropdown"
+      [dimensioniDropdown]="dimensioniDropdown"
+      [subDimensioniDropdown]="subDimensioniDropdown"
+      (addInfoFieldAdded)="handleCloseModalOnAddInfo()"
+    ></piao-modal-body-indicatore>
+  </piao-modal>
+}
+
+@if (openModalDelete) {
+  <piao-modal-delete
+    [icon]="'AlertCircle'"
+    [title]="'MODAL_REMOVE.INDICATORE.TITLE'"
+    [message]="'MODAL_REMOVE.INDICATORE.MESSAGE'"
+    [subMessage]="'MODAL_REMOVE.CONFIRM_OPERATION'"
+    [openModalDelete]="openModalDelete"
+    [elementToDelete]="elementToDelete"
+    (confirm)="handleRemove($event); this.openModalDelete = false; elementToDelete = {}"
+    (closed)="this.openModalDelete = false; elementToDelete = {}"
+  >
+  </piao-modal-delete>
+}

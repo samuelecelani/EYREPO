@@ -1,0 +1,247 @@
+@for (
+  valRischio of valutazioneRischio.controls;
+  track trackByValutazioneId($index, valRischio);
+  let i = $index
+) {
+  <div [ngClass]="i > 0 ? 'accordion-section-double' : 'accordion-section'">
+    <piao-accordion
+      [index]="i + 1"
+      [title]="labelValutazioneRischio | translate"
+      [isOpen]="openAccordionIndex === i + 1"
+      [isButton]="true"
+      (clickButton)="handleOpenModalDeleteValutazione(i)"
+    >
+      <div class="intro-text">
+        <p>{{ subTitleValutazioneRischio | translate }}</p>
+      </div>
+
+      <div class="pt-2">
+        <div class="container-full">
+          <div class="row">
+            <div class="col-12 col-xl-5">
+              <piao-dropdown
+                [title]="labelSelectAttivita | translate"
+                [formControl]="valRischio.controls['idAttivitaSensibile']"
+                [dropdown]="attivitaSensibileOptions"
+                [isTooltip]="true"
+                [dropContainerClass]="'container-width-full'"
+                [isRequired]="true"
+                (isChange)="handleAttivitaSensibileChange($event, i)"
+              >
+              </piao-dropdown>
+            </div>
+          </div>
+
+          <div class="pt-4">
+            <p class="title-eventi-rischiosi">{{ titleEventiRischiosi | translate }}</p>
+
+            @if (getEventiRischiosi(i) && getEventiRischiosi(i).length > 0) {
+              <div class="pt-2 table-container">
+                <table class="table-custom align-center">
+                  <thead>
+                    <tr>
+                      <th>
+                        <div class="d-flex flex-row align-items-center header-with-icon">
+                          {{
+                            'SEZIONE_23.VALUTAZIONE_RISCHIO.ATTIVITA_SENSIBILE.TH.EVENTI_RISCHIOSI'
+                              | translate
+                          }}
+                          <div class="pointer" (click)="handleSortList(i)">
+                            <piao-svg
+                              [svgContainer]="'icon-svg-arrow-table-center'"
+                              [icon]="'ArrowBottom'"
+                              [fillColor]="'#0066CC'"
+                            ></piao-svg>
+                          </div>
+                        </div>
+                      </th>
+                      <th>
+                        {{
+                          'SEZIONE_23.VALUTAZIONE_RISCHIO.ATTIVITA_SENSIBILE.TH.FATTORI' | translate
+                        }}
+                      </th>
+                      <th>
+                        {{
+                          'SEZIONE_23.VALUTAZIONE_RISCHIO.ATTIVITA_SENSIBILE.TH.PROBABILITA'
+                            | translate
+                        }}
+                      </th>
+                      <th>
+                        {{
+                          'SEZIONE_23.VALUTAZIONE_RISCHIO.ATTIVITA_SENSIBILE.TH.IMPATTO' | translate
+                        }}
+                      </th>
+                      <th>
+                        {{
+                          'SEZIONE_23.VALUTAZIONE_RISCHIO.ATTIVITA_SENSIBILE.TH.CONTROLLI'
+                            | translate
+                        }}
+                      </th>
+                      <th>
+                        {{
+                          'SEZIONE_23.VALUTAZIONE_RISCHIO.ATTIVITA_SENSIBILE.TH.VALUTAZIONE_RISCHIO'
+                            | translate
+                        }}
+                      </th>
+                      <th>
+                        {{
+                          'SEZIONE_23.VALUTAZIONE_RISCHIO.ATTIVITA_SENSIBILE.TH.LIVELLO_RISCHIO'
+                            | translate
+                        }}
+                      </th>
+                      <th>
+                        {{
+                          'SEZIONE_23.VALUTAZIONE_RISCHIO.ATTIVITA_SENSIBILE.TH.MOTIVAZIONE'
+                            | translate
+                        }}
+                      </th>
+                      <th class="text-center">
+                        {{
+                          'SEZIONE_23.VALUTAZIONE_RISCHIO.ATTIVITA_SENSIBILE.TH.AZIONI' | translate
+                        }}
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @for (eventoRischioso of getEventiRischiosi(i).controls; track $index) {
+                      <tr>
+                        <td>
+                          <strong>{{ eventoRischioso.value.denominazione }}</strong>
+                        </td>
+                        <td>
+                          <ul class="list-items">
+                            @for (
+                              fattori of getFattoriArray(eventoRischioso).controls;
+                              track $index
+                            ) {
+                              <li>{{ fattori.get('value')?.value || '' }}</li>
+                            }
+                          </ul>
+                        </td>
+                        <td>
+                          {{ eventoRischioso.value.probabilita }}
+                        </td>
+                        <td>
+                          {{ eventoRischioso.value.impatto }}
+                        </td>
+                        <td>
+                          {{ eventoRischioso.value.controlli }}
+                        </td>
+                        <td>
+                          {{ eventoRischioso.value.valutazione }}
+                        </td>
+                        <td>
+                          {{ getLivelloRischioLabel(eventoRischioso.value.idLivelloRischio) }}
+                        </td>
+                        <td>
+                          {{ eventoRischioso.value.motivazione }}
+                        </td>
+                        <td class="text-center">
+                          <piao-azioni
+                            [isTitle]="false"
+                            [verticalEllipsis]="getActionsFor($index, i)"
+                          ></piao-azioni>
+                        </td>
+                      </tr>
+                    }
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="pt-3 pb-2 d-flex justify-content-end">
+                <p
+                  class="link-blue"
+                  (click)="
+                    handleOpenModalEventiRischiosi(
+                      i,
+                      valRischio.controls['idAttivitaSensibile'].value
+                    )
+                  "
+                >
+                  {{ labelAddEventoRischioso | translate }}
+                </p>
+              </div>
+            } @else {
+              <div
+                class="pt-3 pb-2 d-flex flex-row justify-content-between align-items-center flex-wrap"
+              >
+                <p>{{ titleEventiRischiosiNotFound | translate }}</p>
+                <p
+                  class="link-blue"
+                  (click)="
+                    handleOpenModalEventiRischiosi(
+                      i,
+                      valRischio.controls['idAttivitaSensibile'].value
+                    )
+                  "
+                >
+                  {{ labelAddEventoRischioso | translate }}
+                </p>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+    </piao-accordion>
+  </div>
+}
+
+<div class="pt-4">
+  <piao-card-info
+    [titleCardHeader]="
+      (valutazioneRischio.length === 0 ? titleCardInfoNotFound : titleCardInfo) | translate
+    "
+    [piaoCardHeaderTitleClass]="'title-card-info'"
+    [titleLoadNewForm]="labelAddValutazione | translate"
+    [loadNewForm]="true"
+    [piaoCardHeaderContainerClass]="'piao-card-info-container-new-form'"
+    (clicked)="handleAddValutazione()"
+  ></piao-card-info>
+</div>
+
+<!-- Modal Eventi Rischiosi -->
+@if (openModalEventiRischiosi) {
+  <piao-modal
+    [isIcon]="true"
+    [icon]="iconPencil"
+    [iconStyle]="iconStyleModal"
+    [open]="openModalEventiRischiosi"
+    [disabledButtonConfirm]="disabledButtonConfirm"
+    [titleButtonConfirm]="'BUTTONS.INSERT'"
+    (closed)="handleCloseModalEventiRischiosi()"
+    (confirm)="handleConfirmModalEventiRischiosi()"
+  >
+    <piao-modal-eventi-rischiosi
+      #child
+      [idAttivitaSensibile]="idAttivitaSensibile"
+      [eventoToEdit]="eventoToEdit"
+      [livelloRischioOptions]="livelloRischioOptions"
+    ></piao-modal-eventi-rischiosi>
+  </piao-modal>
+}
+
+@if (openModalDelete) {
+  <piao-modal-delete
+    [icon]="'AlertCircle'"
+    [title]="'MODAL_REMOVE.EVENTO_RISCHIO.TITLE'"
+    [message]="'MODAL_REMOVE.EVENTO_RISCHIO.MESSAGE'"
+    [subMessage]="'MODAL_REMOVE.CONFIRM_OPERATION'"
+    [openModalDelete]="openModalDelete"
+    [elementToDelete]="elementToDelete"
+    (confirm)="handleRemoveForm($event)"
+    (closed)="handleCloseModalDelete()"
+  ></piao-modal-delete>
+}
+
+@if (openModalDeleteValutazione) {
+  <piao-modal-delete
+    [icon]="'AlertCircle'"
+    [title]="'MODAL_REMOVE.EVENTO_RISCHIO_ATTIVITA.TITLE'"
+    [message]="'MODAL_REMOVE.EVENTO_RISCHIO_ATTIVITA.MESSAGE'"
+    [subMessage]="'MODAL_REMOVE.CONFIRM_OPERATION'"
+    [openModalDelete]="openModalDeleteValutazione"
+    [elementToDelete]="elementToDelete"
+    (confirm)="handleRemoveValutazione($event)"
+    (closed)="handleCloseModalDeleteValutazione()"
+  ></piao-modal-delete>
+}

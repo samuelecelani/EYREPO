@@ -1,0 +1,203 @@
+<div class="main">
+  <p class="title">{{ title | translate }}</p>
+  <p class="subTitle pt-2">{{ subTitle | translate }}</p>
+
+  <piao-card-alert
+    [icon]="icon"
+    [titleCardHeader]="titleCardHeader"
+    [secondSubTitleCardHeader]="secondSubTitleCardHeader"
+    [textHrefCardHeader]="textHrefCardHeader"
+    [href]="href"
+  ></piao-card-alert>
+
+  @if (steps != []) {
+    <piao-workflow
+      [steps]="steps"
+      [activeStep]="activeSectionId"
+      (clickStep)="handleOpenPage($event)"
+    ></piao-workflow>
+  }
+
+  <p class="alert-label">
+    {{ 'MESSAGE.ALERT_MANDATORY_FIELDS' | translate }}
+  </p>
+
+  <div class="section-piao">
+    @if (activeSectionId !== '5') {
+      <div class="actions-piao">
+        <piao-azioni></piao-azioni>
+      </div>
+    }
+    @switch (activeSectionId) {
+      @case ('1') {
+        <piao-sezione-1
+          #sezione1
+          [piaoDTO]="piaoDTO"
+          (formValueChanged)="handleFormValueChanged($event)"
+        ></piao-sezione-1>
+      }
+      @case ('2.1') {
+        <piao-sezione-2-1
+          #sezione21
+          [piaoDTO]="piaoDTO"
+          (formValueChanged)="handleFormValueChanged($event)"
+        ></piao-sezione-2-1>
+      }
+      @case ('2.2') {
+        <piao-sezione-2-2
+          #sezione22
+          [piaoDTO]="piaoDTO"
+          (formValueChanged)="handleFormValueChanged($event)"
+        ></piao-sezione-2-2>
+      }
+      @case ('2.3') {
+        <piao-sezione-2-3
+          #sezione23
+          [piaoDTO]="piaoDTO"
+          (formValueChanged)="handleFormValueChanged($event)"
+        ></piao-sezione-2-3>
+      }
+      @case ('3.1') {
+        <piao-sezione-3-1
+          #sezione31
+          [piaoDTO]="piaoDTO"
+          (formValueChanged)="handleFormValueChanged($event)"
+        ></piao-sezione-3-1>
+      }
+      @case ('3.2') {
+        <piao-sezione-3-2></piao-sezione-3-2>
+      }
+      @case ('3.3.1') {
+        <piao-sezione-3-3-1></piao-sezione-3-3-1>
+      }
+      @case ('3.3.2') {
+        <piao-sezione-3-3-2></piao-sezione-3-3-2>
+      }
+      @case ('4') {
+        <piao-sezione-4
+          #sezione4
+          [piaoDTO]="piaoDTO"
+          (formValueChanged)="handleFormValueChanged($event)"
+        ></piao-sezione-4>
+      }
+      @case ('5') {
+        <piao-approvazione-pubblicazione
+          #approvazionePubblicazione
+          [piaoDTO]="piaoDTO"
+        ></piao-approvazione-pubblicazione>
+      }
+    }
+  </div>
+
+  @if (activeSectionId !== '5') {
+    <div class="buttons">
+      <piao-button
+        class="save-button"
+        [variant]="'secondary-outline'"
+        [size]="'lg-plus'"
+        [disabled]="hasPatternErrors()"
+        (clicked)="handleSaveToDraftSection()"
+        >{{ 'BUTTONS.SAVE' | translate }}</piao-button
+      >
+
+      <piao-button
+        [disabled]="getDisableButtonValidation()"
+        [variant]="'primary'"
+        [size]="'lg-plus'"
+        (clicked)="handleValidationSection()"
+        >{{ 'BUTTONS.TO_VALIDATION' | translate }}</piao-button
+      >
+    </div>
+  } @else {
+    <div class="buttons">
+      <piao-button
+        [variant]="'primary'"
+        [size]="'lg-plus'"
+        [disabled]="!activeForm || activeForm.invalid"
+        (clicked)="handlePubblica()"
+      >
+        {{ buttonCaricaApprovazione | translate }}
+      </piao-button>
+    </div>
+  }
+</div>
+
+<div class="previous-container">
+  <p></p>
+</div>
+
+<div class="next-container">
+  @if (activeSectionId !== '1') {
+    <p class="next-step" (click)="handleNextPreviousStep(false)">
+      <piao-svg
+        [icon]="'ArrowLeft'"
+        [svgContainer]="'svg-container-arr'"
+        [fillColor]="'#0066cc'"
+      ></piao-svg>
+      {{ 'BUTTONS.PREVIUOS_SECTION' | translate }}
+    </p>
+  } @else {
+    <p></p>
+  }
+
+  @if (activeSectionId !== '5') {
+    <p class="next-step" (click)="handleNextPreviousStep(true)">
+      {{ 'BUTTONS.NEXT_SECTION' | translate }}
+      <piao-svg
+        [icon]="'ArrowRight'"
+        [svgContainer]="'svg-container-arr'"
+        [fillColor]="'#0066cc'"
+      ></piao-svg>
+    </p>
+  }
+</div>
+
+@if (openModalNextStep) {
+  <piao-modal
+    [isIcon]="true"
+    [icon]="icon"
+    [iconStyle]="iconStyle"
+    [open]="openModalNextStep"
+    [showButtonNotSave]="true"
+    (closed)="this.openModalNextStep = false"
+    [titleButtonConfirm]="'BUTTONS.SAVE'"
+    (confirm)="handleSaveToDraftSection(true)"
+    (notSave)="handleNextPreviousStep(isNextSection, false)"
+  >
+    <div class="pr-2">
+      <p class="title-modal">{{ 'MESSAGE.ATTENTION_SAVE' | translate }}</p>
+      <p class="message-text">{{ 'MESSAGE.ALERT_WARNING_FIELD_NOT_SAVE' | translate }}</p>
+    </div>
+  </piao-modal>
+}
+
+@if (openModalValidation) {
+  <piao-modal
+    [isIcon]="true"
+    [icon]="iconModalValidation"
+    [iconStyle]="iconStyle"
+    [open]="openModalValidation"
+    (closed)="this.openModalValidation = false"
+    (confirm)="handleValidation()"
+  >
+    <piao-modal-validation
+      #modalValidationChild
+      [activeSectionId]="activeSectionId"
+      [isValidazioneSezione]="true"
+      [denominazione]="piaoDTO?.denominazione"
+    ></piao-modal-validation>
+  </piao-modal>
+}
+
+@if (openModalPublicazione) {
+  <piao-modal
+    [isIcon]="true"
+    [icon]="iconModalValidation"
+    [iconStyle]="iconStyle"
+    [open]="openModalPublicazione"
+    (closed)="this.openModalPublicazione = false"
+    (confirm)="handleConfermaPubblicazione()"
+  >
+    <piao-modal-pubblicazione></piao-modal-pubblicazione>
+  </piao-modal>
+}

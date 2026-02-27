@@ -1,0 +1,226 @@
+@if (isFormReady) {
+  <div class="main">
+    <form [formGroup]="form">
+      <p class="title">{{ title | translate }}</p>
+      <p class="subTitle">{{ subTitlePremessa | translate }}</p>
+
+      <div class="pt-4">
+        <piao-text-area
+          [title]="titleTAQuadroNormativo"
+          [label]="labelTAQuadroNormativo"
+          [control]="form.controls['quadroNormativo']"
+          [id]="'quadroNormativo'"
+          textAreaClass="text-area"
+          [maxValidatorLength]="'2000'"
+          [descTooltip]="labelTAQuadroNormativo"
+          [containerClass]="'container-width-full'"
+        ></piao-text-area>
+      </div>
+
+      <div class="pt-4">
+        <piao-dynamic-tbta
+          [title]="titleDynamicTBTAPrincipioGuida"
+          [subTitle]="subTitleDynamicTBTAPrincipioGuida"
+          [form]="form"
+          [dynamicTBTAConfig]="principioGuida"
+          [titleCardInfo]="titlePrincipioGuida"
+          [titleLoadNewForm]="titleLoadNewFormPrincipioGuida"
+          [nameIdSezione]="nameIdSezione1"
+          [idSezione]="piaoDTO.idSezione1"
+          [nameArrayForm]="'principiGuida'"
+        >
+        </piao-dynamic-tbta>
+      </div>
+
+      <div class="pt-4">
+        <piao-text-area
+          [title]="titleTAStrutturaProgrammatica"
+          [label]="labelTAStrutturaProgrammatica"
+          [control]="form.controls['strutturaProgrammatica']"
+          [id]="'strutturaProgrammatica'"
+          textAreaClass="text-area"
+          [maxValidatorLength]="'2000'"
+          [descTooltip]="labelTAStrutturaProgrammatica"
+          [containerClass]="'container-width-full'"
+        ></piao-text-area>
+      </div>
+
+      <div class="pt-4">
+        <piao-dynamic-tbtb
+          [title]="titleDynamicTBTBIntegrationTeam"
+          [subTitle]="subTitleDynamicTBTBIntegrationTeam"
+          [form]="form"
+          [dynamicTBTBConfig]="integrationTeams"
+          [titleCardInfo]="titleIntegrationTeam"
+          [titleLoadNewForm]="titleLoadNewFormIntegrationTeam"
+          [nameArrayForm]="'integrationTeams'"
+          [nameIdSezione]="nameIdSezione1"
+          [idSezione]="piaoDTO.idSezione1"
+        >
+        </piao-dynamic-tbtb>
+      </div>
+
+      <div class="pt-4">
+        <piao-text-area
+          [title]="titleTACronoprogramma"
+          [label]="labelTACronoprogramma"
+          [control]="form.controls['cronoprogramma']"
+          [id]="'cronoprogramma'"
+          textAreaClass="text-area"
+          [maxValidatorLength]="'2000'"
+          [descTooltip]="labelTACronoprogramma"
+          [containerClass]="'container-width-full'"
+        ></piao-text-area>
+      </div>
+
+      <piao-scheda-anagrafica
+        [form]="form"
+        [piaoDTO]="piaoDTO"
+        [codTipologia]="codTipologia"
+        [codTipologiaAllegato]="codTipologiaImmagine"
+      ></piao-scheda-anagrafica>
+
+      <div class="pt-4">
+        <piao-dynamic-tbtb
+          [title]="titleDynamicTBTBOrganoPolitico"
+          [subTitle]="subTitleDynamicTBTBOrganoPolitico"
+          [form]="form"
+          [dynamicTBTBConfig]="organiPolitici"
+          [titleCardInfo]="titleOrganoPolitico"
+          [titleLoadNewForm]="titleLoadNewFormOrganoPolitico"
+          [nameIdSezione]="nameIdSezione1"
+          [idSezione]="piaoDTO.idSezione1"
+          [nameArrayForm]="'organiPolitici'"
+        >
+        </piao-dynamic-tbtb>
+      </div>
+
+      <div class="pt-4">
+        <piao-text-area
+          [title]="titleTAMissione"
+          [label]="labelTAMissione"
+          [control]="form.controls['missione']"
+          [id]="'missione'"
+          textAreaClass="text-area"
+          [maxValidatorLength]="'2000'"
+          [descTooltip]="labelTAMissione"
+          [titleClass]="'subTitle-missione'"
+          [containerClass]="'container-width-full'"
+        ></piao-text-area>
+      </div>
+
+      <p class="subTitle">{{ subTitlePriorita | translate }}</p>
+
+      <div class="pt-4">
+        <piao-dynamic-tbta
+          [title]="titleDynamicTBTAPrioritaPolitiche"
+          [subTitle]="subTitleDynamicTBTAPrioritaPolitiche"
+          [form]="form"
+          [dynamicTBTAConfig]="prioritaPolitica"
+          [titleCardInfo]="titlePrioritaPolitiche"
+          [titleLoadNewForm]="titleLoadNewFormPrioritaPolitiche"
+          [nameIdSezione]="nameIdSezione1"
+          [idSezione]="piaoDTO.idSezione1"
+          [nameArrayForm]="'prioritaPolitiche'"
+        >
+        </piao-dynamic-tbta>
+      </div>
+
+      <div class="pt-4">
+        <piao-matrice
+          [title]="titleMatrice"
+          [subTitle]="subTitleMatrice"
+          [titleAlert]="titleUlterioreInfoAlert"
+          [subTitleAlert]="subTitleAlertMatrice"
+          [iconAlert]="iconAlert"
+          [idSezione21]="piaoDTO.idSezione21"
+          [idSezione1]="piaoDTO.idSezione1"
+          [idPiao]="piaoDTO.id"
+        ></piao-matrice>
+      </div>
+
+      <p class="subTitle">{{ subTitleAreeOrganizzative | translate }}</p>
+
+      <piao-dynamic-tbta
+        [subTitle]="subTitleDynamicTBTAOrganizzative"
+        [form]="form"
+        [dynamicTBTAConfig]="areeOrganizzative"
+        [titleCardInfo]="titleOrganizzative"
+        [titleLoadNewForm]="titleLoadNewFormOrganizzative"
+        [nameIdSezione]="nameIdSezione1"
+        [idSezione]="piaoDTO.idSezione1"
+        [nameArrayForm]="'areeOrganizzative'"
+      >
+      </piao-dynamic-tbta>
+
+      <p class="subTitle pt-4">{{ subTitleStakeholder | translate }}</p>
+
+      <piao-dynamic-tbtb
+        [subTitle]="subTitleDynamicTBTBStakeholder"
+        [form]="form"
+        [dynamicTBTBConfig]="stakeholder"
+        [titleCardInfo]="titleStakeholder"
+        [titleLoadNewForm]="titleLoadNewFormStakeholder"
+        [nameIdSezione]="'idPiao'"
+        [idSezione]="piaoDTO.id"
+        [nameArrayForm]="'stakeHolders'"
+        (deleteRequest)="confirmDelete($event)"
+      >
+      </piao-dynamic-tbtb>
+
+      <div class="pt-4">
+        @if (titleDynamicTBUlterioreInfo) {
+          <p class="subTitle">{{ titleDynamicTBUlterioreInfo | translate }}</p>
+        }
+        @if (subTitleDynamicTBUlterioreInfo) {
+          <p class="sub-title-ult-info">{{ subTitleDynamicTBUlterioreInfo | translate }}</p>
+        }
+
+        @if (titleUlterioreInfoAlert && subTitleUlterioreInfoAlert) {
+          <div class="pt-4">
+            <piao-card-alert
+              [icon]="iconAlert"
+              [titleCardHeader]="titleUlterioreInfoAlert"
+              [subTitleCardHeader]="subTitleUlterioreInfoAlert"
+              [subTitleClass]="'piao-card-sub-title'"
+            ></piao-card-alert>
+          </div>
+        }
+        <div class="pt-3">
+          <piao-dynamic-tb
+            [form]="form"
+            [dynamicTBConfig]="ulterioreInfo"
+            [titleCardInfo]="titleUlterioreInfo"
+            [titleLoadNewForm]="titleLoadNewFormUlterioreInfo"
+            [nameArrayForm]="'ulterioriInfo.properties'"
+            [notFoundMessage]="'MESSAGE.NOT_FOUND_ULTERIORE_INFO'"
+            [modalType]="'ulterioreInfo'"
+          >
+          </piao-dynamic-tb>
+        </div>
+      </div>
+
+      <div class="pt-4">
+        <piao-attachment
+          [title]="'SCRIVANIA_PA.SERVIZI_PIAO.INDICE_PIAO.SEZIONE.ATTACHMENT.TITLE_ATTACHMENT'"
+          [subTitle]="
+            'SCRIVANIA_PA.SERVIZI_PIAO.INDICE_PIAO.SEZIONE.ATTACHMENT.SUB_TITLE_ATTACHMENT'
+          "
+          [loadAttachment]="
+            'SCRIVANIA_PA.SERVIZI_PIAO.INDICE_PIAO.SEZIONE.ATTACHMENT.LOAD_ATTACHMENT'
+          "
+          [idPiao]="piaoDTO.id"
+          [isDoc]="true"
+          [showDescription]="false"
+          [showName]="false"
+          [form]="form"
+          [codTipologia]="codTipologia"
+          [codTipologiaAllegato]="codTipologiaAllegato"
+          [isOnlyAttachment]="true"
+          [sezione]="sezioneSection"
+          (attachmentLoaded)="handleAttachmentLoaded()"
+        ></piao-attachment>
+      </div>
+    </form>
+  </div>
+}

@@ -1,0 +1,216 @@
+.table-container {
+  overflow-x: auto;
+  overflow-y: auto;
+}
+
+.table-custom {
+  table-layout: fixed;
+  width: 100%;
+}
+
+.table-custom th,
+.table-custom td {
+  height: 6.5rem !important;
+  width: 11rem !important;
+  min-width: 11rem;
+  max-width: 11rem;
+  padding: 0.75rem;
+  vertical-align: middle;
+  white-space: pre-line;
+}
+
+.table-custom .col-select {
+  width: 8rem !important;
+  min-width: 8rem !important;
+  max-width: 8rem !important;
+  padding-left: 1rem;
+}
+.table-custom .col-select-td {
+  width: 8rem !important;
+  min-width: 8rem !important;
+  max-width: 8rem !important;
+  padding-left: 2.5rem;
+}
+
+.table-custom .col-select-td input[type='checkbox'] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 2px solid #b0b0b0;
+  border-radius: 0.25rem;
+  background-color: #fff;
+  cursor: pointer;
+  position: relative;
+  vertical-align: middle;
+  transition:
+    background-color 0.2s,
+    border-color 0.2s;
+
+  &:checked {
+    background-color: #0066cc;
+    border-color: #0066cc;
+  }
+
+  &:checked::after {
+    content: '';
+    width: 0.35rem;
+    height: 0.7rem;
+    border: solid #fff;
+    border-width: 0 2px 2px 0;
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+
+  &:hover {
+    border-color: #0066cc;
+  }
+
+  &.is-readonly,
+  &:disabled {
+    background-color: #d9dadb;
+    border-color: #d9dadb;
+    cursor: default;
+    pointer-events: none;
+
+    &::after {
+      content: '' !important;
+      width: 0.6rem !important;
+      height: 0.125rem !important;
+      background-color: #5c6f82 !important;
+      border: none !important;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) !important;
+    }
+  }
+}
+
+.table-custom thead tr {
+  border-bottom: 2px solid #5c6f82;
+}
+
+.table-custom tbody tr {
+  border-bottom: 1px solid #ccc; /* dal secondo in poi */
+}
+
+.table-custom thead th:last-child,
+.table-custom tbody td:last-child {
+  position: sticky;
+  right: 0;
+  z-index: 2;
+  background-color: #ffffff;
+  width: 5rem !important;
+  min-width: 5rem !important;
+}
+
+/* Chrome clippa box-shadow su sticky + overflow: usare pseudo-elemento */
+.table-custom thead th:last-child::after,
+.table-custom tbody td:last-child::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -8px;
+  width: 8px;
+  pointer-events: none;
+  background: linear-gradient(to right, transparent, rgba(92, 111, 130, 0.15));
+}
+
+.table-custom thead th:last-child {
+  z-index: 3;
+}
+
+.table-custom .col-azioni {
+  text-align: center;
+
+  piao-azioni {
+    display: inline-block;
+
+    ::ng-deep .icon-svg {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: auto;
+      height: auto;
+    }
+  }
+}
+
+.checkbox-download-container {
+  display: flex;
+  flex-direction: column;
+  padding-top: 2rem;
+  padding-bottom: 3rem;
+  gap: 2rem;
+}
+.download-button {
+  display: flex;
+  justify-content: flex-end; //  bottone a destra
+}
+
+.checkbox-text {
+  display: inline; /* mantiene tutto inline come testo normale */
+}
+
+.checkbox-wrapper {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem; /* distanza solo tra checkbox e testo, non tra label e link */
+}
+
+.checkbox-label,
+.checkbox-link {
+  display: inline; /* evita che il link vada a capo */
+}
+
+.form-check-input {
+  width: 1.25rem;
+  height: 1.25rem;
+  border: 2px solid #000;
+  border-radius: 4px;
+  cursor: pointer;
+  flex-shrink: 0;
+  margin-top: 0.125rem;
+}
+
+.form-check-input:checked {
+  background-color: #0066cc;
+  border-color: #0066cc;
+}
+
+.checkbox-label {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #000;
+  margin: 0;
+  cursor: pointer;
+}
+
+.checkbox-label strong {
+  font-weight: 600;
+}
+
+.checkbox-link {
+  color: #0066cc;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.checkbox-link:hover {
+  text-decoration: none;
+}
+.title-modal {
+  font-weight: 400;
+  font-size: 2rem;
+  padding-bottom: 1rem;
+}
+
+.sub-title-modal {
+  font-weight: 400;
+  font-size: 1.2rem;
+  white-space: pre-line;
+}

@@ -1,0 +1,197 @@
+.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+  cursor: default;
+}
+
+.hidden {
+  display: none;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-top: 1rem;
+  width: 40rem;
+}
+
+.title {
+  font-weight: 400;
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.sub-title {
+  color: #333;
+  font-weight: 400;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  white-space: pre-line;
+  padding-bottom: 1rem;
+}
+
+.dropzone {
+  width: 100%;
+  min-height: 9rem;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+}
+
+.file-upload-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 1rem;
+  border-radius: 8px;
+  background-color: transparent;
+  gap: 0.2rem;
+  position: relative;
+}
+
+.file-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.file-header .file-info {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex: 1;
+  padding-left: 0.5rem;
+}
+
+.file-header .file-name {
+  font-size: 1rem;
+  color: #000;
+  font-weight: 400;
+  margin: 0;
+}
+
+.file-header .btn-close {
+  padding: 0 !important;
+  flex-shrink: 0;
+  align-self: center;
+}
+
+.file-size-row {
+  display: flex;
+  width: 100%;
+  padding-left: 3.25rem;
+}
+
+.file-size {
+  font-size: 0.875rem;
+  color: #000;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.file-progress {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 1rem;
+  padding-left: 3.25rem;
+}
+
+@media (max-width: 1000px) {
+  .main {
+    max-width: 100%;
+  }
+}
+
+::ng-deep .svg-container {
+  width: none !important;
+  height: none !important;
+}
+::ng-deep .svg-icon-uplued {
+  width: 2rem;
+  height: 2rem;
+}
+
+.select-1 {
+  font-weight: 600;
+  color: #0066cc;
+}
+
+.upload {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.piao-progress-track {
+  flex: 1;
+  height: 0.5rem;
+  background: #e6e6e6;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+/* Il “riempimento” blu */
+.piao-progress-fill {
+  height: 100%;
+  width: 0%;
+  background: #0066cc; /* blu */
+  border-radius: 999px;
+  transition: width 0.25s ease;
+}
+
+.progress-label {
+  font-size: 0.875rem;
+  color: #000;
+  font-weight: 600;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.container-input {
+  display: flex;
+  flex-direction: column;
+}
+
+.alert-label {
+  color: #222222;
+  padding-top: 2rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+.wrap-p {
+  white-space: normal;
+}
+
+.container-icon {
+  padding-bottom: 1rem;
+}
+
+.container-ta-tb {
+  padding-top: 1rem;
+}
+
+.upload-title {
+  font-size: 1rem;
+}
+
+@media (max-width: 520px) {
+  .upload-title {
+    font-size: 0.9rem;
+    word-break: break-word;
+  }
+  .file-selected {
+    gap: 0.3rem;
+  }
+  .label {
+    font-size: 0.7rem;
+    word-break: break-word;
+  }
+}

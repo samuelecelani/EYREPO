@@ -1,0 +1,62 @@
+@if (label) {
+  <label for="{{ id }}" class="label">
+    @if (isLabelTranslate) {
+      {{ label | translate }}
+    } @else {
+      {{ label }}
+    }
+
+    @if (required) {
+      <span class="required">*</span>
+    }
+
+    @if (descTooltip) {
+      <piao-tooltip [descTooltip]="descTooltip" [icon]="'InfoCircle'"></piao-tooltip>
+    }
+  </label>
+}
+
+<div class="date-picker-wrapper" [class.readonly]="isReadOnly">
+  <input
+    id="{{ id }}"
+    type="text"
+    class="date-input"
+    [class.isReadOnly]="isReadOnly"
+    [placeholder]="placeholder"
+    [value]="displayValue"
+    (input)="onDisplayInput($event)"
+    [readOnly]="isReadOnly"
+    maxlength="10"
+    aria-label="{{ id }}"
+  />
+
+  <!-- Input date nascosto, usato solo per aprire il picker nativo -->
+  <input
+    #hiddenDateInput
+    type="date"
+    class="hidden-date-input"
+    [attr.min]="min"
+    [attr.max]="max"
+    (change)="onHiddenDateChange($event)"
+    tabindex="-1"
+    aria-hidden="true"
+    [readOnly]="isReadOnly"
+    [class.isReadOnly]="isReadOnly"
+  />
+
+  <piao-svg
+    class="calendar-icon"
+    [icon]="'Calendar'"
+    [fillColor]="'#0066CC'"
+    [svgContainer]="'calendar-svg'"
+    (click)="openPicker()"
+    [class.isReadOnly]="isReadOnly"
+  ></piao-svg>
+</div>
+
+@if (errorMessage && (min || max) && (control?.touched || control?.dirty)) {
+  <small class="error-message">{{ errorMessage }}</small>
+}
+@if (control?.touched && (control?.errors?.['pattern'] || control?.errors?.['invalidDate'])) {
+  <small class="error-message">{{ 'ERRORS.INVALID_DATE_FORMAT' | translate }}</small>
+}

@@ -1,0 +1,279 @@
+@if (isFormReady) {
+  <div class="main">
+    <form [formGroup]="form">
+      <p class="title">{{ title | translate }}</p>
+
+      <!-- PARTE GENERALE -->
+      <p class="subTitle pt-4 section-title-pt2_5">{{ subTitleParteGenerale | translate }}</p>
+
+      <!-- Analisi contesto -->
+      <p class="subTitle pt-4">{{ subTitleAnalisiContesto | translate }}</p>
+      <p class="description">{{ descriptionAnalisiContesto | translate }}</p>
+
+      <!-- Analisi contesto interno -->
+      <div class="pt-3">
+        <piao-text-area
+          [label]="labelTAContestoInterno"
+          [control]="form.controls['contestoInt']"
+          [id]="'contestoInt'"
+          textAreaClass="text-area"
+          [maxValidatorLength]="'2000'"
+          [descTooltip]="labelTAContestoInterno"
+          [containerClass]="'container-width-full'"
+        ></piao-text-area>
+      </div>
+
+      <!-- Analisi contesto esterno -->
+      <div class="pt-3">
+        <piao-text-area
+          [label]="labelTAContestoEsterno"
+          [control]="form.controls['contestoExt']"
+          [id]="'contestoExt'"
+          textAreaClass="text-area"
+          [maxValidatorLength]="'2000'"
+          [descTooltip]="labelTAContestoEsterno"
+          [containerClass]="'container-width-full'"
+        ></piao-text-area>
+      </div>
+
+      <div class="pt-3">
+        <piao-attachment
+          [title]="'SCRIVANIA_PA.SERVIZI_PIAO.INDICE_PIAO.SEZIONE.ATTACHMENT.TITLE_IMAGE'"
+          [classTitle]="'title-load-image'"
+          [loadAttachment]="'SCRIVANIA_PA.SERVIZI_PIAO.INDICE_PIAO.SEZIONE.ATTACHMENT.LOAD_IMAGE'"
+          [idPiao]="piaoDTO.id"
+          [isDoc]="false"
+          [showDescription]="true"
+          [showName]="false"
+          [codTipologia]="codTipologia"
+          [codTipologiaAllegato]="codTipologiaAllegatoImage1"
+          (attachmentLoaded)="handleAttachmentLoaded()"
+        ></piao-attachment>
+      </div>
+
+      <!-- Analisi SWOT -->
+      <p class="subTitle pt-4">{{ subTitleAnalisiSwot | translate }}</p>
+      <p class="description">{{ descriptionAnalisiSwot | translate }}</p>
+
+      <div class="pt-3 swot-grid">
+        <!-- Punti di forza (S) -->
+        <div class="swot-quadrant">
+          <piao-swot-element-list
+            [form]="form"
+            [nameArrayForm]="'swotPuntiForza.properties'"
+            [label]="labelSwotPuntiForza"
+            [maxLength]="100"
+          ></piao-swot-element-list>
+        </div>
+
+        <!-- Punti di debolezza (W) -->
+        <div class="swot-quadrant">
+          <piao-swot-element-list
+            [form]="form"
+            [nameArrayForm]="'swotPuntiDebolezza.properties'"
+            [label]="labelSwotPuntiDebolezza"
+            [maxLength]="100"
+          ></piao-swot-element-list>
+        </div>
+
+        <!-- Opportunità (O) -->
+        <div class="swot-quadrant">
+          <piao-swot-element-list
+            [form]="form"
+            [nameArrayForm]="'swotOpportunita.properties'"
+            [label]="labelSwotOpportunita"
+            [maxLength]="100"
+          ></piao-swot-element-list>
+        </div>
+
+        <!-- Minacce (T) -->
+        <div class="swot-quadrant">
+          <piao-swot-element-list
+            [form]="form"
+            [nameArrayForm]="'swotMinacce.properties'"
+            [label]="labelSwotMinacce"
+            [maxLength]="100"
+          ></piao-swot-element-list>
+        </div>
+      </div>
+
+      <!-- Concetto generale di valore pubblico -->
+      <p class="subTitle pt-4">{{ subTitleValorePubblico | translate }}</p>
+
+      <div class="pt-3">
+        <piao-text-area
+          [title]="''"
+          [label]="labelTADescrizioneValorePubblico"
+          [required]="true"
+          [control]="form.controls['descrizioneValorePubblico']"
+          [id]="'descrizioneValorePubblico'"
+          textAreaClass="text-area"
+          [maxValidatorLength]="'1500'"
+          [descTooltip]="labelTADescrizioneValorePubblico"
+          [containerClass]="'container-width-full'"
+        ></piao-text-area>
+      </div>
+
+      <div class="pt-3">
+        <piao-attachment
+          [title]="'SCRIVANIA_PA.SERVIZI_PIAO.INDICE_PIAO.SEZIONE.ATTACHMENT.TITLE_IMAGE'"
+          [classTitle]="'title-load-image'"
+          [loadAttachment]="'SCRIVANIA_PA.SERVIZI_PIAO.INDICE_PIAO.SEZIONE.ATTACHMENT.LOAD_IMAGE'"
+          [idPiao]="piaoDTO.id"
+          [isDoc]="false"
+          [showDescription]="true"
+          [showName]="false"
+          [codTipologia]="codTipologia"
+          [codTipologiaAllegato]="codTipologiaAllegatoImage2"
+          (attachmentLoaded)="handleAttachmentLoaded()"
+        ></piao-attachment>
+      </div>
+
+      <!-- PARTE FUNZIONALE -->
+      <p class="subTitle pt-4 section-title-pt2_5">{{ subTitleParteFunzionale | translate }}</p>
+
+      <!--OVP-->
+      <piao-ovp
+        [formGroup]="form"
+        [subTitleObiettiviValorePubblico]="subTitleObiettiviValorePubblico"
+        [descriptionObiettiviValorePubblico]="descriptionObiettiviValorePubblico"
+        [iconAlert]="iconAlert"
+        [titleAlertObiettiviVP]="titleAlertObiettiviVP"
+        [subTitleAlertObiettiviVP]="subTitleAlertObiettiviVP"
+        [titleCardObiettivoVP]="titleCardObiettivoVP"
+        [labelBtnAddObiettivoVP]="labelBtnAddObiettivoVP"
+        [idSezione1]="piaoDTO?.idSezione1"
+        [idSezione21]="sezione21Data?.id || piaoDTO?.idSezione21"
+        [idPiao]="piaoDTO?.id"
+        [stakeholdersList]="piaoDTO?.stakeHolders || []"
+      >
+      </piao-ovp>
+
+      <!-- Risorse finanziarie -->
+      <div class="pt-3">
+        <piao-risorse-finanziarie [form]="form"></piao-risorse-finanziarie>
+      </div>
+
+      <!-- Interventi sovvenzionati con fondi europei -->
+      <div class="pt-3">
+        <piao-fondi-europei [form]="form"></piao-fondi-europei>
+      </div>
+
+      <!-- Obiettivi trasversali -->
+      <p class="subTitle pt-4">{{ subTitleObiettiviTrasversali | translate }}</p>
+      <p class="description">{{ descriptionObiettiviTrasversali | translate }}</p>
+
+      <!-- Obiettivi di piena accessibilità digitale -->
+      <p class="subTitle-small pt-4">{{ subTitleAccessibilitaDigitale | translate }}</p>
+      <div class="pt-3">
+        <piao-text-area
+          [title]="''"
+          [label]="labelTADescrizioneAccessiDigitale"
+          [control]="form.controls['descrizioneAccessiDigitale']"
+          [id]="'descrizioneAccessiDigitale'"
+          textAreaClass="text-area"
+          [maxValidatorLength]="'1000'"
+          [descTooltip]="labelTADescrizioneAccessiDigitale"
+          [containerClass]="'container-width-full'"
+        ></piao-text-area>
+      </div>
+
+      <!-- Obiettivi di piena accessibilità fisica -->
+      <p class="subTitle-small pt-4">{{ subTitleAccessibilitaFisica | translate }}</p>
+      <div class="pt-3">
+        <piao-text-area
+          [title]="''"
+          [label]="labelTADescrizioneAccessiFisica"
+          [control]="form.controls['descrizioneAccessiFisica']"
+          [id]="'descrizioneAccessiFisica'"
+          textAreaClass="text-area"
+          [maxValidatorLength]="'1000'"
+          [descTooltip]="labelTADescrizioneAccessiFisica"
+          [containerClass]="'container-width-full'"
+        ></piao-text-area>
+      </div>
+
+      <!-- Obiettivi di semplificazione -->
+      <p class="subTitle-small pt-4">{{ subTitleSemplificazione | translate }}</p>
+      <div class="pt-3">
+        <piao-text-area
+          [title]="''"
+          [label]="labelTADescrizioneSemplificazione"
+          [control]="form.controls['descrizioneSemplificazione']"
+          [id]="'descrizioneSemplificazione'"
+          textAreaClass="text-area"
+          [maxValidatorLength]="'1000'"
+          [descTooltip]="labelTADescrizioneSemplificazione"
+          [containerClass]="'container-width-full'"
+        ></piao-text-area>
+      </div>
+
+      <!-- Obiettivi di pari opportunità -->
+      <p class="subTitle-small pt-4">{{ subTitlePariOpportunita | translate }}</p>
+      <div class="pt-3">
+        <piao-text-area
+          [title]="''"
+          [label]="labelTADescrizionePariOpportunita"
+          [control]="form.controls['descrizionePariOpportunita']"
+          [id]="'descrizionePariOpportunita'"
+          textAreaClass="text-area"
+          [maxValidatorLength]="'1000'"
+          [descTooltip]="labelTADescrizionePariOpportunita"
+          [containerClass]="'container-width-full'"
+        ></piao-text-area>
+      </div>
+
+      <!-- Elenco procedure da semplificare o reingegnerizzare -->
+
+      <div class="pt-3">
+        <piao-procedure [form]="form"></piao-procedure>
+      </div>
+
+      <div class="pt-4">
+        @if (titleDynamicTBUlterioreInfo) {
+          <p class="subTitle">{{ titleDynamicTBUlterioreInfo | translate }}</p>
+        }
+        @if (subTitleDynamicTBUlterioreInfo) {
+          <p class="sub-title-ult-info">{{ subTitleDynamicTBUlterioreInfo | translate }}</p>
+        }
+
+        <div class="pt-3">
+          <piao-dynamic-tb
+            [form]="form"
+            [dynamicTBConfig]="ulterioriInfoConfig"
+            [titleCardInfo]="titleCardUlterioriInfo"
+            [titleLoadNewForm]="labelBtnAddUlterioriInfo"
+            [nameArrayForm]="'ulterioriInfo.properties'"
+            [notFoundMessage]="'MESSAGE.NOT_FOUND_ULTERIORE_INFO'"
+            [modalType]="'ulterioreInfo'"
+          >
+          </piao-dynamic-tb>
+        </div>
+      </div>
+
+      <!-- Allegato -->
+      <div class="pt-4">
+        <piao-attachment
+          #attachment
+          [title]="'SCRIVANIA_PA.SERVIZI_PIAO.INDICE_PIAO.SEZIONE.ATTACHMENT.TITLE_ATTACHMENT'"
+          [subTitle]="
+            'SCRIVANIA_PA.SERVIZI_PIAO.INDICE_PIAO.SEZIONE.ATTACHMENT.SUB_TITLE_ATTACHMENT'
+          "
+          [loadAttachment]="
+            'SCRIVANIA_PA.SERVIZI_PIAO.INDICE_PIAO.SEZIONE.ATTACHMENT.LOAD_ATTACHMENT'
+          "
+          [idPiao]="piaoDTO.id"
+          [isDoc]="true"
+          [showDescription]="false"
+          [showName]="false"
+          [form]="form"
+          [codTipologia]="codTipologia"
+          [codTipologiaAllegato]="codTipologiaAllegato"
+          [isOnlyAttachment]="true"
+          [sezione]="sezioneSection"
+          (attachmentLoaded)="handleAttachmentLoaded()"
+        ></piao-attachment>
+      </div>
+    </form>
+  </div>
+}

@@ -1,0 +1,112 @@
+/* Contenitore testo "AZIONI" + icona */
+.main {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+  max-width: 100%;
+}
+
+/* Testo "AZIONI" */
+.title {
+  font-weight: 700;
+  font-size: 1rem;
+  color: #0066cc;
+  text-decoration: underline;
+}
+
+/* Icona (ellipsis) come trigger del popup */
+.icon-trigger {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+/* (opzionale) aumentare hit-area dell'icona */
+.icon-trigger .ellipsis {
+  display: inline-flex;
+  padding: 4px;
+  border-radius: 4px;
+}
+
+.isReadOnly {
+  border: none; /* nessun bordo visibile */
+  cursor: default; /* niente cursore testo */
+  caret-color: transparent; /* nasconde il cursore di digitazione */
+  pointer-events: none; /* niente click/focus */
+}
+
+/* dimensioni svg */
+::ng-deep .icon-svg svg {
+  height: 1.125rem;
+  width: 0.25rem;
+}
+
+/* === POPUP nel CDK Overlay === */
+.popup-panel {
+  background: #fff;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  box-shadow: 1px 10px 10px rgba(0.1, 0.1, 0.1, 0.1);
+  width: max-content;
+  max-height: 14.5rem;
+}
+
+.popup-panel div {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 1rem 5rem 1rem 1rem;
+  gap: 1rem;
+}
+
+.popup-panel p {
+  font-weight: 400;
+  font-size: 1.1rem;
+  color: #003366;
+  white-space: pre-line;
+  margin: 0;
+  cursor: pointer;
+}
+
+/* Hover/focus accessibili */
+.popup-panel p:hover,
+.popup-panel p:focus {
+  text-decoration: underline;
+  outline: none;
+}
+
+/* === Popup su schermi <= 1000px === */
+@media (max-width: 1000px) {
+  .main {
+    align-items: flex-start;
+  }
+
+  .popup-panel {
+    top: calc(100% + 8px);
+    /* Spesso su mobile è più comodo allinearlo a sinistra dell’icona */
+    left: 0;
+    right: auto;
+    transform: none;
+
+    max-width: 19.5rem;
+    box-shadow: 1px 6px 12px rgba(0.1, 0.1, 0.1, 0.12);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+
+  .popup-panel div {
+    padding-right: 1rem;
+    gap: 1rem;
+  }
+
+  .popup-panel p {
+    white-space: pre-line;
+    font-size: 1rem;
+    line-height: 1.2;
+  }
+}

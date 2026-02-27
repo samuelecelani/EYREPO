@@ -1,0 +1,37 @@
+{
+  // Estensioni VSCode Raccomandate per Angular Development
+  "recommendations": [
+    // Angular Essentials
+    "angular.ng-template",           // Angular Language Service
+    "johnpapa.angular2",             // Angular Snippets
+
+    // Code Quality
+    "dbaeumer.vscode-eslint",        // ESLint
+    "esbenp.prettier-vscode",        // Prettier
+
+    // TypeScript
+    "ms-vscode.vscode-typescript-next",
+
+    // AI Assistance
+    "visualstudioexptteam.vscodeintellicode",  // IntelliCode AI
+    "github.copilot",                          // GitHub Copilot (opzionale)
+
+    // Tailwind CSS
+    "bradlc.vscode-tailwindcss",     // Tailwind IntelliSense
+
+    // Utilities
+    "christian-kohler.path-intellisense",  // Auto-complete path
+    "eamodio.gitlens",                     // Git enhancement
+    "usernamehw.errorlens",                // Inline errors
+    "streetsidesoftware.code-spell-checker", // Spell checker
+
+    // Testing
+    "firsttris.vscode-jest-runner",  // Jest test runner
+
+    // Productivity
+    "formulahendry.auto-rename-tag", // Auto rename paired HTML tags
+    "wayou.vscode-todo-highlight"    // TODO highlight
+  ]
+}
+
+

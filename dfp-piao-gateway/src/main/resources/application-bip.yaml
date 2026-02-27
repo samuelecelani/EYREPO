@@ -1,0 +1,10 @@
+logging:
+  level:
+    it.sogei.dfp.gateway.config: DEBUG
+
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: https://keycloak.bip.test/realms/dfp

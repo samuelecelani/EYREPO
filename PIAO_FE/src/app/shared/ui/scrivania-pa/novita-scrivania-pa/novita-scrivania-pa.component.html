@@ -1,0 +1,8 @@
+<div class="novita-container">
+  <h1>{{ 'SCRIVANIA_PA.NOVITA.TITLE' | translate }}</h1>
+  <piao-button [variant]="'primary-outline'" [size]="'md'" (clicked)="handleGoToNovita()">{{
+    'SCRIVANIA_PA.NOVITA.BUTTON' | translate
+  }}</piao-button>
+</div>
+
+<piao-novita [modulo]="'PIAO'" [maxItems]="3" [pagination]="false"></piao-novita>

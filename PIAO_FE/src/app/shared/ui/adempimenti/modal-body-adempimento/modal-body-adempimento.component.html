@@ -1,0 +1,55 @@
+<div [ngClass]="main">
+  <p class="title">{{ title | translate }}</p>
+  <p class="sub-title pt-2">{{ subTitle | translate }}</p>
+  <form [formGroup]="formGroup">
+    <div class="d-flex flex-column pt-3">
+      <div class="pt-4">
+        <piao-text-area
+          [label]="labelDesc"
+          [control]="formGroup.controls['denominazione']"
+          [id]="'denominazione'"
+          textAreaClass="text-area"
+          [maxValidatorLength]="'500'"
+          [descTooltip]="labelDesc"
+          [containerClass]="'container-width-full'"
+          [required]="true"
+        ></piao-text-area>
+      </div>
+
+      <piao-dynamic-tb-fields
+        class="azione-proposta-fields"
+        [formGroup]="formGroup"
+        [dynamicTBConfig]="azioneConfig"
+        [nameArrayForm]="'azione.properties'"
+        [containerInputClass]="'container-width-25'"
+        [propertiesPath]="'azione.properties'"
+        [titleLabel]="'SEZIONE_22.ADEMPIMENTI.AZIONE_PROPOSTA'"
+        [notFoundLabel]="'SEZIONE_22.ADEMPIMENTI.NOT_FOUND_AZIONE_PROPOSTA'"
+        [addFieldLabel]="'SEZIONE_22.ADEMPIMENTI.ADD_AZIONE_PROPOSTA'"
+        [isTooltip]="true"
+        (modalDeleteOpened)="handleAddModalOpened()"
+        (modalDeleteClosed)="handleAddModalClosed()"
+        [columnClass]="'col-12 col-xl-6 col-lg-6'"
+      >
+      </piao-dynamic-tb-fields>
+
+      <piao-dynamic-tb-fields
+        [formGroup]="formGroup"
+        [dynamicTBConfig]="ulterioreInfo"
+        [nameArrayForm]="'ulterioriInfo.properties'"
+        [modalType]="'ulterioreInfo'"
+        [containerInputClass]="'container-width-18-5'"
+        [propertiesPath]="'ulterioriInfo.properties'"
+        [titleLabel]="'INDICATORI.MODAL.ADD_INFO.TITLE'"
+        [notFoundLabel]="'INDICATORI.MODAL.ADD_INFO.NOT_FOUND'"
+        [addFieldLabel]="'INDICATORI.MODAL.ADD_INFO.ADD_FIELD'"
+        (modalOpened)="handleAddModalOpened()"
+        (modalClosed)="handleAddModalClosed()"
+        (modalDeleteOpened)="handleAddModalOpened()"
+        (modalDeleteClosed)="handleAddModalClosed()"
+        [columnClass]="'col-12 col-xl-6 col-lg-6'"
+      >
+      </piao-dynamic-tb-fields>
+    </div>
+  </form>
+</div>

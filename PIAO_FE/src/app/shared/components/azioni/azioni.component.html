@@ -1,0 +1,47 @@
+<div class="main" [class.isReadOnly]="isReadOnly">
+  @if (isTitle) {
+    <p class="title">
+      {{ 'SCRIVANIA_PA.SERVIZI_PIAO.INDICE_PIAO.SEZIONE.ACTIONS.TITLE' | translate }}
+    </p>
+  }
+
+  <!-- CONTENITORE ICONA = TRIGGER DEL POPUP -->
+  <span
+    #triggerElement
+    class="icon-trigger"
+    role="button"
+    tabindex="0"
+    aria-haspopup="menu"
+    [attr.aria-expanded]="isMenuOpen"
+    (click)="handleToggleMenu(triggerElement)"
+    (keydown.enter)="handleToggleMenu(triggerElement)"
+    (keydown.space)="handleToggleMenu(triggerElement); $event.preventDefault()"
+  >
+    <piao-svg
+      class="ellipsis"
+      [icon]="icon"
+      [fillColor]="isReadOnly ? '#d9d9d9' : '#0066CC'"
+      [svgContainer]="'icon-svg'"
+    >
+    </piao-svg>
+  </span>
+</div>
+
+<!-- Template per il menu overlay -->
+<ng-template #actionsMenu>
+  <div class="popup-panel" role="menu">
+    <div>
+      <p
+        class="popup-panel-text"
+        *ngFor="let x of verticalEllipsis"
+        role="menuitem"
+        tabindex="0"
+        (click)="handleGoToActions(x)"
+        (keydown.enter)="handleGoToActions(x)"
+        (keydown.space)="handleGoToActions(x); $event.preventDefault()"
+      >
+        {{ x.label | translate }}
+      </p>
+    </div>
+  </div>
+</ng-template>

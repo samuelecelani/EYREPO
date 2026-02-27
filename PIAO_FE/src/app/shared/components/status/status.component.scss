@@ -1,0 +1,36 @@
+.status-badge {
+  display: inline-flex;
+  padding: 0.125rem 0.125rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  border-radius: var(--bs-border-radius-pill);
+  background-color: #fff;
+  border: 2px solid;
+}
+
+.status-validata {
+  color: var(--bs-success);
+  border-color: var(--bs-success);
+}
+
+.status-da-compilare {
+  color: var(--bs-warning);
+  border-color: var(--bs-warning);
+}
+
+.status-in-compilazione {
+  color: #0066CC;
+  border-color: #0066CC;
+}
+
+.status-in-validazione {
+  color: #8700D9;
+  border-color: #8700D9;
+}
+
+.status-compilata {
+  color: #2F475E;
+  border-color: #2F475E;
+}

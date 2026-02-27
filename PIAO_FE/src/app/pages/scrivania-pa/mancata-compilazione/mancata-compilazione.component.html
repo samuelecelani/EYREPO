@@ -1,0 +1,150 @@
+<div class="main">
+  <form [formGroup]="form">
+    <p class="title">{{ title | translate }}</p>
+    <p class="subTitle-xs pt-1">{{ subTitle | translate }}</p>
+
+    <div class="container-full pt-4">
+      <div class="row">
+        <div class="col-12 col-lg-4">
+          <piao-text-box
+            [label]="annoLabel"
+            [typeInput]="'text'"
+            [inputClass]="'input'"
+            [control]="form.controls['anno']"
+            [maxValidatorLength]="10"
+            [id]="'anno'"
+            [descTooltip]="annoLabel"
+            [containerClass]="'container-width-full'"
+            [required]="true"
+          >
+          </piao-text-box>
+        </div>
+        <div class="col-12 col-lg-4">
+          <piao-date-picker
+            [label]="dataPubblicazioneLabel"
+            [control]="form.controls['dataPubblicazione']"
+            [id]="'dataPubblicazione'"
+            [descTooltip]="dataPubblicazioneLabel"
+            [containerClass]="'container-width-full'"
+            [required]="true"
+            [min]="minDate"
+            [isReadOnly]="isDateReadOnly"
+          >
+          </piao-date-picker>
+        </div>
+      </div>
+
+      <div class="pt-3">
+        <piao-text-area
+          [label]="noteLabel"
+          [control]="form.controls['note']"
+          [id]="'note'"
+          textAreaClass="text-area"
+          [maxValidatorLength]="'2000'"
+          [descTooltip]="noteLabel"
+          [containerClass]="'container-width-full'"
+        ></piao-text-area>
+      </div>
+
+      <div class="row pt-2">
+        <div class="col-12 col-lg-4">
+          <piao-dropdown
+            [dropdown]="motivazioneOptions"
+            [title]="motivazioneLabel"
+            [formControlName]="'motivazione'"
+            [formControl]="form.controls['motivazione']"
+            [isTooltip]="true"
+            [isTranslate]="false"
+            [isRequired]="true"
+            [dropContainerClass]="'container-width-full'"
+          ></piao-dropdown>
+        </div>
+      </div>
+      <div class="pt-3">
+        <piao-text-area
+          [label]="descrizioneLabel"
+          [control]="form.controls['descrizione']"
+          [id]="'descrizione'"
+          textAreaClass="text-area"
+          [maxValidatorLength]="'2000'"
+          [descTooltip]="descrizioneLabel"
+          [containerClass]="'container-width-full'"
+        ></piao-text-area>
+      </div>
+      <div class="row">
+        <div class="col-12 col-lg-4">
+          <piao-text-box
+            [label]="responsabileLabel"
+            [typeInput]="'text'"
+            [inputClass]="'input'"
+            [control]="form.controls['responsabile']"
+            [maxValidatorLength]="100"
+            [id]="'responsabile'"
+            [descTooltip]="responsabileLabel"
+            [containerClass]="'container-width-full'"
+            [required]="true"
+          >
+          </piao-text-box>
+        </div>
+      </div>
+    </div>
+
+    <div class="blue-frame">
+      <svg
+        class="frame-shape"
+        viewBox="0 0 1440 321"
+        preserveAspectRatio="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M1440 20C1440 8.9543 1431.05 0 1420 0H726.938C715.926 0 707 8.9265 707 19.9379C707 30.9493 698.073 39.8758 687.062 39.8758H20C8.95435 39.8758 0 48.8301 0 59.8758V301C0 312.046 8.95435 321 20 321H707H1420C1431.05 321 1440 312.046 1440 301V20Z"
+          fill="#e7eff7"
+        />
+      </svg>
+      <div class="frame-content pt-5">
+        @if (idPiao) {
+          <piao-attachment
+            [title]="'MANCATA_COMPILAZIONE.CARICA_ALLEGATO_LABEL'"
+            [loadAttachment]="'MANCATA_COMPILAZIONE.ADD_ALLEGATO_LABEL'"
+            [idPiao]="idPiao"
+            [isDoc]="true"
+            [showDescription]="true"
+            [showName]="false"
+            [codTipologia]="codTipologia"
+            [codTipologiaAllegato]="codTipologiaAllegato"
+          ></piao-attachment>
+        }
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-end pt-5 pb-5">
+      <piao-button
+        [disabled]="getDisableButtonValidation()"
+        [variant]="'primary'"
+        [size]="'lg-plus'"
+        (clicked)="openModalDichiarazioneScadenza = true"
+        >{{ 'BUTTONS.TO_STATEMENT' | translate }}</piao-button
+      >
+    </div>
+  </form>
+</div>
+
+@if (openModalDichiarazioneScadenza) {
+  <piao-modal
+    [isIcon]="true"
+    [icon]="iconModal"
+    [iconStyle]="iconStyle"
+    [open]="openModalDichiarazioneScadenza"
+    [titleButtonConfirm]="'BUTTONS.SEND'"
+    (confirm)="handleValidationSection(true)"
+    (closed)="openModalDichiarazioneScadenza = false"
+  >
+    <div class="main-dichiarazione">
+      <p class="title-dichiarazione mb-3">{{ titleModal | translate }}</p>
+      <p class="message-dichiarazione mb-2">{{ messageModal | translate }}</p>
+      @if (subMessageModal) {
+        <p class="message-dichiarazione">{{ subMessageModal | translate }}</p>
+      }
+    </div>
+  </piao-modal>
+}

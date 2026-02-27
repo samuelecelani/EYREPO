@@ -1,0 +1,45 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: db-sql-service
+spec:
+  clusterIP: None
+  ports:
+    - name: postgresql
+      port: {{ default 5432 .Values.db.sql.port }}
+
+---
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: db-sql-service
+subsets:
+  - addresses:
+      - ip: {{ .Values.db.sql.address }}
+    ports:
+      - port: {{ default 5432 .Values.db.sql.port }}
+        name: postgresql
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: db-nosql-service
+spec:
+  clusterIP: None
+  ports:
+    - name: mongodb
+      port: {{ default 27017 .Values.db.nosql.port }}
+
+---
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: db-nosql-service
+subsets:
+  - addresses:
+      - ip: {{ .Values.db.nosql.address }}
+    ports:
+      - port: {{ default 27017 .Values.db.nosql.port }}
+        name: mongodb

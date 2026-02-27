@@ -1,0 +1,146 @@
+@for (misura of misureGenerali.controls; track trackByMisuraId($index, misura); let i = $index) {
+  <div [ngClass]="i > 0 ? 'accordion-section-double' : 'accordion-section'">
+    <piao-accordion
+      [index]="i + 1"
+      [title]="labelMisuraPrefix | translate"
+      [isOpen]="openAccordionIndex === i + 1"
+      [isButton]="true"
+      (clickButton)="handleOpenModalDelete(i)"
+    >
+      <div class="intro-text">
+        <p>{{ labelIntroText | translate }}</p>
+      </div>
+
+      <div class="pt-3">
+        <div class="container-full">
+          <div class="row">
+            <div class="col-12 col-xl-6">
+              <piao-dropdown
+                [title]="labelObiettivoPrevenzione | translate"
+                [formControl]="misura.controls['idObiettivoPrevenzione']"
+                [dropdown]="obiettiviPrevenzioneOptions"
+                [isTooltip]="true"
+                [dropContainerClass]="'container-width-full'"
+                [isRequired]="true"
+                (isChange)="handleObiettivoChange($event, i)"
+              >
+              </piao-dropdown>
+            </div>
+
+            <div class="col-12 col-xl-6">
+              <piao-text-box
+                [label]="labelMisuraGenerale | translate"
+                [typeInput]="'text'"
+                [inputClass]="'input'"
+                [control]="misura.controls['denominazione']"
+                [maxValidatorLength]="250"
+                [id]="'denominazione_' + i"
+                [descTooltip]="labelMisuraGenerale | translate"
+                [required]="true"
+                [containerClass]="'container-width-full'"
+              >
+              </piao-text-box>
+            </div>
+          </div>
+
+          <div class="row pt-3">
+            <div class="col-12 col-xl-4">
+              <piao-text-box
+                [label]="labelIdMisura | translate"
+                [typeInput]="'text'"
+                [inputClass]="'input'"
+                [control]="setCodice(misura, i)"
+                [maxValidatorLength]="50"
+                [id]="'idMisura_' + i"
+                [descTooltip]="labelIdMisura | translate"
+                [isReadOnly]="true"
+                [containerClass]="'container-width-full'"
+              >
+              </piao-text-box>
+            </div>
+
+            <div class="col-12 col-xl-4">
+              <piao-text-box
+                [label]="labelTipologiaDescrizione | translate"
+                [typeInput]="'text'"
+                [inputClass]="'input'"
+                [control]="misura.controls['descrizione']"
+                [maxValidatorLength]="2000"
+                [id]="'descrizione_' + i"
+                [descTooltip]="labelTipologiaDescrizione | translate"
+                [containerClass]="'container-width-full'"
+              >
+              </piao-text-box>
+            </div>
+
+            <div class="col-12 col-xl-4">
+              <piao-text-box
+                [label]="labelResponsabileMisura | translate"
+                [typeInput]="'text'"
+                [inputClass]="'input'"
+                [control]="misura.controls['responsabileMisura']"
+                [maxValidatorLength]="100"
+                [id]="'responsabileMisura_' + i"
+                [descTooltip]="labelResponsabileMisura | translate"
+                [containerClass]="'container-width-full'"
+              >
+              </piao-text-box>
+            </div>
+          </div>
+
+          <div class="pt-3">
+            <h3 class="section-title">{{ labelStakeholder | translate }}</h3>
+            <div class="row pt-3">
+              <div class="col-12 col-xl-4 col-lg-4">
+                <piao-dropdown
+                  [title]="labelSelezionaStakeholder | translate"
+                  [formControl]="misura.controls['stakeholder']"
+                  [dropdown]="stakeholderOptions"
+                  [isTooltip]="true"
+                  [isMulti]="true"
+                  [dropContainerClass]="'container-width-full'"
+                >
+                </piao-dropdown>
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-2">
+            <piao-indicatori
+              [indicatoriControls]="misura.controls['indicatori']"
+              [codTipologiaFK]="codTipologiaFK"
+              [idEntitaFK]="misura.value.id || 0"
+              [formParent]="misura"
+              [codTipologiaIndicatoreFK]="codTipologiaIndicatoreFK"
+              [sectionEnum]="sectionEnum"
+            ></piao-indicatori>
+          </div>
+        </div>
+      </div>
+    </piao-accordion>
+  </div>
+}
+
+<div class="pt-4">
+  <piao-card-info
+    [titleCardHeader]="
+      (misureGenerali.length === 0 ? titleCardInfoNotFoundMisura : titleCardInfoMisura) | translate
+    "
+    [piaoCardHeaderTitleClass]="'title-card-info'"
+    [titleLoadNewForm]="subTitleAddMisura | translate"
+    [loadNewForm]="true"
+    [piaoCardHeaderContainerClass]="'piao-card-info-container-new-form'"
+    (clicked)="handleAddMisura()"
+  ></piao-card-info>
+</div>
+
+<piao-modal-delete
+  [icon]="'AlertCircle'"
+  [title]="'MODAL_REMOVE.TITLE'"
+  [message]="'MODAL_REMOVE.MESSAGE'"
+  [subMessage]="'MODAL_REMOVE.CONFIRM_OPERATION'"
+  [openModalDelete]="openModalDelete"
+  [elementToDelete]="elementToDelete"
+  (confirm)="handleRemoveMisura($event)"
+  (closed)="handleCloseModalDelete()"
+></piao-modal-delete>

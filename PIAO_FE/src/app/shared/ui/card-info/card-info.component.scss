@@ -1,0 +1,71 @@
+::ng-deep .piao-card-info-container {
+  min-height: 4.75rem;
+  background-color: #e7eff7;
+  border-radius: 10px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  width: 100%;
+}
+
+::ng-deep .piao-card-info-alert-container {
+  min-height: 6.25rem;
+  background-color: #e7eff7;
+  border-radius: 10px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+}
+
+::ng-deep .piao-card-info-container piao-button.info-button {
+  margin-left: auto;
+}
+
+::ng-deep piao-button.info-button {
+  display: inline-flex;
+  align-items: center;
+}
+
+::ng-deep piao-button.info-button > button,
+::ng-deep piao-button.info-button .p-button,
+::ng-deep piao-button.info-button .piao-button__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  max-width: 15rem;
+}
+
+::ng-deep .piao-card-info-container-new-form {
+  min-height: 4.875rem;
+  background-color: #e7eff7;
+  border-radius: 10px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  width: 100%;
+}
+
+.load-form {
+  display: flex;
+  flex-direction: row;
+  font-weight: 700;
+  font-size: 1rem;
+  color: #0066cc;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+::ng-deep .svg {
+  max-width: 1rem;
+  max-height: 1rem;
+}

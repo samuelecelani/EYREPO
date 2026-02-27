@@ -1,0 +1,46 @@
+/* ===================================================================
+   MODAL EVENTI RISCHIOSI - LAYOUT RESPONSIVE (Bootstrap Grid)
+
+   STRUTTURA:
+   - .main              → Container principale della modale
+   - Bootstrap row/col  → Layout responsive dei campi
+
+   BREAKPOINTS:
+   - Desktop (≥1200px): 2 colonne affiancate (col-xl-6)
+   - Mobile (<1200px): 1 colonna (col-12)
+   =================================================================== */
+
+/* ========== CONTAINER PRINCIPALE ========== */
+.main {
+  display: flex;
+  flex-direction: column;
+  padding-top: 1rem;
+  width: 62rem;
+  max-width: 100%;
+
+  &.hidden {
+    display: none;
+  }
+}
+
+/* ========== TYPOGRAPHY ========== */
+.title {
+  font-weight: 400;
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.sub-title {
+  color: #333;
+  font-weight: 400;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  white-space: pre-line;
+}
+
+/* ========== MEDIA QUERIES ========== */
+@media (max-width: 1200px) {
+  .main {
+    width: 100%;
+  }
+}

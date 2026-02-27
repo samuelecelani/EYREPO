@@ -1,0 +1,354 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.title {
+  font-weight: 400;
+  font-size: 2.8rem;
+  color: #1a1a1a;
+  margin-bottom: 0;
+}
+
+.section-title {
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: #1a1a1a;
+  margin-bottom: 0;
+}
+
+.section-title-big {
+  font-weight: 600;
+  font-size: 1.5rem;
+  color: #1a1a1a;
+  margin-bottom: 0;
+}
+
+.section-label {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 0.25rem;
+
+  &.required::after {
+    content: '*';
+    color: #d9364f;
+    margin-left: 0.25rem;
+  }
+}
+
+.section-description {
+  font-size: 0.95rem;
+  color: #5c6f82;
+  margin-bottom: 0;
+}
+
+.section-description-light {
+  font-size: 0.875rem;
+  color: #5c6f82;
+  font-style: italic;
+  margin-bottom: 0;
+}
+
+.section-content {
+  margin-bottom: 0;
+}
+
+.section-divider {
+  border: 0;
+  border-top: 1px solid #e0e0e0;
+  margin: 2rem 0;
+}
+
+/* ===== ACCORDION SECTION ===== */
+
+.accordion-section {
+  display: flex;
+  flex-direction: column;
+
+  ::ng-deep {
+    /* ===== HR TRA ACCORDION ===== */
+
+    piao-accordion {
+      display: block;
+      position: relative;
+    }
+
+    /* HR SOPRA ogni accordion */
+    piao-accordion::before {
+      content: '';
+      display: block;
+      width: 100%;
+      border-top: #ccc 0.06rem solid;
+    }
+
+    /* HR SOTTO l'ultimo accordion */
+    piao-accordion:last-child::after {
+      content: '';
+      display: block;
+      width: 100%;
+      border-top: #ccc 0.06rem solid;
+    }
+
+    /* PRIMO APERTO: no HR sopra */
+    piao-accordion.is-open:first-child::before {
+      display: none;
+    }
+
+    /* ULTIMO APERTO: no HR sotto */
+    piao-accordion.is-open:last-child::after {
+      display: none;
+    }
+
+    /* ===== SPAZI PER ACCORDION APERTI ===== */
+
+    /* Spazio SOPRA accordion aperto (non primo) */
+    piao-accordion.is-open:not(:first-child) {
+      padding-top: 1.5rem;
+    }
+
+    /* ===== ACCORDION BODY STYLES ===== */
+    .accordion-body {
+      padding: 0;
+      background: #e7eff7;
+      padding-left: 1rem;
+    }
+
+    .accordion-body > :not(hr) {
+      padding-inline: 1.25rem;
+      padding-block: 0.75rem;
+    }
+
+    .accordion-body > hr {
+      display: block;
+      width: 100%;
+      padding: 0;
+      border: 0;
+      border-top: 3px solid #000;
+      box-sizing: border-box;
+    }
+
+    .accordion-body > *:not(hr) + *:not(hr) {
+      margin-top: 0.75rem;
+    }
+
+    piao-accordion .accordion.is-closed .accordion-header {
+      background-color: #fafafa;
+
+      &:hover {
+        background-color: unset;
+      }
+    }
+  }
+}
+
+.accordion-content-section {
+  padding: 1rem 0;
+}
+
+.section-label-bold {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 0;
+}
+
+/* ===== TABLE STYLES ===== */
+
+.table-responsive {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+
+  thead {
+    background-color: #f5f7f9;
+
+    th {
+      padding: 0.75rem 1rem;
+      font-weight: 600;
+      color: #1a1a1a;
+      text-align: left;
+      border-bottom: 2px solid #ddd;
+      white-space: nowrap;
+    }
+  }
+
+  tbody {
+    tr {
+      border-bottom: 1px solid #e0e0e0;
+
+      &:hover {
+        background-color: #f9f9f9;
+      }
+    }
+
+    td {
+      padding: 0.75rem 1rem;
+      color: #5c6f82;
+      vertical-align: middle;
+    }
+  }
+}
+
+.action-icon {
+  cursor: pointer;
+  font-size: 1.25rem;
+  color: #5c6f82;
+  padding: 0.25rem 0.5rem;
+
+  &:hover {
+    color: #0066cc;
+  }
+}
+
+::ng-deep {
+  .svg-small {
+    width: 1rem;
+    height: 1rem;
+    margin-left: 0.25rem;
+  }
+}
+
+/* ===== ACTION LINK ===== */
+
+.action-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #0066cc;
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-bottom: 0;
+
+  &:hover {
+    color: #004d99;
+    text-decoration: underline;
+  }
+
+  ::ng-deep {
+    .svg {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+  }
+}
+
+/* ===== GANTT CHART PLACEHOLDER ===== */
+
+.gantt-placeholder {
+  margin-bottom: 1rem;
+}
+
+.gantt-chart-container {
+  background-color: #f5f7f9;
+  border: 1px dashed #ccc;
+  border-radius: 0.5rem;
+  padding: 3rem 2rem;
+  margin-top: 1rem;
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ===== TEXT AREA OVERRIDES ===== */
+
+::ng-deep {
+  .container-width-full {
+    width: 100%;
+  }
+
+  .title-attachment {
+    font-weight: 600;
+    font-size: 1.25rem;
+    color: #1a1a1a;
+  }
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+
+@media (max-width: 575.98px) {
+  .title {
+    font-size: 1.75rem;
+  }
+
+  .subTitle {
+    font-size: 1.25rem;
+  }
+
+  .section-title-big {
+    font-size: 1.25rem;
+  }
+
+  .action-link {
+    justify-content: flex-start;
+    margin-top: 0.75rem;
+  }
+
+  .gantt-chart-container {
+    padding: 2rem 1rem;
+    min-height: 150px;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .title {
+    font-size: 2rem;
+  }
+
+  .action-link {
+    justify-content: flex-start;
+    margin-top: 0.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .action-link {
+    justify-content: flex-end;
+    margin-top: 0;
+  }
+
+  .text-md-end {
+    text-align: right;
+  }
+}
+/* ===== UTILITY CLASSES ===== */
+
+.pt-2 {
+  padding-top: 0.5rem;
+}
+
+.pt-3 {
+  padding-top: 1rem;
+}
+
+.pt-4 {
+  padding-top: 1.5rem;
+}
+
+.pb-3 {
+  padding-bottom: 1rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* Override card-alert subtitle style - solo titolo bold */
+::ng-deep piao-card-alert {
+  .piao-card-alert-title {
+    font-weight: 700;
+  }
+
+  .piao-card-alert-body p:not(:first-child) {
+    font-weight: 400 !important;
+  }
+}

@@ -1,0 +1,121 @@
+<p class="subTitle">{{ subTitleRisorseFinanziarie | translate }}</p>
+<p class="description">{{ descriptionRisorseFinanziarie | translate }}</p>
+
+<div class="pt-3">
+  <piao-text-area
+    [label]="labelTAIntroduzioneRisorseFinanziarie"
+    [control]="form.controls['introRisorseFinanziarie']"
+    [id]="'introRisorseFinanziarie'"
+    textAreaClass="text-area"
+    [maxValidatorLength]="'1000'"
+    [descTooltip]="labelTAIntroduzioneRisorseFinanziarie"
+    [containerClass]="'container-width-full'"
+  ></piao-text-area>
+
+  @if (ovpArray && ovpArray.length > 0) {
+    @if (risorseFinanziarieArray && risorseFinanziarieArray.length > 0) {
+      @for (
+        risorsa of risorseFinanziarieArray.controls;
+        track risorsaIndex;
+        let risorsaIndex = $index
+      ) {
+        <div class="row-grid-risorse pt-2">
+          <piao-dropdown
+            [dropdown]="dropdownOvp"
+            [title]="labelOvpAssociato"
+            [formControl]="risorsa.controls['idOvp']"
+            [isTooltip]="true"
+            [isTranslate]="false"
+            [dropContainerClass]="'container-width-full'"
+            [isRequired]="true"
+          ></piao-dropdown>
+
+          <piao-text-area
+            [label]="labelIniziativa"
+            [control]="risorsa.controls['iniziativa']"
+            [id]="'descrizione-' + $index"
+            textAreaClass="text-area-small"
+            [maxValidatorLength]="'250'"
+            [descTooltip]="labelIniziativa"
+            [containerClass]="'container-flex-1'"
+            [required]="true"
+          ></piao-text-area>
+
+          <piao-text-area
+            [label]="labelDescrizione"
+            [control]="risorsa.controls['descrizione']"
+            [id]="'descrizione-' + risorsaIndex"
+            textAreaClass="text-area-small"
+            [maxValidatorLength]="'500'"
+            [descTooltip]="labelDescrizione"
+            [containerClass]="'container-width-full'"
+            [required]="true"
+          ></piao-text-area>
+
+          <piao-text-box
+            [label]="labelDotazioneFinanziaria"
+            [typeInput]="'text'"
+            [inputClass]="'input'"
+            [control]="risorsa.controls['dotazioneFinanziaria']"
+            [maxValidatorLength]="20"
+            [id]="'dotazioneFinanziaria-' + risorsaIndex"
+            [containerClass]="'container-width-full'"
+            [required]="true"
+          ></piao-text-box>
+
+          <piao-text-box
+            [label]="labelFonteFinanziamento"
+            [typeInput]="'text'"
+            [inputClass]="'input'"
+            [control]="risorsa.controls['fonteFinanziamento']"
+            [maxValidatorLength]="50"
+            [id]="'fonteFinanziamento-' + risorsaIndex"
+            [descTooltip]="labelFonteFinanziamento"
+            [containerClass]="'container-width-full'"
+          ></piao-text-box>
+
+          <div class="btn-remove-container">
+            <p class="link-blue" (click)="handleOpenModalDelete(risorsaIndex)">
+              {{ labelBtnRimuovi | translate }}
+            </p>
+          </div>
+        </div>
+      }
+    }
+
+    <div class="pt-3">
+      <piao-card-info
+        [titleCardHeader]="titleCardRisorsaFinanziaria"
+        [piaoCardHeaderTitleClass]="'title-card-info'"
+        [titleLoadNewForm]="labelBtnAddRisorsaFinanziaria"
+        [loadNewForm]="true"
+        [piaoCardHeaderContainerClass]="'piao-card-info-container-new-form'"
+        (clicked)="handleAddRisorsaFinanziaria()"
+      ></piao-card-info>
+    </div>
+  }
+
+  @if (!ovpArray || ovpArray.length === 0) {
+    <div class="pt-3">
+      <piao-card-alert
+        [icon]="iconAlert"
+        [titleCardHeader]="titleAlertObiettiviVP"
+        [subTitleCardHeader]="alertNoOVP"
+        [subTitleClass]="'piao-card-sub-title'"
+      ></piao-card-alert>
+    </div>
+  }
+</div>
+
+@if (openModalDelete) {
+  <piao-modal-delete
+    [icon]="'AlertCircle'"
+    [title]="'MODAL_REMOVE.TITLE'"
+    [message]="'MODAL_REMOVE.MESSAGE'"
+    [subMessage]="'MODAL_REMOVE.CONFIRM_OPERATION'"
+    [openModalDelete]="openModalDelete"
+    [elementToDelete]="elementToDelete"
+    (confirm)="handleRemoveRisorsaFinanziaria($event); openModalDelete = false"
+    (closed)="handleCloseModalDelete()"
+  ></piao-modal-delete>
+}

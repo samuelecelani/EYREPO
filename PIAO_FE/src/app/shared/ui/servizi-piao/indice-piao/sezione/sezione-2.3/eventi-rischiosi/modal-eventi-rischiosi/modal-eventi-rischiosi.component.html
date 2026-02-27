@@ -1,0 +1,149 @@
+<div [ngClass]="main">
+  <p class="title">{{ title | translate }}</p>
+  <p class="sub-title pt-2">{{ subTitle | translate }}</p>
+
+  <form [formGroup]="formGroup">
+    <p class="alert-label pt-3">
+      {{ 'MESSAGE.ALERT_MANDATORY_FIELDS' | translate }}
+    </p>
+
+    <!-- Griglia campi con Bootstrap -->
+    <div class="row g-3 pt-3">
+      <!-- Row 1: Evento rischioso + Probabilità -->
+      <div class="col-12 col-xl-6">
+        <piao-text-box
+          [label]="labelDenominazione"
+          [typeInput]="'text'"
+          [inputClass]="'input'"
+          [control]="formGroup.controls['denominazione']"
+          [maxValidatorLength]="200"
+          [id]="'denominazione'"
+          [descTooltip]="labelDenominazione"
+          [required]="true"
+          [containerClass]="'container-width-full'"
+        >
+        </piao-text-box>
+      </div>
+      <div class="col-12 col-xl-6">
+        <piao-text-box
+          [label]="labelProbabilita"
+          [typeInput]="'text'"
+          [inputClass]="'input'"
+          [control]="formGroup.controls['probabilita']"
+          [maxValidatorLength]="100"
+          [id]="'probabilita'"
+          [descTooltip]="labelProbabilita"
+          [containerClass]="'container-width-full'"
+        >
+        </piao-text-box>
+      </div>
+
+      <!-- Row 2: Impatto + Controlli -->
+      <div class="col-12 col-xl-6">
+        <piao-text-box
+          [label]="labelImpatto"
+          [typeInput]="'text'"
+          [inputClass]="'input'"
+          [control]="formGroup.controls['impatto']"
+          [maxValidatorLength]="100"
+          [id]="'impatto'"
+          [descTooltip]="labelImpatto"
+          [containerClass]="'container-width-full'"
+        >
+        </piao-text-box>
+      </div>
+      <div class="col-12 col-xl-6">
+        <piao-text-box
+          [label]="labelControlli"
+          [typeInput]="'text'"
+          [inputClass]="'input'"
+          [control]="formGroup.controls['controlli']"
+          [maxValidatorLength]="100"
+          [id]="'controlli'"
+          [descTooltip]="labelControlli"
+          [containerClass]="'container-width-full'"
+        >
+        </piao-text-box>
+      </div>
+
+      <!-- Row 3: Valutazione + Livello rischio -->
+      <div class="col-12 col-xl-6">
+        <piao-text-box
+          [label]="labelValutazione"
+          [typeInput]="'text'"
+          [inputClass]="'input'"
+          [control]="formGroup.controls['valutazione']"
+          [maxValidatorLength]="100"
+          [id]="'valutazione'"
+          [descTooltip]="labelValutazione"
+          [isReadOnly]="true"
+          [containerClass]="'container-width-full'"
+        >
+        </piao-text-box>
+      </div>
+      <div class="col-12 col-xl-6">
+        <piao-dropdown
+          [dropdown]="livelloRischioOptions"
+          [title]="labelLivelloRischio"
+          [formControlName]="'idLivelloRischio'"
+          [isTooltip]="true"
+          [isTranslate]="false"
+          [dropContainerClass]="'container-width-full'"
+        ></piao-dropdown>
+      </div>
+
+      <!-- Row 4: Motivazione (full width) -->
+      <div class="col-12">
+        <piao-text-area
+          [label]="labelMotivazione"
+          [control]="formGroup.controls['motivazione']"
+          [id]="'motivazione'"
+          [textAreaClass]="'text-area'"
+          [maxValidatorLength]="500"
+          [descTooltip]="labelMotivazione"
+          [required]="true"
+          [containerClass]="'container-width-full'"
+        ></piao-text-area>
+      </div>
+    </div>
+
+    <!-- Fattori che abilitano il rischio corruttivo -->
+    <div class="pt-4">
+      <piao-dynamic-tb-fields
+        [formGroup]="formGroup"
+        [dynamicTBConfig]="fattoriConfig"
+        [nameArrayForm]="'fattore.properties'"
+        [containerInputClass]="'container-width-25'"
+        [propertiesPath]="'fattore.properties'"
+        [titleLabel]="titleFattori"
+        [notFoundLabel]="'SEZIONE_23.EVENTI_RISCHIOSI.MODAL.FATTORI_NOT_FOUND'"
+        [addFieldLabel]="'SEZIONE_23.EVENTI_RISCHIOSI.MODAL.ADD_FATTORE'"
+        (modalDeleteOpened)="handleModalDeleteOpened()"
+        (modalDeleteClosed)="handleModalDeleteClosed()"
+        [columnClass]="'col-12 col-xl-6 col-lg-6'"
+      >
+      </piao-dynamic-tb-fields>
+    </div>
+
+    <!-- Campi aggiuntivi (Ulteriori Info) -->
+    <div class="pt-4">
+      <piao-dynamic-tb-fields
+        [formGroup]="formGroup"
+        [dynamicTBConfig]="ulterioriInfoConfig"
+        [nameArrayForm]="'ulterioriInfo.properties'"
+        [modalType]="'ulterioreInfo'"
+        [containerInputClass]="'container-width-18-5'"
+        [propertiesPath]="'ulterioriInfo.properties'"
+        [titleLabel]="titleUlterioriInfo"
+        [notFoundLabel]="'SEZIONE_23.EVENTI_RISCHIOSI.MODAL.ULTERIORI_INFO_NOT_FOUND'"
+        [addFieldLabel]="'SEZIONE_23.EVENTI_RISCHIOSI.MODAL.ADD_ULTERIORI_INFO'"
+        (modalOpened)="handleModalDeleteOpened()"
+        (modalClosed)="handleModalDeleteClosed()"
+        (modalDeleteOpened)="handleModalDeleteOpened()"
+        (modalDeleteClosed)="handleModalDeleteClosed()"
+        [columnClass]="'col-12 col-xl-6 col-lg-6'"
+      >
+      </piao-dynamic-tb-fields>
+    </div>
+  </form>
+</div>

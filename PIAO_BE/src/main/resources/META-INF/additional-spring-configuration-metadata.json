@@ -1,0 +1,57 @@
+{"properties": [
+  {
+    "name": "log.output.format",
+    "type": "java.lang.String",
+    "description": "Configura l'appender definito in logback-spring.xml. Deve assumere il valore di 'console' oppure 'json'"
+  },
+  {
+    "name": "log.output.level",
+    "type": "java.lang.String",
+    "description": "Configura il livello di dettaglio del log"
+  },
+  {
+    "name": "softskill.client.baseUrl",
+    "type": "java.lang.String",
+    "description": "Basepath del web client per l'invocazione del mock external service 'softskill'"
+  },
+  {
+    "name": "softskill.service.retry.attempts",
+    "type": "java.lang.String",
+    "description": "Numero di tentativi con cui si tenta di contattare il mock external service 'softskill'"
+  },
+  {
+    "name": "softskill.service.retry.maxDelay",
+    "type": "java.lang.String",
+    "description": "Max delay utilizzato nella configurazione del retry per l'invocazione del mock external service 'softskill'"
+  },
+  {
+    "name": "softskill.service.retry.multiplier",
+    "type": "java.lang.String",
+    "description": "Multiplier utilizzato nella configurazione del retry per l'invocazione del mock external service 'softskill'"
+  },
+  {
+    "name": "softskill.service.retry.delay",
+    "type": "java.lang.String",
+    "description": "Delay utilizzato nella configurazione del retry per l'invocazione del mock external service 'softskill'"
+  },
+  {
+    "name": "softskill.client.baseUrl",
+    "type": "java.lang.String",
+    "description": "Basepath del web client per l'invocazione del mock external service 'softskill'"
+  },
+  {
+    "name": "security.enable.jwt.configuration",
+    "type": "java.lang.String",
+    "description": "Abilita la sicurezza dell'applicazione tramite jwt authentication e authorization"
+  },
+  {
+    "name": "security.skip.jwt.verification",
+    "type": "java.lang.String",
+    "description": "Abilita o disabilita la verifica del jwt token"
+  },
+  {
+    "name": "fault-utility.enable-fault-simulation",
+    "type": "java.lang.String",
+    "description": "Abilita o disabilita la fault simulation"
+  }
+]}

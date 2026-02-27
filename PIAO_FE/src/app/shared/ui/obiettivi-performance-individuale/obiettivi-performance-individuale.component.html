@@ -1,0 +1,119 @@
+@for (
+  obiettivo of obbiettiviPerformance.controls;
+  track trackByObiettivoId($index, obiettivo);
+  let i = $index
+) {
+  <div [ngClass]="i > 0 ? 'accordion-section-double' : 'accordion-section'">
+    <piao-accordion
+      [index]="i + 1"
+      [title]="labelObiettivoPrefix | translate"
+      [isOpen]="openAccordionIndex === i + 1"
+      [isButton]="true"
+      (clickButton)="handleOpenModalDelete(i)"
+    >
+      <div class="intro-text">
+        <p>{{ labelIntroText | translate }}</p>
+      </div>
+
+      <div class="pt-3">
+        <div class="container-full">
+          <div class="row">
+            <div class="col-12 col-xl-4 col-lg-4">
+              <piao-text-box
+                [label]="labelTipologiaRisorsa | translate"
+                [typeInput]="'text'"
+                [inputClass]="'input'"
+                [control]="obiettivo.controls['tipologiaRisorsa']"
+                [maxValidatorLength]="100"
+                [id]="'tipologiaRisorsa' + i"
+                [descTooltip]="labelTipologiaRisorsa | translate"
+                [required]="true"
+                [containerClass]="'container-width-full'"
+              >
+              </piao-text-box>
+            </div>
+          </div>
+
+          <div class="pt-3">
+            <piao-dropdown
+              [title]="labelObiettivoPerformanceOrganizzativa | translate"
+              [formControl]="obiettivo.controls['idObiettivoPeformance']"
+              [dropdown]="obbPerorgOptions"
+              [isTooltip]="true"
+              [dropContainerClass]="'container-width-full'"
+              [isRequired]="true"
+              (isChange)="handleObiettivoChange($event, i)"
+            >
+            </piao-dropdown>
+          </div>
+
+          <div class="row pt-3">
+            <div class="col-12 col-xl-4 col-lg-4">
+              <piao-text-box
+                [label]="labelIdObiettivoPerformanceIndividuale | translate"
+                [typeInput]="'text'"
+                [inputClass]="'input'"
+                [control]="setCodice(obiettivo, i)"
+                [maxValidatorLength]="50"
+                [id]="'idObiettivo_' + i"
+                [descTooltip]="labelIdObiettivoPerformanceIndividuale | translate"
+                [isReadOnly]="true"
+                [containerClass]="'container-field-id'"
+              >
+              </piao-text-box>
+            </div>
+
+            <div class="col-12 col-xl-4 col-lg-4">
+              <piao-text-box
+                [label]="labelObiettivoPerformanceIndividuale | translate"
+                [typeInput]="'text'"
+                [inputClass]="'input'"
+                [control]="obiettivo.controls['denominazione']"
+                [maxValidatorLength]="250"
+                [id]="'denominazione_' + i"
+                [descTooltip]="labelObiettivoPerformanceIndividuale | translate"
+                [required]="true"
+                [containerClass]="'container-field-middle'"
+              >
+              </piao-text-box>
+            </div>
+          </div>
+
+          <div class="pt-2">
+            <piao-indicatori
+              [indicatoriControls]="obiettivo.controls['indicatori']"
+              [codTipologiaFK]="codTipologiaFK"
+              [idEntitaFK]="obiettivo.value.id || 0"
+              [idSezione22]="idSezione22"
+              [formParent]="obiettivo"
+              [codTipologiaIndicatoreFK]="codTipologiaIndicatoreFK"
+              [sectionEnum]="sectionEnum"
+            ></piao-indicatori>
+          </div>
+        </div>
+      </div>
+    </piao-accordion>
+  </div>
+}
+
+<div class="pt-4">
+  <piao-card-info
+    [titleCardHeader]="titleCardInfoObiettivo | translate"
+    [piaoCardHeaderTitleClass]="'title-card-info'"
+    [titleLoadNewForm]="subTitleAddObiettivo | translate"
+    [loadNewForm]="true"
+    [piaoCardHeaderContainerClass]="'piao-card-info-container-new-form'"
+    (clicked)="handleAddObiettivo()"
+  ></piao-card-info>
+</div>
+
+<piao-modal-delete
+  [icon]="'AlertCircle'"
+  [title]="'MODAL_REMOVE.TITLE'"
+  [message]="'MODAL_REMOVE.MESSAGE'"
+  [subMessage]="'MODAL_REMOVE.CONFIRM_OPERATION'"
+  [openModalDelete]="openModalDelete"
+  [elementToDelete]="elementToDelete"
+  (confirm)="handleRemoveObiettivo($event)"
+  (closed)="handleCloseModalDelete()"
+></piao-modal-delete>

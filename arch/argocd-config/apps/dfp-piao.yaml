@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  annotations:
+    argocd-image-updater.argoproj.io/image-list: dfp-piao-fe=host.docker.internal:8443/dfp-docker-repo/dfp-piao-fe,dfp-piao-ga=host.docker.internal:8443/dfp-docker-repo/dfp-piao-gateway
+    argocd-image-updater.argoproj.io/dfp-piao-fe.helm.image-name: deployments.frontend.image.name
+    argocd-image-updater.argoproj.io/dfp-piao-fe.helm.image-tag: deployments.frontend.image.tag
+    argocd-image-updater.argoproj.io/dfp-piao-ga.helm.image-name: deployments.gateway.image.name
+    argocd-image-updater.argoproj.io/dfp-piao-ga.helm.image-tag: deployments.gateway.image.tag
+    argocd-image-updater.argoproj.io/update-strategy: latest
+    argocd-image-updater.argoproj.io/write-back-method: git
+  name: dfp-piao
+  namespace: argocd
+spec:
+  destination:
+    namespace: dfp-piao
+    server: https://kubernetes.default.svc
+  project: dfp-piao
+  source:
+    path: arch/dfp-piao
+    repoURL: http://gitea-http.gitea.svc.cluster.local:3000/eyrepo/eyrepo.git
+    targetRevision: main
+  syncPolicy:
+    automated:
+      prune: true
+    syncOptions:
+      - CreateNamespace=true

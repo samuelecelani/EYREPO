@@ -1,0 +1,55 @@
+<div
+  class="notification-item"
+  [class.notification-item--unread]="!notification.read"
+  [class.notification-item--compact]="compact"
+  [class.notification-item--with-action]="showActionButton"
+  [class.notification-item--page]="location === 'page-notification'"
+  (click)="!showActionButton ? onItemClick() : null"
+>
+  <div class="notification-item__content">
+    <!-- Header con badge -->
+    <div class="notification-item__top-row">
+      @if (!notification.read) {
+        <piao-badge
+          [text]="'NOTIFICATION.LABELS.TO_READ' | translate"
+          variant="success"
+          [hasBorder]="location === 'dropdown-notification'"
+        ></piao-badge>
+      }
+      <!-- Data nel dropdown (non sulla pagina) -->
+      @if (!showActionButton) {
+        <span class="notification-item__time">
+          {{ formatDate(notification.creationDate) }}
+        </span>
+      }
+    </div>
+
+    <!-- Titolo della notifica -->
+    <h3 class="notification-item__title">
+      {{ notification.sender }}
+    </h3>
+
+    <!-- Messaggio della notifica come link sottolineato -->
+    <a href="#" class="notification-item__message" (click)="onItemClick(); $event.preventDefault()">
+      {{ notification.message }}
+    </a>
+  </div>
+
+  <!-- Colonna destra con data e azione (solo per pagina notifiche) -->
+  @if (showActionButton) {
+    <div class="notification-item__right-column">
+      <span class="notification-item__time">
+        {{ formatDate(notification.creationDate) }}
+      </span>
+      <button class="notification-item__action-btn" (click)="onToggleRead($event)">
+        @if (!notification.read) {
+          <span class="notification-item__action-text">{{ 'NOTIFICATION.LABELS.MARK_AS_READ' | translate }}</span>
+          <piao-svg icon="MailOpen" fillColor="#0066cc" svgContainer="action-icon"></piao-svg>
+        } @else {
+          <span class="notification-item__action-text">{{ 'NOTIFICATION.LABELS.MARK_AS_UNREAD' | translate }}</span>
+          <piao-svg icon="NotifyToRead" fillColor="#0066cc" svgContainer="action-icon"></piao-svg>
+        }
+      </button>
+    </div>
+  }
+</div>

@@ -1,0 +1,34 @@
+<!-- Rendering condizionale basato sullo stato della query -->
+@if (alertsQuery.status() === 'loading') {
+  <div class="loading-state">Caricamento avvisi...</div>
+}
+
+@if (alertsQuery.status() === 'error') {
+  <div class="error-state">Errore nel caricamento degli avvisi</div>
+}
+
+@if (alertsQuery.status() === 'success' && alertsQuery.data()) {
+  <!-- Lista avvisi paginata -->
+  @for (alert of paginatedAlerts(); track alert.id) {
+    <hr class="hr-avvisi" />
+    <piao-alerts
+      [badgeText]="alert.badgeText"
+      [badgeVariant]="alert.badgeVariant"
+      [title]="alert.title"
+      [description]="alert.description"
+      [date]="alert.date"
+      [visualizzato]="alert.visualizzato"
+    ></piao-alerts>
+  }
+  <hr class="hr-avvisi" />
+
+  <!-- Componente di paginazione (solo se abilitato) -->
+  @if (pagination) {
+    <piao-pagination
+      [totalItems]="totalItems()"
+      [itemsPerPage]="itemsPerPage"
+      [currentPage]="currentPage()"
+      (pageChange)="onPageChange($event)"
+    ></piao-pagination>
+  }
+}

@@ -1,0 +1,264 @@
+<!-- Obiettivi di valore pubblico -->
+<p class="subTitle">{{ subTitleObiettiviValorePubblico | translate }}</p>
+<p class="description">{{ descriptionObiettiviValorePubblico | translate }}</p>
+
+@if (ovp.value && ovp.value.length === 0) {
+  <div class="pt-3">
+    <piao-card-alert
+      [icon]="iconAlert"
+      [titleCardHeader]="titleAlertObiettiviVP"
+      [subTitleCardHeader]="subTitleAlertObiettiviVP"
+      [subTitleClass]="'piao-card-sub-title'"
+    ></piao-card-alert>
+  </div>
+} @else {
+  @for (ovpControl of ovp.controls; track i; let i = $index) {
+    <div class="container-title-ovp">
+      <p class="title-ovp">
+        {{ titleObiettivoVP | translate }} {{ ovpControl.controls['denominazione'].value }}
+      </p>
+      <div class="container-buttons-ovp">
+        <p (click)="handleEditOVP(ovpControl)" class="buttons-ovp">
+          {{ 'BUTTONS.EDIT' | translate }}
+        </p>
+        <p (click)="handleRemoveOVP(ovpControl)" class="buttons-ovp">
+          {{ 'BUTTONS.REMOVE' | translate }}
+        </p>
+      </div>
+    </div>
+
+    <div class="pt-3">
+      <span class="label-ovp">
+        {{ labelIdOVP | translate }}
+      </span>
+      <span>{{ ovpControl.controls['codice'].value }}</span>
+      <div class="pt-3">
+        <div class="row">
+          <div class="col-12 col-xl-4 col-lg-6">
+            <piao-text-box
+              [label]="labelDescription"
+              [typeInput]="'text'"
+              [inputClass]="'input'"
+              [control]="ovpControl.controls['descrizione']"
+              [maxValidatorLength]="150"
+              [id]="'descrizione'"
+              [descTooltip]="labelDescription"
+              [isDetails]="true"
+              [valueClass]="'value-ovp'"
+              [containerClass]="'container-width-full'"
+            >
+            </piao-text-box>
+          </div>
+          <div class="col-12 col-xl-4 col-lg-6">
+            <piao-text-box
+              [label]="labelContext"
+              [typeInput]="'text'"
+              [inputClass]="'input'"
+              [control]="ovpControl.controls['contesto']"
+              [maxValidatorLength]="150"
+              [id]="'contesto'"
+              [descTooltip]="labelContext"
+              [isDetails]="true"
+              [valueClass]="'value-ovp'"
+              [containerClass]="'container-width-full'"
+            >
+            </piao-text-box>
+          </div>
+          <div class="col-12 col-xl-4 col-lg-6">
+            <piao-text-box
+              [label]="labelOrganizationalArea"
+              [typeInput]="'text'"
+              [inputClass]="'input'"
+              [control]="ovpControl.controls['areeOrganizzative']"
+              [maxValidatorLength]="150"
+              [id]="'area'"
+              [descTooltip]="labelOrganizationalArea"
+              [isDetails]="true"
+              [valueClass]="'value-ovp'"
+              [containerClass]="'container-width-full'"
+            >
+            </piao-text-box>
+          </div>
+          <div class="col-12 col-xl-4 col-lg-6">
+            <piao-text-box
+              [label]="labelPoliticalManager"
+              [typeInput]="'text'"
+              [inputClass]="'input'"
+              [control]="ovpControl.controls['responsabilePolitico']"
+              [maxValidatorLength]="150"
+              [id]="'responsabilePolitico'"
+              [descTooltip]="labelPoliticalManager"
+              [isDetails]="true"
+              [valueClass]="'value-ovp'"
+              [containerClass]="'container-width-full'"
+            >
+            </piao-text-box>
+          </div>
+          <div class="col-12 col-xl-4 col-lg-6">
+            <piao-text-box
+              [label]="labelAdministrativeManager"
+              [typeInput]="'text'"
+              [inputClass]="'input'"
+              [control]="ovpControl.controls['responsabileAmministrativo']"
+              [maxValidatorLength]="150"
+              [id]="'responsabileAmministrativo'"
+              [descTooltip]="labelAdministrativeManager"
+              [isDetails]="true"
+              [valueClass]="'value-ovp'"
+              [containerClass]="'container-width-full'"
+            >
+            </piao-text-box>
+          </div>
+          <div class="col-12 col-xl-4 col-lg-6">
+            <piao-text-box
+              [label]="labelStakeholder"
+              [typeInput]="'text'"
+              [inputClass]="'input'"
+              [control]="ovpControl.controls['stakeholders']"
+              [maxValidatorLength]="150"
+              [id]="'stakeholders'"
+              [descTooltip]="labelStakeholder"
+              [isDetails]="true"
+              [valueClass]="'value-ovp'"
+              [containerClass]="'container-width-full'"
+            >
+            </piao-text-box>
+          </div>
+          <div class="col-12 col-xl-4 col-lg-6">
+            <piao-text-box
+              [label]="labelPoliticalyPriority"
+              [typeInput]="'text'"
+              [inputClass]="'input'"
+              [control]="ovpControl.controls['prioritaPolitiche']"
+              [maxValidatorLength]="150"
+              [id]="'prioritaPolitica'"
+              [descTooltip]="labelPoliticalyPriority"
+              [isDetails]="true"
+              [valueClass]="'value-ovp'"
+              [containerClass]="'container-width-full'"
+            >
+            </piao-text-box>
+          </div>
+          <div class="col-12 col-xl-4 col-lg-6">
+            <piao-text-box
+              [label]="labelSector"
+              [typeInput]="'text'"
+              [inputClass]="'input'"
+              [control]="ovpControl.controls['ambito']"
+              [maxValidatorLength]="150"
+              [id]="'ambito'"
+              [descTooltip]="labelSector"
+              [isDetails]="true"
+              [valueClass]="'value-ovp'"
+              [containerClass]="'container-width-25'"
+            >
+            </piao-text-box>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pt-4">
+      <piao-strategie-attuative
+        [idOVP]="ovpControl.controls['id'].value"
+        [indexOVP]="ovpControl.controls['codice'].value"
+        [strategieAttuativeControls]="ovpControl.controls['ovpStrategias']"
+      ></piao-strategie-attuative>
+    </div>
+
+    <div class="pt-4">
+      <label for="{{ id }}" class="label">
+        @if (labelTitleIndex) {
+          {{ labelTitleIndex | translate }}
+        }
+
+        @if (labelTitleIndex) {
+          <piao-tooltip [descTooltip]="labelTitleIndex" [icon]="'InfoCircle'"></piao-tooltip>
+        }
+      </label>
+
+      <div class="pt-3">
+        <div class="container-textbox-textarea">
+          <piao-text-box
+            [label]="labelIndexValue"
+            [typeInput]="'text'"
+            [inputClass]="'input'"
+            [control]="ovpControl.controls['valoreIndice']"
+            [maxValidatorLength]="20"
+            [id]="'valoreIndice' + i"
+            [descTooltip]="labelIndexValue"
+            [containerClass]="'container-width-id-strategia'"
+          >
+          </piao-text-box>
+          <piao-text-area
+            [label]="labelIndexDesc"
+            [textAreaClass]="'text-area-small'"
+            [control]="ovpControl.controls['descrizioneIndice']"
+            [maxValidatorLength]="500"
+            [id]="'descIndice' + i"
+            [descTooltip]="labelIndexDesc"
+            [containerClass]="'container-flex-1'"
+          >
+          </piao-text-area>
+        </div>
+      </div>
+    </div>
+
+    @if (ovp.value && ovp.value.length !== 0) {
+      <div class="pt-3">
+        <hr class="divider" />
+      </div>
+    }
+  }
+}
+
+<div class="pt-4">
+  <piao-card-info
+    [titleCardHeader]="titleCardObiettivoVP"
+    [piaoCardHeaderTitleClass]="'title-card-info'"
+    [titleLoadNewForm]="labelBtnAddObiettivoVP"
+    [loadNewForm]="true"
+    [piaoCardHeaderContainerClass]="'piao-card-info-container-new-form'"
+    (clicked)="handleAddObiettivoVP()"
+  ></piao-card-info>
+</div>
+
+@if (openModalOvp) {
+  <piao-modal
+    [isIcon]="true"
+    [icon]="'Docs'"
+    [iconStyle]="'icon-modal'"
+    [open]="openModalOvp"
+    [title]="
+      'SCRIVANIA_PA.SERVIZI_PIAO.INDICE_PIAO.SEZIONE.SEZIONE_21.OBIETTIVI_VP.OBIETTIVO_VP.TITLE'
+    "
+    [titleButtonConfirm]="
+      'SCRIVANIA_PA.SERVIZI_PIAO.INDICE_PIAO.SEZIONE.SEZIONE_21.OBIETTIVI_VP.OBIETTIVO_VP.MODAL.SAVE'
+    "
+    [disabledButtonConfirm]="disabledButtonConfirm"
+    (closed)="handleCloseModalOvp()"
+    (confirm)="handleConfirmModalOvp(); openModalOvp = false"
+  >
+    <piao-modal-ovp
+      #child
+      [isModalOpen]="openModalOvp"
+      [existingOvpData]="ovpDataArray"
+      [editingOvpIndex]="editingOvpIndex"
+      [idSezione1]="idSezione1"
+      [idSezione21]="idSezione21"
+      [idPiao]="idPiao"
+      [stakeholdersList]="stakeholdersList"
+    ></piao-modal-ovp>
+  </piao-modal>
+}
+
+<piao-modal-delete
+  [icon]="'AlertCircle'"
+  [title]="'MODAL_REMOVE.OVP.TITLE'"
+  [message]="'MODAL_REMOVE.OVP.MESSAGE'"
+  [subMessage]="'MODAL_REMOVE.CONFIRM_OPERATION'"
+  [openModalDelete]="openModalDelete"
+  [elementToDelete]="elementToDelete"
+  (confirm)="handleConfirmDeleteOvp($event)"
+  (closed)="handleCloseModalDelete()"
+></piao-modal-delete>

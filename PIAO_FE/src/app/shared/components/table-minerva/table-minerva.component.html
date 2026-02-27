@@ -1,0 +1,15 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th *ngFor="let col of columns">{{ col }} </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let row of rows; let i = index; let isLast = last" [ngClass]="[
+          i % 2 === 0 ? 'odd-tr' : 'even-tr',
+          isLast ? 'last-tr' : ''
+        ]">
+      <td *ngFor="let col of columns">{{ row[col] }}</td>
+    </tr>
+  </tbody>
+</table>

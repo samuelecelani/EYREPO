@@ -1,0 +1,183 @@
+.container-fasi {
+  display: flex;
+  flex-direction: column;
+  overflow: visible !important;
+  background-color: transparent;
+}
+
+.empty-state-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding-top: 0.5rem;
+}
+
+.table-fasi-container {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: auto;
+}
+
+.table-fasi {
+  width: 100%;
+  min-width: 60rem;
+  border-collapse: collapse;
+  margin-left: 0;
+
+  thead tr {
+    border-bottom: 0.125rem solid #5c6f82;
+  }
+
+  tbody tr {
+    border-bottom: 0.0625rem solid #d9dadb;
+  }
+
+  td {
+    padding: 1.5rem 1rem;
+    min-height: 5rem;
+    font-size: 0.9rem;
+    font-weight: 400;
+    text-align: left;
+    vertical-align: middle;
+  }
+
+  th {
+    font-size: 0.9rem;
+    padding: 0.75rem 1rem;
+    font-weight: 600;
+    text-align: left;
+    white-space: pre-line;
+  }
+
+  // Colonna frecce
+  th:nth-child(1),
+  td:nth-child(1) {
+    width: 3.75rem;
+    min-width: 3.75rem;
+    text-align: center;
+  }
+
+  // Colonna Fasi
+  th:nth-child(2),
+  td:nth-child(2) {
+    width: 9rem;
+    min-width: 9rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  // Colonna Descrizione
+  th:nth-child(3),
+  td:nth-child(3) {
+    width: 15rem;
+    min-width: 15rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  // Colonna Attività
+  th:nth-child(4),
+  td:nth-child(4) {
+    width: 12rem;
+    min-width: 12rem;
+  }
+
+  // Colonna Attore
+  th:nth-child(5),
+  td:nth-child(5) {
+    width: 9rem;
+    min-width: 9rem;
+  }
+
+  // Colonna Tempi
+  th:nth-child(6),
+  td:nth-child(6) {
+    width: 9rem;
+    min-width: 9rem;
+  }
+
+  // Colonna Azioni
+  th:nth-child(7),
+  td:nth-child(7) {
+    width: 6rem;
+    min-width: 6rem;
+    text-align: center;
+  }
+}
+
+.col-arrows {
+  width: 2.375rem;
+  height: 8.25rem;
+  padding: 1.5rem 0.5rem;
+  vertical-align: middle;
+}
+
+.col-scrollable {
+  .scroll-container {
+    max-height: 5rem;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+
+    &::-webkit-scrollbar {
+      display: none; /* Chrome/Safari/Opera */
+    }
+
+    // Per il testo della descrizione
+    span {
+      display: block;
+      font-size: 0.875rem;
+      line-height: 1.5;
+      color: #1a1a1a;
+    }
+  }
+}
+
+.navigation-arrows {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.arrow-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.25rem;
+  height: 1.25rem;
+  border: none;
+  border-radius: 50%;
+  background-color: transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 0;
+
+  &:hover:not(:disabled) {
+    opacity: 0.8;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+
+    .arrow-icon {
+      opacity: 0.3;
+    }
+  }
+
+  .arrow-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    transition: opacity 0.2s ease;
+  }
+}
+
+:host ::ng-deep piao-pagination .pagination-container {
+  margin: 0;
+}

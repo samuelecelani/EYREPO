@@ -1,0 +1,38 @@
+/* ===== MAIN CONTAINER ===== */
+.main {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: visible;
+  position: relative;
+}
+
+/* ===== HEADER BACKGROUND ===== */
+.header-backgroud {
+  display: flex;
+  flex-direction: column;
+  background: url('/assets/img/backHeaderNovita.jpg') center/cover no-repeat;
+  background-color: #f8fafc;
+  height: 16.625rem;
+  margin-left: -9rem;
+  margin-right: -0.3rem;
+  padding-left: 9rem;
+  padding-right: 0.3rem;
+  box-sizing: border-box;
+}
+
+/* ===== CONTAINER ===== */
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+/* ===== CONTENT ===== */
+.content {
+  width: 100%;
+  padding-top: 7rem;
+  display: flex;
+  flex-direction: column;
+}

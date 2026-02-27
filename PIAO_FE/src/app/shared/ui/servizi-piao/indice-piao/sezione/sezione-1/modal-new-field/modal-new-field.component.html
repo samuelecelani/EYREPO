@@ -1,0 +1,25 @@
+<div class="main">
+  <form [formGroup]="formGroup">
+    <p class="title">
+      {{ 'SCRIVANIA_PA.SERVIZI_PIAO.INDICE_PIAO.SEZIONE.SEZIONE_1.NUOVO_CAMPO.TITLE' | translate }}
+    </p>
+    <p class="sub-title pt-4">
+      {{
+        'SCRIVANIA_PA.SERVIZI_PIAO.INDICE_PIAO.SEZIONE.SEZIONE_1.NUOVO_CAMPO.SUB_TITLE' | translate
+      }}
+    </p>
+
+    <div class="pt-4">
+      <piao-text-box
+        [label]="'SCRIVANIA_PA.SERVIZI_PIAO.INDICE_PIAO.SEZIONE.SEZIONE_1.NUOVO_CAMPO.LABEL'"
+        [typeInput]="'text'"
+        [control]="formGroup.controls['key']"
+        [id]="'key'"
+        [inputClass]="'input'"
+        [maxValidatorLength]="20"
+        [containerClass]="'container-width-25'"
+        [required]="true"
+      ></piao-text-box>
+    </div>
+  </form>
+</div>

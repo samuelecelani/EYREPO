@@ -1,0 +1,197 @@
+@for (obbligo of obblighi.controls; track trackByObbligoId($index, obbligo); let i = $index) {
+  <div [ngClass]="i > 0 ? 'accordion-section-double' : 'accordion-section'">
+    <piao-accordion
+      [index]="i + 1"
+      [title]="labelAccordionTitle | translate"
+      [isOpen]="openAccordionIndex === i + 1"
+      [isButton]="true"
+      (clickButton)="handleRemoveObbligo(i)"
+    >
+      <!-- Intro Text -->
+      <div class="intro-text">
+        <p>{{ labelIntroText | translate }}</p>
+      </div>
+
+      <div class="pt-3">
+        <div class="container-form-obbligo">
+          <!-- Riga con 2 campi: Denominazione, Descrizione -->
+          <div class="row">
+            <div class="col-12 col-xl-6">
+              <piao-text-box
+                [label]="labelDenominazione"
+                [typeInput]="'text'"
+                [inputClass]="'input'"
+                [control]="obbligo.controls['denominazione']"
+                [maxValidatorLength]="500"
+                [id]="'denominazione_obbligo_' + i"
+                [descTooltip]="labelDenominazione"
+                [required]="true"
+              >
+              </piao-text-box>
+            </div>
+
+            <div class="col-12 col-xl-6">
+              <piao-text-box
+                [label]="labelDescrizione"
+                [typeInput]="'text'"
+                [inputClass]="'input'"
+                [control]="obbligo.controls['descrizione']"
+                [maxValidatorLength]="2000"
+                [id]="'descrizione_obbligo_' + i"
+                [descTooltip]="labelDescrizione"
+              >
+              </piao-text-box>
+            </div>
+          </div>
+
+          <!-- Elenco dati da pubblicare -->
+          <div class="pt-4">
+            <p class="section-subtitle">{{ labelElencoDati | translate }}</p>
+
+            <div class="pt-3 pb-3">
+              @if (getDatiPubblicati(i).length === 0) {
+                <div class="empty-state-container">
+                  <p class="empty-message">{{ labelNotFoundDati | translate }}</p>
+                  <p class="link-blue" (click)="handleOpenDatiPubblicatiModal(i)">
+                    {{ labelAddDati | translate }}
+                  </p>
+                </div>
+              } @else {
+                <div class="table-elenco-container pt-2">
+                  <table class="table-elenco">
+                    <thead>
+                      <tr>
+                        <th>
+                          <div class="d-flex flex-row align-items-center header-with-icon">
+                            {{ thDatoPubblicare | translate }}
+                            <div class="pointer" (click)="handleSortList(i, 'denominazione')">
+                              <piao-svg
+                                [svgContainer]="'icon-svg-arrow-table-center'"
+                                [icon]="'ArrowBottom'"
+                                [fillColor]="'#0066CC'"
+                              ></piao-svg>
+                            </div>
+                          </div>
+                        </th>
+                        <th>{{ thTipologiaDato | translate }}</th>
+                        <th>{{ thResponsabile | translate }}</th>
+                        <th>{{ thTerminiScadenza | translate }}</th>
+                        <th>{{ thModalitaMonitoraggio | translate }}</th>
+                        <th>{{ thMotivazioneImpossibilita | translate }}</th>
+                        <th>{{ thAzioni | translate }}</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      @for (
+                        dato of getDatiPubblicati(i).controls;
+                        track trackByDatoId($index, dato);
+                        let j = $index
+                      ) {
+                        <tr>
+                          <td>
+                            <strong>{{ dato.get('denominazione')?.value || '' }}</strong>
+                          </td>
+                          <td>
+                            <span>{{ dato.get('tipologia')?.value || '' }}</span>
+                          </td>
+                          <td>
+                            <span>{{ dato.get('responsabile')?.value || '' }}</span>
+                          </td>
+                          <td>
+                            <span>{{ dato.get('terminiScadenza')?.value || '' }}</span>
+                          </td>
+                          <td>
+                            <span>{{ dato.get('modalitaMonitoraggio')?.value || '' }}</span>
+                          </td>
+                          <td>
+                            <span>{{ dato.get('motivazioneImpossibilita')?.value || '' }}</span>
+                          </td>
+                          <td class="col-azioni">
+                            <piao-azioni
+                              [idSelected]="dato.get('id')?.value || ''"
+                              [isTitle]="false"
+                              [verticalEllipsis]="getActionsForDato(i, j)"
+                            ></piao-azioni>
+                          </td>
+                        </tr>
+                      }
+                    </tbody>
+                  </table>
+                </div>
+
+                <p class="d-flex justify-content-end pt-3">
+                  <span>
+                    <p class="link-blue" (click)="handleOpenDatiPubblicatiModal(i)">
+                      {{ labelAddDati | translate }}
+                    </p>
+                  </span>
+                </p>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </piao-accordion>
+  </div>
+}
+
+<!-- Card Info per aggiungere nuovo obbligo di legge | [disabledButton]="!canAddObbligo"-->
+<div class="pt-4">
+  <piao-card-info
+    [titleCardHeader]="
+      (obblighi.length === 0 ? titleCardInfoNotFoundObbligo : titleCardInfoObbligo) | translate
+    "
+    [piaoCardHeaderTitleClass]="'title-card-info'"
+    [titleLoadNewForm]="subTitleAddObbligo | translate"
+    [loadNewForm]="true"
+    [piaoCardHeaderContainerClass]="'piao-card-info-container-new-form'"
+    (clicked)="handleAddObbligo()"
+  ></piao-card-info>
+</div>
+
+<!-- Modale Dati Pubblicati -->
+@if (openModalDatiPubblicati) {
+  <piao-modal
+    [open]="openModalDatiPubblicati"
+    [isIcon]="true"
+    [icon]="icon"
+    [iconStyle]="iconStyle"
+    [disabledButtonConfirm]="disabledButtonConfirm"
+    (closed)="closeDatiPubblicatiModal()"
+    (confirm)="confirmDatiPubblicati()"
+  >
+    <piao-modal-dati-pubblicazione
+      #child
+      [piaoDTO]="piaoDTO"
+      [datiPubblicatiEdit]="datiPubblicatiToEdit!"
+      [idObbligoLegge]="getObbligoId(currentObbligoIndex)"
+    >
+    </piao-modal-dati-pubblicazione>
+  </piao-modal>
+}
+
+<!-- Modale Elimina Obbligo -->
+@if (openModalDeleteObbligo) {
+  <piao-modal-delete
+    [icon]="'AlertCircle'"
+    [title]="'MODAL_REMOVE.OBBLIGO_LEGGE.TITLE'"
+    [message]="'MODAL_REMOVE.OBBLIGO_LEGGE.MESSAGE'"
+    [subMessage]="'MODAL_REMOVE.CONFIRM_OPERATION'"
+    [openModalDelete]="openModalDeleteObbligo"
+    (confirm)="confirmRemoveObbligo()"
+    (closed)="closeModalDeleteObbligo()"
+  ></piao-modal-delete>
+}
+
+<!-- Modale Elimina Dato Pubblicato -->
+@if (openModalDeleteDato) {
+  <piao-modal-delete
+    [icon]="'AlertCircle'"
+    [title]="'MODAL_REMOVE.DATO_PUBBLICAZIONE.TITLE'"
+    [message]="'MODAL_REMOVE.DATO_PUBBLICAZIONE.MESSAGE'"
+    [subMessage]="'MODAL_REMOVE.CONFIRM_OPERATION'"
+    [openModalDelete]="openModalDeleteDato"
+    (confirm)="confirmRemoveDato()"
+    (closed)="closeModalDeleteDato()"
+  ></piao-modal-delete>
+}

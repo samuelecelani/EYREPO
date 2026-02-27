@@ -1,0 +1,132 @@
+/* ===============================
+   Tooltip (balloon sopra la icona "i")
+   =============================== */
+
+/* Classe globale per l'overlay panel CDK */
+::ng-deep .tooltip-overlay-panel {
+  z-index: 99999 !important;
+}
+
+/* Stili per il link nel tooltip */
+::ng-deep .tooltip-link {
+  text-decoration: underline !important;
+  color: white !important;
+  font-weight: 400 !important;
+  cursor: pointer !important;
+  margin: 0 !important;
+  display: block !important;
+  text-align: right !important;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+/* Wrapper: riferimento e variabili condivise */
+.tooltip-wrapper {
+  position: relative; /* riferimento per posizionamento assoluto */
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+
+  /* Variabili regolabili */
+  --gap: 0.3rem; /* distanza verticale: poco sopra la "i" */
+  --icon-w: 1rem; /* larghezza icona (centro di ancoraggio) */
+  --arrow-size: 0.65rem; /* altezza freccia */
+  --arrow-overlap: -11px; /* quanto la freccia entra nel balloon (può essere negativo) */
+  --balloon-bg: #003366; /* colore balloon */
+  --balloon-shadow: 0 0.375rem 1.125rem rgba(0, 0, 0, 0.2);
+}
+
+/* Trigger (icona "i") */
+.tooltip-trigger {
+  position: relative;
+  display: inline-block;
+  width: var(--icon-w);
+  line-height: 0; /* evita spazi verticali indesiderati */
+}
+
+/* icona */
+::ng-deep .tooltip-icon {
+  width: var(--icon-w);
+  height: 0.8rem;
+}
+
+/* Overlay container */
+.tooltip-text-overlay {
+  /* Variabili condivise */
+  --gap: 0.3rem;
+  --icon-w: 1rem;
+  --arrow-size: 0.65rem;
+  --arrow-overlap: -11px;
+  --balloon-bg: #003366;
+  --balloon-shadow: 0 0.375rem 1.125rem rgba(0, 0, 0, 0.2);
+  z-index: 99999;
+}
+
+/* Balloon: SEMPRE poco sopra la "i",
+   bordo destro ancorato al centro della "i" (cresce verso sinistra) */
+.tooltip-text {
+  position: relative;
+
+  background-color: var(--balloon-bg);
+  color: #fff;
+  border-radius: 0.5rem;
+  box-shadow: var(--balloon-shadow);
+
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  padding: 0.5rem 1rem;
+  font-weight: 400;
+
+  width: max-content;
+  max-width: clamp(20rem, 100vw, 100%); /* Aumentato da 35rem a 50rem */
+  max-height: 25rem;
+  overflow-wrap: anywhere;
+  white-space: normal;
+  overflow: visible;
+
+  z-index: 99999;
+  pointer-events: none;
+}
+
+/* Tooltip con larghezza fissa quando non è innerHTML */
+.tooltip-text-fixed {
+  width: 9rem;
+  max-width: 9rem;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: pre-line;
+  height: auto;
+}
+
+/* Freccia */
+.tooltip-text::after {
+  content: '';
+  position: absolute;
+  bottom: calc(var(--arrow-overlap));
+  right: calc(var(--icon-w) / 2 - var(--arrow-size));
+  left: auto;
+
+  width: calc(var(--arrow-size) * 2);
+  height: 1.2rem;
+  background: var(--balloon-bg);
+
+  clip-path: polygon(88% 101%, -34px -16px, 90% -16px);
+
+  filter: drop-shadow(0 0.125rem 0.125rem rgba(0, 0, 0, 0.12));
+  z-index: 99999;
+}
+
+/* ===============================
+   Breakpoints responsivi
+   =============================== */
+@media (max-width: 1000px) {
+  .tooltip-text {
+    max-width: clamp(14rem, 95vw, 100%);
+    max-height: 40rem;
+    padding: 0.35rem 0.7rem;
+    font-size: 0.7rem;
+    line-height: 1rem;
+  }
+}

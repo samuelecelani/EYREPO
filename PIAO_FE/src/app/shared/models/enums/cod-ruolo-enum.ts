@@ -1,0 +1,5 @@
+export enum CodRuoloEnum {
+  REDATTORE = 'REDATTORE',
+  VALIDATORE = 'VALIDATORE',
+  REFERENTE = 'REFERENTE',
+}

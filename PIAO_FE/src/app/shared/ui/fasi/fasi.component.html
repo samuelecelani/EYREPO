@@ -1,0 +1,143 @@
+<div class="container-fasi">
+  <h3 class="section-subtitle">{{ 'SEZIONE_22.FASI.ELENCO_FASI' | translate }}</h3>
+
+  <div class="pt-3">
+    @if (fasi.length === 0) {
+      <div class="empty-state-container">
+        <p class="empty-message">{{ 'SEZIONE_22.FASI.EMPTY_MESSAGE' | translate }}</p>
+        <p class="link-blue" (click)="handleOpenFaseModal()">
+          {{ 'SEZIONE_22.FASI.ADD_BUTTON' | translate }}
+        </p>
+      </div>
+    } @else {
+      <div class="table-fasi-container">
+        <table class="table-fasi">
+          <thead>
+            <tr>
+              <th></th>
+              <th>
+                <div class="d-flex flex-row align-items-center header-with-icon">
+                  {{ 'SEZIONE_22.FASI.FASI' | translate }}
+                  <div class="pointer" (click)="handleSortList()">
+                    <piao-svg
+                      [svgContainer]="'icon-svg-arrow-table-center'"
+                      [icon]="'ArrowBottom'"
+                      [fillColor]="'#0066CC'"
+                    ></piao-svg>
+                  </div>
+                </div>
+              </th>
+              <th>{{ 'SEZIONE_22.FASI.DESCRIZIONE_FASI' | translate }}</th>
+              <th>{{ 'SEZIONE_22.FASI.ATTIVITA' | translate }}</th>
+              <th>{{ 'SEZIONE_22.FASI.ATTORE' | translate }}</th>
+              <th>{{ 'SEZIONE_22.FASI.TEMPI' | translate }}</th>
+              <th>{{ 'SEZIONE_22.FASI.AZIONI' | translate }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (fase of paginatedFasi; track trackByFaseId($index, fase); let i = $index) {
+              <tr class="fase-row">
+                <td class="col-arrows">
+                  <div class="navigation-arrows">
+                    <button
+                      class="arrow-btn"
+                      [disabled]="!faseNeedsScroll(i) || !canAnyFieldScrollUp(i)"
+                      (click)="scrollAllFieldsUp(i)"
+                      [attr.aria-label]="'Scorri su'"
+                    >
+                      <img src="assets/icon/ArrowUp.svg" class="arrow-icon" alt="Freccia su" />
+                    </button>
+                    <button
+                      class="arrow-btn"
+                      [disabled]="!faseNeedsScroll(i) || !canAnyFieldScrollDown(i)"
+                      (click)="scrollAllFieldsDown(i)"
+                      [attr.aria-label]="'Scorri giù'"
+                    >
+                      <img src="assets/icon/ArrowDown.svg" class="arrow-icon" alt="Freccia giù" />
+                    </button>
+                  </div>
+                </td>
+                <td class="col-fasi">
+                  <strong>{{ fase.get('denominazione')?.value || '' }}</strong>
+                </td>
+                <td class="col-scrollable">
+                  <div class="scroll-container" #descrizioneScroll>
+                    <span>{{ fase.get('descrizione')?.value || '' }}</span>
+                  </div>
+                </td>
+                <td class="col-scrollable">
+                  <div class="scroll-container" #attivitaScroll>
+                    <ul class="list-items">
+                      @for (attivita of getAttivitaArray(fase).controls; track $index) {
+                        <li>{{ attivita.get('value')?.value || '' }}</li>
+                      }
+                    </ul>
+                  </div>
+                </td>
+                <td class="col-scrollable">
+                  <div class="scroll-container" #attoriScroll>
+                    <ul class="list-items">
+                      @for (attore of getAttoreArray(fase).controls; track $index) {
+                        <li>{{ attore.get('value')?.value || '' }}</li>
+                      }
+                    </ul>
+                  </div>
+                </td>
+                <td>{{ fase.get('tempi')?.value || '' }}</td>
+                <td class="col-azioni">
+                  <piao-azioni
+                    [idSelected]="fase.get('id')?.value || ''"
+                    [isTitle]="false"
+                    [verticalEllipsis]="getActionsFor(i)"
+                  ></piao-azioni>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+
+      <p class="d-flex justify-content-end pt-2">
+        <span class="link-blue" (click)="handleOpenFaseModal()">
+          {{ 'SEZIONE_22.FASI.INSERISCI_FASE' | translate }}
+        </span>
+      </p>
+
+      <piao-pagination
+        [totalItems]="totalItems"
+        [itemsPerPage]="itemsPerPage"
+        [currentPage]="currentPage()"
+        (pageChange)="onPageChange($event)"
+      >
+      </piao-pagination>
+    }
+  </div>
+</div>
+
+@if (openFasiModal) {
+  <piao-modal
+    [isIcon]="true"
+    [icon]="icon"
+    [iconStyle]="iconStyle"
+    [open]="openFasiModal"
+    [disabledButtonConfirm]="disabledButtonConfirm"
+    (closed)="this.openFasiModal = false; this.faseToEdit = undefined"
+    (confirm)="handleAddFase(); openFasiModal = false"
+  >
+    <piao-modal-body-fase #child [faseToEdit]="faseToEdit" [piaoDTO]="piaoDTO">
+    </piao-modal-body-fase>
+  </piao-modal>
+}
+
+@if (openModalDelete) {
+  <piao-modal-delete
+    [icon]="'AlertCircle'"
+    [title]="'MODAL_REMOVE.FASE.TITLE'"
+    [message]="'MODAL_REMOVE.FASE.MESSAGE'"
+    [subMessage]="'MODAL_REMOVE.CONFIRM_OPERATION'"
+    [openModalDelete]="openModalDelete"
+    [elementToDelete]="elementToDelete"
+    (confirm)="handleRemoveFase($event)"
+    (closed)="handleCloseModalDelete()"
+  ></piao-modal-delete>
+}

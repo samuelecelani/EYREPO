@@ -1,0 +1,56 @@
+trigger:
+  - main  # o il tuo branch
+
+pool:
+  name: 'Default'  # Per PowerShell Desktop. Usa 'ubuntu-latest' + pwsh per PowerShell Core
+
+steps:
+  - checkout: self
+    fetchDepth: 0
+    fetchTags: true
+    
+  - task: PowerShell@2
+    displayName: 'Crea branch main pulito e push su GitHub'
+    env:
+      SYSTEM_ACCESSTOKEN: $(System.AccessToken)
+      GITHUB_TOKEN: $(GITHUB_TOKEN)
+    inputs:
+      targetType: 'inline'
+      script: |
+        # Checkout del branch main corrente
+        git checkout -B main origin/main
+        
+        Write-Host "Creazione di un nuovo branch main pulito senza storia problematica..."
+        
+        # Salva l'hash del commit corrente
+        $currentCommit = git rev-parse HEAD
+        Write-Host "Commit corrente: $currentCommit"
+        
+        # Crea un nuovo orphan branch (senza storia)
+        git checkout --orphan main-clean
+        
+        # Aggiungi tutti i file correnti (escludendo target/ grazie al .gitignore)
+        git add -A
+        
+        # Crea il primo commit
+        git commit -m "Initial commit - repository pulito senza file di build"
+        
+        # Rinomina il branch in main
+        git branch -M main
+        
+        Write-Host "Branch main pulito creato con successo!"
+        
+        # Aggiungi i remote GitHub con il token
+        git remote add github-bip https://${env:GITHUB_TOKEN}@github.com/BIPRepo/dfp-piao.git
+        git remote add github-eyrepo https://${env:GITHUB_TOKEN}@github.com/samuelecelani/EYREPO.git
+        
+        # Push forzato del branch main pulito su entrambi i repository
+        Write-Host "Push su GitHub BIPRepo..."
+        git push github-bip main --force
+        
+        Write-Host "Push su GitHub EYREPO..."
+        git push github-eyrepo main --force
+        
+        Write-Host "Push completato con successo su entrambi i repository!"
+
+

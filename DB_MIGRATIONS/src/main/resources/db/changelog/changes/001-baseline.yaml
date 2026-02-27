@@ -1,0 +1,8 @@
+databaseChangeLog:
+  - changeSet:
+      id: 001-baseline
+      author: liquibase
+      comment: "Baseline iniziale del database"
+      changes:
+        - tagDatabase:
+            tag: version-1.0.0

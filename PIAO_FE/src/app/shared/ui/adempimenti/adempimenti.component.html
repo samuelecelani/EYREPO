@@ -1,0 +1,100 @@
+<div class="accordion-section" [class.is-first-accordion]="isFirstAccordion">
+  <piao-accordion
+    [index]="accordionIndex"
+    [title]="labelTitle | translate"
+    [isOpen]="isOpen"
+    [isButton]="false"
+  >
+    <div class="container-form-adempimento">
+      <h3 class="section-subtitle">
+        {{ 'SEZIONE_22.ADEMPIMENTI.ELENCO_ADEMPIMENTI' | translate }}
+      </h3>
+
+      @if (adempimenti.length === 0) {
+        <div class="empty-state-container">
+          <p class="empty-message">{{ getEmptyMessage() | translate }}</p>
+          <p class="link-blue" (click)="handleOpenModalAdempimento()">
+            {{ getAddButtonLabel() | translate }}
+          </p>
+        </div>
+      } @else {
+        <div class="table-att-container">
+          <table class="table-att">
+            <tbody>
+              <th>{{ getLabelByTipologia() }}</th>
+              <th>{{ 'SEZIONE_22.ADEMPIMENTI.AZIONE_PROPOSTA' | translate }}</th>
+              <th>{{ 'SEZIONE_22.ADEMPIMENTI.AZIONI' | translate }}</th>
+              @for (
+                adempimento of adempimenti.controls;
+                track trackByAdempimentoId($index, adempimento);
+                let i = $index
+              ) {
+                <tr>
+                  <td>
+                    {{ adempimento.get('denominazione')?.value || '' }}
+                  </td>
+                  <td>
+                    <ul class="azioni-list">
+                      @for (azione of getAzioniArray(adempimento).controls; track $index) {
+                        <li>{{ azione.get('value')?.value || '' }}</li>
+                      }
+                    </ul>
+                  </td>
+                  <td>
+                    <piao-azioni
+                      [idSelected]="adempimento.get('id')?.value || ''"
+                      [isTitle]="false"
+                      [verticalEllipsis]="getActionsFor(adempimento.value)"
+                    ></piao-azioni>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+
+        <p class="d-flex justify-content-end pt-4">
+          <span class="link-blue" (click)="handleOpenModalAdempimento()">
+            {{ getAddButtonLabel() | translate }}
+          </span>
+        </p>
+      }
+    </div>
+  </piao-accordion>
+</div>
+
+@if (openAdempimentiModal) {
+  <piao-modal
+    [isIcon]="true"
+    [icon]="icon"
+    [iconStyle]="iconStyle"
+    [open]="openAdempimentiModal"
+    [disabledButtonConfirm]="disabledButtonConfirm"
+    (closed)="this.openAdempimentiModal = false; this.adempimentoToEdit = undefined"
+    (confirm)="handleAddAdempimento(); openAdempimentiModal = false"
+  >
+    <piao-modal-body-adempimento
+      #child
+      [title]="titleModal"
+      [subTitle]="subTitleModal"
+      [labelDesc]="labelDescModal"
+      [adempimentoToEdit]="adempimentoToEdit"
+      [piaoDTO]="piaoDTO"
+      [tipologia]="tipologia"
+    >
+    </piao-modal-body-adempimento>
+  </piao-modal>
+}
+
+@if (openModalDelete) {
+  <piao-modal-delete
+    [icon]="'AlertCircle'"
+    [title]="'MODAL_REMOVE.TITLE'"
+    [message]="'MODAL_REMOVE.MESSAGE'"
+    [subMessage]="'MODAL_REMOVE.CONFIRM_OPERATION'"
+    [openModalDelete]="openModalDelete"
+    [elementToDelete]="elementToDelete"
+    (confirm)="handleRemoveAdempimento($event)"
+    (closed)="handleCloseModalDelete()"
+  ></piao-modal-delete>
+}

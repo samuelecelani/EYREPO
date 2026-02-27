@@ -1,0 +1,117 @@
+@if (title) {
+  <label for="{{ formControlName }}" class="label">
+    {{ title | translate }}
+    @if (additionalLabel) {
+      {{ additionalLabel }}
+    }
+    @if (isRequired) {
+      <span class="required">*</span>
+    }
+    @if (isTooltip) {
+      <piao-tooltip [descTooltip]="title" [icon]="'InfoCircle'"></piao-tooltip>
+    }
+  </label>
+}
+
+@if (isReadOnly) {
+  <!-- Modalità readonly: mostra solo il testo -->
+  <input
+    type="text"
+    id="{{ formControlName }}"
+    class="input"
+    [value]="getSelectedLabel()"
+    [class.isReadOnly]="isReadOnly"
+    aria-label="{{ formControlName }}"
+    readonly
+  />
+} @else if (!isMulti) {
+  <!-- Single-select: select classica -->
+  <select
+    id="{{ formControlName }}"
+    class="form-select"
+    [ngClass]="dropClass"
+    [value]="value"
+    [disabled]="disabled || !dropdown || dropdown.length === 0"
+    aria-label="{{ formControlName }}"
+    (change)="onSelectChange($event)"
+  >
+    @if (!dropdown || dropdown.length === 0) {
+      <option value="" disabled selected>
+        {{ 'PLACEHOLDER.NO_VALUES_AVAILABLE' | translate }}
+      </option>
+    } @else {
+      <option *ngIf="!firstValue" value="" hidden selected>
+        {{ 'PLACEHOLDER.SELECT' | translate }}
+      </option>
+
+      <option
+        *ngFor="let opt of dropdown"
+        [value]="opt.value"
+        [selected]="opt.value === value"
+        [hidden]="opt.hidden"
+        class="drop-option"
+      >
+        {{ isTranslate ? (opt.label | translate) : opt.label }}
+      </option>
+    }
+  </select>
+} @else {
+  <!-- Multi-select: dropdown con checkbox -->
+  <div class="multi-select-container" [class.disabled]="disabled">
+    <div class="form-select multi-select-trigger" [ngClass]="dropClass" (click)="toggleDropdown()">
+      {{ selectedValues.size > 0 ? getSelectedLabel() : ('PLACEHOLDER.SELECT' | translate) }}
+    </div>
+
+    @if (isDropdownOpen) {
+      <div
+        class="multi-select-dropdown"
+        [ngClass]="{ 'open-up': openDirection === 'up', 'open-down': openDirection === 'down' }"
+      >
+        @if (showSelectAll) {
+          <div class="checkbox-item select-all">
+            <input
+              type="checkbox"
+              [id]="formControlName + '_' + option.value"
+              aria-label="{{ formControlName }}+{{ option.value }}"
+              [checked]="isAllSelected()"
+              (change)="onSelectAll($event)"
+            />
+            <label [for]="formControlName + '_selectAll'">
+              {{ selectAllLabel }}
+            </label>
+          </div>
+          <div class="divider"></div>
+        }
+
+        <ng-container *ngFor="let opt of dropdown">
+          <ng-container
+            *ngTemplateOutlet="checkboxOption; context: { $implicit: opt, level: 0 }"
+          ></ng-container>
+        </ng-container>
+      </div>
+    }
+  </div>
+}
+
+<ng-template #checkboxOption let-option let-level="level">
+  <div class="checkbox-item" [ngClass]="getIndentClass(level)">
+    <input
+      type="checkbox"
+      [id]="formControlName + '_' + option.value"
+      aria-label="{{ formControlName }}"
+      [checked]="isChecked(option.value)"
+      (change)="onCheckboxChange(option, $event)"
+    />
+    <label [for]="formControlName + '_' + option.value">
+      {{ isTranslate ? (option.label | translate) : option.label }}
+    </label>
+  </div>
+
+  @if (hasHierarchy && option.children && option.children.length > 0) {
+    <ng-container *ngFor="let child of option.children">
+      <ng-container
+        *ngTemplateOutlet="checkboxOption; context: { $implicit: child, level: level + 1 }"
+      ></ng-container>
+    </ng-container>
+  }
+</ng-template>

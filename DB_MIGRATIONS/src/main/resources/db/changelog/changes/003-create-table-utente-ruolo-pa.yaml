@@ -1,0 +1,29 @@
+databaseChangeLog:
+  - changeSet:
+      id: 003-create-table-utente-ruolo-pa
+      author: developer
+      comment: "Creazione tabella utenteRuoloPa"
+      changes:
+        - createTable:
+            tableName: utenteRuoloPa
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: pk_utente_ruolo_pa
+                    nullable: false
+              - column:
+                  name: codiceFiscale
+                  type: VARCHAR(16)
+                  constraints:
+                    nullable: false
+                    
+        - createIndex:
+            tableName: utenteRuoloPa
+            indexName: idx_utente_cf
+            columns:
+              - column:
+                  name: codiceFiscale

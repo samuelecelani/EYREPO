@@ -1,0 +1,24 @@
+.layout-wrapper {
+  max-width: 1500px;
+  margin: 0 auto;
+  width: 100%;
+  position: relative;
+}
+
+/* Le tue classi invariato */
+.container-child {
+  padding-left: 7.7rem;
+  background-color: #fafafa;
+  overflow-x: visible;
+}
+.container-router {
+  padding-left: 1.3rem;
+  padding-right: 0.3rem;
+  overflow-x: visible;
+}
+
+main {
+  padding-top: 1rem;
+  overflow-x: visible;
+  position: relative;
+}

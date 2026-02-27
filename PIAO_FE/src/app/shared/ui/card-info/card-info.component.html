@@ -1,0 +1,46 @@
+<piao-card
+  [title]="titleCardHeader"
+  [subTitle]="subTitleCardHeader"
+  [icon]="icon"
+  [fillColorIcon]="'#0066cc'"
+  [disabled]="false"
+  [isClickable]="false"
+  [piaoCardContainer]="piaoCardHeaderContainerClass"
+  [piaoCardBody]="piaoCardHeaderBodyClass"
+  [piaoCardTitle]="piaoCardHeaderTitleClass"
+  [piaoCardSubTitle]="piaoCardHeaderTitleClass"
+>
+  @if (showButton && showIconButton) {
+    <piao-button
+      class="info-button"
+      container
+      [icon]="'link'"
+      [iconOnly]="false"
+      variant="primary"
+      size="lg"
+      [iconPosition]="'right'"
+      (clicked)="handleClickButton()"
+      >{{ titleButton | translate }}
+    </piao-button>
+  }
+
+  @if (showButton && !showIconButton) {
+    <piao-button
+      class="info-button"
+      container
+      variant="primary"
+      size="lg"
+      (clicked)="handleClickButton()"
+      >{{ titleButton | translate }}
+    </piao-button>
+  }
+
+  @if (loadNewForm) {
+    <div [class.disabled]="disabledButton" container>
+      <p class="load-form" (click)="handleLoadNewForm()">
+        {{ titleLoadNewForm | translate }}
+        <piao-svg [icon]="'PlusCircle'" [fillColor]="fillColor" [svgContainer]="'svg'"></piao-svg>
+      </p>
+    </div>
+  }
+</piao-card>

@@ -1,0 +1,74 @@
+<div class="main">
+  @if (title) {
+    <p class="title">{{ title | translate }}</p>
+  }
+
+  @for (x of arrayForm?.controls; track $index) {
+    @let i = $index + 1;
+
+    <p class="sub-title pt-3">{{ i + '.' }}{{ subTitle | translate }}</p>
+
+    <div class="row">
+      <div class="col-12 col-xl-4 col-lg-6">
+        <piao-text-box
+          [label]="dynamicTBTBConfig.labelTB"
+          [typeInput]="dynamicTBTBConfig.typeTB"
+          [control]="x.controls[dynamicTBTBConfig.controlTB]"
+          [id]="dynamicTBTBConfig.idTB"
+          [inputClass]="dynamicTBTBConfig.classTB"
+          [maxValidatorLength]="dynamicTBTBConfig.maxValidatorLengthTB"
+          [descTooltip]="dynamicTBTBConfig.descTooltipTB"
+          [containerClass]="'container-width-full'"
+        ></piao-text-box>
+      </div>
+      <div class="col-12 col-xl-4 col-lg-6">
+        <piao-text-box
+          [label]="dynamicTBTBConfig.labelTB2"
+          [typeInput]="dynamicTBTBConfig.typeTB2"
+          [control]="x.controls[dynamicTBTBConfig.controlTB2]"
+          [id]="dynamicTBTBConfig.idTB2"
+          [inputClass]="dynamicTBTBConfig.classTB2"
+          [maxValidatorLength]="dynamicTBTBConfig.maxValidatorLengthTB2"
+          [descTooltip]="dynamicTBTBConfig.descTooltipTB2"
+          [containerClass]="'container-width-full'"
+        ></piao-text-box>
+      </div>
+    </div>
+
+    @if (i != 1) {
+      <div class="delete-container pt-2">
+        <p></p>
+        <p class="delete-item" (click)="handleOpenModalDelete({ id: x.value.id, index: $index })">
+          {{ 'BUTTONS.DELETE' | translate }}
+          <piao-svg
+            [icon]="'MinusCircle'"
+            [svgContainer]="'svg'"
+            [fillColor]="'#cc334d'"
+          ></piao-svg>
+        </p>
+      </div>
+    }
+  }
+
+  <div class="pt-4">
+    <piao-card-info
+      [titleCardHeader]="titleCardInfo"
+      [piaoCardHeaderTitleClass]="'title-card-info'"
+      [titleLoadNewForm]="titleLoadNewForm"
+      [loadNewForm]="true"
+      [piaoCardHeaderContainerClass]="'piao-card-info-container-new-form'"
+      (clicked)="handleClickNewForm()"
+    ></piao-card-info>
+  </div>
+</div>
+
+<piao-modal-delete
+  [icon]="'AlertCircle'"
+  [title]="'MODAL_REMOVE.TITLE'"
+  [message]="'MODAL_REMOVE.MESSAGE'"
+  [subMessage]="'MODAL_REMOVE.CONFIRM_OPERATION'"
+  [openModalDelete]="openModalDelete"
+  [elementToDelete]="elementToDelete"
+  (confirm)="handleRemoveForm(elementToDelete)"
+  (closed)="handleCloseModalDelete()"
+></piao-modal-delete>

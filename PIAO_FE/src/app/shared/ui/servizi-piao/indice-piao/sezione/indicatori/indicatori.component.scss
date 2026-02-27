@@ -1,0 +1,66 @@
+.title-list-indicatori {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.title-indicatore {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.table-container {
+  overflow-x: auto;
+  overflow-y: auto;
+}
+
+.table-custom {
+  table-layout: fixed;
+  width: 100%;
+}
+
+.table-custom th,
+.table-custom td {
+  height: 4.75rem !important;
+  width: 9rem !important;
+  min-width: 9rem;
+  max-width: 9rem;
+  padding: 0.75rem;
+  vertical-align: middle;
+}
+
+.table-custom thead tr {
+  border-bottom: 2px solid #5c6f82;
+}
+
+.table-custom tbody tr {
+  border-bottom: 1px solid #ccc; /* dal secondo in poi */
+}
+
+.table-custom thead th:last-child,
+.table-custom tbody td:last-child {
+  position: sticky;
+  right: 0;
+  z-index: 2;
+  background-color: #e7eff7;
+  width: 4rem !important;
+  min-width: 4rem !important;
+}
+
+/* Chrome clippa box-shadow su sticky + overflow: usare pseudo-elemento */
+.table-custom thead th:last-child::after,
+.table-custom tbody td:last-child::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -8px;
+  width: 8px;
+  pointer-events: none;
+  background: linear-gradient(to right, transparent, rgba(92, 111, 130, 0.15));
+}
+
+.table-custom thead th:last-child {
+  z-index: 3;
+}

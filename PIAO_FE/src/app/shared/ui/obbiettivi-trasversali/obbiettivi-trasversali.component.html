@@ -1,0 +1,200 @@
+<div class="accordion-section" [class.is-first-accordion]="isFirstAccordion">
+  <piao-accordion
+    [index]="accordionIndex"
+    [title]="labelTitle"
+    [isOpen]="isOpen"
+    [isButton]="false"
+  >
+    <p class="intro-description">{{ getLabelByTipologia() | translate }}</p>
+
+    @if (obbiettivi.length === 0) {
+      <div class="empty-state">
+        <h3 class="obiettivo-title">
+          1. {{ 'SEZIONE_22.OBBIETTIVI_TRASVERSALI.OBIETTIVO.OBIETTIVO_LABEL' | translate }}*
+        </h3>
+        <piao-card-info
+          [titleCardHeader]="titleCardInfoObiettivo | translate"
+          [piaoCardHeaderTitleClass]="'title-card-info'"
+          [titleLoadNewForm]="subTitleAddObiettivo | translate"
+          [loadNewForm]="true"
+          [piaoCardHeaderContainerClass]="'piao-card-info-trasversali-empty'"
+          (clicked)="handleAddObiettivo()"
+        ></piao-card-info>
+      </div>
+    } @else {
+      @for (
+        obiettivo of obbiettivi.controls;
+        track trackByObiettivoId($index, obiettivo);
+        let i = $index
+      ) {
+        <div class="obiettivo-section" [class.obiettivo-section-separator]="i > 0">
+          <div class="obiettivo-header">
+            <h3 class="obiettivo-title">
+              {{ i + 1 }}.
+              {{ 'SEZIONE_22.OBBIETTIVI_TRASVERSALI.OBIETTIVO.OBIETTIVO_LABEL' | translate }}*
+            </h3>
+            <span class="link-blue" (click)="handleOpenModalDelete(i)">
+              {{ 'SEZIONE_22.OBBIETTIVI_TRASVERSALI.OBIETTIVO.BTN_REMOVE' | translate }}
+            </span>
+          </div>
+
+          <div class="pt-3">
+            <div class="container-full">
+              <div class="row">
+                <div class="col-12 col-xl-6">
+                  <piao-dropdown
+                    [title]="labelObiettivoVP | translate"
+                    [formControl]="obiettivo.controls['idOvp']"
+                    [dropdown]="ovpOptions"
+                    [isTooltip]="true"
+                    [dropContainerClass]="'container-width-full'"
+                    [isRequired]="true"
+                    (isChange)="handleOvpChange($event, i)"
+                  >
+                  </piao-dropdown>
+                </div>
+                <div class="col-12 col-xl-6">
+                  <piao-dropdown
+                    [title]="labelStrategiaOVP | translate"
+                    [formControl]="obiettivo.controls['idStrategiaOvp']"
+                    [dropdown]="strategieOptionsPerObiettivo[i] || []"
+                    [isTooltip]="true"
+                    [dropContainerClass]="'container-width-full'"
+                    [isRequired]="true"
+                    (isChange)="handleStrategiaChange($event, i)"
+                  >
+                  </piao-dropdown>
+                </div>
+              </div>
+
+              <div class="row pt-3">
+                <div class="col-12 col-xl-4">
+                  <piao-text-box
+                    [label]="getLabelIdObiettivo() | translate"
+                    [typeInput]="'text'"
+                    [inputClass]="'input'"
+                    [control]="setCodice(obiettivo, i)"
+                    [maxValidatorLength]="50"
+                    [id]="'idObiettivo_' + tipologia + '_' + i"
+                    [descTooltip]="getLabelIdObiettivo() | translate"
+                    [isReadOnly]="true"
+                    [containerClass]="'container-width-full'"
+                  >
+                  </piao-text-box>
+                </div>
+                <div class="col-12 col-xl-4">
+                  <piao-text-box
+                    [label]="getLabelObiettivoTipologia() | translate"
+                    [typeInput]="'text'"
+                    [inputClass]="'input'"
+                    [control]="obiettivo.controls['denominazione']"
+                    [maxValidatorLength]="250"
+                    [id]="'denominazione_' + tipologia + '_' + i"
+                    [descTooltip]="getLabelObiettivoTipologia() | translate"
+                    [required]="true"
+                    [containerClass]="'container-width-full'"
+                  >
+                  </piao-text-box>
+                </div>
+                <div class="col-12 col-xl-4">
+                  <piao-text-box
+                    [label]="labelResponsabileAmministrativo | translate"
+                    [typeInput]="'text'"
+                    [inputClass]="'input'"
+                    [control]="obiettivo.controls['responsabileAmministrativo']"
+                    [maxValidatorLength]="100"
+                    [id]="'responsabileAmministrativo_' + tipologia + '_' + i"
+                    [descTooltip]="labelResponsabileAmministrativo | translate"
+                    [containerClass]="'container-width-full'"
+                  >
+                  </piao-text-box>
+                </div>
+              </div>
+
+              <div>
+                <piao-dynamic-tb-fields
+                  [formGroup]="obiettivo"
+                  [dynamicTBConfig]="contributoreConfig"
+                  [nameArrayForm]="'contributoreInterno.properties'"
+                  [containerInputClass]="'container-width-25'"
+                  [propertiesPath]="'contributoreInterno.properties'"
+                  [titleLabel]="
+                    'SEZIONE_22.OBBIETTIVI_TRASVERSALI.OBIETTIVO.DETAILS.CONTRIBUTORI_INTERNI'
+                  "
+                  [notFoundLabel]="
+                    'SEZIONE_22.OBBIETTIVI_TRASVERSALI.OBIETTIVO.DETAILS.NOT_FOUND_CONTRIBUTORI'
+                  "
+                  [addFieldLabel]="
+                    'SEZIONE_22.OBBIETTIVI_TRASVERSALI.OBIETTIVO.DETAILS.ADD_CONTRIBUTORE'
+                  "
+                  [isTooltip]="true"
+                >
+                </piao-dynamic-tb-fields>
+              </div>
+
+              <div>
+                <h3 class="section-title">{{ labelStakeholder | translate }}</h3>
+                <div class="pt-3">
+                  <div class="row">
+                    <div class="col-12 col-xl-4">
+                      <piao-dropdown
+                        [title]="labelSelezionaStakeholder | translate"
+                        [formControl]="obiettivo.controls['stakeholders']"
+                        [dropdown]="stakeholderOptions"
+                        [isTooltip]="true"
+                        [isMulti]="true"
+                        [dropContainerClass]="'container-width-full'"
+                      >
+                      </piao-dropdown>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="pt-2">
+                <piao-indicatori
+                  [indicatoriControls]="obiettivo.controls['indicatori']"
+                  [codTipologiaFK]="codTipologiaFK"
+                  [idEntitaFK]="obiettivo.value.id || 0"
+                  [idSezione22]="idSezione22"
+                  [formParent]="obiettivo"
+                  [codTipologiaIndicatoreFK]="codTipologiaIndicatoreFK"
+                  [sectionEnum]="sectionEnum"
+                ></piao-indicatori>
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+      <div class="pt-4">
+        <hr class="divider" />
+
+        <div class="pt-4">
+          <h3 class="obiettivo-title">
+            {{ obbiettivi.length + 1 }}.
+            {{ 'SEZIONE_22.OBBIETTIVI_TRASVERSALI.OBIETTIVO.OBIETTIVO_LABEL' | translate }}
+          </h3>
+          <piao-card-info
+            [titleCardHeader]="getTitleCardInfo()"
+            [piaoCardHeaderTitleClass]="'title-card-info'"
+            [titleLoadNewForm]="subTitleAddObiettivo | translate"
+            [loadNewForm]="true"
+            [piaoCardHeaderContainerClass]="'piao-card-info-trasversali'"
+            (clicked)="handleAddObiettivo()"
+          ></piao-card-info>
+        </div>
+      </div>
+    }
+  </piao-accordion>
+</div>
+
+<piao-modal-delete
+  [icon]="'AlertCircle'"
+  [title]="'MODAL_REMOVE.TITLE'"
+  [message]="'MODAL_REMOVE.MESSAGE'"
+  [subMessage]="'MODAL_REMOVE.CONFIRM_OPERATION'"
+  [openModalDelete]="openModalDelete"
+  [elementToDelete]="elementToDelete"
+  (confirm)="handleRemoveObiettivo($event)"
+  (closed)="handleCloseModalDelete()"
+></piao-modal-delete>

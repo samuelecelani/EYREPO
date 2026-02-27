@@ -1,0 +1,368 @@
+@if (isFormReady) {
+  <div class="main">
+    <form [formGroup]="form">
+      <p class="title">{{ title | translate }}</p>
+
+      <!-- PARTE GENERALE -->
+
+      <p class="subTitle pt-4 section-title-pt2_5">
+        {{ subTitleParteGenerale | translate }}
+      </p>
+
+      <!-- CICLO PERFORMANCE -->
+      <p class="subTitle pt-4">{{ subTitleCicloPerformance | translate }}</p>
+
+      <p class="description">{{ descriptionCicloPerformance | translate }}</p>
+
+      <div class="pt-3">
+        <piao-text-area
+          [label]="labelIntroduzione | translate"
+          [control]="form.controls['introPerformance']"
+          [id]="'introPerformance'"
+          [textAreaClass]="'text-area'"
+          [maxValidatorLength]="'2000'"
+          [descTooltip]="labelIntroduzione | translate"
+          [containerClass]="'container-width-full'"
+        ></piao-text-area>
+      </div>
+
+      <!-- Elenco Fasi -->
+      @if (form.get('fasi')) {
+        <div class="pt-4">
+          <piao-fasi
+            [formGroup]="form"
+            [idSezione22]="sezione22Data?.id || piaoDTO?.sezione22?.id || 0"
+            [idPiao]="piaoDTO.id || 0"
+          ></piao-fasi>
+        </div>
+      }
+
+      <!-- Obiettivi di Performance relativi a tutta la PA -->
+      <p class="subTitle pt-4">{{ titleObiettiviPerformancePA | translate }}</p>
+
+      <p class="description">{{ descriptionObiettiviPerformancePA | translate }}</p>
+
+      <div class="pt-3">
+        <piao-text-area
+          [label]="labelIntroduzione | translate"
+          [control]="form.controls['introObiettiviPerformance']"
+          [id]="'introObiettiviPerformance'"
+          [textAreaClass]="'text-area'"
+          [maxValidatorLength]="'2000'"
+          [descTooltip]="labelIntroduzione | translate"
+          [containerClass]="'container-width-full'"
+        ></piao-text-area>
+      </div>
+      <div class="pt-4">
+        <piao-card-alert
+          [icon]="iconAlert"
+          [titleCardHeader]="titleObbPerformanceAlert"
+          [subTitleCardHeader]="subObbPerformanceAlert"
+          [subTitleClass]="'piao-card-sub-title'"
+        ></piao-card-alert>
+      </div>
+
+      <!-- Obiettivi Performance PA -->
+      @if (obbiettiviPerformance) {
+        <div class="pt-4">
+          <piao-obbiettivi-performance
+            [formGroup]="form"
+            [idSezione22]="sezione22Data?.id || piaoDTO?.sezione22?.id || 0"
+            [idPiao]="piaoDTO.id || 0"
+            [tipologia]="TipologiaObbiettivo.PERFORMANCE"
+            [codTipologiaIndicatoreFK]="TipologiaIndicatoreEnum.PERFORMANCE"
+            [ovpList]="ovpList"
+            [stakeholderOptions]="stakeholderOptions"
+          ></piao-obbiettivi-performance>
+        </div>
+      }
+      <!-- Obbiettivi Trasversali -->
+      <p class="subTitle pt-4">{{ titleObbiettiviTrasversali | translate }}</p>
+
+      <p class="description">{{ subTitleObbiettiviTrasversali | translate }}</p>
+
+      <div class="pt-4">
+        <!-- Obiettivi di piena accessibilità digitale -->
+        @if (obbiettiviAccessiDigitale) {
+          <piao-obbiettivi-trasversali
+            [formGroup]="form"
+            [idSezione22]="sezione22Data?.id || piaoDTO?.sezione22?.id || 0"
+            [idPiao]="piaoDTO.id || 0"
+            [tipologia]="TipologiaObbiettivo.ACCESSI_DIGITALE"
+            [labelTitle]="'SEZIONE_22.OBBIETTIVI_TRASVERSALI.ACCESSI_DIGITALE'"
+            [accordionIndex]="1"
+            [isOpen]="openAccordionIndex === 1"
+            [codTipologiaIndicatoreFK]="TipologiaIndicatoreEnum.ACCESSI_DIGITALE"
+            [isFirstAccordion]="true"
+            [ovpList]="ovpList"
+            [stakeholderOptions]="stakeholderOptions"
+          ></piao-obbiettivi-trasversali>
+        }
+
+        <!-- Obiettivi di piena accessibilità fisica -->
+        @if (obbiettiviAccessiFisici) {
+          <piao-obbiettivi-trasversali
+            [formGroup]="form"
+            [idSezione22]="sezione22Data?.id || piaoDTO?.sezione22?.id || 0"
+            [idPiao]="piaoDTO.id || 0"
+            [tipologia]="TipologiaObbiettivo.ACCESSI_FISICI"
+            [labelTitle]="'SEZIONE_22.OBBIETTIVI_TRASVERSALI.ACCESSI_FISICI'"
+            [accordionIndex]="2"
+            [isOpen]="openAccordionIndex === 2"
+            [codTipologiaIndicatoreFK]="TipologiaIndicatoreEnum.ACCESSI_FISICI"
+            [ovpList]="ovpList"
+            [stakeholderOptions]="stakeholderOptions"
+          ></piao-obbiettivi-trasversali>
+        }
+
+        <!-- Obiettivi di semplificazione -->
+        @if (obbiettiviSemplificazione) {
+          <piao-obbiettivi-trasversali
+            [formGroup]="form"
+            [idSezione22]="sezione22Data?.id || piaoDTO?.sezione22?.id || 0"
+            [idPiao]="piaoDTO.id || 0"
+            [tipologia]="TipologiaObbiettivo.SEMPLIFICAZIONE"
+            [labelTitle]="'SEZIONE_22.OBBIETTIVI_TRASVERSALI.SEMPLIFICAZIONE'"
+            [accordionIndex]="3"
+            [isOpen]="openAccordionIndex === 3"
+            [codTipologiaIndicatoreFK]="TipologiaIndicatoreEnum.SEMPLIFICAZIONE"
+            [ovpList]="ovpList"
+            [stakeholderOptions]="stakeholderOptions"
+          ></piao-obbiettivi-trasversali>
+        }
+
+        <!-- Obiettivi di pari opportunità -->
+        @if (obbiettiviPariOpportunita) {
+          <piao-obbiettivi-trasversali
+            [formGroup]="form"
+            [idSezione22]="sezione22Data?.id || piaoDTO?.sezione22?.id || 0"
+            [idPiao]="piaoDTO.id || 0"
+            [tipologia]="TipologiaObbiettivo.PARI_OPPORTUNITA"
+            [labelTitle]="'SEZIONE_22.OBBIETTIVI_TRASVERSALI.PARI_OPPORTUNITA'"
+            [accordionIndex]="4"
+            [isOpen]="openAccordionIndex === 4"
+            [codTipologiaIndicatoreFK]="TipologiaIndicatoreEnum.PARI_OPPORTUNITA"
+            [ovpList]="ovpList"
+            [stakeholderOptions]="stakeholderOptions"
+          ></piao-obbiettivi-trasversali>
+        }
+      </div>
+
+      <!-- Adempimenti -->
+      <p class="subTitle pt-4">{{ titleAdempimenti | translate }}</p>
+
+      <p class="description">{{ subTitleAdempimenti | translate }}</p>
+
+      <div class="pt-3">
+        <piao-text-area
+          [label]="labelIntroduzione | translate"
+          [control]="form.controls['introAdempimenti']"
+          [id]="'introAdempimenti'"
+          [textAreaClass]="'text-area'"
+          [maxValidatorLength]="'2000'"
+          [descTooltip]="labelIntroduzione | translate"
+          [containerClass]="'container-width-full'"
+        ></piao-text-area>
+      </div>
+
+      <!-- Adempimenti Innovazioni Amministrative -->
+      @if (adempimentiInnovazioniAmm) {
+        <div>
+          <piao-adempimenti
+            [formGroup]="form"
+            [idSezione22]="sezione22Data?.id || piaoDTO?.sezione22?.id || 0"
+            [idPiao]="piaoDTO.id || 0"
+            [tipologia]="TipologiaAdempimento.INNOVAZIONI_AMM"
+            [labelTitle]="'SEZIONE_22.ADEMPIMENTI.INNOVAZIONI_AMM'"
+            [accordionIndex]="1"
+            [isOpen]="openAccordionIndex === 1"
+            [isFirstAccordion]="true"
+          ></piao-adempimenti>
+        </div>
+      }
+
+      <!-- Adempimenti Comportamenti Univoci -->
+      @if (adempimentiComportamentiUni) {
+        <div>
+          <piao-adempimenti
+            [formGroup]="form"
+            [idSezione22]="sezione22Data?.id || piaoDTO?.sezione22?.id || 0"
+            [idPiao]="piaoDTO.id || 0"
+            [tipologia]="TipologiaAdempimento.COMPORTAMENTI_UNI"
+            [labelTitle]="'SEZIONE_22.ADEMPIMENTI.COMPORTAMENTI_UNI'"
+            [accordionIndex]="2"
+            [isOpen]="openAccordionIndex === 2"
+          ></piao-adempimenti>
+        </div>
+      }
+
+      <!-- Adempimenti Obiettivi -->
+      @if (adempimentiObiettivi) {
+        <div>
+          <piao-adempimenti
+            [formGroup]="form"
+            [idSezione22]="sezione22Data?.id || piaoDTO?.sezione22?.id || 0"
+            [idPiao]="piaoDTO.id || 0"
+            [tipologia]="TipologiaAdempimento.OBIETTIVI"
+            [labelTitle]="'SEZIONE_22.ADEMPIMENTI.OBIETTIVI'"
+            [accordionIndex]="3"
+            [isOpen]="openAccordionIndex === 3"
+          ></piao-adempimenti>
+        </div>
+      }
+
+      <!-- Adempimenti Obiettivi Infrastrutturali -->
+      @if (adempimentiObiettiviInfra) {
+        <div>
+          <piao-adempimenti
+            [formGroup]="form"
+            [idSezione22]="sezione22Data?.id || piaoDTO?.sezione22?.id || 0"
+            [idPiao]="piaoDTO.id || 0"
+            [tipologia]="TipologiaAdempimento.OBIETTIVI_INFRA"
+            [labelTitle]="'SEZIONE_22.ADEMPIMENTI.OBIETTIVI_INFRA'"
+            [accordionIndex]="4"
+            [isOpen]="openAccordionIndex === 4"
+          ></piao-adempimenti>
+        </div>
+      }
+
+      <!-- Adempimenti Obiettivi Patrimoniali -->
+      @if (adempimentiObiettiviPatrimoniali) {
+        <div>
+          <piao-adempimenti
+            [formGroup]="form"
+            [idSezione22]="sezione22Data?.id || piaoDTO?.sezione22?.id || 0"
+            [idPiao]="piaoDTO.id || 0"
+            [tipologia]="TipologiaAdempimento.OBIETTIVI_PATRIMONIALI"
+            [labelTitle]="'SEZIONE_22.ADEMPIMENTI.OBIETTIVI_PATRIMONIALI'"
+            [accordionIndex]="5"
+            [isOpen]="openAccordionIndex === 5"
+          ></piao-adempimenti>
+        </div>
+      }
+
+      <!-- PARTE FUNZIONALE -->
+      <p class="subTitle pt-4 section-title-pt2_5">{{ titleParteFunzionale | translate }}</p>
+
+      <!-- Performance Organizzativa -->
+      <p class="subTitle pt-4">{{ titlePerformanceOrganizzativa | translate }}</p>
+
+      <p class="description">{{ descriptionPerformanceOrganizzativa | translate }}</p>
+      <div class="pt-3">
+        <piao-text-area
+          [label]="labelIntroduzione | translate"
+          [control]="form.controls['introPerformanceOrganizzativa']"
+          [id]="'introPerformanceOrganizzativa'"
+          [textAreaClass]="'text-area'"
+          [maxValidatorLength]="'2000'"
+          [descTooltip]="labelIntroduzione | translate"
+          [containerClass]="'container-width-full'"
+        ></piao-text-area>
+      </div>
+
+      <!-- Obiettivi Performance PA -->
+      @if (obbiettiviPerformanceOrganizzativa) {
+        <div class="pt-3">
+          <piao-obbiettivi-performance
+            [formGroup]="form"
+            [idSezione22]="sezione22Data?.id || piaoDTO?.sezione22?.id || 0"
+            [idPiao]="piaoDTO.id || 0"
+            [tipologia]="TipologiaObbiettivo.PERFORMANCE_ORGANIZZATIVA"
+            [codTipologiaIndicatoreFK]="TipologiaIndicatoreEnum.PERFORMANCE_ORGANIZZATIVA"
+            [ovpList]="ovpList"
+            [stakeholderOptions]="stakeholderOptions"
+          ></piao-obbiettivi-performance>
+        </div>
+      }
+
+      <!-- Dalla performance organizzativa alla performance individuale -->
+      <p class="subTitle pt-4">{{ titleCollegamentoPerformance | translate }}</p>
+
+      <p class="description">{{ descriptionCollegamentoPerformance | translate }}</p>
+
+      <div class="pt-3">
+        <piao-text-area
+          [label]="labelDescrizione | translate"
+          [control]="form.controls['descriptionCollegamentoPerformance']"
+          [id]="'descriptionCollegamentoPerformance'"
+          [textAreaClass]="'text-area'"
+          [maxValidatorLength]="'2000'"
+          [descTooltip]="labelIntroduzione | translate"
+          [containerClass]="'container-width-full'"
+        ></piao-text-area>
+      </div>
+
+      <!-- Performance individuale -->
+      <p class="subTitle pt-4">{{ titlePerformanceIndividuale | translate }}</p>
+
+      <p class="description">{{ descriptionPerformanceIndividuale | translate }}</p>
+      <div class="pt-3">
+        <piao-text-area
+          [label]="labelIntroduzione | translate"
+          [control]="form.controls['introPerformanceIndividuale']"
+          [id]="'introPerformanceIndividuale'"
+          [textAreaClass]="'text-area'"
+          [maxValidatorLength]="'2000'"
+          [descTooltip]="labelIntroduzione | translate"
+          [containerClass]="'container-width-full'"
+        ></piao-text-area>
+      </div>
+
+      <!-- Obiettivi Performance PA -->
+      @if (obbiettiviPerformanceIndividuale) {
+        <div class="pt-3">
+          <piao-obiettivi-performance-individuale
+            [formGroup]="form"
+            [idSezione22]="sezione22Data?.id || piaoDTO?.sezione22?.id || 0"
+            [idPiao]="piaoDTO.id || 0"
+            [tipologia]="TipologiaObbiettivo.PERFORMANCE_INDIVIDUALE"
+            [obbiettiviPerformanceOrganizzativa]="obbiettiviPerformanceOrganizzativa"
+          ></piao-obiettivi-performance-individuale>
+        </div>
+      }
+
+      <div class="pt-4">
+        @if (titleDynamicTBUlterioreInfo) {
+          <p class="subTitle">{{ titleDynamicTBUlterioreInfo | translate }}</p>
+        }
+        @if (subTitleDynamicTBUlterioreInfo) {
+          <p class="sub-title-ult-info">{{ subTitleDynamicTBUlterioreInfo | translate }}</p>
+        }
+
+        <piao-dynamic-tb
+          [form]="form"
+          [dynamicTBConfig]="ulterioriInfoConfig"
+          [titleCardInfo]="titleCardUlterioriInfo"
+          [titleLoadNewForm]="labelBtnAddUlterioriInfo"
+          [nameArrayForm]="'ulterioriInfo.properties'"
+          [notFoundMessage]="'MESSAGE.NOT_FOUND_ULTERIORE_INFO'"
+          [modalType]="'ulterioreInfo'"
+        >
+        </piao-dynamic-tb>
+      </div>
+
+      <!-- Allegato -->
+      <div class="pt-4">
+        <piao-attachment
+          [title]="'SCRIVANIA_PA.SERVIZI_PIAO.INDICE_PIAO.SEZIONE.ATTACHMENT.TITLE_ATTACHMENT'"
+          [subTitle]="
+            'SCRIVANIA_PA.SERVIZI_PIAO.INDICE_PIAO.SEZIONE.ATTACHMENT.SUB_TITLE_ATTACHMENT'
+          "
+          [loadAttachment]="
+            'SCRIVANIA_PA.SERVIZI_PIAO.INDICE_PIAO.SEZIONE.ATTACHMENT.LOAD_ATTACHMENT'
+          "
+          [idPiao]="piaoDTO.id"
+          [isDoc]="true"
+          [showDescription]="false"
+          [showName]="false"
+          [form]="form"
+          [codTipologia]="codTipologia"
+          [codTipologiaAllegato]="codTipologiaAllegato"
+          [isOnlyAttachment]="true"
+          [sezione]="sezioneSection"
+          (attachmentLoaded)="handleAttachmentLoaded()"
+        ></piao-attachment>
+      </div>
+    </form>
+  </div>
+}

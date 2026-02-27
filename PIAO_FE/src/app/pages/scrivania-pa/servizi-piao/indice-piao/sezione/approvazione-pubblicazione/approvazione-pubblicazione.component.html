@@ -1,0 +1,33 @@
+<div class="main">
+  <form [formGroup]="form">
+    <piao-invia-richiesta-approvazione></piao-invia-richiesta-approvazione>
+    <p class="title">{{ title | translate }}</p>
+    <p class="pl-1 pt-2" [innerHTML]="subtitle | translate"></p>
+    <div class="row pl-1 pt-4">
+      <div class="col-12 col-lg-4">
+        <piao-date-picker
+          [label]="data"
+          [control]="form.controls['data']"
+          [id]="'data'"
+          [descTooltip]="data"
+          [required]="true"
+          [min]="today"
+        >
+        </piao-date-picker>
+      </div>
+      <div class="col-12 col-lg-4">
+        <piao-text-box
+          [label]="url"
+          [typeInput]="'text'"
+          [inputClass]="'input'"
+          [control]="form.controls['url']"
+          [id]="'url'"
+          [descTooltip]="url"
+          [required]="true"
+          [maxValidatorLength]="100"
+        >
+        </piao-text-box>
+      </div>
+    </div>
+  </form>
+</div>

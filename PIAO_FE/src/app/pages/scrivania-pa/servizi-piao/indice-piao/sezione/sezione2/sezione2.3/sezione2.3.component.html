@@ -1,0 +1,413 @@
+@if (isFormReady) {
+  <div class="main">
+    <form [formGroup]="form">
+      <p class="title">{{ title | translate }}</p>
+
+      <!-- PARTE GENERALE -->
+      <p class="subTitle pt-4 section-title">{{ subTitleParteGenerale | translate }}</p>
+
+      <!-- Attuazione adempimenti -->
+      <p class="subTitle pt-4">{{ titleAttuazione | translate }}</p>
+      <p class="description">{{ subTitleAttuazione | translate }}</p>
+      <div class="pt-3">
+        <piao-text-area
+          [label]="attuazioneLabel"
+          [control]="form.controls['introAdempimentiNormativi']"
+          [id]="'introAdempimentiNormativi'"
+          textAreaClass="text-area"
+          [maxValidatorLength]="'2000'"
+          [descTooltip]="attuazioneLabel"
+          [containerClass]="'container-width-full'"
+        ></piao-text-area>
+      </div>
+
+      <div class="pt-4">
+        <piao-elenco-adempimento-normativo [formGroup]="form"></piao-elenco-adempimento-normativo>
+      </div>
+
+      <!-- Analisi contesto -->
+      <div class="pt-4">
+        <p class="subTitle">{{ titleAnalisiContesto | translate }}</p>
+        <p class="description">{{ subTitleAnalisiContesto | translate }}</p>
+
+        <div class="pt-4">
+          <piao-card-alert
+            [icon]="iconAlert"
+            [titleCardHeader]="titleAnalisiContestoAlert"
+            [subTitleCardHeader]="subAnalisiContestoAlert"
+            [subTitleClass]="'piao-card-sub-title'"
+          ></piao-card-alert>
+
+          <div class="pt-4">
+            <piao-text-area
+              [label]="labelImpattiContestoEsterno"
+              [control]="form.controls['impattoContestoExt']"
+              [id]="'impattoContestoExt'"
+              textAreaClass="text-area"
+              [maxValidatorLength]="'2000'"
+              [descTooltip]="labelImpattiContestoEsterno"
+              [containerClass]="'container-width-full'"
+            ></piao-text-area>
+          </div>
+
+          <div class="pt-3">
+            <piao-text-area
+              [label]="labelImpattiContestoInterno"
+              [control]="form.controls['impattoContestoInt']"
+              [id]="'impattoContestoInt'"
+              textAreaClass="text-area"
+              [maxValidatorLength]="'2000'"
+              [descTooltip]="labelImpattiContestoInterno"
+              [containerClass]="'container-width-full'"
+            ></piao-text-area>
+          </div>
+        </div>
+      </div>
+
+      <!-- Prevenzione della corruzione e trasparenza -->
+      <div class="pt-4">
+        <p class="subTitle">{{ titlePrevenzioneCorruzione | translate }}</p>
+        <p class="description">{{ subTitlePrevenzioneCorruzione | translate }}</p>
+        <p class="subTitle pt-3 sub-section-title">{{ titleModalitaGestione | translate }}</p>
+        <div class="pt-3">
+          <piao-text-area
+            [label]="labelDescSistemaGestione"
+            [control]="form.controls['descrGestioneRischio']"
+            [id]="'descrGestioneRischio'"
+            textAreaClass="text-area"
+            [maxValidatorLength]="'2000'"
+            [descTooltip]="labelDescSistemaGestione"
+            [containerClass]="'container-width-full'"
+            [required]="true"
+          ></piao-text-area>
+        </div>
+        <div class="pt-3">
+          <piao-text-area
+            [label]="labelDescModalitaIdentificazione"
+            [control]="form.controls['descrIdentificazioneRischio']"
+            [id]="'descrIdentificazioneRischio'"
+            textAreaClass="text-area"
+            [maxValidatorLength]="'2000'"
+            [descTooltip]="labelDescModalitaIdentificazione"
+            [containerClass]="'container-width-full'"
+            [required]="true"
+          ></piao-text-area>
+        </div>
+        <div class="pt-3">
+          <piao-text-area
+            [label]="labelDescModalitaAnalisi"
+            [control]="form.controls['descrAnalisiRischio']"
+            [id]="'descrAnalisiRischio'"
+            textAreaClass="text-area"
+            [maxValidatorLength]="'2000'"
+            [descTooltip]="labelDescModalitaAnalisi"
+            [containerClass]="'container-width-full'"
+            [required]="true"
+          ></piao-text-area>
+        </div>
+        <div class="pt-3">
+          <piao-text-area
+            [label]="labelDescModalitaMisurazione"
+            [control]="form.controls['descrMisurazioneRischio']"
+            [id]="'descrMisurazioneRischio'"
+            textAreaClass="text-area"
+            [maxValidatorLength]="'2000'"
+            [descTooltip]="labelDescModalitaMisurazione"
+            [containerClass]="'container-width-full'"
+            [required]="true"
+          ></piao-text-area>
+        </div>
+        <div class="pt-3">
+          <piao-text-area
+            [label]="labelDescModalitaTrattamento"
+            [control]="form.controls['descrTrattamentoRischio']"
+            [id]="'descrTrattamentoRischio'"
+            textAreaClass="text-area"
+            [maxValidatorLength]="'2000'"
+            [descTooltip]="labelDescModalitaTrattamento"
+            [containerClass]="'container-width-full'"
+            [required]="true"
+          ></piao-text-area>
+        </div>
+        <div class="pt-3">
+          <piao-text-area
+            [label]="labelDescModalitaMonitoraggio"
+            [control]="form.controls['descrMonitoraggioRischio']"
+            [id]="'descrMonitoraggioRischio'"
+            textAreaClass="text-area"
+            [maxValidatorLength]="'2000'"
+            [descTooltip]="labelDescModalitaMonitoraggio"
+            [containerClass]="'container-width-full'"
+            [required]="true"
+          ></piao-text-area>
+        </div>
+      </div>
+
+      <!-- Obiettivi Generali di Prevenzione della Corruzione e trasparenza -->
+      <div class="pt-4">
+        <p class="subTitle sub-section-title">
+          {{ titleObiettiviGeneraliCorruzioneTrasparenza | translate }}
+        </p>
+
+        <div class="pt-3">
+          <piao-text-area
+            [label]="labelIntroObiettiviPrevenzione"
+            [control]="form.controls['introObiettivoPrevenzione']"
+            [id]="'introObiettivoPrevenzione'"
+            textAreaClass="text-area"
+            [maxValidatorLength]="'2000'"
+            [descTooltip]="labelIntroObiettiviPrevenzione"
+            [containerClass]="'container-width-full'"
+          ></piao-text-area>
+        </div>
+
+        <!-- Componente Obiettivi Generali -->
+        <div class="pt-3">
+          <piao-obiettivi-generali
+            [obiettiviControls]="obiettivoPrevenzioneControls"
+            [idSezione23]="idSezione23"
+            [idPiao]="piaoDTO.id || 0"
+          ></piao-obiettivi-generali>
+        </div>
+      </div>
+
+      <!-- Misure Generali di Prevenzione del rischio corruttivo -->
+      <div class="pt-4">
+        <p class="subTitle sub-section-title">
+          {{ titleMisurePrevenzione | translate }}
+        </p>
+
+        <div class="pt-3">
+          <piao-text-area
+            [label]="labelIntroMisurePrevenzione"
+            [control]="form.controls['introMisurePrevenzione']"
+            [id]="'introMisurePrevenzione'"
+            textAreaClass="text-area"
+            [maxValidatorLength]="'2000'"
+            [descTooltip]="labelIntroMisurePrevenzione"
+            [containerClass]="'container-width-full'"
+          ></piao-text-area>
+        </div>
+
+        <!-- Componente Misure Generali -->
+        <div class="pt-3">
+          <piao-misure-generali
+            [formGroup]="form"
+            [idSezione23]="idSezione23"
+            [idPiao]="piaoDTO.id || 0"
+          ></piao-misure-generali>
+        </div>
+
+        <!-- Pulsante test per modale dati pubblicazione -->
+        <!-- <div class="pt-3">
+          <button type="button" class="btn btn-primary" (click)="openDatiPubblicazioneModal()">
+            TEST - Apri Modale Dati Pubblicazione
+          </button>
+        </div> -->
+      </div>
+
+      <!-- TRASPARENZA -->
+      <p class="subTitle pt-4">{{ titleTrasparenza | translate }}</p>
+      <p class="description">{{ subTitleTrasparenza | translate }}</p>
+      <div class="pt-3">
+        <piao-text-area
+          [label]="labelIntroTrasparenza"
+          [control]="form.controls['descrTrasparenza']"
+          [id]="'descrTrasparenza'"
+          textAreaClass="text-area"
+          [maxValidatorLength]="'2000'"
+          [descTooltip]="labelIntroTrasparenza"
+          [containerClass]="'container-width-full'"
+        ></piao-text-area>
+      </div>
+
+      <div class="pt-4">
+        <piao-denominazione-obbligo-legge
+          [obblighiControls]="obblighiLeggeControls"
+          [idSezione23]="idSezione23"
+          [piaoDTO]="piaoDTO"
+        ></piao-denominazione-obbligo-legge>
+      </div>
+
+      <!-- PARTE FUNZIONALE -->
+      <p class="subTitle pt-4 section-title">{{ subTitleParteFunzionale | translate }}</p>
+
+      <!-- Valore pubblico e anticorruzione -->
+      <p class="subTitle pt-4">{{ titleValorePubblicoAnticorruzione | translate }}</p>
+      <p class="description">{{ subTitleValorePubblicoAnticorruzione | translate }}</p>
+      <p class="sub-section-title-intro pt-3">
+        {{ subTitleValorePubblicoAnticorruzioneIntro | translate }}
+      </p>
+
+      <div class="pt-3">
+        <piao-text-area
+          [label]="labelDescIniziativeAnticorruzione"
+          [control]="form.controls['introValorePubblico']"
+          [id]="'introValorePubblico'"
+          textAreaClass="text-area"
+          [maxValidatorLength]="'2000'"
+          [descTooltip]="labelDescIniziativeAnticorruzione"
+          [containerClass]="'container-width-full'"
+        ></piao-text-area>
+      </div>
+
+      <div class="pt-4">
+        <piao-valore-pubblico-anticorruzione
+          [formGroup]="form"
+          [idSezione23]="idSezione23"
+        ></piao-valore-pubblico-anticorruzione>
+      </div>
+
+      <!-- Attivita sensibili -->
+      <p class="subTitle pt-4">{{ titleAttivitaSensibili | translate }}</p>
+      <p class="description">{{ subTitleAttivitaSensibili | translate }}</p>
+
+      <div class="pt-3">
+        <piao-text-area
+          [label]="labelIntroAttivitaSensibili"
+          [control]="form.controls['introAttivitaSensibili']"
+          [id]="'introAttivitaSensibili'"
+          textAreaClass="text-area"
+          [maxValidatorLength]="'2000'"
+          [descTooltip]="labelIntroAttivitaSensibili"
+          [containerClass]="'container-width-full'"
+        ></piao-text-area>
+      </div>
+
+      <div class="pt-3">
+        <piao-card-alert
+          [icon]="iconAlert"
+          [titleCardHeader]="titleAnalisiContestoAlert"
+          [subTitleCardHeader]="subTitleCardAlertAttivitaSensibili"
+          [subTitleClass]="'piao-card-sub-title'"
+        ></piao-card-alert>
+      </div>
+
+      <div class="pt-4">
+        <piao-elenco-attivita-sensibile [formGroup]="form"></piao-elenco-attivita-sensibile>
+      </div>
+
+      <!-- Valutazione del Rischio -->
+      <p class="subTitle pt-4">{{ titleValutazioneRischio | translate }}</p>
+      <p class="description">{{ subTitleValutazioneRischio | translate }}</p>
+
+      <div class="pt-3">
+        <piao-text-area
+          [label]="labelIntroValutazioneRischio"
+          [control]="form.controls['introValutazioneRischio']"
+          [id]="'introValutazioneRischio'"
+          textAreaClass="text-area"
+          [maxValidatorLength]="'2000'"
+          [descTooltip]="labelIntroValutazioneRischio"
+          [containerClass]="'container-width-full'"
+        ></piao-text-area>
+      </div>
+
+      <div class="pt-4">
+        <piao-valutazione-rischio [formGroup]="form"></piao-valutazione-rischio>
+      </div>
+
+      <!-- Gestione del Rischio -->
+      <p class="subTitle pt-4">{{ titleGestioneRischio | translate }}</p>
+      <p class="description">{{ subTitleGestioneRischio | translate }}</p>
+
+      <div class="pt-3">
+        <piao-text-area
+          [label]="labelIntroGestioneRischio"
+          [control]="form.controls['introGestioneRischio']"
+          [id]="'introGestioneRischio'"
+          textAreaClass="text-area"
+          [maxValidatorLength]="'2000'"
+          [descTooltip]="labelIntroGestioneRischio"
+          [containerClass]="'container-width-full'"
+        ></piao-text-area>
+      </div>
+
+      <div class="pt-4">
+        <piao-gestione-rischio [formGroup]="form"></piao-gestione-rischio>
+      </div>
+
+      <!-- Monitoraggio -->
+      <p class="subTitle pt-4">{{ titleMonitoraggio | translate }}</p>
+      <p class="description">{{ subTitleMonitoraggio | translate }}</p>
+
+      <div class="pt-3">
+        <piao-text-area
+          [label]="labelIntroMonitoraggio"
+          [control]="form.controls['introMonitoraggio']"
+          [id]="'introMonitoraggio'"
+          textAreaClass="text-area"
+          [maxValidatorLength]="'2000'"
+          [descTooltip]="labelIntroMonitoraggio"
+          [containerClass]="'container-width-full'"
+        ></piao-text-area>
+      </div>
+
+      <div class="pt-4">
+        <piao-elenco-monitoraggio-misure-prevenzione
+          [formGroup]="form"
+        ></piao-elenco-monitoraggio-misure-prevenzione>
+      </div>
+
+      <div class="pt-4">
+        @if (titleDynamicTBUlterioreInfo) {
+          <p class="subTitle">{{ titleDynamicTBUlterioreInfo | translate }}</p>
+        }
+        @if (subTitleDynamicTBUlterioreInfo) {
+          <p class="sub-title-ult-info">{{ subTitleDynamicTBUlterioreInfo | translate }}</p>
+        }
+
+        <piao-dynamic-tb
+          [form]="form"
+          [dynamicTBConfig]="ulterioriInfoConfig"
+          [titleCardInfo]="titleCardUlterioriInfo"
+          [titleLoadNewForm]="labelBtnAddUlterioriInfo"
+          [nameArrayForm]="'ulterioriInfo.properties'"
+          [notFoundMessage]="'MESSAGE.NOT_FOUND_ULTERIORE_INFO'"
+          [modalType]="'ulterioreInfo'"
+        >
+        </piao-dynamic-tb>
+      </div>
+
+      <!-- Allegato -->
+      <div class="pt-4">
+        <piao-attachment
+          [title]="'SCRIVANIA_PA.SERVIZI_PIAO.INDICE_PIAO.SEZIONE.ATTACHMENT.TITLE_ATTACHMENT'"
+          [subTitle]="
+            'SCRIVANIA_PA.SERVIZI_PIAO.INDICE_PIAO.SEZIONE.ATTACHMENT.SUB_TITLE_ATTACHMENT'
+          "
+          [loadAttachment]="
+            'SCRIVANIA_PA.SERVIZI_PIAO.INDICE_PIAO.SEZIONE.ATTACHMENT.LOAD_ATTACHMENT'
+          "
+          [idPiao]="piaoDTO.id"
+          [isDoc]="true"
+          [showDescription]="false"
+          [showName]="false"
+          [form]="form"
+          [codTipologia]="codTipologia"
+          [codTipologiaAllegato]="codTipologiaAllegato"
+          [isOnlyAttachment]="true"
+          [sezione]="sezioneSection"
+          (attachmentLoaded)="handleAttachmentLoaded()"
+        ></piao-attachment>
+      </div>
+    </form>
+  </div>
+
+  <!-- Modale Dati Pubblicazione -->
+  <piao-modal
+    [open]="openModalDatiPubblicazione"
+    [isIcon]="true"
+    [icon]="'Pencil'"
+    [iconStyle]="'icon-modal'"
+    (closed)="closeDatiPubblicazioneModal()"
+    (confirm)="confirmDatiPubblicazioneModal()"
+  >
+    <piao-modal-dati-pubblicazione
+      #childDatiPubblicazione
+      [piaoDTO]="piaoDTO"
+      (close)="closeDatiPubblicazioneModal()"
+    >
+    </piao-modal-dati-pubblicazione>
+  </piao-modal>
+}

@@ -1,0 +1,118 @@
+{{- range $key, $_ := .Values.deployments }}
+{{- $default := $.Values.deploymentDefaults | deepCopy }}
+{{- $override := index $.Values.deployments $key }}
+{{- $values := mergeOverwrite  $default $override }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ $.Release.Name }}-{{ $key }}
+  labels:
+    {{- include "dfp-piao.labels" $ | nindent 4 }}
+spec:
+  {{- if not $values.autoscaling.enabled }}
+  replicas: {{ $values.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      app: {{ $.Release.Name }}-{{ $key }}
+      {{- include "dfp-piao.selectorLabels" $ | nindent 6 }}
+  template:
+    metadata:
+      {{- with $values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        app: {{ $.Release.Name }}-{{ $key }}
+        {{- include "dfp-piao.labels" $ | nindent 8 }}
+        {{- with $values.podLabels }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
+    spec:
+      {{- with $values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "dfp-piao.serviceAccountName" $ }}
+      {{- with $values.podSecurityContext }}
+      securityContext:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      containers:
+        - name: {{ $.Chart.Name }}
+          {{- with $values.securityContext }}
+          securityContext:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          image: "{{ $values.image.repository }}:{{ $values.image.tag | default $.Chart.AppVersion }}"
+          imagePullPolicy: {{ $values.image.pullPolicy }}
+          {{- if or $values.cmValues $values.cm $values.secrets}}
+          envFrom:
+          {{- range $values.configMaps }}
+            - configMapRef:
+                name: {{ . }}
+          {{- end }}
+          {{- range $values.secrets }}
+            - secretRef:
+                name: {{ . }}
+          {{- end }}
+          {{- with $values.cmValues }}
+            - configMapRef:
+                name: {{ $key }}-cm
+          {{- end }}
+          {{- end }}
+          ports:
+            - name: http
+              containerPort: {{ $values.service.port }}
+              protocol: TCP
+          {{- with $values.livenessProbe }}
+          livenessProbe:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- with $values.readinessProbe }}
+          readinessProbe:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- with $values.resources }}
+          resources:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- with $values.volumeMounts }}
+          volumeMounts:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+      {{- with $values.volumes }}
+      volumes:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with $values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with $values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with $values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ $.Release.Name }}-{{ $key }}-svc
+  labels:
+    {{- include "dfp-piao.labels" $ | nindent 4 }}
+spec:
+  type: {{ $values.service.type }}
+  ports:
+    - port: {{ $values.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    app: {{ $.Release.Name }}-{{ $key }}
+    {{- include "dfp-piao.selectorLabels" $ | nindent 4 }}
+{{- end }}

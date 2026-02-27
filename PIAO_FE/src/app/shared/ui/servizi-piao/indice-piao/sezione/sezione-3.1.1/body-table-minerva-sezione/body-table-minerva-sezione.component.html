@@ -1,0 +1,22 @@
+<div class="main">
+
+  <p class="title">
+    {{ title | translate}}
+  </p>
+
+  <p>
+    <span *ngIf="!showTable" class="subtitle" role="button" tabindex="0" (click)="handleOpenTable()">
+      {{ 'SCRIVANIA_PA.SERVIZI_PIAO.INDICE_PIAO.SEZIONE.SEZIONE-3.3.1.OPEN_TABLE_MINERVA' | translate}}
+    </span>
+  </p>
+
+  <div class="table-minerva">
+    <piao-table-minerva *ngIf="showTable" [data]="dataTable"></piao-table-minerva>
+  </div>
+
+</div>
+
+<piao-modal *ngIf="openModal" [isIcon]="true" [icon]="icon" [iconStyle]="iconStyle" [open]="openModal"
+  [showButtonCancel]="false" [showButtonConfirm]="false" (closed)="handleCloseModal()">
+  <piao-modal-not-found-data-minerva></piao-modal-not-found-data-minerva>
+</piao-modal>

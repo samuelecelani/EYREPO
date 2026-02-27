@@ -1,0 +1,141 @@
+@if (open) {
+  <piao-modal
+    [open]="open"
+    [isIcon]="true"
+    [icon]="'Pencil'"
+    [iconStyle]="'icon-modal-sottofase'"
+    [showButtonCancel]="true"
+    [showButtonConfirm]="true"
+    [titleButtonConfirm]="'BUTTONS.INSERT'"
+    [disabledButtonConfirm]="sottofaseForm?.invalid"
+    (closed)="handleClose()"
+    (confirm)="handleConfirm()"
+  >
+    <div [ngClass]="main">
+      <p class="title">{{ labelModalSottofaseTitle | translate }}</p>
+      <p class="sub-title pt-2">{{ labelModalSottofaseDesc | translate }}</p>
+      <p class="alert-label pt-4">{{ labelModalSottofaseCampiObbligatori | translate }}</p>
+
+      <form [formGroup]="sottofaseForm">
+        <div class="form-content pt-3">
+          <div class="row g-3">
+            <!-- Fase (solo UI, readonly) -->
+            <div class="col-12 col-lg-6">
+              <piao-text-box
+                [label]="labelModalFase"
+                [id]="'fase'"
+                [typeInput]="'text'"
+                [control]="sottofaseForm.controls['fase']"
+                [inputClass]="'input'"
+                [isReadOnly]="true"
+                [maxValidatorLength]="50"
+                [descTooltip]="labelModalFase"
+                [containerClass]="'container-width-full'"
+              ></piao-text-box>
+            </div>
+
+            <!-- Denominazione -->
+            <div class="col-12 col-lg-6">
+              <piao-text-box
+                [label]="labelModalDenominazione"
+                [id]="'denominazione'"
+                [typeInput]="'text'"
+                [control]="sottofaseForm.controls['denominazione']"
+                [inputClass]="'input'"
+                [maxValidatorLength]="200"
+                [descTooltip]="labelModalDenominazione"
+                [containerClass]="'container-width-full'"
+              ></piao-text-box>
+            </div>
+          </div>
+
+          <!-- Descrizione sottofase -->
+          <div class="pt-3">
+            <piao-text-area
+              [label]="labelModalDescrizioneSottofase"
+              [control]="sottofaseForm.controls['descrizione']"
+              [id]="'descrizione'"
+              [textAreaClass]="'text-area'"
+              [maxValidatorLength]="'500'"
+              [descTooltip]="labelModalDescrizioneSottofase"
+              [containerClass]="'container-width-full'"
+            ></piao-text-area>
+          </div>
+
+          <!-- Date -->
+          <div class="row g-3 pt-3">
+            <div class="col-12 col-lg-6">
+              <piao-date-picker
+                [label]="labelModalDataInizio"
+                [id]="'dataInizio'"
+                [control]="sottofaseForm.controls['dataInizio']"
+                [required]="true"
+                [descTooltip]="labelModalDataInizio"
+                [containerClass]="'container-width-full'"
+                [min]="minDate"
+              ></piao-date-picker>
+            </div>
+            <div class="col-12 col-lg-6">
+              <piao-date-picker
+                [label]="labelModalDataFine"
+                [id]="'dataFine'"
+                [control]="sottofaseForm.controls['dataFine']"
+                [required]="true"
+                [descTooltip]="labelModalDataFine"
+                [containerClass]="'container-width-full'"
+                [min]="sottofaseForm.controls['dataInizio'].value || minDate"
+              ></piao-date-picker>
+            </div>
+          </div>
+
+          <!-- Strumenti e Fonte dato -->
+          <div class="row g-3 pt-3">
+            <div class="col-12 col-lg-6">
+              <piao-text-box
+                [label]="labelModalStrumenti"
+                [id]="'strumenti'"
+                [typeInput]="'text'"
+                [control]="sottofaseForm.controls['strumenti']"
+                [inputClass]="'input'"
+                [maxValidatorLength]="200"
+                [descTooltip]="labelModalStrumenti"
+                [containerClass]="'container-width-full'"
+              ></piao-text-box>
+            </div>
+            <div class="col-12 col-lg-6">
+              <piao-text-box
+                [label]="labelModalFonteDato"
+                [id]="'fonteDato'"
+                [typeInput]="'text'"
+                [control]="sottofaseForm.controls['fonteDato']"
+                [inputClass]="'input'"
+                [maxValidatorLength]="200"
+                [descTooltip]="labelModalFonteDato"
+                [containerClass]="'container-width-full'"
+              ></piao-text-box>
+            </div>
+          </div>
+
+          <div class="row pt-2">
+            <piao-dynamic-tb-fields
+              [formGroup]="sottofaseForm"
+              [dynamicTBConfig]="attoriConfig"
+              [nameArrayForm]="'attore.properties'"
+              [containerInputClass]="'container-width-full'"
+              [propertiesPath]="'attore.properties'"
+              [titleLabel]="'SEZIONE_22.FASI.MODAL.ATTORI_COINVOLTI_TITLE'"
+              [notFoundLabel]="'SEZIONE_22.FASI.MODAL.NOT_FOUND_ATTORI_COINVOLTI'"
+              [addFieldLabel]="'SEZIONE_22.FASI.MODAL.ADD_ATTORI_COINVOLTI'"
+              [isTooltip]="true"
+              [isRequired]="true"
+              (modalDeleteOpened)="handleAddModalOpened()"
+              (modalDeleteClosed)="handleAddModalClosed()"
+              [columnClass]="'col-12 col-xl-6 col-lg-6'"
+            >
+            </piao-dynamic-tb-fields>
+          </div>
+        </div>
+      </form>
+    </div>
+  </piao-modal>
+}

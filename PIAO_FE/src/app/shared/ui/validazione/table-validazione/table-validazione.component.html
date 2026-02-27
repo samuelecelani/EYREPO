@@ -1,0 +1,141 @@
+<p class="alert-label pt-3">
+  {{ 'MESSAGE.ALERT_MANDATORY_FIELDS' | translate }}
+</p>
+
+<div class="col-12 col-xl-4 pt-4">
+  <piao-dropdown
+    [title]="labelTriennioDropDown | translate"
+    [formControlName]="'triennio'"
+    [formControl]="validazione.controls['triennio']"
+    [dropdown]="triennioOptions"
+    [isTooltip]="false"
+    [isMulti]="false"
+    [dropContainerClass]="'container-width-full'"
+    [isRequired]="true"
+    (isChange)="changeTriennio($event)"
+  >
+  </piao-dropdown>
+</div>
+
+<div class="table-container pt-5">
+  <table class="table-custom">
+    <thead>
+      <tr>
+        <th
+          *hasRuolo="['REFERENTE', 'VALIDATORE']"
+          (click)="selectAll()"
+          class="link-blue col-select"
+        >
+          {{ 'VALIDAZIONE.TABLE.SEL_ALL_TH' | translate }}
+        </th>
+        <th>{{ 'VALIDAZIONE.TABLE.TRIEN_TH' | translate }}</th>
+        <th>{{ 'VALIDAZIONE.TABLE.PIAO_SEZ_TH' | translate }}</th>
+        <th>{{ 'VALIDAZIONE.TABLE.VAL_STATE_TH' | translate }}</th>
+        <th>{{ 'VALIDAZIONE.TABLE.USER_PROF_SEND_REQ_TH' | translate }}</th>
+        <th>{{ 'VALIDAZIONE.TABLE.DATE_SEND_VAL_REQ_TH' | translate }}</th>
+        <th>{{ 'VALIDAZIONE.TABLE.USER_EVAD_VAL_REQ_TH' | translate }}</th>
+        <th>{{ 'VALIDAZIONE.TABLE.DATE_EVAD_VAL_REQ_TH' | translate }}</th>
+        <th>{{ 'VALIDAZIONE.TABLE.OBS_TH' | translate }}</th>
+        <th class="col-azioni">{{ 'VALIDAZIONE.TABLE.ACT_TH' | translate }}</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      @for (row of tableData; track row.id) {
+        <tr>
+          <td *hasRuolo="['REFERENTE', 'VALIDATORE']" class="col-select-td">
+            <input
+              type="checkbox"
+              aria-label="Check"
+              [checked]="row.selected"
+              [class.is-readonly]="getReadOnlyForCheck(row)"
+              [disabled]="getReadOnlyForCheck(row)"
+              (change)="row.selected = !row.selected"
+            />
+          </td>
+          <td>
+            <strong>{{ row.triennio ? row.triennio : '-' }}</strong>
+          </td>
+          <td (click)="redirectToSection(row.sezione)" class="link-blue">
+            {{ row.sezione ? row.sezione : '-' }}
+          </td>
+          <td>{{ row.statoValidazione ? row.statoValidazione : '-' }}</td>
+          <td>{{ row.profUtenteInvioRichiesta ? row.profUtenteInvioRichiesta : '-' }}</td>
+          <td>
+            {{ row.dataInvioRichiesta ? (row.dataInvioRichiesta | date: 'dd/MM/yyyy') : '-' }}
+          </td>
+          <td>{{ row.profUtenteValidazione ? row.profUtenteValidazione : '-' }}</td>
+          <td>{{ row.dataValidazione ? (row.dataValidazione | date: 'dd/MM/yyyy') : '-' }}</td>
+          <td>{{ row.osservazioni ? row.osservazioni : '-' }}</td>
+          <td class="col-azioni">
+            <piao-azioni
+              [isTitle]="false"
+              [verticalEllipsis]="getActionsFor(row)"
+              [isReadOnly]="getReadOnlyFor(row)"
+            ></piao-azioni>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
+<div class="d-flex justify-content-end pt-3">
+  <p
+    [innerHTML]="'VALIDAZIONE.TABLE.SELECT_SECTION' | translate: { n: selectedSections.length }"
+  ></p>
+</div>
+
+<div class="checkbox-download-container">
+  <div *hasRuolo="'REFERENTE'" class="checkbox-wrapper">
+    <input
+      type="checkbox"
+      id="checkAllegati"
+      class="form-check-input"
+      [checked]="true"
+      aria-label="Check allegati"
+    />
+
+    <!-- Label con HTML e translate -->
+    <div class="checkbox-text">
+      <label
+        for="checkAllegati"
+        class="checkbox-label"
+        [innerHTML]="checkBoxLabel | translate"
+      ></label>
+      <a [routerLink]="href" class="checkbox-link" [innerHTML]="textHref | translate"></a>
+    </div>
+  </div>
+
+  <div *hasRuolo="['VALIDATORE', 'REFERENTE']" class="download-button">
+    <piao-button
+      [disabled]="selectedSections.length === 0"
+      [variant]="'primary'"
+      [size]="'lg-plus'"
+      (clicked)="openModal()"
+    >
+      {{ buttonSectionPiao | translate }}
+    </piao-button>
+  </div>
+</div>
+
+@if (openModalValidation) {
+  <piao-modal
+    [isIcon]="true"
+    [icon]="iconModalValidation"
+    [iconStyle]="iconStyle"
+    [open]="openModalValidation"
+    [disabledButtonConfirm]="disabledButtonConfirm"
+    (closed)="closeModal()"
+    (confirm)="handleValidation()"
+  >
+    <piao-modal-validazione
+      #child
+      [title]="titleModalValidation"
+      [subTitle]="subTitleModalValidation"
+      [subTitleParams]="subTitleModalParams"
+      [infoOperazione]="infoOperazioneModalValidation"
+      [isOsservazioni]="isOsservazioni"
+    >
+    </piao-modal-validazione>
+  </piao-modal>
+}

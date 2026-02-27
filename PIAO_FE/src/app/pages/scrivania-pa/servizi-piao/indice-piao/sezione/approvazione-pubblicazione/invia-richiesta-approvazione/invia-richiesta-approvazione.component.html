@@ -1,0 +1,55 @@
+<div class="main">
+  <form [formGroup]="form">
+    <p class="title">{{ title | translate }}</p>
+    <br />
+    <p class="subtitle" [innerHTML]="subtitle | translate"></p>
+    <div class="row pt-4">
+      <div class="col-12 col-lg-4">
+        <piao-text-box
+          [label]="emailLabel"
+          [typeInput]="'email'"
+          [inputClass]="'input'"
+          [control]="form.controls['email']"
+          [maxValidatorLength]="50"
+          [id]="'email'"
+          [descTooltip]="emailLabel"
+          [containerClass]="'container-width-full'"
+          [required]="true"
+        >
+        </piao-text-box>
+      </div>
+      <div class="col-12 col-lg-4">
+        <piao-text-box
+          [label]="oggettoLabel"
+          [typeInput]="'text'"
+          [inputClass]="'input'"
+          [control]="form.controls['oggetto']"
+          [maxValidatorLength]="50"
+          [id]="'oggetto'"
+          [descTooltip]="oggettoLabel"
+          [containerClass]="'container-width-full'"
+          [required]="true"
+        >
+        </piao-text-box>
+      </div>
+    </div>
+    <div class="pt-4">
+      <piao-text-area
+        [label]="testoLabel"
+        [control]="form.controls['testo']"
+        [maxValidatorLength]="2000"
+        [id]="'testo'"
+        textAreaClass="text-area"
+        [descTooltip]="testoLabel"
+        [containerClass]="'container-width-full'"
+        [required]="true"
+      >
+      </piao-text-area>
+    </div>
+    <div class="button-container">
+      <piao-button variant="primary" (click)="handleInviaRichiestaValidazione()">
+        {{ buttonLabel | translate }}
+      </piao-button>
+    </div>
+  </form>
+</div>

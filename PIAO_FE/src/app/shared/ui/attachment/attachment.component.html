@@ -1,0 +1,198 @@
+<div class="main">
+  <div class="container-title">
+    <p [class]="classTitle">{{ title | translate }}</p>
+    @if (loadAttachment) {
+      <p
+        [class.disabled]="isOnlyAttachment && attachmentArray ? attachmentArray.length > 0 : null"
+        class="open-modal"
+        (click)="load()"
+      >
+        {{ loadAttachment | translate }}
+        <piao-svg [icon]="'PlusCircle'" [fillColor]="fillColor" [svgContainer]="'svg'"></piao-svg>
+      </p>
+    }
+  </div>
+  @if (subTitle) {
+    <p class="sub-title pt-4">{{ subTitle | translate }}</p>
+  }
+
+  @if (form) {
+    <form class="container-text-area" [formGroup]="form">
+      <piao-text-area
+        [isReadOnly]="isOnlyAttachment && attachmentArray.length === 0"
+        [label]="labelTADescAttachment"
+        [id]="'descrizioneAllegato'"
+        [textAreaClass]="classTADescAttachment"
+        [control]="form.controls['allegati'].controls[0].controls['descrizione']"
+        [maxValidatorLength]="100"
+        [descTooltip]="labelTADescAttachment"
+        [containerClass]="'container-width-full'"
+      >
+      </piao-text-area>
+    </form>
+  }
+</div>
+@if (attachmentArray.length > 0) {
+  <div class="table-attachment">
+    @if (isOnlyAttachment) {
+      <p class="title-att">{{ 'TH_ATTACHMENTS.DETAILS_DOC' | translate }}</p>
+    }
+    @if (!isTableAttachment) {
+      <table class="table-image">
+        <tbody>
+          @for (x of attachmentArray; track $index) {
+            <tr>
+              <td>{{ x.codDocumentoFE }}.{{ x.type }}</td>
+              <td>
+                {{ x.type | uppercase }} | {{ x.sizeAllegato }}
+                {{ 'SCRIVANIA_PA.SERVIZI_PIAO.INDICE_PIAO.ATTACHMENT.SIZE' | translate }}
+              </td>
+
+              <td>
+                <div class="actions-end-row">
+                  <p (click)="downloadLogoImage(x)" class="action-link">
+                    {{ 'BUTTONS.DOWNLOAD' | translate }}
+                    <piao-svg
+                      [icon]="'Download'"
+                      [fillColor]="fillColor"
+                      [svgContainer]="'svg'"
+                    ></piao-svg>
+                  </p>
+
+                  <p (click)="handleOpenModalDelete(x)" class="action-link">
+                    {{ 'BUTTONS.DELETE' | translate }}
+                    <piao-svg
+                      [icon]="'Delete'"
+                      [fillColor]="fillColor"
+                      [svgContainer]="'svg'"
+                    ></piao-svg>
+                  </p>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    } @else if (isTableAttachmentIndicePiao) {
+      <table class="table-att-piao">
+        <tbody>
+          <th>{{ 'TH_ATTACHMENTS.NAME' | translate }}</th>
+          <th>{{ 'TH_ATTACHMENTS.DESC' | translate }}</th>
+          <th>{{ 'TH_ATTACHMENTS.DATE' | translate }}</th>
+          <th>{{ 'TH_ATTACHMENTS.USER' | translate }}</th>
+          <th>{{ 'TH_ATTACHMENTS.SIZE' | translate }}</th>
+          <th>{{ 'TH_ATTACHMENTS.ACTIONS' | translate }}</th>
+          @for (x of attachmentArray; track $index) {
+            <tr>
+              <td>{{ x.codDocumentoFE }}</td>
+              <td>{{ x.descrizione }}</td>
+              <td>{{ x.createdTs | date: 'dd/MM/yyyy' }}</td>
+              <td>ADMIN</td>
+              <td>
+                {{ x.type | uppercase }} | {{ x.sizeAllegato }}
+                {{ 'SCRIVANIA_PA.SERVIZI_PIAO.INDICE_PIAO.ATTACHMENT.SIZE' | translate }}
+              </td>
+
+              <td>
+                <div class="actions-center-row">
+                  <p (click)="download(x.downloadUrl)" class="action-link">
+                    {{ 'BUTTONS.DOWNLOAD' | translate }}
+                    <piao-svg
+                      [icon]="'Download'"
+                      [fillColor]="fillColor"
+                      [svgContainer]="'svg'"
+                    ></piao-svg>
+                  </p>
+
+                  <p (click)="handleOpenModalDelete(x)" class="action-link">
+                    {{ 'BUTTONS.DELETE' | translate }}
+                    <piao-svg
+                      [icon]="'Delete'"
+                      [fillColor]="fillColor"
+                      [svgContainer]="'svg'"
+                    ></piao-svg>
+                  </p>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    } @else {
+      <table class="table-att">
+        <tbody>
+          <th>{{ 'TH_ATTACHMENTS.NAME' | translate }}</th>
+          <th>{{ 'TH_ATTACHMENTS.DATE' | translate }}</th>
+          <th>{{ 'TH_ATTACHMENTS.USER' | translate }}</th>
+          <th>{{ 'TH_ATTACHMENTS.SIZE' | translate }}</th>
+          <th>{{ 'TH_ATTACHMENTS.ACTIONS' | translate }}</th>
+          @for (x of attachmentArray; track $index) {
+            <tr>
+              <td>{{ x.codDocumentoFE }}</td>
+              <td>{{ x.createdTs | date: 'dd/MM/yyyy' }}</td>
+              <td>ADMIN</td>
+              <td>
+                {{ x.type | uppercase }} | {{ x.sizeAllegato }}
+                {{ 'SCRIVANIA_PA.SERVIZI_PIAO.INDICE_PIAO.ATTACHMENT.SIZE' | translate }}
+              </td>
+
+              <td>
+                <div class="actions-center-row">
+                  <p (click)="download(x.downloadUrl)" class="action-link">
+                    {{ 'BUTTONS.DOWNLOAD' | translate }}
+                    <piao-svg
+                      [icon]="'Download'"
+                      [fillColor]="fillColor"
+                      [svgContainer]="'svg'"
+                    ></piao-svg>
+                  </p>
+
+                  <p (click)="handleOpenModalDelete(x)" class="action-link">
+                    {{ 'BUTTONS.DELETE' | translate }}
+                    <piao-svg
+                      [icon]="'Delete'"
+                      [fillColor]="fillColor"
+                      [svgContainer]="'svg'"
+                    ></piao-svg>
+                  </p>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    }
+  </div>
+}
+
+@if (openModal) {
+  <piao-modal
+    [disabledButtonConfirm]="disabledButtonConfirm"
+    [isIcon]="true"
+    [icon]="icon"
+    [iconStyle]="iconStyle"
+    [open]="openModal"
+    (closed)="handleCloseModal()"
+    (confirm)="handleConfirmModal()"
+  >
+    <piao-modal-attachment
+      #child
+      [showDescription]="showDescription"
+      [showName]="showName"
+      [isDoc]="isDoc"
+    ></piao-modal-attachment>
+  </piao-modal>
+}
+
+@if (openModalDelete) {
+  <piao-modal-delete
+    [icon]="'AlertCircle'"
+    [title]="'MODAL_REMOVE.ATTACHMENT.TITLE'"
+    [message]="'MODAL_REMOVE.ATTACHMENT.MESSAGE'"
+    [subMessage]="'MODAL_REMOVE.CONFIRM_OPERATION'"
+    [openModalDelete]="openModalDelete"
+    [elementToDelete]="elementToDelete"
+    (confirm)="remove(elementToDelete.id, elementToDelete.codDocumento)"
+    (closed)="handleCloseModalDelete()"
+  ></piao-modal-delete>
+}

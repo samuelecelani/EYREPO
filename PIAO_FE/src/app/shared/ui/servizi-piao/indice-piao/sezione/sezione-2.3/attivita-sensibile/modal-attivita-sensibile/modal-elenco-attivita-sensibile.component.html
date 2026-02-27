@@ -1,0 +1,89 @@
+<div [ngClass]="main">
+  <p class="title">{{ title | translate }}</p>
+  <p class="sub-title pt-2">{{ subTitle | translate }}</p>
+  <p class="alert-label pt-4">
+    {{ 'MESSAGE.ALERT_MANDATORY_FIELDS' | translate }}
+  </p>
+  <form [formGroup]="formGroup">
+    <div class="container-full pt-3">
+      <div class="row">
+        <div class="col-12 col-xl-6 col-lg-6">
+          <piao-text-box
+            [label]="labelAttivitaSensibile"
+            [typeInput]="'text'"
+            [inputClass]="'input'"
+            [control]="formGroup.controls['denominazione']"
+            [maxValidatorLength]="50"
+            [id]="'attivitaSensibile'"
+            [descTooltip]="labelAttivitaSensibile"
+            [required]="true"
+            [containerClass]="'container-width-full'"
+          >
+          </piao-text-box>
+        </div>
+        <div class="col-12 col-xl-6 col-lg-6">
+          <piao-text-box
+            [label]="labelProcessoCollegato"
+            [typeInput]="'text'"
+            [inputClass]="'input'"
+            [control]="formGroup.controls['processoCollegato']"
+            [maxValidatorLength]="50"
+            [id]="'processoCollegato'"
+            [descTooltip]="labelProcessoCollegato"
+            [containerClass]="'container-width-full'"
+          >
+          </piao-text-box>
+        </div>
+      </div>
+      <div class="pt-2">
+        <piao-text-area
+          [label]="labelDescrizione"
+          [control]="formGroup.controls['descrizione']"
+          [id]="'descrizione'"
+          textAreaClass="text-area"
+          [maxValidatorLength]="'500'"
+          [descTooltip]="labelDescrizione"
+          [containerClass]="'container-width-full'"
+        ></piao-text-area>
+      </div>
+
+      <piao-dynamic-dropdown-fields
+        [formGroup]="formGroup"
+        [dynamicTBConfig]="attoriConfig"
+        [nameArrayForm]="'attore.properties'"
+        [containerInputClass]="'container-width-25'"
+        [propertiesPath]="'attore.properties'"
+        [dropdown]="dropdownAttori"
+        [titleLabel]="titleAttoriCoinvolti"
+        [notFoundLabel]="notFoundAttoriCoinvolti"
+        [addFieldLabel]="addAttoriCoinvolti"
+        [isFirstRemove]="true"
+        [isTooltip]="true"
+        (modalOpened)="handleAddModalOpened()"
+        (modalClosed)="handleAddModalClosed()"
+        (modalDeleteOpened)="handleAddModalOpened()"
+        (modalDeleteClosed)="handleAddModalClosed()"
+        [columnClass]="'col-12 col-xl-6 col-lg-6'"
+      >
+      </piao-dynamic-dropdown-fields>
+
+      <piao-dynamic-tb-fields
+        [formGroup]="formGroup"
+        [dynamicTBConfig]="ulterioreInfo"
+        [nameArrayForm]="'ulterioriInfo.properties'"
+        [modalType]="'ulterioreInfo'"
+        [containerInputClass]="'container-width-18-5'"
+        [propertiesPath]="'ulterioriInfo.properties'"
+        [titleLabel]="'INDICATORI.MODAL.ADD_INFO.TITLE'"
+        [notFoundLabel]="'INDICATORI.MODAL.ADD_INFO.NOT_FOUND'"
+        [addFieldLabel]="'INDICATORI.MODAL.ADD_INFO.ADD_FIELD'"
+        (modalOpened)="handleAddModalOpened()"
+        (modalClosed)="handleAddModalClosed()"
+        (modalDeleteOpened)="handleAddModalOpened()"
+        (modalDeleteClosed)="handleAddModalClosed()"
+        [columnClass]="'col-12 col-xl-6 col-lg-6'"
+      >
+      </piao-dynamic-tb-fields>
+    </div>
+  </form>
+</div>

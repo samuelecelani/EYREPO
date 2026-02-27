@@ -1,0 +1,87 @@
+<div class="main">
+  @if (title) {
+    <p class="title">{{ title | translate }}</p>
+  }
+  @if (subTitle) {
+    <p class="sub-title pt-4">{{ subTitle | translate }}</p>
+  }
+
+  <div class="row">
+    @for (x of arrayForm?.controls; track x) {
+      @let i = $index + 1;
+      @let lengthArray = arrayForm?.controls?.length;
+
+      @let labelAndDescTool =
+        isMongo && !modalType
+          ? lengthArray > 1
+            ? dynamicTBConfig.labelTB + ' ' + i
+            : dynamicTBConfig.labelTB
+          : modalType && isMongo
+            ? x.controls[dynamicTBConfig.controlTBMongo]?.value || dynamicTBConfig.controlTBMongo
+            : dynamicTBConfig.labelTB;
+
+      <div [class]="columnClass">
+        <div class="dropdown-wrapper">
+          <piao-dropdown
+            [dropdown]="dropdown"
+            [title]="labelAndDescTool"
+            [formControlName]="labelAndDescTool"
+            [formControl]="x.controls[dynamicTBConfig.controlTB]"
+            [isTooltip]="true"
+            [isTranslate]="false"
+            [dropContainerClass]="containerInputClass"
+          ></piao-dropdown>
+
+          @if (isFirstRemove) {
+            <p class="link-blue" (click)="handleOpenModalDelete($index)">
+              {{ removeForm | translate }}
+            </p>
+          } @else if (!isFirstRemove && $index !== 0) {
+            <p class="link-blue" (click)="handleOpenModalDelete($index)">
+              {{ removeForm | translate }}
+            </p>
+          }
+        </div>
+      </div>
+    }
+
+    @if (arrayForm.controls.length === 0) {
+      @if (notFoundMessage) {
+        <p class="not-found">
+          {{ notFoundMessage | translate }}
+        </p>
+      }
+    }
+  </div>
+  @if (!showAddCardInfo && isAddButtonInContainer) {
+    <p class="d-flex justify-content-end pt-1">
+      <span class="link-blue" (click)="handleAddNewForm()">
+        {{ addButton | translate }}
+      </span>
+    </p>
+  }
+
+  @if (showAddCardInfo) {
+    <div class="pt-4">
+      <piao-card-info
+        [titleCardHeader]="titleCardInfo"
+        [piaoCardHeaderTitleClass]="'title-card-info'"
+        [titleLoadNewForm]="titleLoadNewForm"
+        [loadNewForm]="true"
+        [piaoCardHeaderContainerClass]="'piao-card-info-container-new-form'"
+        (clicked)="handleClickNewForm()"
+      ></piao-card-info>
+    </div>
+  }
+</div>
+
+<piao-modal-delete
+  [icon]="'AlertCircle'"
+  [title]="'MODAL_REMOVE.TITLE'"
+  [message]="'MODAL_REMOVE.MESSAGE'"
+  [subMessage]="'MODAL_REMOVE.CONFIRM_OPERATION'"
+  [openModalDelete]="openModalDelete"
+  [elementToDelete]="elementToDelete"
+  (confirm)="handleRemoveForm($event)"
+  (closed)="handleCloseModalDelete()"
+></piao-modal-delete>

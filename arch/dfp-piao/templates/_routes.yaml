@@ -1,0 +1,22 @@
+{{- $default := .Values.deploymentDefaults | deepCopy }}
+{{- range $key, $ingress := .Values.ingress }}
+{{- if not $ingress.enabled }}
+{{- range $host := $ingress.hosts }}
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: {{ $.Release.Name }}-{{ $host.service }}-route
+spec:
+  to:
+    kind: Service
+    name: {{ $.Release.Name }}-{{ $host.service }}-svc
+  port:
+    {{- $override := index $.Values.deployments ($host.service | quote) | default dict }}
+    {{- $values := mergeOverwrite $default $override }}
+    targetPort: {{ $values.service.port }}
+  tls:
+    termination: edge
+{{- end }}
+{{- end }}
+{{- end }}

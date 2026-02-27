@@ -1,0 +1,143 @@
+.container-elenco-sotto-fase {
+  display: flex;
+  flex-direction: column;
+}
+
+.empty-state-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding-top: 0.5rem;
+}
+
+.load-form {
+  display: flex;
+  flex-direction: row;
+  font-weight: 700;
+  font-size: 1rem;
+  color: #0066cc;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.table-elenco-container {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: auto;
+}
+
+.table-elenco {
+  width: 100%;
+  min-width: 70rem;
+  border-collapse: collapse;
+  margin-left: 0;
+
+  thead tr {
+    border-bottom: 0.125rem solid #5c6f82;
+  }
+
+  tbody tr {
+    border-bottom: 0.0625rem solid #d9dadb;
+  }
+
+  td {
+    padding: 1.5rem 1rem;
+    min-height: 6.5rem;
+    font-size: 0.9rem;
+    font-weight: 400;
+    text-align: left;
+    vertical-align: middle;
+  }
+
+  th {
+    font-size: 0.9rem;
+    padding: 0.75rem 1rem;
+    font-weight: 600;
+    text-align: left;
+    white-space: pre-line;
+  }
+
+  // Colonna Fase
+  th:nth-child(1),
+  td:nth-child(1) {
+    width: 9rem;
+    min-width: 9rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  // Colonna Sottofase
+  th:nth-child(2),
+  td:nth-child(2) {
+    width: 12rem;
+    min-width: 12rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  // Colonna Descrizione sottofase
+  th:nth-child(3),
+  td:nth-child(3) {
+    width: 14rem;
+    min-width: 14rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  // Colonna Attori coinvolti
+  th:nth-child(4),
+  td:nth-child(4) {
+    width: 8rem;
+    min-width: 8rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  // Colonna Strumenti
+  th:nth-child(5),
+  td:nth-child(5) {
+    width: 7rem;
+    min-width: 7rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  // Colonna Data inizio
+  th:nth-child(6),
+  td:nth-child(6) {
+    width: 7rem;
+    min-width: 7rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  // Colonna Data fine
+  th:nth-child(7),
+  td:nth-child(7) {
+    width: 7rem;
+    min-width: 7rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  // Colonna Fonte dato
+  th:nth-child(8),
+  td:nth-child(8) {
+    width: 9rem;
+    min-width: 9rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  // Colonna Azioni
+  th:nth-child(9),
+  td:nth-child(9) {
+    width: 5rem;
+    min-width: 5rem;
+    text-align: center;
+  }
+}

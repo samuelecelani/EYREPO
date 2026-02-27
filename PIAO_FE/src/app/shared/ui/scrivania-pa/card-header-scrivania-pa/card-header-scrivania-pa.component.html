@@ -1,0 +1,19 @@
+<piao-card
+  [title]="titleCardHeader"
+  [subTitle]="subTitleCardHeader"
+  [backgroundImg]="backgroundImgCardHeader"
+  [piaoCardContainer]="piaoCardHeaderContainerClass"
+  [piaoCardBody]="piaoCardHeaderBodyClass"
+  [piaoCardTitle]="piaoCardHeaderTitleClass"
+  [piaoCardSubTitle]="piaoCardHeaderSubTitleClass"
+>
+  <div wrapper class="card-avvisi-container">
+    <div class="card-avvisi-body">
+      <piao-icon [icon]="'Inbox'" [iconColor]="'#003366'"></piao-icon>
+      <span>{{ 'SCRIVANIA_PA.ALERT.NEWS_ALERT' | translate }}</span>
+      <piao-button [variant]="'primary-outline'" [size]="'md'" (clicked)="handleGoToAlerts()">{{
+        'BUTTONS.ALERT' | translate
+      }}</piao-button>
+    </div>
+  </div>
+</piao-card>

@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: db-security
+type: Opaque
+stringData:
+  POSTGRES_HOST: "db-sql-service"
+  POSTGRES_PORT: "5432"
+  POSTGRES_NAME: "postgres"
+  POSTGRES_USER: "utentepiao"
+  POSTGRES_PSW: "piaoSvil123"
+
+  MONGO_HOST: "db-nosql-service"
+  MONGO_PORT: "27017"
+  MONGO_NAME: "TestMongo"
+  MONGO_USERNAME: "utentemongo"
+  MONGO_PASSWORD: "NoSQLSvil123"

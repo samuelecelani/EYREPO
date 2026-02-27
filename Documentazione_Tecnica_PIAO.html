@@ -1,0 +1,1814 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analisi Funzionale e Tecnica - Progetto PIAO</title>
+    <style>
+        body {
+            font-family: 'Calibri', 'Arial', sans-serif;
+            line-height: 1.6;
+            max-width: 210mm;
+            margin: 0 auto;
+            padding: 20mm;
+            background-color: #fff;
+        }
+        h1 {
+            color: #2E5090;
+            text-align: center;
+            font-size: 28pt;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            page-break-before: always;
+        }
+        h1:first-of-type {
+            page-break-before: auto;
+        }
+        h2 {
+            color: #2E5090;
+            font-size: 18pt;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #2E5090;
+            padding-bottom: 5px;
+        }
+        h3 {
+            color: #4472C4;
+            font-size: 14pt;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        h4 {
+            color: #5B9BD5;
+            font-size: 12pt;
+            margin-top: 15px;
+            margin-bottom: 8px;
+        }
+        p {
+            text-align: justify;
+            margin-bottom: 10px;
+        }
+        ul, ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+        li {
+            margin-bottom: 5px;
+        }
+        .title-page {
+            text-align: center;
+            margin-top: 100px;
+        }
+        .title-page h1 {
+            font-size: 32pt;
+            color: #2E5090;
+            margin-bottom: 30px;
+        }
+        .title-page h2 {
+            font-size: 20pt;
+            color: #4472C4;
+            border: none;
+        }
+        .title-page .date {
+            margin-top: 50px;
+            font-size: 14pt;
+            color: #666;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #2E5090;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .note {
+            background-color: #FFF4E6;
+            border-left: 4px solid #FFA500;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .code {
+            background-color: #f5f5f5;
+            padding: 10px;
+            border-left: 3px solid #2E5090;
+            font-family: 'Courier New', monospace;
+            margin: 10px 0;
+        }
+        @media print {
+            body {
+                padding: 0;
+            }
+            h1 {
+                page-break-before: always;
+            }
+            h1:first-of-type {
+                page-break-before: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="title-page">
+    <h1>ANALISI FUNZIONALE E TECNICA</h1>
+    <h2>Progetto PIAO<br>(Piano Integrato di Attività e Organizzazione)</h2>
+    <div class="date">Data: 16 Febbraio 2026</div>
+    <div class="date">Versione: 1.0</div>
+</div>
+
+<h1>1. INTRODUZIONE</h1>
+
+<p>Il progetto PIAO è una piattaforma web enterprise per la gestione del Piano Integrato di Attività e Organizzazione destinata alla Pubblica Amministrazione italiana. Il sistema permette alle PA di creare, monitorare e gestire i propri piani integrati in conformità con la normativa vigente, garantendo trasparenza, efficienza e conformità normativa.</p>
+
+<h2>1.1 Scopo del Documento</h2>
+<p>Questo documento fornisce un'analisi funzionale e tecnica completa del progetto PIAO, descrivendo l'architettura del sistema, i componenti principali, le tecnologie utilizzate, le funzionalità implementate e le best practices adottate. Il documento è destinato a sviluppatori, architetti software, project manager e stakeholder tecnici.</p>
+
+<h2>1.2 Contesto di Business</h2>
+<p>Il PIAO (Piano Integrato di Attività e Organizzazione) è uno strumento previsto dalla normativa italiana per la pianificazione delle attività delle Pubbliche Amministrazioni. Il sistema gestisce diverse sezioni del piano:</p>
+
+<ul>
+    <li><strong>Sezione 1:</strong> Scheda anagrafica dell'Amministrazione</li>
+    <li><strong>Sezione 2.1:</strong> Valore pubblico, performance e anticorruzione</li>
+    <li><strong>Sezione 2.2:</strong> Organizzazione e capitale umano</li>
+    <li><strong>Sezione 2.3:</strong> Monitoraggio</li>
+    <li><strong>Sezione 4:</strong> Trasparenza e accessibilità</li>
+</ul>
+
+<h1>2. ARCHITETTURA DEL SISTEMA</h1>
+
+<h2>2.1 Panoramica Architetturale</h2>
+<p>Il sistema PIAO adotta un'architettura a microservizi moderna con separazione netta tra frontend e backend, garantendo scalabilità, manutenibilità e resilienza. L'architettura è composta da 7 componenti principali:</p>
+
+<ul>
+    <li><strong>PIAO_FE:</strong> Frontend Angular SPA</li>
+    <li><strong>dfp-piao-gateway:</strong> API Gateway con Spring Cloud Gateway</li>
+    <li><strong>PIAO_BE:</strong> Backend API principale</li>
+    <li><strong>PIAO_BFF:</strong> Backend for Frontend</li>
+    <li><strong>WORKER:</strong> Servizio per elaborazioni asincrone</li>
+    <li><strong>DB_MIGRATIONS:</strong> Modulo di migrazione database</li>
+    <li><strong>Common/Entity:</strong> Modulo entità e DTO condivisi</li>
+</ul>
+
+<h2>2.2 Pattern Architetturali</h2>
+<p>L'architettura implementa i seguenti pattern consolidati:</p>
+
+<table>
+    <tr>
+        <th>Pattern</th>
+        <th>Descrizione</th>
+        <th>Benefici</th>
+    </tr>
+    <tr>
+        <td>Microservices Architecture</td>
+        <td>Servizi indipendenti e scalabili</td>
+        <td>Scalabilità indipendente, deployment autonomi, tecnologie diverse per servizio</td>
+    </tr>
+    <tr>
+        <td>BFF Pattern</td>
+        <td>Backend for Frontend dedicato</td>
+        <td>Ottimizzazione chiamate client, aggregazione dati, riduzione latenza</td>
+    </tr>
+    <tr>
+        <td>API Gateway Pattern</td>
+        <td>Punto di ingresso unico</td>
+        <td>Routing centralizzato, autenticazione, rate limiting, CORS</td>
+    </tr>
+    <tr>
+        <td>Repository Pattern</td>
+        <td>Astrazione accesso dati</td>
+        <td>Disaccoppiamento business logic da persistenza</td>
+    </tr>
+    <tr>
+        <td>DTO Pattern</td>
+        <td>Data Transfer Objects</td>
+        <td>Separazione modello dominio da trasferimento dati</td>
+    </tr>
+    <tr>
+        <td>Event-Driven</td>
+        <td>Comunicazione basata su eventi</td>
+        <td>Disaccoppiamento, scalabilità, resilienza</td>
+    </tr>
+</table>
+
+<h2>2.3 Stack Tecnologico</h2>
+
+<h3>2.3.1 Frontend</h3>
+<ul>
+    <li><strong>Framework:</strong> Angular 20.x con Standalone Components</li>
+    <li><strong>Linguaggio:</strong> TypeScript 5.8 (strict mode)</li>
+    <li><strong>UI Framework:</strong> Tailwind CSS 3.4</li>
+    <li><strong>Grafici:</strong> ECharts 6.0</li>
+    <li><strong>Internazionalizzazione:</strong> @ngx-translate/core 17.0</li>
+    <li><strong>Testing:</strong> Jest 29 + Karma 6 + Testing Library 16</li>
+    <li><strong>Build Tool:</strong> Angular CLI 20.x</li>
+    <li><strong>Code Quality:</strong> ESLint 8 + Prettier 3</li>
+</ul>
+
+<h3>2.3.2 Backend</h3>
+<ul>
+    <li><strong>Framework:</strong> Spring Boot 3.5.6 (Spring Framework 6.x)</li>
+    <li><strong>Linguaggio:</strong> Java 21 (LTS)</li>
+    <li><strong>Build Tool:</strong> Maven 3.x</li>
+    <li><strong>Database Relazionale:</strong> PostgreSQL (Azure Database for PostgreSQL)</li>
+    <li><strong>Database NoSQL:</strong> MongoDB (per dati semi-strutturati)</li>
+    <li><strong>Migrazioni DB:</strong> Liquibase (YAML format)</li>
+    <li><strong>ORM:</strong> Hibernate 6.6 / JPA + Envers (audit trail)</li>
+    <li><strong>Mapping:</strong> MapStruct 1.5.5 (compile-time type-safe)</li>
+    <li><strong>Documentazione API:</strong> SpringDoc OpenAPI 2.8.5</li>
+    <li><strong>Cache:</strong> Caffeine (Spring Cache abstraction)</li>
+    <li><strong>Sicurezza:</strong> Spring Security 6 + OAuth2 Resource Server</li>
+    <li><strong>Gateway:</strong> Spring Cloud Gateway (WebFlux)</li>
+    <li><strong>Validation:</strong> Jakarta Validation (Bean Validation 3.0)</li>
+    <li><strong>Utilities:</strong> Lombok, Apache POI 5.4</li>
+</ul>
+
+<h3>2.3.3 DevOps e Infrastruttura</h3>
+<ul>
+    <li><strong>Containerizzazione:</strong> Docker (multi-stage builds)</li>
+    <li><strong>Orchestrazione:</strong> Kubernetes (Minikube per sviluppo)</li>
+    <li><strong>Package Management:</strong> Helm Charts 3.x</li>
+    <li><strong>CI/CD:</strong> Azure DevOps Pipelines</li>
+    <li><strong>GitOps:</strong> ArgoCD (Application of Applications pattern)</li>
+    <li><strong>Registry:</strong> Nexus Repository (localhost:8443)</li>
+    <li><strong>Reverse Proxy:</strong> Nginx (produzione)</li>
+    <li><strong>Monitoring:</strong> Spring Boot Actuator + OpenTelemetry</li>
+</ul>
+
+<h1>3. COMPONENTI DEL SISTEMA</h1>
+
+<h2>3.1 Frontend (PIAO_FE)</h2>
+<p>Applicazione Angular Single Page Application (SPA) con architettura moderna basata su standalone components, signals e nuovo control flow di Angular.</p>
+
+<h3>Caratteristiche Principali:</h3>
+<ul>
+    <li><strong>Configurazione Runtime:</strong> Caricamento configurazione da assets/config.json prima del bootstrap tramite APP_INITIALIZER</li>
+    <li><strong>Interceptor HTTP:</strong> Gestione automatica di autenticazione, correlation-id, retry con backoff, gestione errori con toast</li>
+    <li><strong>Servizi Core:</strong> BaseApiService, LoggerService, ToastService con ToastContainer</li>
+    <li><strong>Routing:</strong> Lazy-loaded modules per ottimizzazione performance</li>
+    <li><strong>Code Quality:</strong> ESLint + Prettier per consistenza codice</li>
+    <li><strong>Configurazione CORS:</strong> Supporto per backend locale e produzione</li>
+</ul>
+
+<h3>Struttura Applicativa:</h3>
+<ul>
+    <li><strong>pages/:</strong> Pagine applicazione (index, notifiche, scrivania-pa)</li>
+    <li><strong>shared/:</strong> Componenti, servizi e utilities condivise</li>
+    <li><strong>assets/:</strong> Risorse statiche, configurazione, traduzioni, GeoJSON</li>
+    <li><strong>environments/:</strong> Configurazioni ambiente-specifiche</li>
+</ul>
+
+<div class="code">
+// Esempio configurazione runtime (assets/config.json)
+{
+  "appName": "PIAO",
+  "apiBaseUrl": "http://localhost:8080",
+  "oauth": { "clientId": "spa-public-client" },
+  "requestTimeoutMs": 8000,
+  "retry": { "maxAttempts": 3, "baseDelayMs": 300 }
+}
+</div>
+
+<h3>Porte e URL:</h3>
+<ul>
+    <li><strong>Sviluppo:</strong> http://localhost:4200 (ng serve)</li>
+    <li><strong>Produzione:</strong> http://localhost:3001 (nginx)</li>
+    <li><strong>Mock Server:</strong> http://localhost:3055 (json-server)</li>
+</ul>
+
+<h2>3.2 API Gateway (dfp-piao-gateway)</h2>
+<p>Gateway reattivo basato su Spring Cloud Gateway (WebFlux) che funge da punto di ingresso unico per tutte le richieste verso i microservizi backend.</p>
+
+<h3>Funzionalità:</h3>
+<ul>
+    <li><strong>Routing Intelligente:</strong> Instradamento richieste verso backend appropriati</li>
+    <li><strong>Autenticazione:</strong> Validazione JWT token OAuth2</li>
+    <li><strong>Autorizzazione:</strong> Verifica permessi e ruoli utente</li>
+    <li><strong>Rate Limiting:</strong> Protezione da abusi</li>
+    <li><strong>CORS Configuration:</strong> Gestione Cross-Origin Resource Sharing</li>
+    <li><strong>Health Checks:</strong> Endpoint monitoring (/actuator/health)</li>
+    <li><strong>SSL/TLS:</strong> Terminazione HTTPS con certificati (keystore.jks)</li>
+</ul>
+
+<h3>Configurazione:</h3>
+<table>
+    <tr>
+        <th>Parametro</th>
+        <th>Valore</th>
+    </tr>
+    <tr>
+        <td>Porta</td>
+        <td>8080</td>
+    </tr>
+    <tr>
+        <td>Framework</td>
+        <td>Spring Cloud Gateway Server WebFlux</td>
+    </tr>
+    <tr>
+        <td>Spring Boot Version</td>
+        <td>3.5.8</td>
+    </tr>
+    <tr>
+        <td>Spring Cloud Version</td>
+        <td>2025.0.0</td>
+    </tr>
+    <tr>
+        <td>Java Version</td>
+        <td>21</td>
+    </tr>
+</table>
+
+<h2>3.3 Backend API (PIAO_BE)</h2>
+<p>Servizio backend principale che gestisce la business logic core e l'accesso diretto ai database (PostgreSQL e MongoDB).</p>
+
+<h3>Caratteristiche:</h3>
+<ul>
+    <li><strong>Porta:</strong> 9081</li>
+    <li><strong>Database Principale:</strong> PostgreSQL (Azure)</li>
+    <li><strong>Database Secondario:</strong> MongoDB</li>
+    <li><strong>API Documentation:</strong> OpenAPI 3.0 disponibile su /openapi-ui</li>
+    <li><strong>Health Endpoints:</strong> /health/ready (readiness), /health/live (liveness)</li>
+    <li><strong>Audit Trail:</strong> Hibernate Envers per tracking modifiche</li>
+    <li><strong>Validazione:</strong> Jakarta Validation annotations</li>
+    <li><strong>Email:</strong> Spring Mail per notifiche</li>
+</ul>
+
+<h3>Architettura Layered:</h3>
+<ul>
+    <li><strong>Controller Layer:</strong> REST endpoints con @ApiV1Controller (prefisso automatico /api/v1)</li>
+    <li><strong>Service Layer:</strong> Business logic, orchestrazione, transazioni</li>
+    <li><strong>Repository Layer:</strong> Accesso dati (JPA per PostgreSQL, MongoRepository per MongoDB)</li>
+    <li><strong>Mapper Layer:</strong> Conversione Entity ↔ DTO tramite MapStruct</li>
+    <li><strong>Validation Layer:</strong> Custom validators e constraints</li>
+    <li><strong>Exception Layer:</strong> Gestione centralizzata errori con @ControllerAdvice</li>
+</ul>
+
+<h3>Domini Principali Gestiti:</h3>
+<table>
+    <tr>
+        <th>Dominio</th>
+        <th>Descrizione</th>
+        <th>Controller</th>
+    </tr>
+    <tr>
+        <td>PIAO</td>
+        <td>Gestione piani integrati</td>
+        <td>PiaoController</td>
+    </tr>
+    <tr>
+        <td>Sezioni</td>
+        <td>Gestione sezioni 1, 2.1, 2.2, 2.3, 4</td>
+        <td>Sezione1/21/22/23/4Controller</td>
+    </tr>
+    <tr>
+        <td>Stakeholder</td>
+        <td>Gestione parti interessate</td>
+        <td>StakeholderController</td>
+    </tr>
+    <tr>
+        <td>Indicatori</td>
+        <td>KPI e metriche performance</td>
+        <td>IndicatoreController</td>
+    </tr>
+    <tr>
+        <td>Anticorruzione</td>
+        <td>Eventi rischio, misure prevenzione</td>
+        <td>EventoRischioController, MisuraPrevenzioneController</td>
+    </tr>
+    <tr>
+        <td>OVP</td>
+        <td>Obiettivi Valore Pubblico</td>
+        <td>OVPController</td>
+    </tr>
+    <tr>
+        <td>Allegati</td>
+        <td>Gestione documenti e file</td>
+        <td>AllegatoController</td>
+    </tr>
+    <tr>
+        <td>Notifiche</td>
+        <td>Sistema notifiche utente</td>
+        <td>NotificationController</td>
+    </tr>
+    <tr>
+        <td>Utenti</td>
+        <td>Gestione utenti e permessi</td>
+        <td>UtenteController</td>
+    </tr>
+</table>
+
+<h3>Configurazione Database:</h3>
+<div class="code">
+# PostgreSQL (Primary)
+spring.datasource.jdbc-url=${POSTGRES_URL}
+spring.datasource.username=${POSTGRES_USER}
+spring.datasource.password=${POSTGRES_PSW}
+spring.datasource.driver-class-name=org.postgresql.Driver
+spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect
+
+# MongoDB (Secondary)
+app.second-datasource.uri=${MONGODB_URL_AUTH}
+app.second-datasource.database=${MONGODB_DB}
+
+# HikariCP Connection Pool
+spring.datasource.hikari.maximum-pool-size=8
+spring.datasource.hikari.minimum-idle=4
+spring.datasource.hikari.idle-timeout=300000
+spring.datasource.hikari.max-lifetime=1800000
+</div>
+
+<h2>3.4 Backend for Frontend (PIAO_BFF)</h2>
+<p>Servizio intermediario reattivo ottimizzato per le esigenze del frontend, che aggrega e trasforma le risposte dei servizi backend.</p>
+
+<h3>Caratteristiche:</h3>
+<ul>
+    <li><strong>Porta:</strong> 9082</li>
+    <li><strong>Framework:</strong> Spring WebFlux (programmazione reattiva)</li>
+    <li><strong>Cache:</strong> Caffeine cache per ottimizzazione performance</li>
+    <li><strong>Aggregazione:</strong> Chiamate multiple backend in parallelo</li>
+    <li><strong>Trasformazione:</strong> Ottimizzazione payload per frontend</li>
+    <li><strong>Cookie Sicuri:</strong> HttpOnly, SameSite per sicurezza</li>
+</ul>
+
+<h3>Funzionalità Specifiche BFF:</h3>
+<ul>
+    <li><strong>AuthenticationController:</strong> Gestione autenticazione utenti e sessioni</li>
+    <li><strong>S3Controller:</strong> Upload/download file su storage cloud</li>
+    <li><strong>DynamicTableController:</strong> Configurazione dinamica tabelle UI</li>
+    <li><strong>NovitaController:</strong> Gestione news e comunicazioni</li>
+    <li><strong>AvvisoController:</strong> Gestione avvisi di sistema</li>
+    <li><strong>ConfigInitializerController:</strong> Inizializzazione configurazioni</li>
+</ul>
+
+<h2>3.5 Worker (WORKER)</h2>
+<p>Servizio dedicato all'elaborazione di task asincroni, job schedulati e elaborazioni batch.</p>
+
+<h3>Caratteristiche:</h3>
+<ul>
+    <li><strong>Porta:</strong> 9083</li>
+    <li><strong>Elaborazioni Batch:</strong> Processing grandi volumi dati</li>
+    <li><strong>Job Schedulati:</strong> Task periodici automatizzati</li>
+    <li><strong>Messaging:</strong> Elaborazione messaggi da code (ActiveMQ/Kafka)</li>
+    <li><strong>Report:</strong> Generazione report periodici</li>
+    <li><strong>Email:</strong> Invio notifiche email massive</li>
+    <li><strong>Export:</strong> Generazione file Excel/PDF</li>
+</ul>
+
+<h2>3.6 Database Migrations (DB_MIGRATIONS)</h2>
+<p>Modulo dedicato alla gestione versioned delle migrazioni del database tramite Liquibase.</p>
+
+<h3>Caratteristiche:</h3>
+<ul>
+    <li><strong>Tool:</strong> Liquibase (database-independent)</li>
+    <li><strong>Formato:</strong> YAML (human-readable)</li>
+    <li><strong>Changelog Master:</strong> db/changelog/db.changelog-master.yaml</li>
+    <li><strong>Controllo:</strong> Variabile ambiente LIQUIBASE_ENABLED (true/false)</li>
+    <li><strong>Rollback:</strong> Capability di rollback migrazioni</li>
+    <li><strong>Tracking:</strong> Tabella DATABASECHANGELOG</li>
+</ul>
+
+<h3>Tabelle Principali Create:</h3>
+<ul>
+    <li><strong>002-create-table-ruolo.yaml:</strong> Tabella ruoli utente (ADMIN, RESPONSABILE, OPERATORE, LETTORE)</li>
+    <li><strong>003-create-table-utente-ruolo-pa.yaml:</strong> Associazione utenti-ruoli-PA</li>
+    <li><strong>004-create-table-ruolo-utente.yaml:</strong> Relazione many-to-many ruoli-utenti</li>
+    <li><strong>005-create-table-utente-pa.yaml:</strong> Utenti Pubblica Amministrazione</li>
+    <li><strong>006-create-table-piao.yaml:</strong> Piano Integrato (entità centrale)</li>
+    <li><strong>007-create-table-stakeholder.yaml:</strong> Parti interessate</li>
+    <li><strong>008-insert-ruoli-default.yaml:</strong> Dati iniziali ruoli</li>
+</ul>
+
+<h3>Comandi Utili:</h3>
+<div class="code">
+# Applicare migrazioni
+cd DB_MIGRATIONS
+mvn liquibase:update
+
+# Rollback ultima migrazione
+mvn liquibase:rollback -Dliquibase.rollbackCount=1
+
+# Generare SQL senza eseguire
+mvn liquibase:updateSQL
+
+# Validare changelog
+mvn liquibase:validate
+</div>
+
+<h2>3.7 Common/Entity</h2>
+<p>Modulo condiviso contenente entità JPA, DTO, enums, utilities e repository base utilizzati da tutti i servizi.</p>
+
+<h3>Principali Entità JPA (PostgreSQL):</h3>
+<table>
+    <tr>
+        <th>Entità</th>
+        <th>Descrizione</th>
+        <th>Tabella DB</th>
+    </tr>
+    <tr>
+        <td>Piao</td>
+        <td>Piano Integrato principale</td>
+        <td>piao</td>
+    </tr>
+    <tr>
+        <td>Sezione1/21/22/23/4</td>
+        <td>Sezioni del piano</td>
+        <td>sezione_1, sezione_21, ecc.</td>
+    </tr>
+    <tr>
+        <td>StakeHolder</td>
+        <td>Parti interessate</td>
+        <td>stake_holder</td>
+    </tr>
+    <tr>
+        <td>Indicatore</td>
+        <td>KPI e metriche</td>
+        <td>indicatore</td>
+    </tr>
+    <tr>
+        <td>EventoRischio</td>
+        <td>Eventi di rischio</td>
+        <td>evento_rischio</td>
+    </tr>
+    <tr>
+        <td>MisuraPrevenzione</td>
+        <td>Misure anticorruzione</td>
+        <td>misura_prevenzione</td>
+    </tr>
+    <tr>
+        <td>OVP</td>
+        <td>Obiettivi Valore Pubblico</td>
+        <td>ovp</td>
+    </tr>
+    <tr>
+        <td>Allegato</td>
+        <td>Documenti allegati</td>
+        <td>allegato</td>
+    </tr>
+    <tr>
+        <td>UtentePa</td>
+        <td>Utenti PA</td>
+        <td>utente_pa</td>
+    </tr>
+    <tr>
+        <td>Ruolo</td>
+        <td>Ruoli sistema</td>
+        <td>ruolo</td>
+    </tr>
+    <tr>
+        <td>Funzionalita</td>
+        <td>Funzionalità applicative</td>
+        <td>funzionalita</td>
+    </tr>
+</table>
+
+<h3>Entità MongoDB:</h3>
+<ul>
+    <li><strong>UlterioriInfo:</strong> Informazioni aggiuntive flessibili (schema-less)</li>
+    <li><strong>Social:</strong> Informazioni social media</li>
+    <li><strong>Fattore:</strong> Fattori di rischio</li>
+    <li><strong>Azione:</strong> Azioni correttive/preventive</li>
+</ul>
+
+<h1>4. FLUSSI FUNZIONALI PRINCIPALI</h1>
+
+<h2>4.1 Autenticazione e Autorizzazione</h2>
+<p>Il sistema implementa un flusso di autenticazione enterprise basato su OAuth2/OpenID Connect con Keycloak:</p>
+
+<ol>
+    <li>L'utente accede all'applicazione web tramite browser</li>
+    <li>Il frontend reindirizza a Keycloak per login</li>
+    <li>L'utente inserisce credenziali (username/password o SSO)</li>
+    <li>Keycloak valida le credenziali e genera JWT token (access + refresh)</li>
+    <li>Il frontend memorizza i token (sessionStorage/cookie HttpOnly)</li>
+    <li>Ogni richiesta HTTP include il token nell'header Authorization: Bearer</li>
+    <li>Il Gateway valida il token JWT (firma, scadenza, issuer)</li>
+    <li>Il Gateway estrae ruoli e permessi dal token</li>
+    <li>I backend verificano autorizzazioni con @PreAuthorize("hasRole('ROLE_XXX')")</li>
+    <li>Token refresh automatico prima della scadenza</li>
+</ol>
+
+<h3>Ruoli Implementati:</h3>
+<ul>
+    <li><strong>ADMIN:</strong> Accesso completo a tutte le funzionalità</li>
+    <li><strong>RESPONSABILE:</strong> Gestione PIAO della propria PA</li>
+    <li><strong>OPERATORE:</strong> Compilazione e modifica sezioni</li>
+    <li><strong>LETTORE:</strong> Solo visualizzazione dati</li>
+</ul>
+
+<h2>4.2 Gestione Ciclo di Vita PIAO</h2>
+<p>Flusso completo di creazione e gestione di un piano:</p>
+
+<ol>
+    <li><strong>Inizializzazione:</strong> Creazione nuovo PIAO tramite POST /api/v1/piao con dati base (anno, PA, responsabile)</li>
+    <li><strong>Compilazione Sezione 1:</strong> Dati anagrafici PA (nome, codice IPA, indirizzo, contatti, social)</li>
+    <li><strong>Compilazione Sezione 2.1:</strong> Valore pubblico, OVP, analisi SWOT, priorità politiche, stakeholder</li>
+    <li><strong>Compilazione Sezione 2.2:</strong> Organizzazione, aree organizzative, adempimenti normativi, procedure</li>
+    <li><strong>Compilazione Sezione 2.3:</strong> Anticorruzione, eventi rischio, misure prevenzione, indicatori</li>
+    <li><strong>Compilazione Sezione 4:</strong> Trasparenza, pubblicazioni, dichiarazioni, accessibilità</li>
+    <li><strong>Allegati:</strong> Upload documenti (PDF, Excel, immagini) su storage S3</li>
+    <li><strong>Validazione:</strong> Controlli automatici completezza e coerenza dati</li>
+    <li><strong>Workflow Stati:</strong> Bozza → In Lavorazione → In Approvazione → Approvato → Pubblicato</li>
+    <li><strong>Audit:</strong> Tracking automatico tutte le modifiche (chi, quando, cosa) tramite Envers</li>
+    <li><strong>Pubblicazione:</strong> Esposizione pubblica del piano approvato</li>
+    <li><strong>Monitoraggio:</strong> Tracking avanzamento indicatori e obiettivi</li>
+</ol>
+
+<h2>4.3 Sistema di Notifiche</h2>
+<p>Gestione notifiche e comunicazioni real-time:</p>
+
+<ol>
+    <li>Evento applicativo genera notifica (es: approvazione PIAO, scadenza, commento)</li>
+    <li>Notifica salvata in database con stato "NON_LETTA"</li>
+    <li>Frontend effettua polling periodico GET /api/v1/notification/subscribe?idModulo=xxx</li>
+    <li>Notifiche visualizzate in interfaccia utente (badge, dropdown)</li>
+    <li>Utente clicca notifica → marcata come letta PUT /api/v1/notification/readNotify</li>
+    <li>Worker può inviare email per notifiche critiche</li>
+    <li>Possibile evoluzione: WebSocket o Server-Sent Events per push real-time</li>
+</ol>
+
+<h2>4.4 Upload e Gestione File</h2>
+<p>Gestione documenti e allegati con storage cloud:</p>
+
+<ol>
+    <li>Utente seleziona file dal frontend (drag-drop o file picker)</li>
+    <li>Frontend chiama BFF POST /api/v1/allegato/upload con multipart/form-data</li>
+    <li>BFF valida file (tipo, dimensione max, virus scan)</li>
+    <li>BFF carica file su storage S3 compatibile (AWS S3, MinIO, Azure Blob)</li>
+    <li>BFF chiama Backend API per salvare metadati (nome, path, tipo, dimensione, checksum)</li>
+    <li>Allegato associato a entità (PIAO, Sezione) tramite relazione FK</li>
+    <li>Download: GET /api/v1/allegato/{id}/download genera URL firmato S3</li>
+    <li>Frontend reindirizza a URL firmato per download sicuro</li>
+</ol>
+
+<h1>5. SICUREZZA</h1>
+
+<h2>5.1 Autenticazione</h2>
+<ul>
+    <li><strong>Standard:</strong> OAuth2 + OpenID Connect</li>
+    <li><strong>Provider:</strong> Keycloak (Identity and Access Management)</li>
+    <li><strong>Token:</strong> JWT (JSON Web Token) firmati con RS256</li>
+    <li><strong>Refresh Token:</strong> Rinnovo automatico sessione</li>
+    <li><strong>Cookie:</strong> HttpOnly, Secure, SameSite=Lax per CSRF protection</li>
+    <li><strong>Session Management:</strong> Stateless con JWT</li>
+</ul>
+
+<h2>5.2 Autorizzazione</h2>
+<ul>
+    <li><strong>Modello:</strong> RBAC (Role-Based Access Control)</li>
+    <li><strong>Ruoli:</strong> ADMIN, RESPONSABILE, OPERATORE, LETTORE</li>
+    <li><strong>Granularità:</strong> Controllo a livello endpoint con @PreAuthorize</li>
+    <li><strong>Funzionalità:</strong> Associazione dinamica ruoli-funzionalità (tabella FunzionalitaRuolo)</li>
+    <li><strong>Scope:</strong> Limitazione accesso per PA di appartenenza</li>
+</ul>
+
+<h2>5.3 Protezione Dati</h2>
+<ul>
+    <li><strong>Transport Security:</strong> HTTPS/TLS 1.3 obbligatorio in produzione</li>
+    <li><strong>Data at Rest:</strong> Encryption database Azure (Transparent Data Encryption)</li>
+    <li><strong>Password:</strong> Hashing con BCrypt (se gestite localmente)</li>
+    <li><strong>SQL Injection:</strong> Prevenzione tramite JPA prepared statements</li>
+    <li><strong>XSS Protection:</strong> Spring Security headers, Content-Security-Policy</li>
+    <li><strong>CSRF Protection:</strong> Token CSRF per operazioni mutanti</li>
+    <li><strong>Secrets Management:</strong> Variabili ambiente, Azure Key Vault (produzione)</li>
+</ul>
+
+<h2>5.4 Audit e Compliance</h2>
+<ul>
+    <li><strong>Audit Trail:</strong> Hibernate Envers per tracking completo modifiche</li>
+    <li><strong>Logging:</strong> Centralizzato, formato JSON in produzione</li>
+    <li><strong>Tabelle Audit:</strong> Automatiche _AUD per ogni entità auditata</li>
+    <li><strong>Revisioni:</strong> CustomRevisionEntity con user, timestamp, IP</li>
+    <li><strong>Retention:</strong> Policy di retention log e audit configurable</li>
+    <li><strong>GDPR:</strong> Supporto right to erasure, data portability</li>
+</ul>
+
+<h2>5.5 Security Headers</h2>
+<div class="code">
+# Spring Security Headers automatici
+X-Content-Type-Options: nosniff
+X-Frame-Options: DENY
+X-XSS-Protection: 1; mode=block
+Strict-Transport-Security: max-age=31536000; includeSubDomains
+Content-Security-Policy: default-src 'self'
+</div>
+
+<h1>6. DATABASE E PERSISTENZA</h1>
+
+<h2>6.1 Database PostgreSQL (Principale)</h2>
+<p>Database relazionale principale hostato su Azure Database for PostgreSQL con alta disponibilità.</p>
+
+<h3>Configurazione:</h3>
+<table>
+    <tr>
+        <th>Parametro</th>
+        <th>Valore</th>
+    </tr>
+    <tr>
+        <td>Provider</td>
+        <td>Azure Database for PostgreSQL</td>
+    </tr>
+    <tr>
+        <td>Host</td>
+        <td>piaoserver.postgres.database.azure.com</td>
+    </tr>
+    <tr>
+        <td>Porta</td>
+        <td>5432</td>
+    </tr>
+    <tr>
+        <td>Database</td>
+        <td>postgres</td>
+    </tr>
+    <tr>
+        <td>SSL Mode</td>
+        <td>require</td>
+    </tr>
+    <tr>
+        <td>Connection Pool</td>
+        <td>HikariCP</td>
+    </tr>
+    <tr>
+        <td>Pool Size (Dev)</td>
+        <td>3 max, 1 min idle</td>
+    </tr>
+    <tr>
+        <td>Pool Size (Prod)</td>
+        <td>8 max, 4 min idle</td>
+    </tr>
+</table>
+
+<h3>Principali Tabelle:</h3>
+<ul>
+    <li><strong>piao:</strong> Piano integrato (PK: id, FK: id_stato, id_utente_responsabile)</li>
+    <li><strong>sezione_1 → sezione_4:</strong> Sezioni del piano (FK: id_piao)</li>
+    <li><strong>stake_holder:</strong> Parti interessate (many-to-many con sezioni)</li>
+    <li><strong>indicatore:</strong> KPI e metriche performance</li>
+    <li><strong>evento_rischio:</strong> Eventi rischio anticorruzione</li>
+    <li><strong>misura_prevenzione:</strong> Misure prevenzione corruzione</li>
+    <li><strong>ovp:</strong> Obiettivi Valore Pubblico</li>
+    <li><strong>allegato:</strong> Metadati documenti (path S3, checksum)</li>
+    <li><strong>utente_pa:</strong> Utenti Pubblica Amministrazione</li>
+    <li><strong>ruolo:</strong> Ruoli sistema (cod_ruolo univoco)</li>
+    <li><strong>funzionalita:</strong> Funzionalità applicative</li>
+    <li><strong>ruolo_utente:</strong> Associazione many-to-many</li>
+    <li><strong>DATABASECHANGELOG:</strong> Tracking Liquibase</li>
+    <li><strong>*_AUD:</strong> Tabelle audit Envers (es: piao_AUD)</li>
+    <li><strong>REVINFO:</strong> Informazioni revisione Envers</li>
+</ul>
+
+<h2>6.2 Database MongoDB (Secondario)</h2>
+<p>Database NoSQL utilizzato per dati semi-strutturati, flessibili e non relazionali.</p>
+
+<h3>Utilizzo:</h3>
+<ul>
+    <li><strong>ulteriori_info:</strong> Campi aggiuntivi configurabili dinamicamente (schema-less)</li>
+    <li><strong>social:</strong> Collegamenti social media (JSON flessibile)</li>
+    <li><strong>fattore:</strong> Fattori di rischio con struttura variabile</li>
+    <li><strong>azione:</strong> Azioni correttive/preventive</li>
+    <li><strong>indicatore:</strong> Alcuni KPI con schema flessibile</li>
+</ul>
+
+<h3>Vantaggi MongoDB:</h3>
+<ul>
+    <li>Schema flessibile per dati variabili</li>
+    <li>Performance elevate per letture aggregate</li>
+    <li>Scalabilità orizzontale</li>
+    <li>Supporto JSON nativo</li>
+</ul>
+
+<h2>6.3 Strategia Dual-Database</h2>
+<p>Il sistema utilizza una strategia polyglot persistence:</p>
+
+<ul>
+    <li><strong>PostgreSQL:</strong> Dati transazionali, relazionali, con integrità referenziale</li>
+    <li><strong>MongoDB:</strong> Dati semi-strutturati, configurazioni dinamiche, log</li>
+    <li><strong>Sincronizzazione:</strong> Riferimenti tramite ID comune (no foreign key cross-DB)</li>
+    <li><strong>Transazioni:</strong> Gestione transazioni separate per ogni datasource</li>
+</ul>
+
+<h2>6.4 Gestione Migrazioni</h2>
+<ul>
+    <li><strong>Tool:</strong> Liquibase (database-independent)</li>
+    <li><strong>Formato:</strong> YAML (leggibile, versionabile)</li>
+    <li><strong>Controllo:</strong> Variabile LIQUIBASE_ENABLED in values.yaml</li>
+    <li><strong>Strategia:</strong> Migrazioni incrementali versionate in db/changelog/changes/</li>
+    <li><strong>Rollback:</strong> Supporto rollback con changeSet preconditions</li>
+    <li><strong>Ambienti:</strong> Abilitato in dev/staging, opzionale in produzione</li>
+</ul>
+
+<h1>7. DEPLOYMENT E DEVOPS</h1>
+
+<h2>7.1 Containerizzazione Docker</h2>
+<p>Tutti i componenti sono containerizzati con Docker multi-stage builds per ottimizzazione dimensioni:</p>
+
+<table>
+    <tr>
+        <th>Servizio</th>
+        <th>Immagine</th>
+        <th>Versione</th>
+        <th>Base Image</th>
+    </tr>
+    <tr>
+        <td>Gateway</td>
+        <td>dfp-piao-gateway</td>
+        <td>1.0.0</td>
+        <td>eclipse-temurin:21-jre</td>
+    </tr>
+    <tr>
+        <td>Backend API</td>
+        <td>dfp-piao-be</td>
+        <td>1.0.0</td>
+        <td>eclipse-temurin:21-jre</td>
+    </tr>
+    <tr>
+        <td>BFF</td>
+        <td>dfp-piao-bff</td>
+        <td>1.0.0</td>
+        <td>eclipse-temurin:21-jre</td>
+    </tr>
+    <tr>
+        <td>Frontend</td>
+        <td>dfp-piao-fe</td>
+        <td>1.0.0</td>
+        <td>nginx:alpine</td>
+    </tr>
+</table>
+
+<h3>Dockerfile Pattern (Backend):</h3>
+<div class="code">
+# Stage 1: Build
+FROM maven:3.9-eclipse-temurin-21 AS build
+WORKDIR /app
+COPY pom.xml .
+COPY src ./src
+RUN mvn clean package -DskipTests
+
+# Stage 2: Runtime
+FROM eclipse-temurin:21-jre
+WORKDIR /app
+COPY --from=build /app/target/*.jar app.jar
+EXPOSE 9081
+ENTRYPOINT ["java", "-jar", "app.jar"]
+</div>
+
+<h2>7.2 Orchestrazione Kubernetes</h2>
+<p>Deployment gestito tramite Helm Charts con pattern GitOps:</p>
+
+<h3>Struttura Helm Chart:</h3>
+<ul>
+    <li><strong>Chart.yaml:</strong> Metadata chart (name, version, appVersion)</li>
+    <li><strong>values.yaml:</strong> Valori configurabili (replicas, resources, env vars)</li>
+    <li><strong>templates/:</strong> Template Kubernetes (Deployment, Service, Ingress, ConfigMap, Secret)</li>
+</ul>
+
+<h3>Risorse Kubernetes Create:</h3>
+<ul>
+    <li><strong>Deployment:</strong> 4 deployment (gateway, be, bff, fe) con replica set</li>
+    <li><strong>Service:</strong> ClusterIP per comunicazione interna</li>
+    <li><strong>Ingress:</strong> Nginx Ingress per routing esterno (pubblico + privato)</li>
+    <li><strong>ConfigMap:</strong> Configurazioni applicative (spring.profiles.active, etc.)</li>
+    <li><strong>Secret:</strong> Credenziali database, certificati</li>
+    <li><strong>ServiceAccount:</strong> Identity per Pod</li>
+</ul>
+
+<h3>Ingress Configuration:</h3>
+<table>
+    <tr>
+        <th>Tipo</th>
+        <th>Host</th>
+        <th>Path</th>
+        <th>Service</th>
+    </tr>
+    <tr>
+        <td>Public</td>
+        <td>dfp-piao.ey.test</td>
+        <td>/</td>
+        <td>frontend (porta 80)</td>
+    </tr>
+    <tr>
+        <td>Private</td>
+        <td>dfp-piao.ey.test</td>
+        <td>/api</td>
+        <td>gateway (porta 8080)</td>
+    </tr>
+</table>
+
+<h2>7.3 CI/CD Pipeline Azure DevOps</h2>
+<p>Pipeline automatizzata definita in azure-pipelines.yml:</p>
+
+<h3>Stage Pipeline:</h3>
+<ol>
+    <li><strong>Checkout:</strong> Clone repository con fetch tags</li>
+    <li><strong>Setup:</strong> Configurazione Git user/email</li>
+    <li><strong>Branch Cleanup:</strong> Creazione branch main pulito (orphan)</li>
+    <li><strong>Gitignore:</strong> Esclusione cartelle build (target/, node_modules/)</li>
+    <li><strong>Commit:</strong> Commit codice sorgente</li>
+    <li><strong>Tag:</strong> Tag versione (es: v1.0.0)</li>
+    <li><strong>Push GitHub:</strong> Push su repository GitHub (BIPRepo + EYREPO)</li>
+</ol>
+
+<h3>Variabili Pipeline:</h3>
+<ul>
+    <li><strong>GITHUB_TOKEN:</strong> Token autenticazione GitHub</li>
+    <li><strong>System.AccessToken:</strong> Token Azure DevOps</li>
+</ul>
+
+<h2>7.4 Build e Deploy Script</h2>
+<p>Script PowerShell build-and-deploy.ps1 per ambiente locale:</p>
+
+<h3>Fasi Script:</h3>
+<ol>
+    <li><strong>Build Immagini Docker:</strong> Build sequenziale 4 servizi (gateway, be, bff, fe)</li>
+    <li><strong>Docker Compose:</strong> Avvio servizi con docker-compose up -d</li>
+    <li><strong>Tag Nexus:</strong> Tag immagini per registry Nexus (localhost:8443/dfp-docker-repo/)</li>
+    <li><strong>Push Nexus:</strong> Push immagini su registry privato</li>
+    <li><strong>Minikube Load:</strong> Caricamento immagini in Minikube per test locale</li>
+</ol>
+
+<div class="code">
+# Esecuzione script
+.\build-and-deploy.ps1
+
+# Output:
+# - 4 immagini Docker costruite
+# - Servizi avviati con docker-compose
+# - Immagini pushate su Nexus
+# - Immagini caricate in Minikube
+</div>
+
+<h2>7.5 GitOps con ArgoCD</h2>
+<p>Configurazione GitOps in arch/argocd-config/:</p>
+
+<h3>Application of Applications Pattern:</h3>
+<ul>
+    <li><strong>root-app.yaml:</strong> App ArgoCD principale che gestisce altre app</li>
+    <li><strong>apps/dfp-piao.yaml:</strong> Deployment applicazione PIAO</li>
+    <li><strong>apps/dfp-piao-project.yaml:</strong> Configurazione progetto e namespace</li>
+</ul>
+
+<h3>Sync Strategy:</h3>
+<ul>
+    <li><strong>Auto Sync:</strong> Deployment automatico al commit su Git</li>
+    <li><strong>Self Heal:</strong> Ripristino automatico modifiche manuali cluster</li>
+    <li><strong>Prune:</strong> Rimozione risorse non più presenti in Git</li>
+</ul>
+
+<h1>8. MONITORING E OBSERVABILITY</h1>
+
+<h2>8.1 Health Checks</h2>
+<p>Tutti i servizi backend espongono endpoint health per monitoring Kubernetes:</p>
+
+<table>
+    <tr>
+        <th>Endpoint</th>
+        <th>Tipo</th>
+        <th>Utilizzo</th>
+    </tr>
+    <tr>
+        <td>/health/ready</td>
+        <td>Readiness Probe</td>
+        <td>Verifica se servizio pronto per traffico</td>
+    </tr>
+    <tr>
+        <td>/health/live</td>
+        <td>Liveness Probe</td>
+        <td>Verifica se servizio è vivo (riavvio se fallisce)</td>
+    </tr>
+    <tr>
+        <td>/actuator/health</td>
+        <td>Health Details</td>
+        <td>Dettagli salute componenti (DB, disk, custom)</td>
+    </tr>
+    <tr>
+        <td>/actuator/metrics</td>
+        <td>Metrics</td>
+        <td>Metriche Prometheus-compatible</td>
+    </tr>
+</table>
+
+<h3>Health Indicators:</h3>
+<ul>
+    <li><strong>DB:</strong> Connettività database PostgreSQL e MongoDB</li>
+    <li><strong>Disk Space:</strong> Spazio disco disponibile</li>
+    <li><strong>Custom:</strong> Indicator business-specific personalizzati</li>
+</ul>
+
+<h2>8.2 Logging</h2>
+
+<h3>Configurazione Logging:</h3>
+<ul>
+    <li><strong>Formato Dev:</strong> Console human-readable (log.output.format=console)</li>
+    <li><strong>Formato Prod:</strong> JSON strutturato per aggregazione (log.output.format=json)</li>
+    <li><strong>Livello Dev:</strong> DEBUG per dettagli completi</li>
+    <li><strong>Livello Prod:</strong> INFO per ridurre volume</li>
+    <li><strong>Logger:</strong> SLF4J + Logback</li>
+</ul>
+
+<h3>Log Strutturati (JSON):</h3>
+<div class="code">
+{
+  "timestamp": "2026-02-16T10:30:45.123Z",
+  "level": "INFO",
+  "logger": "it.ey.piao.api.service.PiaoService",
+  "message": "PIAO created successfully",
+  "context": {
+    "piaoId": "123",
+    "userId": "user@pa.gov.it",
+    "correlationId": "a1b2c3d4-e5f6-7890"
+  }
+}
+</div>
+
+<h3>Categorie Log:</h3>
+<ul>
+    <li><strong>Application:</strong> Business logic events</li>
+    <li><strong>HTTP:</strong> Request/response (Spring Web)</li>
+    <li><strong>Database:</strong> Query SQL (Hibernate)</li>
+    <li><strong>Security:</strong> Autenticazione/autorizzazione</li>
+    <li><strong>Performance:</strong> Metriche timing</li>
+</ul>
+
+<h2>8.3 Distributed Tracing</h2>
+
+<h3>OpenTelemetry Integration:</h3>
+<ul>
+    <li><strong>Propagation:</strong> W3C Trace Context (traceparent header)</li>
+    <li><strong>Correlation ID:</strong> Generato da interceptor frontend, propagato a tutti servizi</li>
+    <li><strong>Spans:</strong> Tracking latenza per ogni operazione</li>
+    <li><strong>Export:</strong> OTLP (OpenTelemetry Protocol) per collector</li>
+</ul>
+
+<h3>Configurazione:</h3>
+<div class="code">
+management.opentelemetry.resource-attributes.service.name=${spring.application.name}
+management.opentelemetry.resource-attributes.cluster=local
+management.tracing.propagation.type=w3c
+management.otlp.metrics.export.enabled=true
+</div>
+
+<h2>8.4 Metriche</h2>
+
+<h3>Spring Boot Actuator Metrics:</h3>
+<ul>
+    <li><strong>JVM:</strong> memory.used, memory.max, threads.live, gc.pause</li>
+    <li><strong>HTTP:</strong> http.server.requests (count, latency, status)</li>
+    <li><strong>Database:</strong> hikaricp.connections.active, hikaricp.connections.pending</li>
+    <li><strong>Cache:</strong> cache.gets, cache.puts, cache.evictions</li>
+    <li><strong>Custom:</strong> Business metrics (piao.created.count, etc.)</li>
+</ul>
+
+<h3>Endpoint Metriche:</h3>
+<ul>
+    <li><strong>/actuator/metrics:</strong> Lista tutte le metriche</li>
+    <li><strong>/actuator/metrics/{nome}:</strong> Dettaglio metrica specifica</li>
+    <li><strong>/actuator/prometheus:</strong> Export formato Prometheus</li>
+</ul>
+
+<h1>9. API E INTEGRAZIONI</h1>
+
+<h2>9.1 Standard API REST</h2>
+<p>Tutte le API seguono convenzioni REST standard con prefisso /api/v1/</p>
+
+<h3>Convenzioni:</h3>
+<ul>
+    <li><strong>Verbi HTTP:</strong> GET (read), POST (create), PUT (update), PATCH (partial update), DELETE (delete)</li>
+    <li><strong>Status Code:</strong> 200 (OK), 201 (Created), 204 (No Content), 400 (Bad Request), 401 (Unauthorized), 403 (Forbidden), 404 (Not Found), 500 (Internal Error)</li>
+    <li><strong>Content-Type:</strong> application/json (default)</li>
+    <li><strong>Accept:</strong> application/json</li>
+    <li><strong>Naming:</strong> Risorse al plurale (es: /piaos, /users)</li>
+    <li><strong>Nesting:</strong> Relazioni con sub-resources (es: /piaos/{id}/sezioni)</li>
+</ul>
+
+<h3>Paginazione:</h3>
+<div class="code">
+GET /api/v1/piaos?page=0&size=20&sort=createdDate,desc
+
+Response:
+{
+  "content": [...],
+  "pageable": { "pageNumber": 0, "pageSize": 20 },
+  "totalElements": 150,
+  "totalPages": 8,
+  "last": false
+}
+</div>
+
+<h2>9.2 Documentazione API OpenAPI</h2>
+
+<h3>Endpoint Documentazione:</h3>
+<ul>
+    <li><strong>Swagger UI BE:</strong> http://localhost:9081/openapi-ui</li>
+    <li><strong>Swagger UI BFF:</strong> http://localhost:9082/openapi-ui</li>
+    <li><strong>JSON Spec BE:</strong> http://localhost:9081/openapi</li>
+    <li><strong>JSON Spec BFF:</strong> http://localhost:9082/openapi</li>
+</ul>
+
+<h3>Annotations:</h3>
+<ul>
+    <li><strong>@OpenAPIDefinition:</strong> Metadata generale API</li>
+    <li><strong>@Operation:</strong> Descrizione operazione endpoint</li>
+    <li><strong>@ApiResponse:</strong> Descrizione risposte possibili</li>
+    <li><strong>@Schema:</strong> Descrizione modelli DTO</li>
+    <li><strong>@SecurityRequirement:</strong> Requisiti sicurezza endpoint</li>
+</ul>
+
+<h2>9.3 Principali Endpoint API</h2>
+
+<h3>PIAO Management:</h3>
+<table>
+    <tr>
+        <th>Metodo</th>
+        <th>Endpoint</th>
+        <th>Descrizione</th>
+    </tr>
+    <tr>
+        <td>GET</td>
+        <td>/api/v1/piao</td>
+        <td>Lista PIAO con paginazione e filtri</td>
+    </tr>
+    <tr>
+        <td>POST</td>
+        <td>/api/v1/piao</td>
+        <td>Creazione nuovo PIAO</td>
+    </tr>
+    <tr>
+        <td>GET</td>
+        <td>/api/v1/piao/{id}</td>
+        <td>Dettaglio PIAO specifico</td>
+    </tr>
+    <tr>
+        <td>PUT</td>
+        <td>/api/v1/piao/{id}</td>
+        <td>Aggiornamento PIAO completo</td>
+    </tr>
+    <tr>
+        <td>PATCH</td>
+        <td>/api/v1/piao/{id}</td>
+        <td>Aggiornamento parziale PIAO</td>
+    </tr>
+    <tr>
+        <td>DELETE</td>
+        <td>/api/v1/piao/{id}</td>
+        <td>Eliminazione logica PIAO</td>
+    </tr>
+</table>
+
+<h3>Sezioni:</h3>
+<ul>
+    <li><strong>GET/POST/PUT /api/v1/sezione1:</strong> Gestione Sezione 1 (Anagrafica)</li>
+    <li><strong>GET/POST/PUT /api/v1/sezione21:</strong> Gestione Sezione 2.1 (Valore Pubblico)</li>
+    <li><strong>GET/POST/PUT /api/v1/sezione22:</strong> Gestione Sezione 2.2 (Organizzazione)</li>
+    <li><strong>GET/POST/PUT /api/v1/sezione23:</strong> Gestione Sezione 2.3 (Anticorruzione)</li>
+    <li><strong>GET/POST/PUT /api/v1/sezione4:</strong> Gestione Sezione 4 (Trasparenza)</li>
+</ul>
+
+<h3>Allegati:</h3>
+<ul>
+    <li><strong>POST /api/v1/allegato/upload:</strong> Upload file multipart</li>
+    <li><strong>GET /api/v1/allegato/{id}/download:</strong> Download file tramite URL firmato</li>
+    <li><strong>GET /api/v1/allegato/{id}:</strong> Metadati allegato</li>
+    <li><strong>DELETE /api/v1/allegato/{id}:</strong> Eliminazione allegato</li>
+</ul>
+
+<h3>Notifiche:</h3>
+<ul>
+    <li><strong>GET /api/v1/notification/subscribe?idModulo={id}:</strong> Recupero notifiche utente</li>
+    <li><strong>PUT /api/v1/notification/readNotify:</strong> Marcatura notifica come letta</li>
+</ul>
+
+<h3>Utenti e Autenticazione:</h3>
+<ul>
+    <li><strong>POST /api/v1/auth/login:</strong> Login utente (BFF)</li>
+    <li><strong>POST /api/v1/auth/logout:</strong> Logout utente</li>
+    <li><strong>POST /api/v1/auth/refresh:</strong> Refresh token</li>
+    <li><strong>GET /api/v1/users/me:</strong> Profilo utente corrente</li>
+</ul>
+
+<h1>10. CONFIGURAZIONE</h1>
+
+<h2>10.1 Profili Spring</h2>
+
+<table>
+    <tr>
+        <th>Profilo</th>
+        <th>Ambiente</th>
+        <th>Caratteristiche</th>
+    </tr>
+    <tr>
+        <td>dev</td>
+        <td>Sviluppo locale</td>
+        <td>Log DEBUG, Liquibase enabled, H2 in-memory opzionale</td>
+    </tr>
+    <tr>
+        <td>release</td>
+        <td>Produzione</td>
+        <td>Log INFO/JSON, Liquibase configurabile, PostgreSQL Azure</td>
+    </tr>
+    <tr>
+        <td>ey</td>
+        <td>EY specifico</td>
+        <td>Configurazioni custom EY</td>
+    </tr>
+</table>
+
+<h3>Attivazione Profilo:</h3>
+<div class="code">
+# application.properties
+spring.profiles.active=dev
+
+# Variabile ambiente
+SPRING_PROFILES_ACTIVE=release
+
+# Kubernetes ConfigMap
+SPRING_PROFILES_ACTIVE: ey
+</div>
+
+<h2>10.2 Variabili di Ambiente</h2>
+
+<h3>Database:</h3>
+<ul>
+    <li><strong>POSTGRES_URL:</strong> jdbc:postgresql://piaoserver.postgres.database.azure.com:5432/postgres?sslmode=require</li>
+    <li><strong>POSTGRES_USER:</strong> utente database PostgreSQL</li>
+    <li><strong>POSTGRES_PSW:</strong> password database PostgreSQL</li>
+    <li><strong>MONGODB_URL_AUTH:</strong> mongodb://user:pass@host:27017/dbname?authSource=admin</li>
+    <li><strong>MONGODB_DB:</strong> nome database MongoDB</li>
+</ul>
+
+<h3>Applicazione:</h3>
+<ul>
+    <li><strong>SPRING_PROFILES_ACTIVE:</strong> dev / release / ey</li>
+    <li><strong>LIQUIBASE_ENABLED:</strong> true / false</li>
+    <li><strong>SERVER_PORT:</strong> porta servizio (9081, 9082, 9083)</li>
+</ul>
+
+<h3>Sicurezza:</h3>
+<ul>
+    <li><strong>GITHUB_TOKEN:</strong> Token autenticazione GitHub (CI/CD)</li>
+    <li><strong>SYSTEM_ACCESSTOKEN:</strong> Token Azure DevOps</li>
+    <li><strong>JWT_SECRET:</strong> Secret per firma JWT (se gestito localmente)</li>
+</ul>
+
+<h2>10.3 File di Configurazione</h2>
+
+<h3>Backend:</h3>
+<ul>
+    <li><strong>application.properties:</strong> Configurazione comune a tutti profili</li>
+    <li><strong>application-dev.properties:</strong> Override per sviluppo</li>
+    <li><strong>application-release.properties:</strong> Override per produzione</li>
+</ul>
+
+<h3>Frontend:</h3>
+<ul>
+    <li><strong>assets/config.json:</strong> Configurazione runtime caricata pre-bootstrap</li>
+    <li><strong>environment.ts:</strong> Configurazione sviluppo</li>
+    <li><strong>environment.prod.ts:</strong> Configurazione produzione</li>
+</ul>
+
+<h3>Infrastruttura:</h3>
+<ul>
+    <li><strong>values.yaml:</strong> Configurazione Helm Chart Kubernetes</li>
+    <li><strong>docker-compose.yml:</strong> Configurazione Docker Compose locale</li>
+    <li><strong>nginx.conf:</strong> Configurazione Nginx per frontend</li>
+</ul>
+
+<h1>11. QUALITÀ DEL CODICE E TESTING</h1>
+
+<h2>11.1 Code Quality Frontend</h2>
+
+<h3>Strumenti:</h3>
+<ul>
+    <li><strong>ESLint 8:</strong> Linting TypeScript con regole @angular-eslint</li>
+    <li><strong>Prettier 3:</strong> Code formatting automatico</li>
+    <li><strong>TypeScript:</strong> Strict mode per type safety</li>
+    <li><strong>Angular CLI:</strong> Scaffolding consistente</li>
+</ul>
+
+<h3>Comandi:</h3>
+<div class="code">
+# Lint
+npm run lint
+
+# Format
+npm run format
+
+# Type check
+npx tsc --noEmit
+</div>
+
+<h2>11.2 Code Quality Backend</h2>
+
+<h3>Strumenti:</h3>
+<ul>
+    <li><strong>Lombok:</strong> Riduzione boilerplate (@Data, @Builder, @Slf4j)</li>
+    <li><strong>MapStruct:</strong> Mapping type-safe compile-time</li>
+    <li><strong>Jakarta Validation:</strong> Validazione dichiarativa (@NotNull, @Valid)</li>
+    <li><strong>Spring DevTools:</strong> Hot reload per sviluppo rapido</li>
+</ul>
+
+<h2>11.3 Testing</h2>
+
+<h3>Frontend Testing:</h3>
+<ul>
+    <li><strong>Jest 29:</strong> Unit testing framework veloce</li>
+    <li><strong>Karma + Jasmine:</strong> Test framework alternativo</li>
+    <li><strong>Testing Library 16:</strong> Component testing user-centric</li>
+    <li><strong>Coverage:</strong> Report coverage Istanbul</li>
+</ul>
+
+<div class="code">
+# Run tests
+npm test
+
+# Run tests with coverage
+npm test -- --coverage
+
+# Watch mode
+npm run test:watch
+</div>
+
+<h3>Backend Testing:</h3>
+<ul>
+    <li><strong>JUnit 5:</strong> Framework unit testing</li>
+    <li><strong>Spring Boot Test:</strong> Integration testing con context</li>
+    <li><strong>MockMVC:</strong> Testing REST endpoint senza server</li>
+    <li><strong>RestDocs:</strong> Generazione documentazione da test</li>
+    <li><strong>Testcontainers:</strong> Testing con PostgreSQL/MongoDB reale</li>
+</ul>
+
+<div class="code">
+# Run tests
+mvn test
+
+# Run tests with coverage
+mvn test jacoco:report
+
+# Skip tests
+mvn install -DskipTests
+</div>
+
+<h2>11.4 Best Practices Implementate</h2>
+
+<h3>Architetturali:</h3>
+<ul>
+    <li><strong>Separation of Concerns:</strong> Layer ben separati (controller, service, repository)</li>
+    <li><strong>DRY:</strong> Codice comune in moduli shared (Common/Entity)</li>
+    <li><strong>SOLID:</strong> Principi OOP applicati (Single Responsibility, Open/Closed, etc.)</li>
+    <li><strong>Dependency Injection:</strong> Spring IoC container</li>
+</ul>
+
+<h3>Codice:</h3>
+<ul>
+    <li><strong>Immutability:</strong> DTO immutabili quando possibile</li>
+    <li><strong>Null Safety:</strong> Optional invece di null, @NonNull annotations</li>
+    <li><strong>Error Handling:</strong> Gestione centralizzata con @ControllerAdvice</li>
+    <li><strong>Logging Strutturato:</strong> Contesto nei log (correlationId, userId)</li>
+</ul>
+
+<h1>12. PERFORMANCE E SCALABILITÀ</h1>
+
+<h2>12.1 Ottimizzazioni Frontend</h2>
+
+<ul>
+    <li><strong>Lazy Loading:</strong> Moduli caricati on-demand riducendo bundle iniziale</li>
+    <li><strong>Tree Shaking:</strong> Eliminazione codice non utilizzato in build production</li>
+    <li><strong>Minification:</strong> Compressione JavaScript/CSS</li>
+    <li><strong>Bundling:</strong> Aggregazione file per ridurre request HTTP</li>
+    <li><strong>Tailwind Purge:</strong> Rimozione classi CSS non utilizzate (riduzione 90%)</li>
+    <li><strong>AOT Compilation:</strong> Ahead-of-Time compilation per startup veloce</li>
+    <li><strong>Nginx Caching:</strong> Cache statico (HTML, JS, CSS, immagini)</li>
+    <li><strong>Gzip Compression:</strong> Compressione HTTP response</li>
+</ul>
+
+<h2>12.2 Ottimizzazioni Backend</h2>
+
+<h3>Database:</h3>
+<ul>
+    <li><strong>Connection Pooling:</strong> HikariCP con pool ottimizzato (8 max prod)</li>
+    <li><strong>Lazy Loading:</strong> JPA entities caricamento lazy relazioni</li>
+    <li><strong>Fetch Strategies:</strong> JOIN FETCH per N+1 query problem</li>
+    <li><strong>Indexes:</strong> Index database su colonne ricercate/filtrate</li>
+    <li><strong>Pagination:</strong> Query paginate per dataset grandi</li>
+    <li><strong>Projection:</strong> DTO projection invece di full entity</li>
+</ul>
+
+<h3>Caching:</h3>
+<ul>
+    <li><strong>Caffeine Cache:</strong> In-memory cache ad alte performance (BFF)</li>
+    <li><strong>Spring Cache:</strong> Abstraction con @Cacheable, @CacheEvict</li>
+    <li><strong>Cache Strategy:</strong> Time-based eviction, size-based eviction</li>
+</ul>
+
+<h3>Async Processing:</h3>
+<ul>
+    <li><strong>Worker Service:</strong> Task lunghi delegati a worker asincrono</li>
+    <li><strong>@Async:</strong> Metodi asincroni Spring per operazioni non bloccanti</li>
+    <li><strong>CompletableFuture:</strong> Programmazione asincrona Java</li>
+</ul>
+
+<h2>12.3 Scalabilità</h2>
+
+<h3>Scalabilità Orizzontale:</h3>
+<ul>
+    <li><strong>Stateless Architecture:</strong> Nessuno stato in servizi, scale-out facile</li>
+    <li><strong>Kubernetes ReplicaSet:</strong> Replica pod configurabili (2-10 replicas)</li>
+    <li><strong>Load Balancing:</strong> Ingress Nginx distribuisce traffico</li>
+    <li><strong>Session Storage:</strong> JWT stateless, no session server-side</li>
+</ul>
+
+<h3>Scalabilità Database:</h3>
+<ul>
+    <li><strong>Azure PostgreSQL:</strong> Scalabilità verticale (vCPU, RAM) e orizzontale (read replicas)</li>
+    <li><strong>MongoDB:</strong> Sharding per distribuzione dati</li>
+    <li><strong>Read Replicas:</strong> Separazione read/write queries (future)</li>
+</ul>
+
+<h2>12.4 Resilienza</h2>
+
+<h3>Fault Tolerance:</h3>
+<ul>
+    <li><strong>Retry Logic:</strong> Interceptor frontend con backoff esponenziale (3 tentativi)</li>
+    <li><strong>Circuit Breaker:</strong> Pattern per prevenire cascading failures (future Resilience4j)</li>
+    <li><strong>Health Checks:</strong> Kubernetes restart automatico pod non healthy</li>
+    <li><strong>Graceful Shutdown:</strong> Terminazione graduale con drain period</li>
+    <li><strong>Connection Pool:</strong> Gestione resiliente connessioni database</li>
+</ul>
+
+<h1>13. LIMITAZIONI E FUTURE EVOLUZIONI</h1>
+
+<h2>13.1 Limitazioni Attuali</h2>
+
+<ul>
+    <li><strong>Keycloak Integration:</strong> Configurazione presente ma integrazione non completa end-to-end</li>
+    <li><strong>ActiveMQ:</strong> Configurato ma non utilizzato attivamente per messaging</li>
+    <li><strong>Storage S3:</strong> Implementazione parziale, da completare upload/download</li>
+    <li><strong>Test Coverage:</strong> Coverage da incrementare (target: 80%)</li>
+    <li><strong>API Documentation:</strong> OpenAPI da arricchire con esempi e descrizioni</li>
+    <li><strong>Performance Testing:</strong> Load testing da eseguire</li>
+    <li><strong>Monitoring Dashboard:</strong> Dashboard Grafana/Kibana da implementare</li>
+</ul>
+
+<h2>13.2 Roadmap Breve Termine (3-6 mesi)</h2>
+
+<ul>
+    <li><strong>Completamento Keycloak:</strong> Integrazione completa OAuth2 con Keycloak</li>
+    <li><strong>Storage S3:</strong> Implementazione completa con AWS S3 o MinIO</li>
+    <li><strong>Test Coverage:</strong> Aumento coverage a 80% (unit + integration)</li>
+    <li><strong>Performance Tuning:</strong> Ottimizzazione query database e caching</li>
+    <li><strong>API Documentation:</strong> Completamento OpenAPI con esempi request/response</li>
+    <li><strong>Error Handling:</strong> Miglioramento messaggi errore user-friendly</li>
+    <li><strong>Validation:</strong> Validazione completa input con messaggi localizzati</li>
+</ul>
+
+<h2>13.3 Roadmap Medio Termine (6-12 mesi)</h2>
+
+<ul>
+    <li><strong>Messaging Asincrono:</strong> Implementazione ActiveMQ o Kafka per eventi</li>
+    <li><strong>Dashboard Analytics:</strong> Dashboard analytics e reporting con ECharts/Grafana</li>
+    <li><strong>Export PDF/Excel:</strong> Generazione report PIAO in PDF ed Excel</li>
+    <li><strong>Workflow Approval:</strong> Workflow approvazione multi-livello configurabile</li>
+    <li><strong>Notifiche Real-time:</strong> WebSocket o Server-Sent Events per push notifications</li>
+    <li><strong>Full-text Search:</strong> Elasticsearch per ricerca avanzata</li>
+    <li><strong>Audit Dashboard:</strong> Dashboard visualizzazione audit trail</li>
+</ul>
+
+<h2>13.4 Roadmap Lungo Termine (12+ mesi)</h2>
+
+<ul>
+    <li><strong>Machine Learning:</strong> Suggerimenti automatici basati su ML (indicatori, rischi)</li>
+    <li><strong>Integrazioni PA:</strong> Integrazione con sistemi esterni PA (SPID, PagoPA, ANPR)</li>
+    <li><strong>Mobile App:</strong> App mobile nativa iOS/Android (React Native o Flutter)</li>
+    <li><strong>Advanced BI:</strong> Business Intelligence avanzata con drill-down analytics</li>
+    <li><strong>Multi-tenancy:</strong> Architettura multi-tenant completa con isolation</li>
+    <li><strong>AI Assistant:</strong> Assistente virtuale per compilazione guidata PIAO</li>
+    <li><strong>Blockchain:</strong> Certificazione immutabile documenti su blockchain</li>
+</ul>
+
+<h1>14. APPENDICI</h1>
+
+<h2>14.1 Glossario</h2>
+
+<table>
+    <tr>
+        <th>Termine</th>
+        <th>Descrizione</th>
+    </tr>
+    <tr>
+        <td>PIAO</td>
+        <td>Piano Integrato di Attività e Organizzazione</td>
+    </tr>
+    <tr>
+        <td>PA</td>
+        <td>Pubblica Amministrazione</td>
+    </tr>
+    <tr>
+        <td>BFF</td>
+        <td>Backend for Frontend - pattern architetturale</td>
+    </tr>
+    <tr>
+        <td>OVP</td>
+        <td>Obiettivi di Valore Pubblico</td>
+    </tr>
+    <tr>
+        <td>DTO</td>
+        <td>Data Transfer Object - pattern per trasferimento dati</td>
+    </tr>
+    <tr>
+        <td>JPA</td>
+        <td>Java Persistence API - ORM standard Java</td>
+    </tr>
+    <tr>
+        <td>SPA</td>
+        <td>Single Page Application</td>
+    </tr>
+    <tr>
+        <td>CI/CD</td>
+        <td>Continuous Integration / Continuous Deployment</td>
+    </tr>
+    <tr>
+        <td>RBAC</td>
+        <td>Role-Based Access Control</td>
+    </tr>
+    <tr>
+        <td>JWT</td>
+        <td>JSON Web Token - standard autenticazione</td>
+    </tr>
+    <tr>
+        <td>CORS</td>
+        <td>Cross-Origin Resource Sharing</td>
+    </tr>
+    <tr>
+        <td>CSRF</td>
+        <td>Cross-Site Request Forgery</td>
+    </tr>
+    <tr>
+        <td>GDPR</td>
+        <td>General Data Protection Regulation</td>
+    </tr>
+    <tr>
+        <td>OTLP</td>
+        <td>OpenTelemetry Protocol</td>
+    </tr>
+</table>
+
+<h2>14.2 Porte Applicative</h2>
+
+<table>
+    <tr>
+        <th>Porta</th>
+        <th>Servizio</th>
+        <th>Utilizzo</th>
+    </tr>
+    <tr>
+        <td>3001</td>
+        <td>Frontend (prod)</td>
+        <td>Nginx serving produzione</td>
+    </tr>
+    <tr>
+        <td>3055</td>
+        <td>JSON Server</td>
+        <td>Mock server sviluppo</td>
+    </tr>
+    <tr>
+        <td>4200</td>
+        <td>Frontend (dev)</td>
+        <td>Angular Dev Server</td>
+    </tr>
+    <tr>
+        <td>5432</td>
+        <td>PostgreSQL</td>
+        <td>Database relazionale</td>
+    </tr>
+    <tr>
+        <td>8080</td>
+        <td>API Gateway</td>
+        <td>Entry point API</td>
+    </tr>
+    <tr>
+        <td>8443</td>
+        <td>Nexus Registry</td>
+        <td>Docker registry privato</td>
+    </tr>
+    <tr>
+        <td>9081</td>
+        <td>Backend API</td>
+        <td>PIAO_BE service</td>
+    </tr>
+    <tr>
+        <td>9082</td>
+        <td>BFF</td>
+        <td>PIAO_BFF service</td>
+    </tr>
+    <tr>
+        <td>9083</td>
+        <td>Worker</td>
+        <td>Async processing</td>
+    </tr>
+    <tr>
+        <td>27017</td>
+        <td>MongoDB</td>
+        <td>Database NoSQL</td>
+    </tr>
+</table>
+
+<h2>14.3 URL Rilevanti</h2>
+
+<h3>Sviluppo:</h3>
+<ul>
+    <li><strong>Frontend:</strong> http://localhost:4200</li>
+    <li><strong>Gateway:</strong> http://localhost:8080</li>
+    <li><strong>Backend API:</strong> http://localhost:9081</li>
+    <li><strong>BFF:</strong> http://localhost:9082</li>
+    <li><strong>Worker:</strong> http://localhost:9083</li>
+</ul>
+
+<h3>OpenAPI:</h3>
+<ul>
+    <li><strong>BE Swagger UI:</strong> http://localhost:9081/openapi-ui</li>
+    <li><strong>BFF Swagger UI:</strong> http://localhost:9082/openapi-ui</li>
+    <li><strong>BE OpenAPI JSON:</strong> http://localhost:9081/openapi</li>
+    <li><strong>BFF OpenAPI JSON:</strong> http://localhost:9082/openapi</li>
+</ul>
+
+<h3>Health & Monitoring:</h3>
+<ul>
+    <li><strong>BE Health:</strong> http://localhost:9081/health/ready</li>
+    <li><strong>BFF Health:</strong> http://localhost:9082/health/ready</li>
+    <li><strong>BE Metrics:</strong> http://localhost:9081/actuator/metrics</li>
+    <li><strong>Gateway Health:</strong> http://localhost:8080/actuator/health</li>
+</ul>
+
+<h3>Infrastruttura:</h3>
+<ul>
+    <li><strong>Nexus Registry:</strong> https://localhost:8443/dfp-docker-repo/</li>
+    <li><strong>Kubernetes Ingress:</strong> http://dfp-piao.ey.test</li>
+    <li><strong>ArgoCD:</strong> (da configurare endpoint)</li>
+</ul>
+
+<h2>14.4 Comandi Utili</h2>
+
+<h3>Build e Deploy:</h3>
+<div class="code">
+# Maven build
+mvn clean install
+
+# Maven build skip tests
+mvn clean install -DskipTests
+
+# Frontend build
+cd PIAO_FE
+npm run build:prod
+
+# Docker build tutte immagini
+.\build-and-deploy.ps1
+
+# Docker Compose
+docker-compose up -d
+docker-compose down
+docker-compose logs -f
+</div>
+
+<h3>Database Migrations:</h3>
+<div class="code">
+# Liquibase update
+cd DB_MIGRATIONS
+mvn liquibase:update
+
+# Liquibase rollback
+mvn liquibase:rollback -Dliquibase.rollbackCount=1
+
+# Liquibase status
+mvn liquibase:status
+
+# Generate SQL
+mvn liquibase:updateSQL
+</div>
+
+<h3>Kubernetes:</h3>
+<div class="code">
+# Helm install
+helm install dfp-piao ./arch/dfp-piao
+
+# Helm upgrade
+helm upgrade dfp-piao ./arch/dfp-piao
+
+# Helm uninstall
+helm uninstall dfp-piao
+
+# Minikube load images
+minikube image load dfp-piao-gateway:1.0.0
+minikube image load dfp-piao-be:1.0.0
+minikube image load dfp-piao-bff:1.0.0
+minikube image load dfp-piao-fe:1.0.0
+
+# Kubectl get pods
+kubectl get pods -n default
+kubectl logs &lt;pod-name&gt;
+kubectl describe pod &lt;pod-name&gt;
+</div>
+
+<h3>Development:</h3>
+<div class="code">
+# Run backend BE
+cd PIAO_BE
+mvn spring-boot:run
+
+# Run backend BFF
+cd PIAO_BFF
+mvn spring-boot:run
+
+# Run frontend
+cd PIAO_FE
+npm run dev
+
+# Run tests frontend
+npm test
+
+# Run tests backend
+mvn test
+</div>
+
+<h1>15. CONCLUSIONI</h1>
+
+<p>Il progetto PIAO rappresenta una soluzione completa, moderna ed enterprise-ready per la gestione dei Piani Integrati di Attività e Organizzazione della Pubblica Amministrazione italiana.</p>
+
+<h2>Punti di Forza</h2>
+
+<h3>Architettura Solida:</h3>
+<p>L'architettura a microservizi adottata, con separazione netta tra frontend e backend, pattern BFF, API Gateway e servizi specializzati, garantisce scalabilità, manutenibilità e resilienza. L'uso di tecnologie cloud-native (Docker, Kubernetes, Helm) permette deployment flessibili e gestione efficiente dell'infrastruttura.</p>
+
+<h3>Stack Tecnologico Moderno:</h3>
+<p>L'utilizzo di framework consolidati e versioni LTS (Java 21, Spring Boot 3.5, Angular 20, PostgreSQL) garantisce stabilità, supporto a lungo termine e accesso alle ultime features. La scelta di tecnologie open-source riduce vendor lock-in e costi di licensing.</p>
+
+<h3>Sicurezza Enterprise:</h3>
+<p>L'implementazione di OAuth2/JWT, RBAC granulare, audit trail completo con Envers, encryption TLS e best practices di sicurezza (CORS, CSRF, XSS protection) rende il sistema adatto per gestire dati sensibili della PA.</p>
+
+<h3>DevOps e Automazione:</h3>
+<p>CI/CD con Azure DevOps, GitOps con ArgoCD, containerizzazione Docker e orchestrazione Kubernetes automatizzano il ciclo di sviluppo e deployment, riducendo errori manuali e accelerando time-to-market.</p>
+
+<h3>Persistenza Polyglot:</h3>
+<p>La strategia dual-database (PostgreSQL per dati transazionali, MongoDB per dati semi-strutturati) ottimizza performance e flessibilità, scegliendo il database più adatto per ogni tipologia di dato.</p>
+
+<h2>Aree di Miglioramento</h2>
+
+<p>Come evidenziato nella roadmap, esistono aree di miglioramento identificate:</p>
+
+<ul>
+    <li>Completamento integrazione Keycloak per autenticazione production-ready</li>
+    <li>Implementazione completa storage S3 per gestione file scalabile</li>
+    <li>Incremento test coverage per garantire qualità e regression testing</li>
+    <li>Implementazione messaging asincrono per comunicazione event-driven</li>
+    <li>Dashboard monitoring e observability per visibility operativa</li>
+</ul>
+
+<h2>Prospettive Future</h2>
+
+<p>Il sistema ha solide fondamenta per evoluzioni future ambiziose:</p>
+
+<ul>
+    <li><strong>Intelligenza Artificiale:</strong> Assistenti virtuali e suggerimenti ML per compilazione guidata</li>
+    <li><strong>Integrazioni PA:</strong> Integrazione con ecosistema digitale PA (SPID, PagoPA, ANPR)</li>
+    <li><strong>Mobile First:</strong> App native per accesso ubiquo</li>
+    <li><strong>Advanced Analytics:</strong> Business Intelligence e predictive analytics</li>
+    <li><strong>Blockchain:</strong> Certificazione immutabile per trasparenza e trust</li>
+</ul>
+
+<h2>Valore Aggiunto</h2>
+
+<p>Il progetto PIAO non è solo una piattaforma software, ma un <strong>abilitatore digitale</strong> per la trasformazione della PA italiana. Facilita la compliance normativa, aumenta la trasparenza, migliora l'efficienza operativa e supporta decisioni data-driven.</p>
+
+<p>L'adozione di best practices di ingegneria software, architettura pulita, codice manutenibile e automazione pervasiva garantisce un <strong>Total Cost of Ownership (TCO) ottimizzato</strong> nel lungo termine.</p>
+
+<h2>Raccomandazioni Finali</h2>
+
+<ol>
+    <li><strong>Prioritizzare Security:</strong> Completare integrazione Keycloak e security hardening</li>
+    <li><strong>Investire in Testing:</strong> Raggiungere 80% code coverage per ridurre regression bugs</li>
+    <li><strong>Implementare Monitoring:</strong> Dashboard Grafana/Kibana per visibility operativa</li>
+    <li><strong>Documentare Continuamente:</strong> Mantenere documentazione API e architettura aggiornata</li>
+    <li><strong>Formare Team:</strong> Training su architettura microservizi e tecnologie adottate</li>
+    <li><strong>Pianificare Capacity:</strong> Load testing e planning capacity per scalabilità</li>
+</ol>
+
+<div class="note">
+<p><strong>Nota:</strong> Questo documento rappresenta una fotografia del sistema alla data di febbraio 2026. Per informazioni aggiornate, consultare la documentazione tecnica nel repository Git e la wiki del progetto.</p>
+</div>
+
+<hr>
+
+<p style="text-align: center; margin-top: 50px; color: #666;">
+    <strong>Fine Documento</strong><br>
+    Analisi Funzionale e Tecnica - Progetto PIAO v1.0<br>
+    © 2026 - EY Advisory
+</p>
+
+</body>
+</html>

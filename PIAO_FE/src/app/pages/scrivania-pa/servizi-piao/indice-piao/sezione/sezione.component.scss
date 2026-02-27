@@ -1,0 +1,133 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  padding-top: 1rem;
+  padding-bottom: 1.5rem;
+  padding-right: 1rem;
+}
+
+.title {
+  font-weight: 400;
+  font-size: 3rem;
+}
+
+.subTitle {
+  font-weight: 400;
+  font-size: 1.2rem;
+}
+
+piao-card-alert {
+  padding-top: 3rem;
+}
+
+piao-workflow {
+  padding-top: 3rem;
+}
+
+/* Desktop invariato */
+.section-piao {
+  position: relative;
+  padding-top: 2rem;
+}
+
+.section-piao .actions-piao {
+  position: absolute;
+  right: 0;
+  top: 3.5rem;
+}
+
+@media (max-width: 1000px) {
+  .section-piao {
+    position: static;
+    padding-top: 1rem;
+  }
+
+  .section-piao .actions-piao {
+    position: relative;
+    top: 0.5rem; /* vicino all’header della sezione */
+    z-index: 2;
+    margin: 0.5rem 0 1rem;
+    width: 100%;
+  }
+}
+
+.alert-label {
+  color: #222222;
+  padding-top: 3rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+.buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  padding-top: 3rem;
+  padding-bottom: 2rem;
+  position: relative;
+}
+
+::ng-deep .save-button button {
+  min-width: 10rem;
+}
+
+.buttons::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background-color: #0066cc;
+}
+
+::ng-deep .save-button button {
+  min-width: 10rem;
+}
+
+::ng-deep .svg-container-arr {
+  height: 1.5rem;
+  width: 1.5rem;
+  display: inline-flex;
+  justify-content: center;
+}
+
+.next-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.next-step {
+  display: flex;
+  flex-direction: row;
+  font-weight: 700;
+  font-size: 1rem;
+  color: #0066cc;
+  cursor: pointer;
+  gap: 0.5rem;
+  padding-bottom: 1.5rem;
+}
+
+::ng-deep .icon-modal {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.title-modal {
+  font-weight: 400;
+  font-size: 2rem;
+  padding-bottom: 1rem;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+}
+
+.message-text {
+  word-break: break-word !important;
+  overflow-wrap: break-word !important;
+  white-space: pre-wrap !important;
+  line-height: 1.5;
+  max-width: 100%;
+  hyphens: auto;
+}

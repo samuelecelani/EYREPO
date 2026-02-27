@@ -1,0 +1,112 @@
+<div class="container-elenco-attivita-sensibile pt-2">
+  <p class="section-subtitle">{{ titleElencoAzioni | translate }}</p>
+
+  <div class="pt-3">
+    @if (adempimentiNormativi.length === 0) {
+      <div class="empty-state-container">
+        <p class="empty-message">{{ notFoundElencoAzioni | translate }}</p>
+        <span>
+          <p class="load-form" (click)="handleOpenAzioneModal()">
+            {{ labelAddElencoAzioni | translate }}
+            <piao-svg
+              [icon]="'PlusCircle'"
+              [fillColor]="'#0066cc'"
+              [svgContainer]="'svg'"
+            ></piao-svg>
+          </p>
+        </span>
+      </div>
+    } @else {
+      <div class="table-elenco-container pt-2">
+        <table class="table-elenco">
+          <thead>
+            <tr>
+              <th>
+                <div class="d-flex flex-row align-items-center header-with-icon">
+                  {{ 'SEZIONE_23.ELENCO_AZIONI.TH.NORMATIVA' | translate }}
+                  <div class="pointer" (click)="handleSortList('normativa')">
+                    <piao-svg
+                      [svgContainer]="'icon-svg-arrow-table-center'"
+                      [icon]="'ArrowBottom'"
+                      [fillColor]="'#0066CC'"
+                    ></piao-svg>
+                  </div>
+                </div>
+              </th>
+              <th>{{ 'SEZIONE_23.ELENCO_AZIONI.TH.AZIONE_PREVISTA' | translate }}</th>
+              <th>{{ 'SEZIONE_23.ELENCO_AZIONI.TH.AZIONI' | translate }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (
+              adempimento of adempimentiNormativi.controls;
+              track trackByAttivitaId($index, adempimento);
+              let i = $index
+            ) {
+              <tr>
+                <td>
+                  <strong>{{ adempimento.get('normativa')?.value || '' }}</strong>
+                </td>
+                <td>
+                  <span>{{ adempimento.get('azione')?.value || '' }}</span>
+                </td>
+                <td class="col-azioni">
+                  <piao-azioni
+                    [idSelected]="adempimento.get('id')?.value || ''"
+                    [isTitle]="false"
+                    [verticalEllipsis]="getActionsFor(i)"
+                  ></piao-azioni>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+
+      <p class="d-flex justify-content-end pt-3">
+        <span>
+          <p class="load-form" (click)="handleOpenAzioneModal()">
+            {{ labelAddElencoAzioni | translate }}
+            <piao-svg
+              [icon]="'PlusCircle'"
+              [fillColor]="'#0066cc'"
+              [svgContainer]="'svg'"
+            ></piao-svg>
+          </p>
+        </span>
+      </p>
+    }
+  </div>
+</div>
+
+@if (openModalElencoAdempimento) {
+  <piao-modal
+    [isIcon]="true"
+    [icon]="icon"
+    [iconStyle]="iconStyle"
+    [open]="openModalElencoAdempimento"
+    [disabledButtonConfirm]="disabledButtonConfirm"
+    (closed)="this.openModalElencoAdempimento = false"
+    (confirm)="handleAddElencoAdempimentoNormativo(); openModalElencoAdempimento = false"
+  >
+    <piao-modal-elenco-adempimento-normativo
+      #child
+      [piaoDTO]="piaoDTO"
+      [adempimentoNormativoToEdit]="adempimentoToEdit"
+    >
+    </piao-modal-elenco-adempimento-normativo>
+  </piao-modal>
+}
+
+@if (openModalDelete) {
+  <piao-modal-delete
+    [icon]="'AlertCircle'"
+    [title]="'MODAL_REMOVE.AZIONE.TITLE'"
+    [message]="'MODAL_REMOVE.AZIONE.MESSAGE'"
+    [subMessage]="'MODAL_REMOVE.CONFIRM_OPERATION'"
+    [openModalDelete]="openModalDelete"
+    [elementToDelete]="elementToDelete"
+    (confirm)="handleRemoveForm($event)"
+    (closed)="handleCloseModalDelete()"
+  ></piao-modal-delete>
+}

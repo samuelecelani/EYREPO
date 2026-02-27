@@ -1,0 +1,257 @@
+.card-action {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
+  flex-wrap: nowrap;
+  width: 100%;
+  padding-top: 2.5rem;
+  gap: 1.5rem;
+  padding-bottom: 3rem;
+}
+
+.card-action-button {
+  margin-top: auto;
+  align-self: flex-end;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 6px;
+  border: none;
+  flex-shrink: 0;
+}
+
+/* Icona che si sovrappone al bordo della card */
+piao-icon[container] {
+  position: absolute;
+  top: 0.2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+}
+
+::ng-deep .icon-container-card-action-servizi-piao {
+  width: 5.5rem;
+  height: 5.5rem;
+  border-radius: 0.625rem;
+  border: 1px solid #0e3468;
+  opacity: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  //box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+::ng-deep .icon-img-card-action-servizi-piao {
+  width: 3.5rem;
+  height: 3.5rem;
+}
+
+/* Container della card */
+::ng-deep .piao-card-action-servizi-piao-container {
+  max-width: 29.1rem;
+  width: 100%;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: row;
+  padding: 0;
+  position: relative;
+  flex: 1 1 0;
+  min-width: 0;
+  aspect-ratio: 29.1 / 23.1;
+  background-color: transparent;
+}
+
+@media screen and (min-width: 1320px) {
+  .card-action {
+    display: flex;
+    flex-wrap: nowrap;
+  }
+}
+
+/* Body della card con sfondo azzurro chiaro */
+::ng-deep .piao-card-action-servizi-piao-body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  background: url('/assets/img/cardActionServizi.png') center/contain no-repeat;
+  color: #1a1a1a;
+  padding: 1.5rem;
+  padding-top: 1.5rem;
+  padding-left: 2rem;
+  border-radius: 8px;
+  height: 100%;
+  gap: 2.5rem;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+}
+
+/* Titolo allineato a sinistra */
+::ng-deep .piao-card-action-servizi-piao-title {
+  font-weight: 600;
+  font-size: 1.75rem;
+  line-height: 2.25rem;
+  white-space: pre-line;
+  width: 100%;
+  text-align: left;
+  margin: 0;
+  padding: 0;
+  padding-left: 6rem;
+  color: #333;
+  flex-shrink: 0;
+}
+
+/* Testo descrittivo */
+::ng-deep .piao-card-action-servizi-piao-subTitle {
+  font-weight: 400;
+  font-size: 1.125rem;
+  line-height: 1.5rem;
+  color: black;
+  width: 100%;
+  text-align: left;
+  margin: 0;
+  padding: 0;
+  flex-shrink: 1;
+  min-height: 0;
+}
+
+::ng-deep .icon-modal {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+/* Media queries per schermi medi/tablet (768px - 1023px) */
+@media screen and (max-width: 1440px) and (min-width: 768px) {
+  .card-action {
+    flex-wrap: wrap;
+  }
+
+  ::ng-deep .piao-card-action-servizi-piao-container {
+    //flex: 1 1 calc(50% - 0.75rem);
+    flex: 1 1 calc(33.333% - 1rem);
+    min-width: 280px;
+    //max-width: 29.1rem;
+  }
+}
+
+/* Media queries per mobile */
+@media screen and (max-width: 768px) {
+  .card-action {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1.25rem;
+    padding-top: 1.5rem;
+  }
+
+  ::ng-deep .piao-card-action-servizi-piao-container {
+    flex: 1 1 100%;
+    //max-width: 100%;
+    min-width: unset;
+    width: 100%;
+    aspect-ratio: 29.1 / 23.1;
+  }
+
+  ::ng-deep .piao-card-action-servizi-piao-body {
+    padding: 1.25rem;
+    padding-top: 1.75rem;
+    padding-left: 1.5rem;
+    padding-bottom: 1.5rem;
+    gap: 15%;
+    justify-content: space-between;
+    background: url('/assets/img/cardActionServiziMobile.png') center/cover no-repeat;
+  }
+
+  ::ng-deep .piao-card-action-servizi-piao-title {
+    font-size: 1.6rem;
+    line-height: 2rem;
+    padding-left: 25%;
+    //margin-top: -0.25rem;
+  }
+
+  ::ng-deep .piao-card-action-servizi-piao-subTitle {
+    font-size: 1.025rem;
+    line-height: 1.375rem;
+    display: -webkit-box;
+    line-clamp: 5;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+  }
+
+  ::ng-deep .icon-container-card-action-servizi-piao {
+    width: 5.6rem;
+    height: 5.6rem;
+  }
+
+  ::ng-deep .icon-img-card-action-servizi-piao {
+    width: 3.4rem;
+    height: 3.4rem;
+  }
+
+  piao-icon[container] {
+    top: 0.2rem;
+  }
+
+  .card-action-button {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+/* Media queries per mobile piccolo */
+@media screen and (max-width: 480px) {
+  .card-action {
+    padding-top: 1rem;
+    gap: 2rem;
+  }
+
+  ::ng-deep .piao-card-action-servizi-piao-body {
+    padding: 1rem;
+    padding-top: 1.5rem;
+    padding-left: 1.25rem;
+    padding-bottom: 1.25rem;
+    gap: 15%;
+    background: url('/assets/img/cardActionServiziMobile.png') center/contain no-repeat;
+  }
+
+  ::ng-deep .piao-card-action-servizi-piao-title {
+    font-size: 1rem;
+    line-height: 1.375rem;
+    padding-left: 25%;
+    margin-top: -0.25rem;
+  }
+
+  ::ng-deep .piao-card-action-servizi-piao-subTitle {
+    font-size: 0.8125rem;
+    line-height: 1.25rem;
+    display: -webkit-box;
+    line-clamp: 5;
+    -webkit-line-clamp: 5;
+    overflow: hidden;
+  }
+
+  ::ng-deep .icon-container-card-action-servizi-piao {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  ::ng-deep .icon-img-card-action-servizi-piao {
+    width: 2.25rem;
+    height: 2.25rem;
+  }
+
+  piao-icon[container] {
+  }
+
+  .card-action-button {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

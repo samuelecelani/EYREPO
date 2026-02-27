@@ -1,0 +1,36 @@
+<!-- Rendering condizionale basato sullo stato della query -->
+@if (newsQuery.status() === 'loading') {
+  <div class="loading-state">Caricamento news...</div>
+}
+
+@if (newsQuery.status() === 'error') {
+  <div class="error-state">Errore nel caricamento delle news</div>
+}
+
+@if (newsQuery.status() === 'success' && newsQuery.data()) {
+  <!-- Lista news paginata -->
+  @for (news of paginatedNews(); track news.id) {
+    <hr class="hr-novita" />
+    <piao-news
+      [icon]="news.icon"
+      [badgeText]="news.badgeText"
+      [badgeVariant]="news.badgeVariant"
+      [title]="news.title"
+      [titleLink]="news.titleLink"
+      [description]="news.description"
+      [date]="news.date"
+      [readMoreLink]="news.readMoreLink"
+    ></piao-news>
+  }
+  <hr class="hr-novita" />
+
+  <!-- Componente di paginazione (solo se abilitato) -->
+  @if (pagination) {
+    <piao-pagination
+      [totalItems]="totalItems()"
+      [itemsPerPage]="itemsPerPage"
+      [currentPage]="currentPage()"
+      (pageChange)="onPageChange($event)"
+    ></piao-pagination>
+  }
+}

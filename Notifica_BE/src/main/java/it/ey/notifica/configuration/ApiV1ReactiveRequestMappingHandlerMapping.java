@@ -1,0 +1,57 @@
+package it.ey.notifica.configuration;
+
+import it.ey.notifica.annotation.ApiV1Controller;
+import org.springframework.core.annotation.AnnotatedElementUtils;
+import org.springframework.web.reactive.result.method.RequestMappingInfo;
+import org.springframework.web.reactive.result.method.annotation.RequestMappingHandlerMapping;
+
+import java.lang.reflect.Method;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+/**
+ * Custom RequestMappingHandlerMapping per WebFlux che gestisce @ApiV1Controller
+ * aggiungendo automaticamente il prefisso "api/v1".
+ */
+public class ApiV1ReactiveRequestMappingHandlerMapping extends RequestMappingHandlerMapping {
+
+    private static final String API_V1_PREFIX = "/api/v1";
+
+    @Override
+    protected RequestMappingInfo getMappingForMethod(Method method, Class<?> handlerType) {
+        RequestMappingInfo info = super.getMappingForMethod(method, handlerType);
+        if (info == null) return null;
+
+        ApiV1Controller apiV1Controller = AnnotatedElementUtils.findMergedAnnotation(handlerType, ApiV1Controller.class);
+        if (apiV1Controller != null) {
+            String controllerPath = apiV1Controller.value();
+            String basePath;
+            if (controllerPath != null && !controllerPath.isEmpty()) {
+                if (!controllerPath.startsWith("/")) controllerPath = "/" + controllerPath;
+                basePath = API_V1_PREFIX + controllerPath;
+            } else {
+                basePath = API_V1_PREFIX;
+            }
+
+            final String finalBasePath = basePath;
+            Set<String> patterns = info.getPatternsCondition().getPatterns()
+                .stream()
+                .map(pattern -> {
+                    String path = pattern.getPatternString();
+                    if (path == null || path.isEmpty() || path.equals("/")) return finalBasePath;
+                    if (path.endsWith("/") && path.length() > 1) path = path.substring(0, path.length() - 1);
+                    return finalBasePath + (path.startsWith("/") ? path : "/" + path);
+                })
+                .collect(Collectors.toSet());
+
+            return RequestMappingInfo.paths(patterns.toArray(new String[0]))
+                .methods(info.getMethodsCondition().getMethods().toArray(new org.springframework.web.bind.annotation.RequestMethod[0]))
+                .params(info.getParamsCondition().getExpressions().stream().map(Object::toString).toArray(String[]::new))
+                .headers(info.getHeadersCondition().getExpressions().stream().map(Object::toString).toArray(String[]::new))
+                .consumes(info.getConsumesCondition().getConsumableMediaTypes().stream().map(Object::toString).toArray(String[]::new))
+                .produces(info.getProducesCondition().getProducibleMediaTypes().stream().map(Object::toString).toArray(String[]::new))
+                .build();
+        }
+        return info;
+    }
+}

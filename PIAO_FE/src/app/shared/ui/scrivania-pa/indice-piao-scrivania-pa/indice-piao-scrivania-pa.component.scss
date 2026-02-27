@@ -1,0 +1,98 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.header-section {
+  padding-top: 2rem;
+  border-bottom: 2px solid #525252;
+}
+
+.title {
+  font-weight: 400;
+  font-size: 3rem;
+  line-height: 2.5rem;
+}
+
+.sub-title {
+  font-weight: 400;
+  font-size: 1.1rem;
+  line-height: 1.7rem;
+  white-space: pre-line;
+}
+
+.indice-piao-main {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: stretch;
+}
+
+.indice-piao-structure {
+  flex: 0 1 55%;
+  /* grow:0, shrink:1, basis:60% */
+  min-width: 0;
+  border-right: 1px solid #c5c7c9;
+  padding-right: 1rem;
+}
+
+.graphic-indice-piao {
+  flex: 0 1 45%;
+  /* grow:0, shrink:1, basis:40% */
+  min-width: 0;
+}
+
+.indice-piao-main ::ng-deep {
+  font-size: 0.875rem;
+}
+
+::ng-deep .indice-piao-structure .table {
+  min-width: auto !important;
+}
+
+::ng-deep .indice-piao-structure .table th:first-child {
+  width: 50% !important;
+  min-width: auto !important;
+}
+
+::ng-deep .indice-piao-structure .table th:nth-child(2) {
+  width: 20% !important;
+  min-width: auto !important;
+}
+
+::ng-deep .indice-piao-structure .table th:nth-child(3) {
+  width: 30% !important;
+  min-width: auto !important;
+}
+
+/* ------ Responsive: quando lo schermo è piccolo ------ */
+@media (max-width: 1000px) {
+  /* scegli tu il breakpoint: 768px, 992px, ecc. */
+  .indice-piao-main {
+    flex-direction: column; /* mette il grafico sotto */
+    gap: 1rem;
+  }
+
+  .indice-piao-structure {
+    flex: 1 1 auto;
+    border-right: none; /* rimuove il bordo destro */
+    padding-right: 0; /* rimuove il padding destro */
+    border-bottom: 1px solid #c5c7c9; /* opzionale: se vuoi un separatore orizzontale */
+    padding-bottom: 1rem; /* opzionale: spazio sotto */
+  }
+
+  .graphic-indice-piao {
+    flex: 1 1 auto;
+    margin-top: 0.5rem; /* piccolo spazio dal blocco sopra */
+  }
+
+  /* Abilita overflow per tabella su schermi piccoli */
+  ::ng-deep .indice-piao-structure .table-responsive {
+    overflow-x: auto !important;
+  }
+
+  ::ng-deep .indice-piao-structure .table {
+    min-width: 50rem !important;
+  }
+}

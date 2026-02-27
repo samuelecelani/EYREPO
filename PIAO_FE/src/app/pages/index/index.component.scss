@@ -1,0 +1,67 @@
+.main {
+  background-color: #00325d;
+  min-height: 100vh;
+}
+
+.img {
+  height: 80px;
+}
+
+.subTitle {
+  font-size: 0.9rem;
+}
+
+
+
+::ng-deep .piao-card-index {
+  min-height: 8.75rem;
+  /*140px*/
+  width: 100%;
+
+  background-color: rgba(0, 77, 153, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 0.5rem;
+  /*8px*/
+  transition: all 0.3s ease;
+
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  height: 100%;
+  color: #fff;
+}
+
+::ng-deep .piao-card-index:not(.disabled):hover {
+  background-color: rgba(0, 77, 153, 0.8);
+  transform: translateY(-5px);
+}
+
+::ng-deep .piao-card-index:hover {
+  background-color: rgba(0, 77, 153, 0.8);
+  transform: translateY(-5px);
+}
+
+::ng-deep .piao-card-index-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 1rem;
+}
+
+::ng-deep .piao-card-index-title {
+  color: #5cb3ff;
+  font-weight: 300;
+  text-align: left;
+  font-size: 2.5rem;
+  /*h6*/
+  margin-bottom: 2;
+}
+
+::ng-deep .piao-card-index-subTitle {
+  font-size: 1rem;
+  /*h1*/
+  margin-bottom: 0;
+  color: #fff;
+  text-align: center;
+}

@@ -1,0 +1,86 @@
+/* ===== MAIN CONTAINER ===== */
+.main {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  overflow: visible;
+  position: relative;
+}
+
+/* ===== HEADER BACKGROUND ===== */
+.header-backgroud {
+  display: flex;
+  flex-direction: column;
+  background: url('/assets/img/backHeaderServizi.png') center/cover no-repeat;
+  background-color: #f8fafc;
+  height: 16.625rem;
+  margin-left: -9rem;
+  margin-right: -0.3rem;
+  padding-left: 9rem;
+  padding-right: 0.3rem;
+  box-sizing: border-box;
+}
+
+/* ===== CONTAINER ===== */
+.container-header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===== CONTAINER ===== */
+.container-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-right: 1rem;
+  box-sizing: border-box;
+}
+
+/* ===== CONTENT ===== */
+.content {
+  width: 100%;
+  padding-top: 7rem;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+/* Media queries per mobile */
+@media screen and (max-width: 768px) {
+  .header-backgroud {
+    height: 12rem;
+  }
+
+  .container-header {
+    padding: 0.75rem;
+  }
+
+  .container-content {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  .content {
+    padding-top: 4rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .header-backgroud {
+    height: 10rem;
+  }
+
+  .container-header {
+    padding: 0.5rem;
+  }
+
+  .container-content {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+
+  .content {
+    padding-top: 3rem;
+  }
+}

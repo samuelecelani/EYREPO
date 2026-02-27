@@ -1,0 +1,161 @@
+/* ===== MAIN CONTAINER ===== */
+.main {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  overflow: visible;
+  position: relative;
+}
+
+/* ===== HEADER BACKGROUND ===== */
+.header-backgroud {
+  display: flex;
+  flex-direction: column;
+  background: url('/assets/img/backHeaderValidazione.png') center/cover no-repeat;
+  background-color: #f8fafc;
+  height: 16.625rem;
+  margin-left: -9rem;
+  margin-right: -0.3rem;
+  padding-left: 9rem;
+  padding-right: 0.3rem;
+  box-sizing: border-box;
+}
+
+/* ===== CONTAINER ===== */
+.container-header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===== CONTAINER ===== */
+.container-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-right: 1rem;
+  box-sizing: border-box;
+}
+
+/* ===== CONTENT ===== */
+.content {
+  width: 100%;
+  padding-top: 7rem;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.checkbox-download-container {
+  display: flex;
+  flex-direction: column;
+  padding-top: 2rem;
+  padding-bottom: 3rem;
+  gap: 2rem;
+}
+.download-button {
+  display: flex;
+  justify-content: flex-end; //  bottone a destra
+}
+
+.checkbox-text {
+  display: inline; /* mantiene tutto inline come testo normale */
+}
+
+.checkbox-wrapper {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem; /* distanza solo tra checkbox e testo, non tra label e link */
+}
+
+.checkbox-label,
+.checkbox-link {
+  display: inline; /* evita che il link vada a capo */
+}
+
+.form-check-input {
+  width: 1.25rem;
+  height: 1.25rem;
+  border: 2px solid #000;
+  border-radius: 4px;
+  cursor: pointer;
+  flex-shrink: 0;
+  margin-top: 0.125rem;
+}
+
+.form-check-input:checked {
+  background-color: #0066cc;
+  border-color: #0066cc;
+}
+
+.checkbox-label {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #000;
+  margin: 0;
+  cursor: pointer;
+}
+
+.checkbox-label strong {
+  font-weight: 600;
+}
+
+.checkbox-link {
+  color: #0066cc;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.checkbox-link:hover {
+  text-decoration: none;
+}
+.title-modal {
+  font-weight: 400;
+  font-size: 2rem;
+  padding-bottom: 1rem;
+}
+
+.sub-title-modal {
+  font-weight: 400;
+  font-size: 1.2rem;
+  white-space: pre-line;
+}
+
+/* Media queries per mobile */
+@media screen and (max-width: 768px) {
+  .header-backgroud {
+    height: 12rem;
+  }
+
+  .container-header {
+    padding: 0.75rem;
+  }
+
+  .container-content {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  .content {
+    padding-top: 4rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .header-backgroud {
+    height: 10rem;
+  }
+
+  .container-header {
+    padding: 0.5rem;
+  }
+
+  .container-content {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+
+  .content {
+    padding-top: 3rem;
+  }
+}

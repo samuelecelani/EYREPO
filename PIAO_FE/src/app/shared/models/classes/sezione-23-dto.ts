@@ -1,0 +1,42 @@
+import { AdempimentoNormativoDTO } from './adempimento-normativo-dto';
+import { AllegatoDTO } from './allegato-dto';
+import { AttivitaSensibileDTO } from './attivita-sensibile-dto';
+import { CampiTecniciDTO } from './campi-tecnici-dto';
+import { MisuraGeneraleDTO } from './misura-generale-dto';
+import { MonitoraggioPrevenzioneDTO } from './monitoraggio-prevenzione-dto';
+import { ObiettivoPrevenzioneCorruzioneTrasparenzaDTO } from './obiettivo-prevenzione-corruzione-trasparenza-dto';
+import { ObbligoLeggeDTO } from './obbligo-legge-dto';
+import { ObiettivoPrevenzioneDTO } from './obiettivo-prevenzione-dto';
+import { UlterioriInfoDTO } from './ulteriori-info-dto';
+
+export class Sezione23DTO extends CampiTecniciDTO {
+  id!: number;
+  idPiao!: number;
+  statoSezione!: string;
+  introAdempimentiNormativi!: string;
+  impattoContestoExt!: string;
+  impattoContestoInt!: string;
+  descrGestioneRischio!: string;
+  descrIdentificazioneRischio!: string;
+  descrAnalisiRischio!: string;
+  descrMisurazioneRischio!: string;
+  descrTrattamentoRischio!: string;
+  descrMonitoraggioRischio!: string;
+  introObiettivoPrevenzione!: string;
+  introMisurePrevenzione!: string;
+  introValorePubblico!: string;
+  introAttivitaSensibili!: string;
+  introValutazioneRischio!: string;
+  introGestioneRischio!: string;
+  introMonitoraggio!: string;
+  descrTrasparenza!: string;
+  ulterioriInfo!: UlterioriInfoDTO;
+  allegati!: AllegatoDTO[];
+  obiettivoPrevenzione!: ObiettivoPrevenzioneDTO[];
+  misuraPrevenzione!: MisuraGeneraleDTO[];
+  adempimentiNormativi!: AdempimentoNormativoDTO[];
+  attivitaSensibile!: AttivitaSensibileDTO[];
+  modalitaMonitoraggio!: MonitoraggioPrevenzioneDTO[];
+  obiettivoPrevenzioneCorruzioneTrasparenza!: ObiettivoPrevenzioneCorruzioneTrasparenzaDTO[];
+  obblighiLegge!: ObbligoLeggeDTO[];
+}

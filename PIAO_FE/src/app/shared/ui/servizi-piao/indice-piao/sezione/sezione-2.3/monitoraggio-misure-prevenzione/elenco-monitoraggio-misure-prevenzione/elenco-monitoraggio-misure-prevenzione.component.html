@@ -1,0 +1,170 @@
+<div class="container-elenco-attivita-sensibile pt-2">
+  <p class="section-subtitle">{{ titleElencoModalita | translate }}</p>
+
+  <div class="pt-3">
+    @if (modalitaMonitoraggio.length === 0) {
+      <div class="empty-state-container">
+        <p class="empty-message">{{ notFoundElencoModalita | translate }}</p>
+        <span>
+          <p class="load-form" (click)="handleOpenModalElencoMisurePrevenzione()">
+            {{ labelAddElencoModalita | translate }}
+            <piao-svg
+              [icon]="'PlusCircle'"
+              [fillColor]="'#0066cc'"
+              [svgContainer]="'svg'"
+            ></piao-svg>
+          </p>
+        </span>
+      </div>
+    } @else {
+      <div class="table-elenco-container pt-2">
+        <table class="table-elenco">
+          <thead>
+            <tr>
+              <th>
+                <div class="d-flex flex-row align-items-center header-with-icon">
+                  {{
+                    'SEZIONE_23.MONITORAGGIO_MISURE.ELENCO_MODALITA_MONITORAGGIO.TH.MISURA_PREVENZIONE'
+                      | translate
+                  }}
+                  <div class="pointer" (click)="handleSortList('misuraPrevenzioneLabel')">
+                    <piao-svg
+                      [svgContainer]="'icon-svg-arrow-table-center'"
+                      [icon]="'ArrowBottom'"
+                      [fillColor]="'#0066CC'"
+                    ></piao-svg>
+                  </div>
+                </div>
+              </th>
+              <th>
+                <div class="d-flex flex-row align-items-center header-with-icon">
+                  {{
+                    'SEZIONE_23.MONITORAGGIO_MISURE.ELENCO_MODALITA_MONITORAGGIO.TH.TIPOLOGIA_PREVENZIONE'
+                      | translate
+                  }}
+                  <div class="pointer" (click)="handleSortList('tipologiaMisuraPrevenzione')">
+                    <piao-svg
+                      [svgContainer]="'icon-svg-arrow-table-center'"
+                      [icon]="'ArrowBottom'"
+                      [fillColor]="'#0066CC'"
+                    ></piao-svg>
+                  </div>
+                </div>
+              </th>
+              <th>
+                {{
+                  'SEZIONE_23.MONITORAGGIO_MISURE.ELENCO_MODALITA_MONITORAGGIO.TH.MODALITA_MONITORAGGIO'
+                    | translate
+                }}
+              </th>
+              <th>
+                {{
+                  'SEZIONE_23.MONITORAGGIO_MISURE.ELENCO_MODALITA_MONITORAGGIO.TH.RESPONSABILE_MONITORAGGIO'
+                    | translate
+                }}
+              </th>
+              <th>
+                {{
+                  'SEZIONE_23.MONITORAGGIO_MISURE.ELENCO_MODALITA_MONITORAGGIO.TH.TEMPISTICHE_MONITORAGGIO'
+                    | translate
+                }}
+              </th>
+              <th>
+                {{
+                  'SEZIONE_23.MONITORAGGIO_MISURE.ELENCO_MODALITA_MONITORAGGIO.TH.AZIONI'
+                    | translate
+                }}
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (
+              modalitaMonitoraggio of modalitaMonitoraggio.controls;
+              track trackByModalitaId($index, modalitaMonitoraggio);
+              let i = $index
+            ) {
+              <tr>
+                <td>
+                  <strong>{{
+                    getMisuraPrevenzioneLabel(
+                      modalitaMonitoraggio.get('idMisuraPrevenzioneEventoRischio')?.value
+                    )
+                  }}</strong>
+                </td>
+                <td>
+                  <span>{{ modalitaMonitoraggio.get('tipologia')?.value || '' }}</span>
+                </td>
+                <td>
+                  <span>{{ modalitaMonitoraggio.get('descrizione')?.value || '' }}</span>
+                </td>
+                <td>
+                  <span>{{ modalitaMonitoraggio.get('responsabile')?.value || '' }}</span>
+                </td>
+                <td>
+                  <span>{{ modalitaMonitoraggio.get('tempistiche')?.value || '' }}</span>
+                </td>
+                <td class="col-azioni">
+                  <piao-azioni
+                    [idSelected]="modalitaMonitoraggio.get('id')?.value || ''"
+                    [isTitle]="false"
+                    [verticalEllipsis]="getActionsFor(i)"
+                  ></piao-azioni>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+
+      <p class="d-flex justify-content-end pt-3">
+        <span>
+          <p class="load-form" (click)="handleOpenModalElencoMisurePrevenzione()">
+            {{ labelAddElencoModalita | translate }}
+            <piao-svg
+              [icon]="'PlusCircle'"
+              [fillColor]="'#0066cc'"
+              [svgContainer]="'svg'"
+            ></piao-svg>
+          </p>
+        </span>
+      </p>
+    }
+  </div>
+</div>
+
+<!-- se openModal è true, mostra il modal -->
+@if (openModalElencoMisurePrevenzione) {
+  <piao-modal
+    [isIcon]="true"
+    [icon]="icon"
+    [iconStyle]="iconStyle"
+    [open]="openModalElencoMisurePrevenzione"
+    [disabledButtonConfirm]="disabledButtonConfirm"
+    (closed)="this.openModalElencoMisurePrevenzione = false"
+    (confirm)="
+      handleAddElencoMonitoraggioMisurePrevenzione(); openModalElencoMisurePrevenzione = false
+    "
+  >
+    <!-- richiama il componente del modal, passando il piaoDTO come input -->
+    <piao-modal-elenco-monitoraggio-misure-prevenzione
+      #child
+      [monitoraggioPrevenzioneEdit]="monitoraggioPrevenzioneEdit"
+      [piaoDTO]="piaoDTO"
+      [dropdownMisuraPrenvenzione]="dropdownMisuraPrevenzione"
+    >
+    </piao-modal-elenco-monitoraggio-misure-prevenzione>
+  </piao-modal>
+}
+
+@if (openModalDelete) {
+  <piao-modal-delete
+    [icon]="'AlertCircle'"
+    [title]="'MODAL_REMOVE.TITLE'"
+    [message]="'MODAL_REMOVE.MESSAGE'"
+    [subMessage]="'MODAL_REMOVE.CONFIRM_OPERATION'"
+    [openModalDelete]="openModalDelete"
+    [elementToDelete]="elementToDelete"
+    (confirm)="handleRemoveForm($event)"
+    (closed)="handleCloseModalDelete()"
+  ></piao-modal-delete>
+}

@@ -1,0 +1,45 @@
+<div class="swot-element-container">
+  <div class="swot-label-container">
+    <label class="label">{{ label | translate }}</label>
+    <piao-tooltip [descTooltip]="label" [icon]="'InfoCircle'"></piao-tooltip>
+  </div>
+
+  @for (element of arrayForm.controls; track $index) {
+    <div class="swot-item">
+      <div class="swot-textarea-container">
+        <div class="swot-textarea-wrapper">
+          <piao-text-area
+            [control]="getControl($index).controls['value']"
+            [id]="'swot-' + nameArrayForm + '-' + $index"
+            textAreaClass="text-area-small"
+            [maxValidatorLength]="maxLength"
+            [descTooltip]="label"
+            [containerClass]="'container-width-full'"
+          ></piao-text-area>
+        </div>
+        <button
+          type="button"
+          class="btn-remove"
+          (click)="handleOpenModalDelete($index)"
+          [disabled]="arrayForm.length === 1 && !getControl($index).controls['value'].value"
+        >
+          {{ 'BUTTONS.REMOVE' | translate }}
+        </button>
+      </div>
+    </div>
+  }
+
+  <button type="button" class="btn-add-element pt-2" (click)="addElement()">
+    {{ 'BUTTONS.ADD_ELEMENT' | translate }}
+  </button>
+</div>
+
+<piao-modal-delete
+  [icon]="'AlertCircle'"
+  [title]="'MODAL_REMOVE.TITLE_DELETE_ELEMENT'"
+  [message]="'MODAL_REMOVE.SWOT_ELEMENT.MESSAGE'"
+  [openModalDelete]="openModalDelete"
+  [elementToDelete]="elementToDelete"
+  (confirm)="removeElement($event)"
+  (closed)="handleCloseModalDelete()"
+></piao-modal-delete>

@@ -1,0 +1,89 @@
+<div class="main">
+  <p class="title">{{ title | translate }}</p>
+  <p class="sub-title pt-2">{{ subTitle | translate }}</p>
+
+  <piao-card-alert
+    [icon]="iconAlert"
+    [titleCardHeader]="titleAlert"
+    [subTitleCardHeader]="subTitleAlert"
+    [subTitleClass]="'piao-card-sub-title'"
+  ></piao-card-alert>
+
+  @if (matrice && matrice.length > 0) {
+    <div class="table-container">
+      <table class="table table-bordered">
+        <thead>
+          <tr class="header">
+            <th rowspan="2">Priorità Politiche</th>
+            <th [attr.colspan]="column.length">Aree Organizzative</th>
+          </tr>
+          <tr class="subHeader org-are">
+            <th class="vp-cell" *ngFor="let col of column">{{ col }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let row of matrice">
+            <td class="subHeader vp-cell prop-pol">{{ row.politicalPriority }}</td>
+            <td class="vp-cell org-are" *ngFor="let col of column">
+              <ng-container *ngIf="row.organisationalAreas[col].length > 0">
+                <div *ngFor="let vp of row.organisationalAreas[col]">
+                  <div class="vp-content">
+                    {{ vp.code }}
+                    <piao-tooltip
+                      [descTooltip]="'TOOLTIP.DENOMINAZIONE_OBIETTIVO'"
+                      [icon]="'InfoCircle'"
+                      [keepOpenOnHover]="true"
+                      [isInnerHTML]="true"
+                      [translateParams]="{ denominazione: vp.description }"
+                      [dataContext]="vp"
+                      [hrefInTooltip]="true"
+                      (tooltipContentClick)="openDettaglioModal($event)"
+                    ></piao-tooltip>
+                  </div>
+                </div>
+              </ng-container>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  }
+</div>
+
+<piao-modal
+  [isIcon]="true"
+  [icon]="icon"
+  [iconStyle]="iconStyle"
+  [open]="openModalDetails"
+  [showButtonCancel]="false"
+  [showButtonConfirm]="false"
+  [showButtonClose]="true"
+  (closed)="closeModal()"
+>
+  <div class="main-modal">
+    <div class="pr-2">
+      <p class="title-modal">{{ 'MATRICE.DETAIL_VP.TITLE' | translate }}</p>
+      <p class="message-text mb-5">{{ 'MATRICE.DETAIL_VP.SUB_TITLE' | translate }}</p>
+
+      @if (selectedVp) {
+        <div class="vp-details">
+          <div class="detail-row-grid">
+            <div class="detail-column">
+              <p class="detail-label">{{ 'MATRICE.DETAIL_VP.ID_VP' | translate }}</p>
+              <p class="detail-value font-semibold">{{ selectedVp.code }}</p>
+            </div>
+            <div class="detail-column">
+              <p class="detail-label">{{ 'MATRICE.DETAIL_VP.DENOMINATION' | translate }}</p>
+              <p class="detail-value font-semibold">{{ selectedVp.description }}</p>
+            </div>
+          </div>
+
+          <div class="detail-row mb-1">
+            <p class="detail-label">{{ 'MATRICE.DETAIL_VP.DESCRIPTION' | translate }}</p>
+            <p class="detail-value font-semibold">{{ selectedVp.description }}</p>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</piao-modal>

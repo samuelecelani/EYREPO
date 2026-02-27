@@ -1,0 +1,16 @@
+.main {
+  display: flex;
+  flex-direction: column;
+}
+
+::ng-deep .subTitle-missione {
+  font-weight: 400;
+  font-size: 2rem;
+  padding-bottom: 1rem;
+}
+
+::ng-deep .class-title-logo {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1a1a1a;
+}

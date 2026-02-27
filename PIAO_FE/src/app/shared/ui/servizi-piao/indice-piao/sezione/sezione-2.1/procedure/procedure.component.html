@@ -1,0 +1,119 @@
+<p class="subTitle pt-4">{{ subTitleProcedureSemplificare | translate }}</p>
+<p class="description">{{ descriptionProcedureSemplificare | translate }}</p>
+
+<div class="pt-3">
+  <piao-text-area
+    [label]="labelTAIntroduzioneProcedure"
+    [control]="form.controls['introProcedure']"
+    [id]="'introProcedure'"
+    textAreaClass="text-area"
+    [maxValidatorLength]="'1000'"
+    [descTooltip]="labelTAIntroduzioneProcedure"
+    [containerClass]="'container-width-full'"
+  ></piao-text-area>
+
+  @if (procedureArray && procedureArray.length > 0) {
+    @for (procedura of procedureArray.controls; track $index) {
+      <div class="row-grid-6 pt-2">
+        <piao-text-area
+          [label]="labelDenominazioneProcedura"
+          [control]="procedura.controls['denominazione']"
+          [id]="'denominazione-' + $index"
+          textAreaClass="text-area-small"
+          [maxValidatorLength]="'250'"
+          [descTooltip]="labelDenominazioneProcedura"
+          [containerClass]="'container-flex-1'"
+          [required]="true"
+        ></piao-text-area>
+
+        <piao-text-area
+          [label]="labelDescrizioneProcedura"
+          [control]="procedura.controls['descrizione']"
+          [id]="'descrizione-' + $index"
+          textAreaClass="text-area-small"
+          [maxValidatorLength]="'1000'"
+          [descTooltip]="labelDescrizioneProcedura"
+          [containerClass]="'container-flex-1'"
+        ></piao-text-area>
+
+        <piao-text-box
+          [label]="labelUnitaMisuraProcedura"
+          [typeInput]="'text'"
+          [inputClass]="'input'"
+          [control]="procedura.controls['unitaMisura']"
+          [maxValidatorLength]="50"
+          [id]="'unitaMisura-' + $index"
+          [descTooltip]="labelUnitaMisuraProcedura"
+          [containerClass]="'container-width-full'"
+        ></piao-text-box>
+
+        <piao-text-box
+          [label]="labelMisurazioneProcedura"
+          [typeInput]="'text'"
+          [inputClass]="'input'"
+          [control]="procedura.controls['misurazione']"
+          [maxValidatorLength]="50"
+          [id]="'misurazione-' + $index"
+          [descTooltip]="labelMisurazioneProcedura"
+          [containerClass]="'container-width-full'"
+        ></piao-text-box>
+
+        <piao-text-box
+          [label]="labelTargetProcedura"
+          [typeInput]="'text'"
+          [inputClass]="'input'"
+          [control]="procedura.controls['target']"
+          [maxValidatorLength]="50"
+          [id]="'target-' + $index"
+          [descTooltip]="labelTargetProcedura"
+          [containerClass]="'container-width-full'"
+          [required]="true"
+        ></piao-text-box>
+
+        <piao-text-box
+          [label]="labelUfficioResponsabileProcedura"
+          [typeInput]="'text'"
+          [inputClass]="'input'"
+          [control]="procedura.controls['uffResponsabile']"
+          [maxValidatorLength]="50"
+          [id]="'ufficioResponsabile-' + $index"
+          [descTooltip]="labelUfficioResponsabileProcedura"
+          [containerClass]="'container-width-full'"
+          [required]="true"
+        ></piao-text-box>
+
+        <div class="btn-remove-container">
+          <p class="link-blue" (click)="handleOpenModalDelete($index)">
+            {{ labelBtnRimuovi | translate }}
+          </p>
+        </div>
+      </div>
+    }
+  }
+
+  <div class="pt-3">
+    <div class="pt-2">
+      <piao-card-info
+        [titleCardHeader]="titleCardProcedura"
+        [piaoCardHeaderTitleClass]="'title-card-info'"
+        [titleLoadNewForm]="labelBtnAddProcedura"
+        [loadNewForm]="true"
+        [piaoCardHeaderContainerClass]="'piao-card-info-container-new-form'"
+        (clicked)="handleAddProcedura()"
+      ></piao-card-info>
+    </div>
+  </div>
+</div>
+
+@if (openModalDelete) {
+  <piao-modal-delete
+    [icon]="'AlertCircle'"
+    [title]="'MODAL_REMOVE.TITLE'"
+    [message]="'MODAL_REMOVE.MESSAGE'"
+    [subMessage]="'MODAL_REMOVE.CONFIRM_OPERATION'"
+    [openModalDelete]="openModalDelete"
+    [elementToDelete]="elementToDelete"
+    (confirm)="handleRemoveProcedura($event); openModalDelete = false"
+    (closed)="handleCloseModalDelete()"
+  ></piao-modal-delete>
+}

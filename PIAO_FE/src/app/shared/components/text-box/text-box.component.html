@@ -1,0 +1,54 @@
+@if (label) {
+  <label *ngIf="label" for="{{ id }}" class="label">
+    @if (isLabelTranslate) {
+      {{ label | translate }}
+    } @else {
+      {{ label }}
+    }
+
+    @if (additionalLabel) {
+      {{ additionalLabel }}
+    }
+
+    @if (required) {
+      <span class="required">*</span>
+    }
+
+    @if (descTooltip) {
+      <piao-tooltip [descTooltip]="descTooltip" [icon]="'InfoCircle'"></piao-tooltip>
+    }
+  </label>
+}
+
+@if (isDetails) {
+  <ng-container *ngIf="isArray; else singleValue">
+    <ul class="value-list">
+      <li *ngFor="let item of value">
+        {{ getItemString(item) }}
+      </li>
+    </ul>
+  </ng-container>
+
+  <ng-template #singleValue>
+    <span [ngClass]="valueClass">
+      {{ value }}
+    </span>
+  </ng-template>
+} @else {
+  <input
+    id="{{ id }}"
+    [type]="typeInput"
+    [ngClass]="inputClass"
+    [class.isReadOnly]="isReadOnly"
+    [formControl]="control"
+    aria-label="{{ id }}"
+    spellcheck="false"
+    [maxlength]="maxValidatorLength"
+    [readOnly]="isReadOnly"
+  />
+  @if (control?.hasError('pattern') && (control?.touched || control?.dirty)) {
+    <small class="error-message">
+      {{ patternError }}
+    </small>
+  }
+}

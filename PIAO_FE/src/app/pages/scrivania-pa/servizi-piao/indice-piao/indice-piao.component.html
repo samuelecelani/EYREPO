@@ -1,0 +1,63 @@
+<div class="main">
+  <p class="title">{{ 'SCRIVANIA_PA.SERVIZI_PIAO.INDICE_PIAO.TITLE' | translate }}</p>
+  <p class="sub-title pt-3">{{ 'SCRIVANIA_PA.SERVIZI_PIAO.INDICE_PIAO.SUB_TITLE' | translate }}</p>
+  <div class="piao-info">
+    @for (x of labelValueConfig; track $index) {
+      <div class="info-block">
+        <span class="label">{{ x.label | translate }}</span>
+        @if ($index !== 3) {
+          <span class="value">{{ x.value }}</span>
+        } @else {
+          <piao-status [status]="x.value"></piao-status>
+        }
+      </div>
+    }
+  </div>
+
+  <div class="piao-structure-indice-piao">
+    <piao-structure-indice-piao
+      [showColAction]="true"
+      [tooltipStatus]="true"
+      [piaoDTO]="piaoDTO"
+    ></piao-structure-indice-piao>
+  </div>
+
+  <div class="piao-attachment pb-5">
+    <piao-attachment
+      [title]="attachmentTitle"
+      [loadAttachment]="attachmentLoadAttachment"
+      [idPiao]="piaoDTO.id"
+      [isDoc]="true"
+      [showDescription]="true"
+      [showName]="true"
+      [codTipologia]="codTipologia"
+      [codTipologiaAllegato]="codTipologiaAllegato"
+    ></piao-attachment>
+  </div>
+
+  <div class="checkbox-download-container">
+    <div class="checkbox-wrapper">
+      <input type="checkbox" id="checkAllegati" class="form-check-input" [checked]="true" />
+      <label for="checkAllegati" class="checkbox-label" [innerHTML]="checkBoxLabel | translate">
+        x</label
+      >
+    </div>
+
+    <piao-button
+      body
+      class="download-button"
+      [variant]="'outline-primary'"
+      [size]="'lg'"
+      (clicked)="handleDownloadPiao()"
+    >
+      <span class="button-content">
+        {{ 'BUTTONS.DOWNLOAD_ALL_PIAO_WITH_ATTACHMENTS' | translate }}
+        <piao-svg
+          [icon]="'Download'"
+          [fillColor]="'##5C6F82'"
+          [svgContainer]="'svg-download'"
+        ></piao-svg>
+      </span>
+    </piao-button>
+  </div>
+</div>

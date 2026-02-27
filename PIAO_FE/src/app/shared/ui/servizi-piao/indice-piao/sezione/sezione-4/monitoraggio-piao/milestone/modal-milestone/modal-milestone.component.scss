@@ -1,0 +1,15 @@
+.main {
+  width: 35rem;
+}
+
+@media (max-width: 1220px) {
+  .main {
+    max-width: 100%;
+  }
+}
+
+.title-milestone {
+  font-weight: 400;
+  font-size: 2rem;
+  line-height: 1;
+}

@@ -1,0 +1,67 @@
+<div class="main">
+  <p class="title">{{title | translate}}</p>
+
+  <piao-card-info [icon]="icon" [subTitleCardHeader]="subTitleCardInfo" [showButton]="showButtonMinerva"
+    [hrefButton]="hrefButtonMinerva" [titleButton]="titleButtonMinerva" [showIconButton]="showIconButton">
+
+  </piao-card-info>
+
+  <p class="subTitle">{{subTitle | translate}}</p>
+
+
+  <div class="accordion-section">
+    <!-- Accordion 1 - Aperto di default -->
+    <piao-accordion [index]="1" [title]="'Contesto di riferimento'" [isOpen]="false">
+      <p>
+        Contesto di riferimento
+      </p>
+      <hr />
+      <p class="description-label">Descrizione</p>
+      <p class="description-text">
+        Lorem ipsum dolor sit amet consectetur. Sit sem ultricies imperdiet viverra lacus vitae nisl
+        pretium. Facilisis commodo diam et malesuada a. Ullamcorper turpis eget velit aliquam quis
+        donec. Augue nisl in cursus tellus adipiscing ac dictum. Neque varius quam egestas urna
+        commodo. Praesent iaculis elementum dictumst lectus risus ipsum lorem.
+      </p>
+    </piao-accordion>
+
+    <!-- Accordion 2 - Chiuso di default -->
+    <piao-accordion [index]="2" [title]="'Fotografia del personale al 31.12 dell\'anno precedente'" [isOpen]="true">
+
+      <piao-body-table-minerva-sezione [isMock]="true" [title]="titleTab1"></piao-body-table-minerva-sezione>
+      <hr />
+      <piao-body-table-minerva-sezione [isMock]="false" [title]="titleTab2"></piao-body-table-minerva-sezione>
+
+    </piao-accordion>
+
+    <!-- Accordion 3 - Chiuso di default -->
+    <piao-accordion [index]="3" [title]="'Programmazione strategica delle risorse umane'" [isOpen]="false">
+      <p>
+        Programmazione strategica delle risorse umane
+      </p>
+      <hr />
+      <p class="description-label">Descrizione</p>
+      <p class="description-text">
+        Lorem ipsum dolor sit amet consectetur. Sit sem ultricies imperdiet viverra lacus vitae nisl
+        pretium. Facilisis commodo diam et malesuada a. Ullamcorper turpis eget velit aliquam quis
+        donec. Augue nisl in cursus tellus adipiscing ac dictum. Neque varius quam egestas urna
+        commodo. Praesent iaculis elementum dictumst lectus risus ipsum lorem.
+      </p>
+    </piao-accordion>
+
+    <!-- Accordion 4 - Chiuso di default -->
+    <piao-accordion [index]="4" [title]="'Stima dell\'evoluzione dei bisogni dell\'Amministrazione'" [isOpen]="false">
+      <p>
+        Stima dell\'evoluzione dei bisogni dell\'Amministrazione
+      </p>
+      <hr />
+      <p class="description-label">Descrizione</p>
+      <p class="description-text">
+        Lorem ipsum dolor sit amet consectetur. Sit sem ultricies imperdiet viverra lacus vitae nisl
+        pretium. Facilisis commodo diam et malesuada a. Ullamcorper turpis eget velit aliquam quis
+        donec. Augue nisl in cursus tellus adipiscing ac dictum. Neque varius quam egestas urna
+        commodo. Praesent iaculis elementum dictumst lectus risus ipsum lorem.
+      </p>
+    </piao-accordion>
+  </div>
+</div>

@@ -1,0 +1,314 @@
+<div class="main">
+  <p class="title">{{ title | translate }}</p>
+  <p class="subTitle pt-3">{{ subTitleData | translate }}</p>
+  <div class="container-full">
+    <div class="row">
+      <div class="col-12 col-xl-4 col-lg-6">
+        <piao-text-box
+          [label]="labelEnte"
+          [typeInput]="'text'"
+          [inputClass]="'input'"
+          [control]="form.controls['ente']"
+          [maxValidatorLength]="50"
+          [id]="'ente'"
+          [descTooltip]="labelEnte"
+          [isReadOnly]="true"
+          [required]="true"
+          [containerClass]="'container-width-full'"
+        >
+        </piao-text-box>
+      </div>
+      <div class="col-12 col-xl-4 col-lg-6">
+        <piao-text-box
+          [label]="labelPA"
+          [typeInput]="'text'"
+          [inputClass]="'input'"
+          [control]="form.controls['acronimoPA']"
+          [maxValidatorLength]="50"
+          [isReadOnly]="true"
+          [id]="'ente'"
+          [descTooltip]="labelPA"
+          [containerClass]="'container-width-full'"
+        >
+        </piao-text-box>
+      </div>
+      <div class="col-12 col-xl-4 col-lg-6">
+        <piao-text-box
+          [label]="labelCF"
+          [typeInput]="'text'"
+          [inputClass]="'input'"
+          [control]="form.controls['codiceFiscale']"
+          [maxValidatorLength]="50"
+          [id]="'ente'"
+          [descTooltip]="labelCF"
+          [isReadOnly]="true"
+          [containerClass]="'container-width-full'"
+        >
+        </piao-text-box>
+      </div>
+      <div class="col-12 col-xl-4 col-lg-6">
+        <piao-text-box
+          [label]="labelIPA"
+          [typeInput]="'text'"
+          [inputClass]="'input'"
+          [control]="form.controls['codiceIPA']"
+          [maxValidatorLength]="50"
+          [id]="'ente'"
+          [descTooltip]="labelIPA"
+          [isReadOnly]="true"
+          [containerClass]="'container-width-full'"
+        >
+        </piao-text-box>
+      </div>
+      <div class="col-12 col-xl-4 col-lg-6">
+        <piao-dropdown
+          [dropdown]="dropdown"
+          [title]="labelTipPA"
+          (isChange)="changePA($event)"
+          [formControlName]="'tipologiaPA'"
+          [formControl]="form.controls['tipologiaPA']"
+          [isReadOnly]="true"
+          [isTooltip]="true"
+          [dropContainerClass]="'container-width-full'"
+        ></piao-dropdown>
+      </div>
+      <div class="col-12 col-xl-4 col-lg-6">
+        <piao-text-box
+          [label]="labelIVA"
+          [typeInput]="'text'"
+          [inputClass]="'input'"
+          [control]="form.controls['partitaIVA']"
+          [maxValidatorLength]="50"
+          [isReadOnly]="true"
+          [id]="'ente'"
+          [descTooltip]="labelIVA"
+          [containerClass]="'container-width-full'"
+        >
+        </piao-text-box>
+      </div>
+    </div>
+
+    <p class="subTitle pt-3">{{ subTitleLogic | translate }}</p>
+
+    <div class="row">
+      <div class="col-12 col-xl-4 col-lg-6">
+        <piao-text-box
+          [label]="labelIndSL"
+          [typeInput]="'text'"
+          [inputClass]="'input'"
+          [control]="form.controls['indSedeL']"
+          [isReadOnly]="true"
+          [maxValidatorLength]="50"
+          [id]="'ente'"
+          [descTooltip]="labelIndSL"
+          [containerClass]="'container-width-full'"
+        >
+        </piao-text-box>
+      </div>
+      <div class="col-12 col-xl-4 col-lg-6">
+        <piao-text-box
+          [label]="labelIndUffRP"
+          [typeInput]="'text'"
+          [inputClass]="'input'"
+          [control]="form.controls['indUffRelPub']"
+          [isReadOnly]="true"
+          [maxValidatorLength]="50"
+          [id]="'ente'"
+          [descTooltip]="labelIndUffRP"
+          [containerClass]="'container-width-full'"
+        >
+        </piao-text-box>
+      </div>
+    </div>
+
+    <p class="subTitle pt-3">{{ subTitleContact | translate }}</p>
+
+    <div class="row">
+      <div class="col-12 col-xl-4 col-lg-6">
+        <piao-text-box
+          [label]="labelWeb"
+          [typeInput]="'text'"
+          [inputClass]="'input'"
+          [control]="form.controls['sitoWeb']"
+          [isReadOnly]="true"
+          [maxValidatorLength]="50"
+          [id]="'ente'"
+          [descTooltip]="labelWeb"
+          [containerClass]="'container-width-full'"
+        >
+        </piao-text-box>
+      </div>
+      <div class="col-12 col-xl-4 col-lg-6">
+        <piao-text-box
+          [label]="labelEmail"
+          [typeInput]="'text'"
+          [inputClass]="'input'"
+          [control]="form.controls['email']"
+          [isReadOnly]="true"
+          [maxValidatorLength]="50"
+          [id]="'ente'"
+          [descTooltip]="labelEmail"
+          [containerClass]="'container-width-full'"
+        >
+        </piao-text-box>
+      </div>
+      <div class="col-12 col-xl-4 col-lg-6">
+        <piao-text-box
+          [label]="labelTel"
+          [typeInput]="'text'"
+          [inputClass]="'input'"
+          [control]="form.controls['telefono']"
+          [isReadOnly]="true"
+          [maxValidatorLength]="50"
+          [id]="'ente'"
+          [descTooltip]="labelTel"
+          [containerClass]="'container-width-full'"
+        >
+        </piao-text-box>
+      </div>
+      <div class="col-12 col-xl-4 col-lg-6">
+        <piao-text-box
+          [label]="labelPEC"
+          [typeInput]="'text'"
+          [inputClass]="'input'"
+          [control]="form.controls['pec']"
+          [isReadOnly]="true"
+          [maxValidatorLength]="50"
+          [id]="'ente'"
+          [descTooltip]="labelPEC"
+          [containerClass]="'container-width-full'"
+        >
+        </piao-text-box>
+      </div>
+    </div>
+
+    <div class="pt-4">
+      <div class="row">
+        <div class="col-12 col-xl-4 col-lg-6">
+          <piao-text-box
+            [label]="labelSocial"
+            [typeInput]="'text'"
+            [inputClass]="'input'"
+            [control]="form.controls['socialMedia']"
+            [maxValidatorLength]="50"
+            [isReadOnly]="true"
+            [id]="'ente'"
+            [descTooltip]="labelSocial"
+            [containerClass]="'container-width-full'"
+          >
+          </piao-text-box>
+        </div>
+      </div>
+    </div>
+
+    <p class="subTitle-2 pt-4">{{ subTitleDataRPCT | translate }}</p>
+
+    <div class="row">
+      <div class="col-12 col-xl-4 col-lg-6">
+        <piao-text-box
+          [label]="labelName_RPCT"
+          [typeInput]="'text'"
+          [inputClass]="'input'"
+          [control]="form.controls['nomeRPCT']"
+          [maxValidatorLength]="50"
+          [isReadOnly]="true"
+          [id]="'ente'"
+          [descTooltip]="labelName_RPCT"
+          [isReadOnly]="true"
+          [containerClass]="'container-width-full'"
+        >
+        </piao-text-box>
+      </div>
+      <div class="col-12 col-xl-4 col-lg-6">
+        <piao-text-box
+          [label]="labelSurname_RPCT"
+          [typeInput]="'text'"
+          [inputClass]="'input'"
+          [control]="form.controls['cognomeRPCT']"
+          [maxValidatorLength]="50"
+          [isReadOnly]="true"
+          [id]="'ente'"
+          [descTooltip]="labelSurname_RPCT"
+          [isReadOnly]="true"
+          [containerClass]="'container-width-full'"
+        >
+        </piao-text-box>
+      </div>
+      <div class="col-12 col-xl-4 col-lg-6">
+        <piao-text-box
+          [label]="labelRole_RPCT"
+          [typeInput]="'text'"
+          [inputClass]="'input'"
+          [control]="form.controls['ruoloRPCT']"
+          [maxValidatorLength]="50"
+          [id]="'ente'"
+          [descTooltip]="labelRole_RPCT"
+          [isReadOnly]="true"
+          [containerClass]="'container-width-full'"
+        >
+        </piao-text-box>
+      </div>
+      <div class="col-12 col-xl-4 col-lg-6">
+        <piao-text-box
+          [label]="labelDate_RPCT"
+          [typeInput]="'text'"
+          [inputClass]="'input'"
+          [control]="form.controls['dataRPCT']"
+          [maxValidatorLength]="50"
+          [id]="'ente'"
+          [descTooltip]="labelDate_RPCT"
+          [isReadOnly]="true"
+          [containerClass]="'container-width-full'"
+        >
+        </piao-text-box>
+      </div>
+    </div>
+
+    <p class="subTitle-2 pt-4">{{ subTitleDataRTD | translate }}</p>
+
+    <div class="row">
+      <div class="col-12 col-xl-4 col-lg-6">
+        <piao-text-box
+          [label]="labelN_RTD"
+          [typeInput]="'text'"
+          [inputClass]="'input'"
+          [control]="form.controls['nominativoRTD']"
+          [isReadOnly]="true"
+          [maxValidatorLength]="50"
+          [id]="'ente'"
+          [descTooltip]="labelN_RTD"
+          [containerClass]="'container-width-full'"
+        >
+        </piao-text-box>
+      </div>
+      <div class="col-12 col-xl-4 col-lg-6">
+        <piao-text-box
+          [label]="labelS_R_RTD"
+          [typeInput]="'text'"
+          [inputClass]="'input'"
+          [control]="form.controls['strutturaRTD']"
+          [isReadOnly]="true"
+          [maxValidatorLength]="50"
+          [id]="'ente'"
+          [descTooltip]="labelS_R_RTD"
+          [containerClass]="'container-width-full'"
+        >
+        </piao-text-box>
+      </div>
+    </div>
+
+    <div class="pt-5">
+      <piao-attachment
+        [title]="'SCRIVANIA_PA.SERVIZI_PIAO.INDICE_PIAO.SEZIONE.ATTACHMENT.TITLE_ATTACHMENTS'"
+        [classTitle]="'class-title-logo'"
+        [loadAttachment]="'SCRIVANIA_PA.SERVIZI_PIAO.INDICE_PIAO.SEZIONE.ATTACHMENT.LOAD_LOGO'"
+        [idPiao]="piaoDTO.id"
+        [isDoc]="false"
+        [showDescription]="true"
+        [showName]="false"
+        [codTipologia]="codTipologia"
+        [codTipologiaAllegato]="codTipologiaAllegato"
+      ></piao-attachment>
+    </div>
+  </div>
+</div>

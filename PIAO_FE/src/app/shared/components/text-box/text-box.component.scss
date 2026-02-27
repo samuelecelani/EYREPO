@@ -1,0 +1,77 @@
+:host {
+  display: block;
+  position: relative;
+}
+
+.error-message {
+  display: block;
+  margin-top: 0.1rem;
+}
+
+.container-lab-tol {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  padding-top: 1rem;
+  align-items: baseline;
+}
+
+input {
+  font-weight: 400;
+  width: 100%;
+  font-size: 1rem;
+  padding-left: 0.3rem;
+  line-height: 1.5rem;
+}
+
+input:focus {
+  outline: none;
+}
+
+.isReadOnly {
+  background-color: #d9d9d9; /* grigio chiaro */
+  border: none; /* nessun bordo visibile */
+  cursor: default; /* niente cursore testo */
+  caret-color: transparent; /* nasconde il cursore di digitazione */
+  pointer-events: none; /* niente click/focus */
+}
+.value {
+  font-weight: 600;
+  color: #0b1f33;
+  /* meno spazio sopra/sotto il valore */
+  padding: 0.25rem 0;
+  white-space: normal; /* consente line-wrap */
+  overflow-wrap: anywhere; /* moderna: rompe anche parole lunghissime */
+  word-break: break-word; /* fallback per browser meno recenti */
+  hyphens: auto; /* se vuoi sillabazione quando possibile */
+}
+
+.value-ovp {
+  font-weight: 400;
+  font-size: 1rem;
+  color: #1a1a1a;
+  white-space: normal; /* consente line-wrap */
+  overflow-wrap: anywhere; /* moderna: rompe anche parole lunghissime */
+  word-break: break-word; /* fallback per browser meno recenti */
+  hyphens: auto; /* se vuoi sillabazione quando possibile */
+}
+
+ul.value-list {
+  padding: 0.25rem 0;
+  list-style-type: disc; /* pallini standard */
+  padding-left: 1.25rem; /* spazio a sinistra per i bullet */
+  margin: 0; /* rimuove margini di default */
+  overflow-x: auto;
+  overflow-y: auto;
+  max-height: 3rem;
+}
+
+ul.value-list li {
+  font-size: 1rem; /* dimensione testo */
+  color: #333; /* colore testo */
+  line-height: 1; /* spazio verticale tra righe */
+  margin-bottom: 0.5rem; /* spazio tra gli <li> */
+  white-space: normal; /* consente il wrapping */
+  overflow-wrap: anywhere; /* spezza parole lunghe */
+}

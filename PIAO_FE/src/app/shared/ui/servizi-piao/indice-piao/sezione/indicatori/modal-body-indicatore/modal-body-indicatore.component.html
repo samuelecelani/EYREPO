@@ -1,0 +1,878 @@
+<div [ngClass]="main">
+  <p class="title">
+    {{
+      isAddNewIndicatore
+        ? ('INDICATORI.MODAL.TITLE' | translate)
+        : ('INDICATORI.MODAL.TITLE_EDIT' | translate)
+    }}
+  </p>
+  @if (isAddNewIndicatore) {
+    <p class="sub-title pt-2">{{ 'INDICATORI.MODAL.SUB_TITLE' | translate }}</p>
+  }
+  <form [formGroup]="formGroup">
+    @if (isAddNewIndicatore) {
+      <div class="content-choice">
+        @for (x of inputContent; track $index) {
+          <label class="radio-option">
+            <input
+              type="radio"
+              [formControlName]="x.formControlName"
+              [value]="x.value"
+              name="choice"
+              (change)="handleChoice(x.value)"
+            />
+            <span class="custom-radio"></span>
+            <span class="label-text">{{ x.label | translate }}</span>
+          </label>
+        }
+      </div>
+    }
+
+    <div class="pt-3">
+      @if (this.formGroup.controls['choice'].value === 'inserisci') {
+        <p class="title-info pt-1">{{ 'INDICATORI.MODAL.FORM.TITLE' | translate }}</p>
+      }
+
+      <p class="alert-label pt-1">
+        {{ 'MESSAGE.ALERT_MANDATORY_FIELDS' | translate }}
+      </p>
+    </div>
+
+    <div class="container-full pt-3">
+      @if (this.formGroup.controls['choice'].value === 'inserisci') {
+        @if (codTipologiaFK === 'OVP') {
+          <div class="row">
+            <div class="col-12 col-xl-6 col-lg-6">
+              <piao-text-box
+                [label]="labelDenominazione"
+                [typeInput]="'text'"
+                [inputClass]="'input'"
+                [control]="formGroup.controls['denominazione']"
+                [maxValidatorLength]="100"
+                [id]="'denominazione'"
+                [descTooltip]="labelDenominazione"
+                [required]="true"
+                [containerClass]="'container-width-full'"
+              >
+              </piao-text-box>
+            </div>
+            <div class="col-12 col-xl-6 col-lg-6">
+              <piao-dropdown
+                [dropdown]="dimensioniDropdown"
+                [title]="labelDimensione"
+                [formControlName]="'dimensione'"
+                [isTooltip]="true"
+                [isTranslate]="true"
+                [dropContainerClass]="'container-width-full'"
+              ></piao-dropdown>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-xl-6 col-lg-6">
+              <piao-text-box
+                [label]="labelUnita"
+                [typeInput]="'text'"
+                [inputClass]="'input'"
+                [control]="formGroup.controls['unitaMisura']"
+                [maxValidatorLength]="100"
+                [id]="'unita'"
+                [descTooltip]="labelUnita"
+                [containerClass]="'container-width-full'"
+              >
+              </piao-text-box>
+            </div>
+            <div class="col-12 col-xl-6 col-lg-6">
+              <piao-text-box
+                [label]="labelFormula"
+                [typeInput]="'text'"
+                [inputClass]="'input'"
+                [control]="formGroup.controls['formula']"
+                [maxValidatorLength]="100"
+                [id]="'formula'"
+                [descTooltip]="labelFormula"
+                [containerClass]="'container-width-full'"
+              >
+              </piao-text-box>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-xl-6 col-lg-6">
+              <piao-text-box
+                [label]="labelPeso"
+                [typeInput]="'text'"
+                [inputClass]="'input'"
+                [control]="formGroup.controls['peso']"
+                [maxValidatorLength]="100"
+                [id]="'peso'"
+                [descTooltip]="labelPeso"
+                [containerClass]="'container-width-full'"
+              >
+              </piao-text-box>
+            </div>
+            <div class="col-12 col-xl-6 col-lg-6">
+              <piao-text-box
+                [label]="labelPolarita"
+                [typeInput]="'text'"
+                [inputClass]="'input'"
+                [control]="formGroup.controls['polarita']"
+                [maxValidatorLength]="100"
+                [id]="'polarita'"
+                [descTooltip]="labelPolarita"
+                [containerClass]="'container-width-full'"
+              >
+              </piao-text-box>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-xl-6 col-lg-6">
+              <piao-text-box
+                [label]="labelBaseline"
+                [typeInput]="'text'"
+                [inputClass]="'input'"
+                [control]="formGroup.controls['baseLine']"
+                [maxValidatorLength]="100"
+                [id]="'baseline'"
+                [descTooltip]="labelBaseline"
+                [containerClass]="'container-width-full'"
+              >
+              </piao-text-box>
+            </div>
+            <div class="col-12 col-xl-6 col-lg-6">
+              <piao-text-box
+                [label]="labelConsuntivo"
+                [typeInput]="'text'"
+                [inputClass]="'input'"
+                [control]="formGroup.controls['consuntivo']"
+                [maxValidatorLength]="100"
+                [id]="'consuntivo'"
+                [descTooltip]="labelConsuntivo"
+                [containerClass]="'container-width-full'"
+              >
+              </piao-text-box>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-xl-6 col-lg-6">
+              <piao-dropdown
+                [dropdown]="targetDropdown"
+                [title]="labelAndamento"
+                [formControlName]="'andamento1'"
+                [additionalLabel]="years[0]"
+                [isTooltip]="true"
+                [isTranslate]="true"
+                [dropContainerClass]="'container-width-full'"
+                [isRequired]="true"
+              ></piao-dropdown>
+            </div>
+            <div class="col-12 col-xl-6 col-lg-6">
+              <piao-text-box
+                [label]="labelValore"
+                [typeInput]="'text'"
+                [inputClass]="'input'"
+                [control]="formGroup.controls['valore1']"
+                [additionalLabel]="years[0]"
+                [maxValidatorLength]="100"
+                [id]="'valore1'"
+                [descTooltip]="labelValore"
+                [containerClass]="'container-width-full'"
+                [required]="true"
+              >
+              </piao-text-box>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-xl-6 col-lg-6">
+              <piao-dropdown
+                [dropdown]="targetDropdown"
+                [title]="labelAndamento"
+                [formControlName]="'andamento2'"
+                [additionalLabel]="years[1]"
+                [isTooltip]="true"
+                [isTranslate]="true"
+                [dropContainerClass]="'container-width-full'"
+                [isRequired]="true"
+              ></piao-dropdown>
+            </div>
+            <div class="col-12 col-xl-6 col-lg-6">
+              <piao-text-box
+                [label]="labelValore"
+                [typeInput]="'text'"
+                [inputClass]="'input'"
+                [control]="formGroup.controls['valore2']"
+                [maxValidatorLength]="100"
+                [id]="'valore2'"
+                [descTooltip]="labelValore"
+                [additionalLabel]="years[1]"
+                [containerClass]="'container-width-full'"
+                [required]="true"
+              >
+              </piao-text-box>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-xl-6 col-lg-6">
+              <piao-dropdown
+                [dropdown]="targetDropdown"
+                [title]="labelAndamento"
+                [formControlName]="'andamento3'"
+                [additionalLabel]="years[2]"
+                [isTooltip]="true"
+                [isTranslate]="true"
+                [dropContainerClass]="'container-width-full'"
+                [isRequired]="true"
+              ></piao-dropdown>
+            </div>
+            <div class="col-12 col-xl-6 col-lg-6">
+              <piao-text-box
+                [label]="labelValore"
+                [typeInput]="'text'"
+                [inputClass]="'input'"
+                [control]="formGroup.controls['valore3']"
+                [maxValidatorLength]="100"
+                [id]="'valore3'"
+                [descTooltip]="labelValore"
+                [additionalLabel]="years[2]"
+                [containerClass]="'container-width-full'"
+                [required]="true"
+              >
+              </piao-text-box>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-xl-6 col-lg-6">
+              <piao-text-box
+                [label]="labelFonteDati"
+                [typeInput]="'text'"
+                [inputClass]="'input'"
+                [control]="formGroup.controls['fonteDati']"
+                [maxValidatorLength]="100"
+                [id]="'fonteDati'"
+                [descTooltip]="labelFonteDati"
+                [containerClass]="'container-width-full'"
+              >
+              </piao-text-box>
+            </div>
+          </div>
+        } @else if (codTipologiaFK === 'OBB') {
+          <div class="row">
+            <div class="col-12 col-xl-4">
+              <piao-text-box
+                [label]="labelDenominazione"
+                [typeInput]="'text'"
+                [inputClass]="'input'"
+                [control]="formGroup.controls['denominazione']"
+                [maxValidatorLength]="100"
+                [id]="'denominazione'"
+                [descTooltip]="labelDenominazione"
+                [required]="true"
+                [containerClass]="'container-width-full'"
+              >
+              </piao-text-box>
+            </div>
+            <div class="col-12 col-xl-4">
+              <piao-dropdown
+                [dropdown]="dimensioniDropdown"
+                [title]="labelDimensione"
+                [formControlName]="'dimensione'"
+                [isTooltip]="true"
+                [isTranslate]="true"
+                [dropContainerClass]="'container-width-full'"
+              ></piao-dropdown>
+            </div>
+            <div class="col-12 col-xl-4">
+              <piao-dropdown
+                [dropdown]="subDimensioniDropdown"
+                [title]="labelSubDimensione"
+                [formControlName]="'subDimensione'"
+                [isTooltip]="true"
+                [isTranslate]="true"
+                [dropContainerClass]="'container-width-full'"
+              ></piao-dropdown>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-xl-4">
+              <piao-text-box
+                [label]="labelUnita"
+                [typeInput]="'text'"
+                [inputClass]="'input'"
+                [control]="formGroup.controls['unitaMisura']"
+                [maxValidatorLength]="100"
+                [id]="'unita'"
+                [descTooltip]="labelUnita"
+                [containerClass]="'container-width-full'"
+              >
+              </piao-text-box>
+            </div>
+            <div class="col-12 col-xl-4">
+              <piao-text-box
+                [label]="labelFormula"
+                [typeInput]="'text'"
+                [inputClass]="'input'"
+                [control]="formGroup.controls['formula']"
+                [maxValidatorLength]="100"
+                [id]="'formula'"
+                [descTooltip]="labelFormula"
+                [containerClass]="'container-width-full'"
+              >
+              </piao-text-box>
+            </div>
+            <div class="col-12 col-xl-4">
+              <piao-text-box
+                [label]="labelPeso"
+                [typeInput]="'text'"
+                [inputClass]="'input'"
+                [control]="formGroup.controls['peso']"
+                [maxValidatorLength]="100"
+                [id]="'peso'"
+                [descTooltip]="labelPeso"
+                [containerClass]="'container-width-full'"
+              >
+              </piao-text-box>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-xl-4">
+              <piao-text-box
+                [label]="labelPolarita"
+                [typeInput]="'text'"
+                [inputClass]="'input'"
+                [control]="formGroup.controls['polarita']"
+                [maxValidatorLength]="100"
+                [id]="'polarita'"
+                [descTooltip]="labelPolarita"
+                [containerClass]="'container-width-full'"
+              >
+              </piao-text-box>
+            </div>
+            <div class="col-12 col-xl-4">
+              <piao-text-box
+                [label]="labelBaseline"
+                [typeInput]="'text'"
+                [inputClass]="'input'"
+                [control]="formGroup.controls['baseLine']"
+                [maxValidatorLength]="100"
+                [id]="'baseline'"
+                [descTooltip]="labelBaseline"
+                [containerClass]="'container-width-full'"
+              >
+              </piao-text-box>
+            </div>
+            <div class="col-12 col-xl-4">
+              <piao-text-box
+                [label]="labelConsuntivo"
+                [typeInput]="'text'"
+                [inputClass]="'input'"
+                [control]="formGroup.controls['consuntivo']"
+                [maxValidatorLength]="100"
+                [id]="'consuntivo'"
+                [descTooltip]="labelConsuntivo"
+                [containerClass]="'container-width-full'"
+              >
+              </piao-text-box>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-xl-4">
+              <piao-dropdown
+                [dropdown]="targetDropdown"
+                [title]="labelAndamento"
+                [formControlName]="'andamento1'"
+                [additionalLabel]="years[0]"
+                [isTooltip]="true"
+                [isTranslate]="true"
+                [dropContainerClass]="'container-width-full'"
+                [isRequired]="true"
+              ></piao-dropdown>
+            </div>
+            <div class="col-12 col-xl-4">
+              <piao-text-box
+                [label]="labelValore"
+                [typeInput]="'text'"
+                [inputClass]="'input'"
+                [control]="formGroup.controls['valore1']"
+                [additionalLabel]="years[0]"
+                [maxValidatorLength]="100"
+                [id]="'valore1'"
+                [descTooltip]="labelValore"
+                [containerClass]="'container-width-full'"
+                [required]="true"
+              >
+              </piao-text-box>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-xl-4">
+              <piao-dropdown
+                [dropdown]="targetDropdown"
+                [title]="labelAndamento"
+                [formControlName]="'andamento2'"
+                [additionalLabel]="years[1]"
+                [isTooltip]="true"
+                [isTranslate]="true"
+                [dropContainerClass]="'container-width-full'"
+                [isRequired]="true"
+              ></piao-dropdown>
+            </div>
+            <div class="col-12 col-xl-4">
+              <piao-text-box
+                [label]="labelValore"
+                [typeInput]="'text'"
+                [inputClass]="'input'"
+                [control]="formGroup.controls['valore2']"
+                [maxValidatorLength]="100"
+                [id]="'valore2'"
+                [descTooltip]="labelValore"
+                [additionalLabel]="years[1]"
+                [containerClass]="'container-width-full'"
+                [required]="true"
+              >
+              </piao-text-box>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-xl-4">
+              <piao-dropdown
+                [dropdown]="targetDropdown"
+                [title]="labelAndamento"
+                [formControlName]="'andamento3'"
+                [additionalLabel]="years[2]"
+                [isTooltip]="true"
+                [isTranslate]="true"
+                [dropContainerClass]="'container-width-full'"
+                [isRequired]="true"
+              ></piao-dropdown>
+            </div>
+            <div class="col-12 col-xl-4">
+              <piao-text-box
+                [label]="labelValore"
+                [typeInput]="'text'"
+                [inputClass]="'input'"
+                [control]="formGroup.controls['valore3']"
+                [maxValidatorLength]="100"
+                [id]="'valore3'"
+                [descTooltip]="labelValore"
+                [additionalLabel]="years[2]"
+                [containerClass]="'container-width-full'"
+                [required]="true"
+              >
+              </piao-text-box>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-xl-4">
+              <piao-text-box
+                [label]="labelFonteDati"
+                [typeInput]="'text'"
+                [inputClass]="'input'"
+                [control]="formGroup.controls['fonteDati']"
+                [maxValidatorLength]="100"
+                [id]="'fonteDati'"
+                [descTooltip]="labelFonteDati"
+                [containerClass]="'container-width-full'"
+              >
+              </piao-text-box>
+            </div>
+          </div>
+        } @else if (codTipologiaFK === 'OBB_PER_IND') {
+          <div class="row">
+            <div class="col-12 col-xl-4">
+              <piao-text-box
+                [label]="labelDenominazione"
+                [typeInput]="'text'"
+                [inputClass]="'input'"
+                [control]="formGroup.controls['denominazione']"
+                [maxValidatorLength]="100"
+                [id]="'denominazione'"
+                [descTooltip]="labelDenominazione"
+                [required]="true"
+                [containerClass]="'container-width-full'"
+              >
+              </piao-text-box>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-xl-4">
+              <piao-text-box
+                [label]="labelUnita"
+                [typeInput]="'text'"
+                [inputClass]="'input'"
+                [control]="formGroup.controls['unitaMisura']"
+                [maxValidatorLength]="100"
+                [id]="'unita'"
+                [descTooltip]="labelUnita"
+                [containerClass]="'container-width-full'"
+              >
+              </piao-text-box>
+            </div>
+            <div class="col-12 col-xl-4">
+              <piao-text-box
+                [label]="labelFormula"
+                [typeInput]="'text'"
+                [inputClass]="'input'"
+                [control]="formGroup.controls['formula']"
+                [maxValidatorLength]="100"
+                [id]="'formula'"
+                [descTooltip]="labelFormula"
+                [containerClass]="'container-width-full'"
+              >
+              </piao-text-box>
+            </div>
+            <div class="col-12 col-xl-4">
+              <piao-text-box
+                [label]="labelPeso"
+                [typeInput]="'text'"
+                [inputClass]="'input'"
+                [control]="formGroup.controls['peso']"
+                [maxValidatorLength]="100"
+                [id]="'peso'"
+                [descTooltip]="labelPeso"
+                [containerClass]="'container-width-full'"
+              >
+              </piao-text-box>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-xl-4">
+              <piao-text-box
+                [label]="labelPolarita"
+                [typeInput]="'text'"
+                [inputClass]="'input'"
+                [control]="formGroup.controls['polarita']"
+                [maxValidatorLength]="100"
+                [id]="'polarita'"
+                [descTooltip]="labelPolarita"
+                [containerClass]="'container-width-full'"
+              >
+              </piao-text-box>
+            </div>
+            <div class="col-12 col-xl-4">
+              <piao-text-box
+                [label]="labelBaseline"
+                [typeInput]="'text'"
+                [inputClass]="'input'"
+                [control]="formGroup.controls['baseLine']"
+                [maxValidatorLength]="100"
+                [id]="'baseline'"
+                [descTooltip]="labelBaseline"
+                [containerClass]="'container-width-full'"
+              >
+              </piao-text-box>
+            </div>
+            <div class="col-12 col-xl-4">
+              <piao-text-box
+                [label]="labelConsuntivo"
+                [typeInput]="'text'"
+                [inputClass]="'input'"
+                [control]="formGroup.controls['consuntivo']"
+                [maxValidatorLength]="100"
+                [id]="'consuntivo'"
+                [descTooltip]="labelConsuntivo"
+                [containerClass]="'container-width-full'"
+              >
+              </piao-text-box>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-xl-4">
+              <piao-dropdown
+                [dropdown]="targetDropdown"
+                [title]="labelAndamento"
+                [formControlName]="'andamento1'"
+                [additionalLabel]="years[0]"
+                [isTooltip]="true"
+                [isTranslate]="true"
+                [dropContainerClass]="'container-width-full'"
+                [isRequired]="true"
+              ></piao-dropdown>
+            </div>
+            <div class="col-12 col-xl-4">
+              <piao-text-box
+                [label]="labelValore"
+                [typeInput]="'text'"
+                [inputClass]="'input'"
+                [control]="formGroup.controls['valore1']"
+                [additionalLabel]="years[0]"
+                [maxValidatorLength]="100"
+                [id]="'valore1'"
+                [descTooltip]="labelValore"
+                [containerClass]="'container-width-full'"
+                [required]="true"
+              >
+              </piao-text-box>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-xl-4">
+              <piao-text-box
+                [label]="labelFonteDati"
+                [typeInput]="'text'"
+                [inputClass]="'input'"
+                [control]="formGroup.controls['fonteDati']"
+                [maxValidatorLength]="100"
+                [id]="'fonteDati'"
+                [descTooltip]="labelFonteDati"
+                [containerClass]="'container-width-full'"
+              >
+              </piao-text-box>
+            </div>
+          </div>
+        } @else if (codTipologiaFK === 'OBB_2_3') {
+          <div class="row">
+            <div class="col-12 col-xl-4">
+              <piao-text-box
+                [label]="labelDenominazione"
+                [typeInput]="'text'"
+                [inputClass]="'input'"
+                [control]="formGroup.controls['denominazione']"
+                [maxValidatorLength]="100"
+                [id]="'denominazione'"
+                [descTooltip]="labelDenominazione"
+                [required]="true"
+                [containerClass]="'container-width-full'"
+              >
+              </piao-text-box>
+            </div>
+            <div class="col-12 col-xl-4">
+              <piao-text-box
+                [label]="labelUnita"
+                [typeInput]="'text'"
+                [inputClass]="'input'"
+                [control]="formGroup.controls['unitaMisura']"
+                [maxValidatorLength]="100"
+                [id]="'unita'"
+                [descTooltip]="labelUnita"
+                [containerClass]="'container-width-full'"
+              >
+              </piao-text-box>
+            </div>
+            <div class="col-12 col-xl-4">
+              <piao-text-box
+                [label]="labelFormula"
+                [typeInput]="'text'"
+                [inputClass]="'input'"
+                [control]="formGroup.controls['formula']"
+                [maxValidatorLength]="100"
+                [id]="'formula'"
+                [descTooltip]="labelFormula"
+                [containerClass]="'container-width-full'"
+              >
+              </piao-text-box>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-xl-4">
+              <piao-text-box
+                [label]="labelPeso"
+                [typeInput]="'text'"
+                [inputClass]="'input'"
+                [control]="formGroup.controls['peso']"
+                [maxValidatorLength]="100"
+                [id]="'peso'"
+                [descTooltip]="labelPeso"
+                [containerClass]="'container-width-full'"
+              >
+              </piao-text-box>
+            </div>
+            <div class="col-12 col-xl-4">
+              <piao-text-box
+                [label]="labelPolarita"
+                [typeInput]="'text'"
+                [inputClass]="'input'"
+                [control]="formGroup.controls['polarita']"
+                [maxValidatorLength]="100"
+                [id]="'polarita'"
+                [descTooltip]="labelPolarita"
+                [containerClass]="'container-width-full'"
+              >
+              </piao-text-box>
+            </div>
+            <div class="col-12 col-xl-4">
+              <piao-text-box
+                [label]="labelBaseline"
+                [typeInput]="'text'"
+                [inputClass]="'input'"
+                [control]="formGroup.controls['baseLine']"
+                [maxValidatorLength]="100"
+                [id]="'baseline'"
+                [descTooltip]="labelBaseline"
+                [containerClass]="'container-width-full'"
+              >
+              </piao-text-box>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-xl-4">
+              <piao-text-box
+                [label]="labelConsuntivo"
+                [typeInput]="'text'"
+                [inputClass]="'input'"
+                [control]="formGroup.controls['consuntivo']"
+                [maxValidatorLength]="100"
+                [id]="'consuntivo'"
+                [descTooltip]="labelConsuntivo"
+                [containerClass]="'container-width-full'"
+              >
+              </piao-text-box>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-xl-4">
+              <piao-dropdown
+                [dropdown]="targetDropdown"
+                [title]="labelAndamento"
+                [formControlName]="'andamento1'"
+                [additionalLabel]="years[0]"
+                [isTooltip]="true"
+                [isTranslate]="true"
+                [dropContainerClass]="'container-width-full'"
+                [isRequired]="true"
+              ></piao-dropdown>
+            </div>
+            <div class="col-12 col-xl-4">
+              <piao-text-box
+                [label]="labelValore"
+                [typeInput]="'text'"
+                [inputClass]="'input'"
+                [control]="formGroup.controls['valore1']"
+                [additionalLabel]="years[0]"
+                [maxValidatorLength]="100"
+                [id]="'valore1'"
+                [descTooltip]="labelValore"
+                [containerClass]="'container-width-full'"
+                [required]="true"
+              >
+              </piao-text-box>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-xl-4">
+              <piao-dropdown
+                [dropdown]="targetDropdown"
+                [title]="labelAndamento"
+                [formControlName]="'andamento2'"
+                [additionalLabel]="years[1]"
+                [isTooltip]="true"
+                [isTranslate]="true"
+                [dropContainerClass]="'container-width-full'"
+                [isRequired]="true"
+              ></piao-dropdown>
+            </div>
+            <div class="col-12 col-xl-4">
+              <piao-text-box
+                [label]="labelValore"
+                [typeInput]="'text'"
+                [inputClass]="'input'"
+                [control]="formGroup.controls['valore2']"
+                [maxValidatorLength]="100"
+                [id]="'valore2'"
+                [descTooltip]="labelValore"
+                [additionalLabel]="years[1]"
+                [containerClass]="'container-width-full'"
+                [required]="true"
+              >
+              </piao-text-box>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-xl-4">
+              <piao-dropdown
+                [dropdown]="targetDropdown"
+                [title]="labelAndamento"
+                [formControlName]="'andamento3'"
+                [additionalLabel]="years[2]"
+                [isTooltip]="true"
+                [isTranslate]="true"
+                [dropContainerClass]="'container-width-full'"
+                [isRequired]="true"
+              ></piao-dropdown>
+            </div>
+            <div class="col-12 col-xl-4">
+              <piao-text-box
+                [label]="labelValore"
+                [typeInput]="'text'"
+                [inputClass]="'input'"
+                [control]="formGroup.controls['valore3']"
+                [maxValidatorLength]="100"
+                [id]="'valore3'"
+                [descTooltip]="labelValore"
+                [additionalLabel]="years[2]"
+                [containerClass]="'container-width-full'"
+                [required]="true"
+              >
+              </piao-text-box>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-xl-4">
+              <piao-text-box
+                [label]="labelFonteDati"
+                [typeInput]="'text'"
+                [inputClass]="'input'"
+                [control]="formGroup.controls['fonteDati']"
+                [maxValidatorLength]="100"
+                [id]="'fonteDati'"
+                [descTooltip]="labelFonteDati"
+                [containerClass]="'container-width-full'"
+              >
+              </piao-text-box>
+            </div>
+          </div>
+        }
+
+        <piao-dynamic-tb-fields
+          [formGroup]="formGroup"
+          [dynamicTBConfig]="ulterioreInfo"
+          [nameArrayForm]="'addInfo.properties'"
+          [modalType]="'ulterioreInfo'"
+          [containerInputClass]="'container-width-18-5'"
+          [propertiesPath]="'addInfo.properties'"
+          [titleLabel]="'INDICATORI.MODAL.ADD_INFO.TITLE'"
+          [notFoundLabel]="'INDICATORI.MODAL.ADD_INFO.NOT_FOUND'"
+          [addFieldLabel]="'INDICATORI.MODAL.ADD_INFO.ADD_FIELD'"
+          (modalOpened)="handleAddInfoModalOpened()"
+          (modalClosed)="handleAddInfoModalClosed()"
+          (modalDeleteOpened)="handleAddInfoModalOpened()"
+          (modalDeleteClosed)="handleAddInfoModalClosed()"
+          [columnClass]="
+            codTipologiaFK === 'OVP' ? 'col-12 col-xl-6 col-lg-6' : 'col-12 col-xl-4 col-lg-4'
+          "
+        >
+        </piao-dynamic-tb-fields>
+      } @else if (this.formGroup.controls['choice'].value === 'recupera') {
+        <piao-dropdown
+          [dropdown]="indicatoriDropdown"
+          [title]="labelSelectedIndicatore"
+          [formControlName]="'selectedIndicatore'"
+          [isTooltip]="true"
+          [isTranslate]="true"
+          [dropContainerClass]="'container-width-full'"
+          (isChange)="handleSelectIndicatore($event)"
+        ></piao-dropdown>
+      }
+    </div>
+  </form>
+</div>

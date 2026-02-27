@@ -1,0 +1,248 @@
+@for (
+  gestRischio of gestioneRischio.controls;
+  track trackByGestioneId($index, gestRischio);
+  let i = $index
+) {
+  <div [ngClass]="i > 0 ? 'accordion-section-double' : 'accordion-section'">
+    <piao-accordion
+      [index]="i + 1"
+      [title]="labelGestioneRischio | translate"
+      [isOpen]="openAccordionIndex === i + 1"
+      [isButton]="true"
+      (clickButton)="handleOpenModalDelete(i)"
+    >
+      <div class="intro-text">
+        <p>{{ subTitleGestioneRischio | translate }}</p>
+      </div>
+
+      <div class="pt-2">
+        <div class="container-full">
+          <div class="row">
+            <div class="col-12 col-xl-5">
+              <piao-dropdown
+                [title]="labelSelectEventoRischioso | translate"
+                [formControl]="gestRischio.controls['idEventoRischioso']"
+                [dropdown]="gestioneRischioOptions"
+                [isTooltip]="true"
+                [dropContainerClass]="'container-width-full'"
+                [isRequired]="true"
+              >
+              </piao-dropdown>
+            </div>
+          </div>
+
+          <div class="pt-3">
+            <hr class="divider" />
+          </div>
+
+          @if (getMisuraPrevenzione(i).length === 0) {
+            <div class="pt-4">
+              <h3 class="misura-title">1. {{ labelMisuraPrevenzione | translate }}*</h3>
+              <piao-card-info
+                [titleCardHeader]="labelNotFoundMisurePrevenzione | translate"
+                [piaoCardHeaderTitleClass]="'title-card-info'"
+                [titleLoadNewForm]="labelAddMisurePrevenzione | translate"
+                [loadNewForm]="true"
+                [piaoCardHeaderContainerClass]="'piao-card-info-rischio-empty'"
+                (clicked)="handleAddMisurePrevenzione(i)"
+              ></piao-card-info>
+            </div>
+          } @else {
+            @for (
+              mPrev of getMisuraPrevenzione(i).controls;
+              track trackByMisuraPrevenzioneId($index, mPrev);
+              let y = $index
+            ) {
+              <div
+                #misuraBody
+                [attr.data-gestione-index]="i"
+                [attr.data-misura-index]="y"
+                (focusin)="onMisuraFocusIn(i, y)"
+                class="misura-section"
+                [class.misura-section-separator]="y > 0"
+              >
+                <div class="misura-header">
+                  <h3 class="misura-title">
+                    {{ y + 1 }}. {{ labelMisuraPrevenzione | translate }}*
+                  </h3>
+                  <span class="link-blue" (click)="handleOpenModalDeleteMisura(i, y)">
+                    {{ 'BUTTONS.REMOVE' | translate }}
+                  </span>
+                </div>
+
+                <div class="pt-3">
+                  <div class="container-full">
+                    <div class="row">
+                      <div class="col-12 col-xl-6">
+                        <piao-dropdown
+                          [title]="labelObiettivoPrev | translate"
+                          [formControl]="
+                            mPrev.controls['idObiettivoPrevenzioneCorruzioneTrasparenza']
+                          "
+                          [dropdown]="obbPrev"
+                          [isTooltip]="true"
+                          [dropContainerClass]="'container-width-full'"
+                          [isRequired]="true"
+                          (isChange)="handleObbPrev($event, i, y)"
+                        >
+                        </piao-dropdown>
+                      </div>
+                    </div>
+
+                    <div class="row pt-3">
+                      <div class="col-12 col-xl-4">
+                        <piao-text-box
+                          [label]="labelCodiceMisura | translate"
+                          [typeInput]="'text'"
+                          [inputClass]="'input'"
+                          [control]="setCodice(mPrev, y)"
+                          [maxValidatorLength]="50"
+                          [id]="'codice' + tipologia + '_' + i"
+                          [descTooltip]="labelCodiceMisura | translate"
+                          [isReadOnly]="true"
+                          [containerClass]="'container-width-full'"
+                        >
+                        </piao-text-box>
+                      </div>
+                      <div class="col-12 col-xl-4">
+                        <piao-text-box
+                          [label]="labelDenominazioneMisura | translate"
+                          [typeInput]="'text'"
+                          [inputClass]="'input'"
+                          [control]="mPrev.controls['denominazione']"
+                          [maxValidatorLength]="250"
+                          [id]="'denominazione_' + i"
+                          [descTooltip]="labelDenominazioneMisura | translate"
+                          [required]="true"
+                          [containerClass]="'container-width-full'"
+                        >
+                        </piao-text-box>
+                      </div>
+                      <div class="col-12 col-xl-4">
+                        <piao-text-box
+                          [label]="labelDescrizioneMisura | translate"
+                          [typeInput]="'text'"
+                          [inputClass]="'input'"
+                          [control]="mPrev.controls['descrizione']"
+                          [maxValidatorLength]="100"
+                          [id]="'descrizione_' + i"
+                          [descTooltip]="labelDescrizioneMisura | translate"
+                          [containerClass]="'container-width-full'"
+                        >
+                        </piao-text-box>
+                      </div>
+                    </div>
+
+                    <div class="row pt-3">
+                      <div class="col-12 col-xl-4">
+                        <piao-text-box
+                          [label]="labelResponsabileMisura | translate"
+                          [typeInput]="'text'"
+                          [inputClass]="'input'"
+                          [control]="mPrev.controls['responsabile']"
+                          [maxValidatorLength]="100"
+                          [id]="'responsabile_' + i"
+                          [descTooltip]="labelResponsabileMisura | translate"
+                          [containerClass]="'container-width-full'"
+                        >
+                        </piao-text-box>
+                      </div>
+                    </div>
+
+                    <div class="pt-3">
+                      <h3 class="section-title">{{ labelStakeholder | translate }}</h3>
+                      <div class="pt-3">
+                        <div class="row">
+                          <div class="col-12 col-xl-4">
+                            <piao-dropdown
+                              [title]="labelSelezionaStakeholder | translate"
+                              [formControl]="mPrev.controls['stakeholder']"
+                              [dropdown]="stakeholderOptions"
+                              [isTooltip]="true"
+                              [isMulti]="true"
+                              [dropContainerClass]="'container-width-full'"
+                            >
+                            </piao-dropdown>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="pt-3">
+                      <piao-indicatori
+                        [indicatoriControls]="mPrev.controls['indicatori']"
+                        [codTipologiaFK]="codTipologiaFK"
+                        [idEntitaFK]="mPrev.value.id || 0"
+                        [formParent]="mPrev"
+                        [codTipologiaIndicatoreFK]="codTipologiaIndicatoreFK"
+                        [sectionEnum]="sectionEnum"
+                      ></piao-indicatori>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            }
+            <div class="pt-4">
+              <hr class="divider" />
+
+              <div class="pt-4">
+                <h3 class="misura-title">
+                  {{ getMisuraPrevenzione(i).length + 1 }}.
+                  {{ labelMisuraPrevenzione | translate }}
+                </h3>
+                <piao-card-info
+                  [titleCardHeader]="labelAddMisuraPrevenzione_2 | translate"
+                  [piaoCardHeaderTitleClass]="'title-card-info'"
+                  [titleLoadNewForm]="labelAddMisurePrevenzione | translate"
+                  [loadNewForm]="true"
+                  [piaoCardHeaderContainerClass]="'piao-card-info-rischio-empty'"
+                  (clicked)="handleAddMisurePrevenzione(i)"
+                ></piao-card-info>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+    </piao-accordion>
+  </div>
+}
+
+<div class="pt-4">
+  <piao-card-info
+    [titleCardHeader]="
+      (gestioneRischio.length === 0 ? titleCardInfoNotFound : titleCardInfo) | translate
+    "
+    [piaoCardHeaderTitleClass]="'title-card-info'"
+    [titleLoadNewForm]="labelAddEventoRischioso | translate"
+    [loadNewForm]="true"
+    [piaoCardHeaderContainerClass]="'piao-card-info-container-new-form'"
+    (clicked)="handleAddEventoRischioso()"
+  ></piao-card-info>
+</div>
+
+@if (openModalDelete) {
+  <piao-modal-delete
+    [icon]="'AlertCircle'"
+    [title]="'MODAL_REMOVE.MISURA_PREVENZIONE_EVENTO_RISCHIO.TITLE'"
+    [message]="'MODAL_REMOVE.MISURA_PREVENZIONE_EVENTO_RISCHIO.MESSAGE'"
+    [subMessage]="'MODAL_REMOVE.CONFIRM_OPERATION'"
+    [openModalDelete]="openModalDelete"
+    [elementToDelete]="elementToDelete"
+    (confirm)="handleRemoveGestione($event)"
+    (closed)="handleCloseModalDelete()"
+  ></piao-modal-delete>
+}
+@if (openModalDeleteMisura) {
+  <piao-modal-delete
+    [icon]="'AlertCircle'"
+    [title]="'MODAL_REMOVE.MISURA_PREVENZIONE.TITLE'"
+    [message]="'MODAL_REMOVE.MISURA_PREVENZIONE.MESSAGE'"
+    [subMessage]="'MODAL_REMOVE.CONFIRM_OPERATION'"
+    [openModalDelete]="openModalDeleteMisura"
+    [elementToDelete]="elementToDelete"
+    (confirm)="
+      handleRemoveMisuraPrevenzione(elementToDelete.indexEvento, elementToDelete.indexMisura)
+    "
+    (closed)="handleCloseModalDeleteMisura()"
+  ></piao-modal-delete>
+}

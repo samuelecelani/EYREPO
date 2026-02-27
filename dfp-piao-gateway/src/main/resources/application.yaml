@@ -1,0 +1,52 @@
+server.port: 8080
+
+backend:
+###########################################
+#### Subpath e backend uri PERFORMANCE ####
+###########################################
+  performance:
+    subpath: /performance
+    uri:
+      anagrafica: https://httpbin.org
+##########################################
+####    Subpath e backend uri PIAO     ###
+##########################################
+  piao:
+    subpath: /piao
+    uri:
+      anagrafica: http://anagrafica:8080
+##########################################
+
+gateway:
+  filter.header:
+    useridKey: username
+    rolesKey: roles
+
+spring:
+  application.name: gateway
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: https://keycloak.sogei.test/realms/dfp
+  cloud:
+    gateway.server.webflux:
+      routes:
+###############################################################
+####         Path match e rewrite role PERFORMANCE         ####
+###############################################################
+        - id: performance-anagrafica
+          uri: ${backend.performance.uri.anagrafica}
+          predicates:
+            - Path=${backend.performance.subpath}/**
+          filters:
+            - RewritePath=${backend.performance.subpath}/(?<remaining>.*), /${remaining}
+###############################################################
+####            Path match e rewrite role PIAO             ####
+###############################################################
+        - id: piao-anagrafica
+          uri: ${backend.piao.uri.anagrafica}
+          predicates:
+            - Path=${backend.piao.subpath}/**
+          filters:
+            - RewritePath=${backend.piao.subpath}/(?<remaining>.*), /${remaining}

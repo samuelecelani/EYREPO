@@ -1,0 +1,37 @@
+<p class="title">{{ 'GESTIONALE.ELENCO_ATTIVITA.TITLE' | translate }}</p>
+
+<table class="table-att">
+  <tbody>
+    <th>{{ 'GESTIONALE.ELENCO_ATTIVITA.TABLE.ID_ACTIVITY_TH' | translate }}</th>
+    <th>{{ 'GESTIONALE.ELENCO_ATTIVITA.TABLE.PROFILE_TH' | translate }}</th>
+    <th>{{ 'GESTIONALE.ELENCO_ATTIVITA.TABLE.NAME_TH' | translate }}</th>
+    <th>{{ 'GESTIONALE.ELENCO_ATTIVITA.TABLE.SURNAME_TH' | translate }}</th>
+    <th>{{ 'GESTIONALE.ELENCO_ATTIVITA.TABLE.FISCAL_CODE_TH' | translate }}</th>
+    <th>{{ 'GESTIONALE.ELENCO_ATTIVITA.TABLE.ACTIONS_TH' | translate }}</th>
+    @for (x of paginatedAlerts(); track $index) {
+      <tr>
+        <td>{{ x.codiceAttivita }}</td>
+        <td>{{ x.profiloUtente }}</td>
+        <td>{{ x.nome }}</td>
+        <td>{{ x.cognome }}</td>
+        <td>{{ x.codiceFiscale }}</td>
+        <td>
+          <piao-azioni [isTitle]="false" [verticalEllipsis]="getActionsFor(x)"></piao-azioni>
+        </td>
+      </tr>
+    }
+  </tbody>
+</table>
+
+<piao-pagination
+  [totalItems]="totalItems()"
+  [itemsPerPage]="itemsPerPage"
+  [currentPage]="currentPage()"
+  (pageChange)="onPageChange($event)"
+></piao-pagination>
+
+<div class="button">
+  <piao-button [variant]="'primary'" [size]="'lg-plus'" (clicked)="handleNewProfile()">{{
+    'BUTTONS.NEW_PROFILE' | translate
+  }}</piao-button>
+</div>

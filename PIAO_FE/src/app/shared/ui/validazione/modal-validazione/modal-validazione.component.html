@@ -1,0 +1,40 @@
+<div class="main">
+  <p class="title-modal">{{ title | translate }}</p>
+  @if (isOsservazioni) {
+    <form [formGroup]="formGroup">
+      <div class="pt-4">
+        <piao-card-alert
+          [icon]="iconAlert"
+          [titleCardHeader]="'MESSAGE.ATTENTION' | translate"
+          [subTitleCardHeader]="'MESSAGE.DEADLINE_PIAO' | translate: { deadline: deadline }"
+          [subTitleClass]="'piao-card-sub-title'"
+        ></piao-card-alert>
+      </div>
+
+      <p class="alert-label pt-4">
+        {{ 'MESSAGE.ALERT_MANDATORY_FIELDS' | translate }}
+      </p>
+      <p class="sub-title-modal pt-4">
+        {{ 'VALIDAZIONE.MODAL_VALIDATION.SEZIONE.DESCRIPTION_MOD' | translate }}
+      </p>
+
+      <div class="pt-4">
+        <piao-text-area
+          [label]="labelOsservazioni"
+          [control]="formGroup.controls['osservazioni']"
+          [id]="'osservazioni'"
+          textAreaClass="text-area"
+          [maxValidatorLength]="'500'"
+          [descTooltip]="labelOsservazioni"
+          [containerClass]="'container-width-full'"
+          [required]="true"
+        ></piao-text-area>
+      </div>
+    </form>
+  } @else {
+    <p class="sub-title-modal" [innerHTML]="subTitle | translate: subTitleParams"></p>
+    <p class="sub-title-modal pt-3">
+      {{ infoOperazione | translate }}
+    </p>
+  }
+</div>

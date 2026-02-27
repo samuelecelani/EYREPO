@@ -1,0 +1,214 @@
+<div [ngClass]="main">
+  <p class="title">
+    {{
+      'SCRIVANIA_PA.SERVIZI_PIAO.INDICE_PIAO.SEZIONE.SEZIONE_21.OBIETTIVI_VP.OBIETTIVO_VP.TITLE'
+        | translate
+    }}
+  </p>
+  <p class="sub-title">
+    {{
+      'SCRIVANIA_PA.SERVIZI_PIAO.INDICE_PIAO.SEZIONE.SEZIONE_21.OBIETTIVI_VP.OBIETTIVO_VP.MODAL.SUB_TITLE'
+        | translate
+    }}
+  </p>
+
+  <form [formGroup]="formGroup">
+    <!-- Nota campi obbligatori -->
+    <p class="alert-label pt-4">
+      {{ 'MESSAGE.ALERT_MANDATORY_FIELDS' | translate }}
+    </p>
+
+    <!-- Obiettivo di valore pubblico e ID OVP sulla stessa riga -->
+    <div class="form-row pt-4">
+      <div class="form-field-half">
+        <piao-text-area
+          [label]="
+            'SCRIVANIA_PA.SERVIZI_PIAO.INDICE_PIAO.SEZIONE.SEZIONE_21.OBIETTIVI_VP.OBIETTIVO_VP.DETAILS.OBIETTIVO_VP'
+          "
+          [id]="'descrizione-textarea'"
+          [control]="formGroup.controls['denominazione']"
+          [textAreaClass]="'text-area-small'"
+          [maxValidatorLength]="250"
+          [descTooltip]="
+            'SCRIVANIA_PA.SERVIZI_PIAO.INDICE_PIAO.SEZIONE.SEZIONE_21.OBIETTIVI_VP.OBIETTIVO_VP.DETAILS.OBIETTIVO_VP'
+          "
+          [required]="true"
+        >
+        </piao-text-area>
+      </div>
+      <piao-text-box
+        [label]="
+          'SCRIVANIA_PA.SERVIZI_PIAO.INDICE_PIAO.SEZIONE.SEZIONE_21.OBIETTIVI_VP.OBIETTIVO_VP.DETAILS.ID_OVP'
+        "
+        [typeInput]="'text'"
+        [inputClass]="'input'"
+        [control]="formGroup.controls['codice']"
+        [maxValidatorLength]="20"
+        [id]="'codice'"
+        [descTooltip]="
+          'SCRIVANIA_PA.SERVIZI_PIAO.INDICE_PIAO.SEZIONE.SEZIONE_21.OBIETTIVI_VP.OBIETTIVO_VP.DETAILS.ID_OVP'
+        "
+        [isReadOnly]="true"
+        [containerClass]="'container-width-10'"
+      >
+      </piao-text-box>
+    </div>
+
+    <!-- Descrizione -->
+    <div class="form-field">
+      <piao-text-area
+        [label]="
+          'SCRIVANIA_PA.SERVIZI_PIAO.INDICE_PIAO.SEZIONE.SEZIONE_21.OBIETTIVI_VP.OBIETTIVO_VP.DETAILS.DESCRIPTION'
+        "
+        [id]="'descrizione-textarea'"
+        [control]="formGroup.controls['descrizione']"
+        [textAreaClass]="'text-area'"
+        [maxValidatorLength]="500"
+        [descTooltip]="
+          'SCRIVANIA_PA.SERVIZI_PIAO.INDICE_PIAO.SEZIONE.SEZIONE_21.OBIETTIVI_VP.OBIETTIVO_VP.DETAILS.DESCRIPTION'
+        "
+      >
+      </piao-text-area>
+    </div>
+
+    <!-- Analisi di contesto -->
+    <div class="form-field">
+      <piao-text-area
+        [label]="
+          'SCRIVANIA_PA.SERVIZI_PIAO.INDICE_PIAO.SEZIONE.SEZIONE_21.OBIETTIVI_VP.OBIETTIVO_VP.DETAILS.CONTEXT_ANALYSIS'
+        "
+        [id]="'contesto'"
+        [control]="formGroup.controls['contesto']"
+        [textAreaClass]="'text-area-small'"
+        [maxValidatorLength]="500"
+        [descTooltip]="
+          'SCRIVANIA_PA.SERVIZI_PIAO.INDICE_PIAO.SEZIONE.SEZIONE_21.OBIETTIVI_VP.OBIETTIVO_VP.DETAILS.CONTEXT_ANALYSIS'
+        "
+      >
+      </piao-text-area>
+    </div>
+
+    <!-- Ambito di intervento -->
+    <div class="form-field">
+      <piao-text-area
+        [label]="
+          'SCRIVANIA_PA.SERVIZI_PIAO.INDICE_PIAO.SEZIONE.SEZIONE_21.OBIETTIVI_VP.OBIETTIVO_VP.DETAILS.SECTOR'
+        "
+        [id]="'ambito'"
+        [control]="formGroup.controls['ambito']"
+        [textAreaClass]="'text-area-small'"
+        [maxValidatorLength]="250"
+        [descTooltip]="
+          'SCRIVANIA_PA.SERVIZI_PIAO.INDICE_PIAO.SEZIONE.SEZIONE_21.OBIETTIVI_VP.OBIETTIVO_VP.DETAILS.SECTOR'
+        "
+      >
+      </piao-text-area>
+    </div>
+
+    <!-- Responsabile politico e Responsabile amministrativo sulla stessa riga -->
+    <div class="form-row">
+      <div class="form-field-half">
+        <piao-text-area
+          [label]="
+            'SCRIVANIA_PA.SERVIZI_PIAO.INDICE_PIAO.SEZIONE.SEZIONE_21.OBIETTIVI_VP.OBIETTIVO_VP.DETAILS.POLITICAL_MANAGER'
+          "
+          [id]="'responsabilePolitico'"
+          [control]="formGroup.controls['responsabilePolitico']"
+          [textAreaClass]="'text-area-small'"
+          [maxValidatorLength]="250"
+          [descTooltip]="
+            'SCRIVANIA_PA.SERVIZI_PIAO.INDICE_PIAO.SEZIONE.SEZIONE_21.OBIETTIVI_VP.OBIETTIVO_VP.DETAILS.POLITICAL_MANAGER'
+          "
+        >
+        </piao-text-area>
+      </div>
+      <div class="form-field-half">
+        <piao-text-area
+          [label]="
+            'SCRIVANIA_PA.SERVIZI_PIAO.INDICE_PIAO.SEZIONE.SEZIONE_21.OBIETTIVI_VP.OBIETTIVO_VP.DETAILS.ADMINISTRATIVE_MANAGER'
+          "
+          [id]="'responsabileAmministrativo'"
+          [control]="formGroup.controls['responsabileAmministrativo']"
+          [textAreaClass]="'text-area-small'"
+          [maxValidatorLength]="250"
+          [descTooltip]="
+            'SCRIVANIA_PA.SERVIZI_PIAO.INDICE_PIAO.SEZIONE.SEZIONE_21.OBIETTIVI_VP.OBIETTIVO_VP.DETAILS.ADMINISTRATIVE_MANAGER'
+          "
+        >
+        </piao-text-area>
+      </div>
+    </div>
+
+    <!-- Nota Bene -->
+    <div class="pt-2">
+      <piao-card-info
+        [icon]="'HelpInfo'"
+        [piaoCardHeaderContainerClass]="'piao-card-info-alert-container'"
+        [titleCardHeader]="cardInfoTitle"
+        [subTitleCardHeader]="cardInfoSubTitle"
+        [piaoCardHeaderTitleClass]="'title-card-info-ovp'"
+        [loadNewForm]="false"
+      ></piao-card-info>
+    </div>
+
+    <!-- Area organizzativa di riferimento -->
+    <div class="form-field">
+      <piao-dropdown
+        [dropdown]="areeOrganizzativeOptions"
+        [formControlName]="'areaOrganizzativaSelect'"
+        [title]="
+          'SCRIVANIA_PA.SERVIZI_PIAO.INDICE_PIAO.SEZIONE.SEZIONE_21.OBIETTIVI_VP.OBIETTIVO_VP.DETAILS.ORGANIZATIONAL_AREA'
+        "
+        [isTooltip]="true"
+        [isMulti]="true"
+      ></piao-dropdown>
+    </div>
+
+    <!-- Priorità politica -->
+    <div class="form-field">
+      <piao-dropdown
+        [dropdown]="prioritaPoliticheOptions"
+        [formControlName]="'prioritaPoliticaSelect'"
+        [title]="
+          'SCRIVANIA_PA.SERVIZI_PIAO.INDICE_PIAO.SEZIONE.SEZIONE_21.OBIETTIVI_VP.OBIETTIVO_VP.DETAILS.POLITICAL_PRIORITY'
+        "
+        [isTooltip]="true"
+        [isMulti]="true"
+      ></piao-dropdown>
+    </div>
+
+    <!-- Stakeholder coinvolti -->
+    <div class="form-field">
+      <piao-dropdown
+        [dropdown]="stakeholdersOptions"
+        [formControlName]="'stakeholderSelect'"
+        [title]="
+          'SCRIVANIA_PA.SERVIZI_PIAO.INDICE_PIAO.SEZIONE.SEZIONE_21.OBIETTIVI_VP.OBIETTIVO_VP.DETAILS.STAKEHOLDERS_SELECT'
+        "
+        [isTooltip]="true"
+        [isMulti]="true"
+      ></piao-dropdown>
+      <button type="button" class="btn-add-link" (click)="handleAddStakeholder()">
+        <span>{{
+          'SCRIVANIA_PA.SERVIZI_PIAO.INDICE_PIAO.SEZIONE.SEZIONE_21.OBIETTIVI_VP.OBIETTIVO_VP.MODAL.ADD_STAKEHOLDER'
+            | translate
+        }}</span>
+        <piao-svg
+          [icon]="'PlusCircle'"
+          [fillColor]="'#0066CC'"
+          [svgContainer]="'icon-plus'"
+        ></piao-svg>
+      </button>
+    </div>
+  </form>
+</div>
+
+<!-- Modale per aggiungere nuova entità (Area organizzativa, Priorità politica, Stakeholder) -->
+<piao-modal-add-entity
+  [open]="openModalAddEntity"
+  [entityType]="currentEntityType"
+  [idPiao]="idPiao"
+  [idSezione1]="idSezione1"
+  (closed)="handleCloseModalAddEntity()"
+  (saved)="handleEntitySaved($event)"
+></piao-modal-add-entity>

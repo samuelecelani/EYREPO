@@ -1,0 +1,35 @@
+<div
+  [class]="piaoCardContainer"
+  [class.disabled]="disabled"
+  [attr.role]="isClickable ? 'button' : null"
+  [attr.tabindex]="isClickable ? '0' : null"
+  [style.--background-image]="backgroundImg ? 'url(' + backgroundImg + ')' : null"
+  [class.has-background]="!!backgroundImg"
+  (click)="onCardClick()"
+>
+  <span *ngIf="icon" aria-hidden="true">
+    <piao-svg [icon]="icon" [svgContainer]="'svg-icon'" [fillColor]="fillColorIcon"></piao-svg>
+  </span>
+  <div class="piao-card-header-wrapper">
+    <div [class]="piaoCardBody">
+      <div *ngIf="title" [class]="piaoCardTitle" [innerHTML]="title | translate"></div>
+
+      <ng-container *ngIf="textHref; else normalSubTitle">
+        <p *ngIf="subTitle && secondSubTitle">
+          <strong>{{ subTitle | translate }}</strong>
+          {{ secondSubTitle | translate: { year: currentYear } }}
+          <a [routerLink]="href" class="link-primary pointer">{{ textHref | translate }}</a>
+        </p>
+      </ng-container>
+
+      <ng-template #normalSubTitle>
+        <p *ngIf="subTitle" [class]="piaoCardSubTitle" [innerHTML]="subTitle | translate"></p>
+      </ng-template>
+
+      <ng-content select="[body]"></ng-content>
+    </div>
+    <!--inserimento di un contenuto dinamico innestato nella card, serve a renderizzare un componente-->
+    <ng-content select="[wrapper]"></ng-content>
+  </div>
+  <ng-content select="[container]"></ng-content>
+</div>

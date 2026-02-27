@@ -1,0 +1,43 @@
+/* Alert container */
+::ng-deep .piao-card-alert-container {
+  min-height: 6.25rem;
+  background-color: #f6e4c8;
+  border-radius: 10px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+}
+
+/* Alert body - contenuto testo */
+::ng-deep .piao-card-alert-body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex: 1;
+  color: #003366;
+}
+
+/* Icona  */
+::ng-deep .icon {
+  flex-shrink: 0;
+  width: 2rem;
+  height: 2rem;
+}
+
+::ng-deep .icon img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+::ng-deep .piao-card-alert-title {
+  font-weight: 700;
+}
+
+::ng-deep .piao-card-sub-title {
+  font-weight: 400;
+}

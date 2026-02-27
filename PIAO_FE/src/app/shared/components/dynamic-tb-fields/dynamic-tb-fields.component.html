@@ -1,0 +1,59 @@
+<div class="pt-4 d-flex flex-column">
+  @if (titleLabel) {
+    <div class="title-with-tooltip">
+      <p class="title-dynamic-tb-fields">
+        {{ titleLabel | translate }}
+        @if (isRequired) {
+          <span>*</span>
+        }
+      </p>
+      @if (isTooltip) {
+        <piao-tooltip [descTooltip]="titleLabel" [icon]="'InfoCircle'"></piao-tooltip>
+      }
+    </div>
+  }
+  <div class="pb-2">
+    @if (modalType) {
+      <piao-dynamic-tb
+        [form]="formGroup"
+        [dynamicTBConfig]="dynamicTBConfig"
+        [nameArrayForm]="nameArrayForm"
+        [modalType]="modalType"
+        [showAddCardInfo]="false"
+        [containerInputClass]="containerInputClass"
+        [columnClass]="columnClass"
+        (fieldAdded)="handleResetModal()"
+        (closed)="handleResetModal()"
+        (modalDeleteOpened)="handleModalDeleteOpened()"
+        (modalDeleteClosed)="handleModalDeleteClosed()"
+      >
+      </piao-dynamic-tb>
+    } @else {
+      <piao-dynamic-tb
+        [form]="formGroup"
+        [dynamicTBConfig]="dynamicTBConfig"
+        [nameArrayForm]="nameArrayForm"
+        [modalType]="modalType"
+        [showAddCardInfo]="false"
+        [containerInputClass]="containerInputClass"
+        [columnClass]="columnClass"
+        (fieldAdded)="handleResetModal()"
+        (closed)="handleResetModal()"
+        (modalDeleteOpened)="handleModalDeleteOpened()"
+        (modalDeleteClosed)="handleModalDeleteClosed()"
+      >
+      </piao-dynamic-tb>
+    }
+  </div>
+
+  <div class="pt-2 d-flex flex-column justify-content-center align-items-center">
+    @if (!properties?.value || properties?.value.length === 0) {
+      <p>
+        {{ notFoundLabel | translate }}
+      </p>
+    }
+    <p class="link-blue" (click)="handleAddNewField()">
+      {{ addFieldLabel | translate }}
+    </p>
+  </div>
+</div>

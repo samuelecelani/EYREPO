@@ -1,0 +1,165 @@
+<div class="container-elenco-sotto-fase pt-2">
+  <p class="section-subtitle">{{ titleElencoSottofasi | translate }}</p>
+
+  <div class="pt-3">
+    @if (sottofasiMonitoraggio.length === 0) {
+      <div class="empty-state-container">
+        <p class="empty-message">{{ notFoundElencoSottofasi | translate }}</p>
+        <span>
+          <p class="load-form" (click)="handleOpenModalSottofase()">
+            {{ labelAddSottofase | translate }}
+            <piao-svg
+              [icon]="'PlusCircle'"
+              [fillColor]="'#0066cc'"
+              [svgContainer]="'svg'"
+            ></piao-svg>
+          </p>
+        </span>
+      </div>
+    } @else {
+      <div class="table-elenco-container pt-2">
+        <table class="table-elenco">
+          <thead>
+            <tr>
+              <th>
+                <div class="d-flex flex-row align-items-center header-with-icon">
+                  {{ 'SEZIONE_4.ELENCO_SOTTOFASI.TH.FASE' | translate }}
+                  <div class="pointer" (click)="handleSortList('fase')">
+                    <piao-svg
+                      [svgContainer]="'icon-svg-arrow-table-center'"
+                      [icon]="'ArrowBottom'"
+                      [fillColor]="'#0066CC'"
+                    ></piao-svg>
+                  </div>
+                </div>
+              </th>
+              <th>
+                <div class="d-flex flex-row align-items-center header-with-icon">
+                  {{ 'SEZIONE_4.ELENCO_SOTTOFASI.TH.SOTTOFASE' | translate }}
+                  <div class="pointer" (click)="handleSortList('denominazione')">
+                    <piao-svg
+                      [svgContainer]="'icon-svg-arrow-table-center'"
+                      [icon]="'ArrowBottom'"
+                      [fillColor]="'#0066CC'"
+                    ></piao-svg>
+                  </div>
+                </div>
+              </th>
+              <th>
+                {{ 'SEZIONE_4.ELENCO_SOTTOFASI.TH.DESCRIZIONE_SOTTOFASE' | translate }}
+              </th>
+              <th>
+                {{ 'SEZIONE_4.ELENCO_SOTTOFASI.TH.ATTORI_COINVOLTI' | translate }}
+              </th>
+              <th>
+                {{ 'SEZIONE_4.ELENCO_SOTTOFASI.TH.STRUMENTI' | translate }}
+              </th>
+              <th>
+                {{ 'SEZIONE_4.ELENCO_SOTTOFASI.TH.DATA_INIZIO' | translate }}
+              </th>
+              <th>
+                {{ 'SEZIONE_4.ELENCO_SOTTOFASI.TH.DATA_FINE' | translate }}
+              </th>
+              <th>
+                {{ 'SEZIONE_4.ELENCO_SOTTOFASI.TH.FONTE_DATO' | translate }}
+              </th>
+              <th>
+                {{ 'SEZIONE_4.ELENCO_SOTTOFASI.TH.AZIONI' | translate }}
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (
+              sottofase of sottofasiMonitoraggio.controls;
+              track trackBySottofaseId($index, sottofase);
+              let i = $index
+            ) {
+              <tr>
+                <td>
+                  <strong>Monitoraggio</strong>
+                </td>
+                <td>
+                  <span>{{ sottofase.get('denominazione')?.value || '' }}</span>
+                </td>
+                <td>
+                  <span>{{ sottofase.get('descrizione')?.value || '' }}</span>
+                </td>
+                <td>
+                  <ul class="list-items">
+                    @for (attore of getAttoreArray(sottofase).controls; track $index) {
+                      <li>{{ attore.get('value')?.value || '' }}</li>
+                    }
+                  </ul>
+                </td>
+                <td>
+                  <span>{{ sottofase.get('strumenti')?.value || '' }}</span>
+                </td>
+                <td>
+                  <span>{{
+                    sottofase.get('dataInizio')?.value
+                      ? (sottofase.get('dataInizio')?.value | date: 'dd/MM/yyyy')
+                      : ''
+                  }}</span>
+                </td>
+                <td>
+                  <span>{{
+                    sottofase.get('dataFine')?.value
+                      ? (sottofase.get('dataFine')?.value | date: 'dd/MM/yyyy')
+                      : ''
+                  }}</span>
+                </td>
+                <td>
+                  <span>{{ sottofase.get('fonteDato')?.value || '' }}</span>
+                </td>
+                <td class="col-azioni">
+                  <piao-azioni
+                    [idSelected]="sottofase.get('id')?.value || ''"
+                    [isTitle]="false"
+                    [verticalEllipsis]="getActionsFor(i)"
+                  ></piao-azioni>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+
+      <p class="d-flex justify-content-end pt-3">
+        <span>
+          <p class="load-form" (click)="handleOpenModalSottofase()">
+            {{ labelAddSottofase | translate }}
+            <piao-svg
+              [icon]="'PlusCircle'"
+              [fillColor]="'#0066cc'"
+              [svgContainer]="'svg'"
+            ></piao-svg>
+          </p>
+        </span>
+      </p>
+    }
+  </div>
+</div>
+
+<!-- Modal Sottofase -->
+@if (openModalSottofase) {
+  <piao-modal-sottofase
+    [open]="openModalSottofase"
+    (closed)="openModalSottofase = false"
+    (confirm)="handleConfirmSottofase($event)"
+    [sottoFaseToEdit]="sottofaseEdit"
+  ></piao-modal-sottofase>
+}
+
+<!-- Modal Delete -->
+@if (openModalDelete) {
+  <piao-modal-delete
+    [icon]="'AlertCircle'"
+    [title]="'MODAL_REMOVE.SOTTO_FASE_MONITORAGGIO.TITLE'"
+    [message]="'MODAL_REMOVE.SOTTO_FASE_MONITORAGGIO.MESSAGE'"
+    [subMessage]="'MODAL_REMOVE.CONFIRM_OPERATION'"
+    [openModalDelete]="openModalDelete"
+    [elementToDelete]="elementToDelete"
+    (confirm)="handleRemoveForm($event)"
+    (closed)="handleCloseModalDelete()"
+  ></piao-modal-delete>
+}

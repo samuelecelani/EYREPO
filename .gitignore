@@ -1,0 +1,22 @@
+
+# Maven target directories
+**/target/
+**/workspace.xml
+# IDE files
+*.idea/
+*.idea/workspace.xml
+*.iml
+*.classpath
+*.project
+*.settings/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Maven local repository (solo se vuoi evitare di versionare dipendenze locali)
+.mvn/
+.mvn/wrapper/
+
+# Log e build temporanei
+*.log

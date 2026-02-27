@@ -1,0 +1,144 @@
+<div class="container-elenco-attivita-sensibile pt-2">
+  <p class="section-subtitle">{{ titleElencoAttivita | translate }}</p>
+
+  <div class="pt-3">
+    @if (attivitaSensibile.length === 0) {
+      <div class="empty-state-container">
+        <p class="empty-message">{{ notFoundElencoAttivita | translate }}</p>
+        <span>
+          <p class="load-form" (click)="handleOpenAttivitaModal()">
+            {{ labelAddElencoAttivita | translate }}
+            <piao-svg
+              [icon]="'PlusCircle'"
+              [fillColor]="'#0066cc'"
+              [svgContainer]="'svg'"
+            ></piao-svg>
+          </p>
+        </span>
+      </div>
+    } @else {
+      <div class="table-elenco-container pt-2">
+        <table class="table-elenco">
+          <thead>
+            <tr>
+              <th>
+                <div class="d-flex flex-row align-items-center header-with-icon">
+                  {{ 'SEZIONE_23.ATTIVITA_SENSIBILI.TH.ATTIVITA_SENSIBILE' | translate }}
+                  <div class="pointer" (click)="handleSortList('attivita')">
+                    <piao-svg
+                      [svgContainer]="'icon-svg-arrow-table-center'"
+                      [icon]="'ArrowBottom'"
+                      [fillColor]="'#0066CC'"
+                    ></piao-svg>
+                  </div>
+                </div>
+              </th>
+              <th>
+                <div class="d-flex flex-row align-items-center header-with-icon">
+                  {{ 'SEZIONE_23.ATTIVITA_SENSIBILI.TH.DESCRIZIONE' | translate }}
+                  <div class="pointer" (click)="handleSortList('descrizione')">
+                    <piao-svg
+                      [svgContainer]="'icon-svg-arrow-table-center'"
+                      [icon]="'ArrowBottom'"
+                      [fillColor]="'#0066CC'"
+                    ></piao-svg>
+                  </div>
+                </div>
+              </th>
+              <th>{{ 'SEZIONE_23.ATTIVITA_SENSIBILI.TH.ATTORI_COINVOLTI' | translate }}</th>
+              <th>
+                <div class="d-flex flex-row align-items-center header-with-icon">
+                  {{ 'SEZIONE_23.ATTIVITA_SENSIBILI.TH.PROCESSO_COLLEGATO' | translate }}
+                  <div class="pointer" (click)="handleSortList('processoCollegato')">
+                    <piao-svg
+                      [svgContainer]="'icon-svg-arrow-table-center'"
+                      [icon]="'ArrowBottom'"
+                      [fillColor]="'#0066CC'"
+                    ></piao-svg>
+                  </div>
+                </div>
+              </th>
+              <th>{{ 'SEZIONE_23.ATTIVITA_SENSIBILI.TH.AZIONI' | translate }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (
+              attivita of attivitaSensibile.controls;
+              track trackByAttivitaId($index, attivita);
+              let i = $index
+            ) {
+              <tr>
+                <td>
+                  <strong>{{ attivita.get('denominazione')?.value || '' }}</strong>
+                </td>
+                <td>
+                  <span>{{ attivita.get('descrizione')?.value || '' }}</span>
+                </td>
+                <td>
+                  <ul class="list-items">
+                    @for (attore of getAttoreArray(attivita).controls; track $index) {
+                      <li>{{ attore.get('value')?.value || '' }}</li>
+                    }
+                  </ul>
+                </td>
+                <td>{{ attivita.get('processoCollegato')?.value || '' }}</td>
+                <td class="col-azioni">
+                  <piao-azioni
+                    [idSelected]="attivita.get('id')?.value || ''"
+                    [isTitle]="false"
+                    [verticalEllipsis]="getActionsFor(i)"
+                  ></piao-azioni>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+
+      <p class="d-flex justify-content-end pt-3">
+        <span>
+          <p class="load-form" (click)="handleOpenAttivitaModal()">
+            {{ labelAddElencoAttivita | translate }}
+            <piao-svg
+              [icon]="'PlusCircle'"
+              [fillColor]="'#0066cc'"
+              [svgContainer]="'svg'"
+            ></piao-svg>
+          </p>
+        </span>
+      </p>
+    }
+  </div>
+</div>
+
+@if (openModalElencoAttivita) {
+  <piao-modal
+    [isIcon]="true"
+    [icon]="icon"
+    [iconStyle]="iconStyle"
+    [open]="openModalElencoAttivita"
+    [disabledButtonConfirm]="disabledButtonConfirm"
+    (closed)="this.openModalElencoAttivita = false"
+    (confirm)="handleAddElencoAttivita(); openModalElencoAttivita = false"
+  >
+    <piao-modal-elenco-attivita-sensibile
+      #child
+      [attivitaToEdit]="attivitaToEdit"
+      [piaoDTO]="piaoDTO"
+    >
+    </piao-modal-elenco-attivita-sensibile>
+  </piao-modal>
+}
+
+@if (openModalDelete) {
+  <piao-modal-delete
+    [icon]="'AlertCircle'"
+    [title]="'MODAL_REMOVE.ATTIVITA_SENSIBILE_RISCHIO_CORRUTTIVO.TITLE'"
+    [message]="'MODAL_REMOVE.ATTIVITA_SENSIBILE_RISCHIO_CORRUTTIVO.MESSAGE'"
+    [subMessage]="'MODAL_REMOVE.CONFIRM_OPERATION'"
+    [openModalDelete]="openModalDelete"
+    [elementToDelete]="elementToDelete"
+    (confirm)="handleRemoveForm($event)"
+    (closed)="handleCloseModalDelete()"
+  ></piao-modal-delete>
+}

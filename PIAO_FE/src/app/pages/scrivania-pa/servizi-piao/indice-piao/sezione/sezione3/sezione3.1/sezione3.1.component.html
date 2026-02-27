@@ -1,0 +1,172 @@
+@if (isFormReady) {
+  <div class="main">
+    <form [formGroup]="form">
+      <p class="title">{{ title | translate }}</p>
+
+      <!-- PARTE GENERALE -->
+      <p class="subTitle pt-4 section-title">{{ subTitleParteGenerale | translate }}</p>
+
+      <div class="accordion-section">
+        <!-- Accordion 1 - Fotografia dell'organizzazione -->
+        <piao-accordion [index]="1" [title]="titleAccordion1" [isOpen]="openAccordionIndex === 1">
+          <!-- Struttura organizzativa al 31.12 dell'anno precedente -->
+          <div class="accordion-content-section">
+            <p class="section-label pt-3">{{ subtitleStrutturaOrganizzativa | translate }}</p>
+            <div class="pt-3">
+              <piao-text-area
+                [label]="labelStrutturaOrganizzativa"
+                [control]="form.controls['strutturaOrganizzativa']"
+                [id]="'strutturaOrganizzativa'"
+                [textAreaClass]="'text-area'"
+                [maxValidatorLength]="'2000'"
+                [descTooltip]="labelStrutturaOrganizzativa"
+                [containerClass]="'container-width-full'"
+              ></piao-text-area>
+            </div>
+          </div>
+
+          <hr />
+
+          <!-- Rappresentazione dell'organigramma -->
+          <div class="accordion-content-section py-4">
+            <div class="row">
+              <div class="col-12 pb-2">
+                <p class="section-label required mb-2">{{ labelOrganigramma | translate }}</p>
+              </div>
+              <div class="col-12">
+                <!-- Attachment per caricamento immagine organigramma -->
+                <div class="pt-3">
+                  <piao-attachment
+                    [title]="'SCRIVANIA_PA.SERVIZI_PIAO.INDICE_PIAO.SEZIONE.ATTACHMENT.TITLE_IMAGE'"
+                    [classTitle]="'title-load-image'"
+                    [loadAttachment]="
+                      'SCRIVANIA_PA.SERVIZI_PIAO.INDICE_PIAO.SEZIONE.ATTACHMENT.LOAD_IMAGE'
+                    "
+                    [idPiao]="piaoDTO.id"
+                    [isDoc]="false"
+                    [showDescription]="true"
+                    [showName]="false"
+                    [codTipologia]="codTipologia"
+                    [codTipologiaAllegato]="codTipologiaAllegatoImage1"
+                  ></piao-attachment>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <hr />
+
+          <!-- Ampiezza organizzativa -->
+          <div class="accordion-content-section">
+            <p class="section-label required">{{ labelAmpiezzaOrganizzativa | translate }}</p>
+            <div class="pt-3 d-flex justify-content-start">
+              <p class="action-link mb-0" (click)="handleCompilaTabella('ampiezza')">
+                {{ 'BUTTONS.FILL_TABLE' | translate }}
+              </p>
+            </div>
+          </div>
+
+          <hr />
+
+          <!-- Integrazione di ulteriori dettagli -->
+          <div class="accordion-content-section">
+            <div class="pt-3">
+              <piao-text-area
+                [label]="labelUlterioriDettagli"
+                [control]="form.controls['ulterioriDettagli']"
+                [id]="'ulterioriDettagli'"
+                [textAreaClass]="'text-area'"
+                [maxValidatorLength]="'2000'"
+                [descTooltip]="labelUlterioriDettagli"
+                [containerClass]="'container-width-full'"
+              ></piao-text-area>
+            </div>
+          </div>
+
+          <hr />
+
+          <!-- Incarichi dirigenziali e simili -->
+          <div class="accordion-content-section">
+            <p class="section-label">{{ subtitleIncarichiDirigenziali | translate }}</p>
+            <div class="pt-3">
+              <piao-text-area
+                [label]="labelIncarichiDirigenziali"
+                [control]="form.controls['incarichiDirigenziali']"
+                [id]="'incarichiDirigenziali'"
+                [textAreaClass]="'text-area'"
+                [maxValidatorLength]="'2000'"
+                [descTooltip]="labelIncarichiDirigenziali | translate"
+                [containerClass]="'container-width-full'"
+              ></piao-text-area>
+            </div>
+          </div>
+
+          <hr />
+
+          <!-- Rappresentazione dei profili professionali -->
+          <div class="accordion-content-section">
+            <p class="section-label">{{ subtitleProfiliProfessionali | translate }}</p>
+            <div class="pt-3">
+              <piao-text-area
+                [label]="labelProfiliProfessionali"
+                [control]="form.controls['profiliProfessionali']"
+                [id]="'profiliProfessionali'"
+                [textAreaClass]="'text-area'"
+                [maxValidatorLength]="'2000'"
+                [descTooltip]="labelProfiliProfessionali"
+                [containerClass]="'container-width-full'"
+              ></piao-text-area>
+            </div>
+          </div>
+
+          <hr />
+
+          <!-- Rappresentazione grafica della composizione -->
+          <div class="accordion-content-section">
+            <p class="section-label required">{{ labelRappresentazioneGrafica | translate }}</p>
+            <div class="pt-3 d-flex justify-content-start no-padding-left">
+              <p class="action-link action-link-start" (click)="handleGeneraGrafico()">
+                {{ 'BUTTONS.GENERATE_CHART' | translate }}
+              </p>
+            </div>
+          </div>
+        </piao-accordion>
+
+        <!-- Accordion 2 - Linee strategiche dell'organizzazione -->
+        <piao-accordion [index]="2" [title]="titleAccordion2" [isOpen]="openAccordionIndex === 2">
+          <!-- Contenuto linee strategiche -->
+          <div class="accordion-content-section">
+            <div class="pt-3">
+              <piao-text-area
+                [label]="labelLineeStrategiche | translate"
+                [control]="form.controls['lineeStrategiche']"
+                [id]="'lineeStrategiche'"
+                [textAreaClass]="'text-area'"
+                [maxValidatorLength]="'2000'"
+                [descTooltip]="labelLineeStrategiche | translate"
+                [containerClass]="'container-width-full'"
+              ></piao-text-area>
+            </div>
+          </div>
+        </piao-accordion>
+      </div>
+
+      <!-- PARTE FUNZIONALE -->
+      <p class="subTitle pt-4 section-title">{{ subTitleParteFunzionale | translate }}</p>
+
+      <!-- Tabella per la parte funzionale -->
+      <div class="pt-3">
+        <div class="row align-items-center">
+          <div class="col-12">
+            <p class="section-label required">{{ labelTabellaFunzionale | translate }}</p>
+          </div>
+          <div class="col-12 mt-2">
+            <p class="action-link action-link-block" (click)="handleCompilaTabella('funzionale')">
+              {{ 'BUTTONS.FILL_TABLE' | translate }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+}

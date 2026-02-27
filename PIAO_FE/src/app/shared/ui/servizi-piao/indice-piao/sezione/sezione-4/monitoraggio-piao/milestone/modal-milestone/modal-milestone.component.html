@@ -1,0 +1,103 @@
+<div [ngClass]="main">
+  <p class="title-milestone">{{ labelTitle | translate }}</p>
+  <p class="sub-title pt-3">{{ labelSubTitle | translate }}</p>
+  <p class="alert-label pt-3">
+    {{ 'MESSAGE.ALERT_MANDATORY_FIELDS' | translate }}
+  </p>
+  <form [formGroup]="formGroup">
+    <div class="pt-4">
+      <div class="container-full">
+        <!-- Dropdown Sottofase -->
+        <div class="col-12">
+          <piao-dropdown
+            [title]="labelSottoFase | translate"
+            [formControl]="formGroup.controls['idSottofaseMonitoraggio']"
+            [dropdown]="dropdownSottofaseMonitoraggio"
+            [isTooltip]="false"
+            [dropContainerClass]="'container-width-full'"
+            [isRequired]="true"
+          >
+          </piao-dropdown>
+        </div>
+
+        <!-- Data Milestone -->
+        <div class="pt-4">
+          <piao-date-picker
+            [label]="labelDataMilestone | translate"
+            [control]="formGroup.controls['data']"
+            [id]="'dataMilestone'"
+            [containerClass]="'container-width-full'"
+            [required]="true"
+            [descTooltip]="labelDataMilestone"
+            [min]="minDate"
+          >
+          </piao-date-picker>
+        </div>
+
+        <!-- Descrizione Milestone -->
+        <div class="pt-4">
+          <piao-text-box
+            [label]="labelDescrizioneMilestone | translate"
+            [typeInput]="'text'"
+            [inputClass]="'input'"
+            [control]="formGroup.controls['descrizione']"
+            [id]="'descrizioneMilestone'"
+            [maxValidatorLength]="50"
+            [containerClass]="'container-width-full'"
+            [required]="true"
+          >
+          </piao-text-box>
+        </div>
+
+        <!-- Checkbox Promemoria -->
+        <div class="pt-5 pl-2">
+          <div class="form-check">
+            <input
+              type="checkbox"
+              class="form-check-input"
+              [formControl]="formGroup.controls['isPromemoria']"
+              id="isPromemoriaCheckbox"
+              aria-label="CheckPromemoria"
+            />
+            <label
+              class="form-check-label pl-2"
+              for="isPromemoriaCheckbox"
+              [innerHTML]="labelCheckboxPromemoria | translate"
+            >
+            </label>
+          </div>
+        </div>
+
+        <!-- Dropdown Promemoria (visibile se isPromemoria è true) -->
+        @if (formGroup.controls['isPromemoria'].value === true) {
+          <div class="pt-5">
+            <piao-dropdown
+              [title]="labelDropdownPromemoria | translate"
+              [formControl]="formGroup.controls['idPromemoria']"
+              [dropdown]="promemoriaDropdown"
+              [dropContainerClass]="'container-width-full'"
+              [isRequired]="true"
+            >
+            </piao-dropdown>
+          </div>
+
+          <div class="pt-4">
+            @if (formGroup.controls['idPromemoria'].value === 6) {
+              <piao-date-picker
+                [label]="labelDataPromemoria | translate"
+                [control]="formGroup.controls['dataPromemoria']"
+                [id]="'dataPromemoria'"
+                [containerClass]="'container-width-full'"
+                [required]="true"
+                [descTooltip]="labelDataPromemoria"
+                [min]="minDate"
+                [max]="formGroup.controls['data'].value ? formGroup.controls['data'].value : null"
+              >
+              </piao-date-picker>
+            }
+          </div>
+        }
+      </div>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,78 @@
+<div class="steps-container">
+  <div
+    class="step"
+    *ngFor="let step of steps; let i = index"
+    [class.active]="i === currentStep"
+    [class.disabled]="step.disabled"
+    (click)="handleGoToStep(i, step, $event)"
+  >
+    <div class="step-body">
+      <div class="step-left">
+        <ng-container *ngIf="i !== 4; else approvedIcon">
+          <div class="step-number">{{ step.numeroSezione }}</div>
+        </ng-container>
+
+        <div class="step-text">{{ step.testo }}</div>
+      </div>
+
+      <div class="step-right">
+        <piao-svg
+          *ngIf="statusCompilated.includes(step.statoSezione)"
+          [icon]="'CheckCircle'"
+          [fillColor]="'#008055'"
+          [svgContainer]="'icon-svg'"
+        ></piao-svg>
+
+        <div
+          *ngIf="step.children.length > 0"
+          role="button"
+          tabindex="0"
+          [attr.aria-expanded]="expandedStepIndex === i"
+          (click)="handleOpenChild(i, $event)"
+          [class.expanded]="expandedStepIndex === i"
+        >
+          <piao-svg
+            [icon]="'ArrowBottom'"
+            [fillColor]="'#0066CC'"
+            [svgContainer]="'icon-svg-arrow'"
+          ></piao-svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- PANNELLO FIGLI -->
+    <div *ngIf="expandedStepIndex === i" class="children-panel">
+      <div
+        class="children-step"
+        *ngFor="let child of step.children; let j = index"
+        (click)="handleGoToStepChild(i, child)"
+      >
+        <div class="step-body">
+          <div class="step-left">
+            <span class="step-number">{{ child.numeroSezione }}</span>
+            <div class="step-text">{{ child.testo }}</div>
+          </div>
+
+          <div class="step-right">
+            <piao-svg
+              *ngIf="statusCompilated.includes(child.statoSezione)"
+              [icon]="'CheckCircle'"
+              [fillColor]="'#008055'"
+              [svgContainer]="'icon-svg'"
+            ></piao-svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #approvedIcon>
+  <div>
+    <piao-svg
+      [icon]="'ApprovedStepper'"
+      [fillColor]="'#0066CC'"
+      [svgContainer]="'icon-svg-approved'"
+    ></piao-svg>
+  </div>
+</ng-template>

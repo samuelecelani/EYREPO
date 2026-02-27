@@ -1,0 +1,106 @@
+@for (
+  obiettivo of obiettivi.controls;
+  track trackByObiettivoId($index, obiettivo);
+  let i = $index
+) {
+  <div class="accordion-section">
+    <piao-accordion
+      [index]="i + 1"
+      [title]="labelObiettivoPrefix | translate"
+      [isOpen]="openAccordionIndex === i + 1"
+      [isButton]="true"
+      (clickButton)="handleOpenModalDelete(i)"
+    >
+      <!-- Intro Text -->
+      <div class="intro-text">
+        <p>{{ labelIntroText | translate }}</p>
+      </div>
+
+      <div class="pt-3">
+        <div class="container-form-obiettivo">
+          <!-- Riga con 3 campi: ID, Denominazione, Descrizione -->
+          <div class="row g-3">
+            <div class="col-12 col-xl-4">
+              <piao-text-box
+                [label]="labelIdObiettivo | translate"
+                [typeInput]="'text'"
+                [inputClass]="'input'"
+                [control]="setCodice(obiettivo.controls['codice'], i)"
+                [maxValidatorLength]="50"
+                [id]="'idObiettivo_' + i"
+                [descTooltip]="labelIdObiettivo | translate"
+                [isReadOnly]="true"
+                [required]="true"
+              >
+              </piao-text-box>
+            </div>
+
+            <div class="col-12 col-xl-4">
+              <piao-text-box
+                [label]="labelDenominazione | translate"
+                [typeInput]="'text'"
+                [inputClass]="'input'"
+                [control]="obiettivo.controls['denominazione']"
+                [maxValidatorLength]="500"
+                [id]="'denominazione_' + i"
+                [descTooltip]="labelDenominazione | translate"
+                [required]="true"
+              >
+              </piao-text-box>
+            </div>
+
+            <div class="col-12 col-xl-4">
+              <piao-text-box
+                [label]="labelDescrizione | translate"
+                [typeInput]="'text'"
+                [inputClass]="'input'"
+                [control]="obiettivo.controls['descrizione']"
+                [maxValidatorLength]="2000"
+                [id]="'descrizione_' + i"
+                [descTooltip]="labelDescrizione | translate"
+              >
+              </piao-text-box>
+            </div>
+          </div>
+
+          <!-- Sezione Indicatori -->
+          <div class="pt-2">
+            <piao-indicatori
+              [indicatoriControls]="obiettivo.controls['indicatori']"
+              [codTipologiaFK]="codTipologiaFK"
+              [idEntitaFK]="obiettivo.value.id || 0"
+              [formParent]="obiettivo"
+              [codTipologiaIndicatoreFK]="codTipologiaIndicatoreFK"
+              [sectionEnum]="sectionEnum"
+            ></piao-indicatori>
+          </div>
+        </div>
+      </div>
+    </piao-accordion>
+  </div>
+}
+
+<!-- Card Info per aggiungere nuovo obiettivo -->
+<div class="pt-4">
+  <piao-card-info
+    [titleCardHeader]="
+      (obiettivi.length === 0 ? titleCardInfoNotFoundObiettivo : titleCardInfoObiettivo) | translate
+    "
+    [piaoCardHeaderTitleClass]="'title-card-info'"
+    [titleLoadNewForm]="subTitleAddObiettivo | translate"
+    [loadNewForm]="true"
+    [piaoCardHeaderContainerClass]="'piao-card-info-container-new-form'"
+    (clicked)="handleAddObiettivo()"
+  ></piao-card-info>
+</div>
+
+<piao-modal-delete
+  [icon]="'AlertCircle'"
+  [title]="'MODAL_REMOVE.TITLE'"
+  [message]="'MODAL_REMOVE.MESSAGE'"
+  [subMessage]="'MODAL_REMOVE.CONFIRM_OPERATION'"
+  [openModalDelete]="openModalDelete"
+  [elementToDelete]="elementToDelete"
+  (confirm)="handleRemoveObiettivo($event)"
+  (closed)="handleCloseModalDelete()"
+></piao-modal-delete>

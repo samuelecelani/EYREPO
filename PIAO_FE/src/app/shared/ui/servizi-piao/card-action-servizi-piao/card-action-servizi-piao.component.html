@@ -1,0 +1,42 @@
+<div class="card-action">
+  <div *ngFor="let card of cardAction">
+    <piao-card
+      [title]="card.title"
+      [subTitle]="card.subTitle"
+      [piaoCardContainer]="piaoCardHeaderContainerClass"
+      [piaoCardBody]="piaoCardHeaderBodyClass"
+      [piaoCardTitle]="card.titleClass"
+      [piaoCardSubTitle]="piaoCardHeaderSubTitleClass"
+    >
+      <piao-icon
+        container
+        [iconContainerClass]="'icon-container-card-action-servizi-piao'"
+        [iconImgClass]="'icon-img-card-action-servizi-piao'"
+        [icon]="card.icon"
+        [iconColor]="'#003366'"
+      >
+      </piao-icon>
+      <piao-button
+        body
+        class="card-action-button"
+        [variant]="'primary'"
+        [size]="'md'"
+        (clicked)="handleGoToPath(card)"
+        [disabled]="!card?.disabled"
+        >{{ 'BUTTONS.DETAILS' | translate }}</piao-button
+      >
+    </piao-card>
+  </div>
+</div>
+
+<piao-modal
+  [disabledButtonConfirm]="disabledButtonConfirm"
+  [isIcon]="true"
+  [icon]="icon"
+  [iconStyle]="iconStyle"
+  [open]="openModal"
+  (closed)="handleCloseModal()"
+  (confirm)="handleConfirmModal()"
+>
+  <piao-modal-redigi-piao #child></piao-modal-redigi-piao>
+</piao-modal>
