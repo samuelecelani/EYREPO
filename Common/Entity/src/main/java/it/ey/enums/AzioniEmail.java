@@ -1,0 +1,11 @@
+package it.ey.enums;
+
+public enum AzioniEmail {
+    RIFIUTA_VALIDAZIONE,
+    RICHIEDI_VALIDAZIONE,
+    REVOCA_VALIDAZIONE,
+    ANNULLA_VALIDAZIONE,
+    ACCETTA_VALIDAZIONE,
+    APPROVA_PIAO
+}
+

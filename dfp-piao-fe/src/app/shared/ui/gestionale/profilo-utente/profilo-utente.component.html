@@ -1,0 +1,329 @@
+<div>
+  <p class="title">{{ 'GESTIONALE.PROFILO_UTENTE.TITLE' | translate }}</p>
+  <p class="sub-title">
+    {{
+      isEditing
+        ? ('GESTIONALE.PROFILO_UTENTE.SUB_TITLE' | translate)
+        : ('GESTIONALE.PROFILO_UTENTE.SUB_TITLE_DETTAGLIO' | translate)
+    }}
+  </p>
+  @if (isEditing) {
+    <p class="alert-label">{{ 'MESSAGE.ALERT_MANDATORY_FIELDS' | translate }}</p>
+  }
+</div>
+
+<div class="profilo-wrapper pt-4">
+  <div class="profilo-bg-figma" style="z-index: 0; pointer-events: none"></div>
+
+  <div class="profilo-container" style="position: relative; z-index: 1">
+    <form [formGroup]="form">
+      <p class="section-title">{{ 'GESTIONALE.PROFILO_UTENTE.ANAGRAFICA_TITLE' | translate }}</p>
+      <div class="grid anagrafica-grid">
+        <piao-text-box
+          [label]="'GESTIONALE.PROFILO_UTENTE.NOME' | translate"
+          [typeInput]="'text'"
+          [inputClass]="'input'"
+          [control]="form.controls['nome']"
+          [maxValidatorLength]="50"
+          [id]="'Nome'"
+          [isDetails]="!isEditing"
+          [required]="true"
+        >
+        </piao-text-box>
+
+        <piao-text-box
+          [label]="'GESTIONALE.PROFILO_UTENTE.COGNOME' | translate"
+          [typeInput]="'text'"
+          [inputClass]="'input'"
+          [control]="form.controls['cognome']"
+          [maxValidatorLength]="50"
+          [id]="'Cognome'"
+          [isDetails]="!isEditing"
+          [required]="true"
+        >
+        </piao-text-box>
+
+        <piao-text-box
+          [label]="'GESTIONALE.PROFILO_UTENTE.CODICE_FISCALE' | translate"
+          [typeInput]="'text'"
+          [inputClass]="'input'"
+          [control]="form.controls['codiceFiscale']"
+          [maxValidatorLength]="50"
+          [id]="'CodiceFiscale'"
+          [isDetails]="!isEditing"
+          [required]="true"
+        >
+        </piao-text-box>
+
+        @if (!isEditing) {
+          <piao-text-box
+            [label]="'GESTIONALE.PROFILO_UTENTE.DATA_NASCITA' | translate"
+            [typeInput]="'text'"
+            [inputClass]="'input'"
+            [control]="form.controls['dataNascita']"
+            [maxValidatorLength]="50"
+            [id]="'DataNascita'"
+            [isDetails]="true"
+            [required]="true"
+          >
+          </piao-text-box>
+        } @else {
+          <piao-date-picker
+            [label]="'GESTIONALE.PROFILO_UTENTE.DATA_NASCITA' | translate"
+            [control]="form.controls['dataNascita']"
+            [id]="'DataNascita'"
+            [required]="true"
+            [containerClass]="'container-width-full'"
+          ></piao-date-picker>
+        }
+
+        <piao-text-box
+          [label]="'GESTIONALE.PROFILO_UTENTE.LUOGO_NASCITA' | translate"
+          [typeInput]="'text'"
+          [inputClass]="'input'"
+          [control]="form.controls['luogoNascita']"
+          [maxValidatorLength]="50"
+          [id]="'LuogoNascita'"
+          [isDetails]="!isEditing"
+          [required]="true"
+        >
+        </piao-text-box>
+        <piao-text-box
+          [label]="'GESTIONALE.PROFILO_UTENTE.EMAIL_ISTITUZIONALE' | translate"
+          [typeInput]="'text'"
+          [inputClass]="'input'"
+          [control]="form.controls['emailIstituzionale']"
+          [maxValidatorLength]="50"
+          [id]="'EmailIstituzionale'"
+          [isDetails]="!isEditing"
+          [required]="true"
+        >
+        </piao-text-box>
+      </div>
+
+      <p class="section-title role-title">
+        {{ 'GESTIONALE.PROFILO_UTENTE.RUOLI_TITLE' | translate }}
+      </p>
+
+      <div class="profilo-block">
+        <div class="profilo-header">
+          <p>1° {{ 'GESTIONALE.PROFILO_UTENTE.PROFILO_UTENTE' | translate }}</p>
+          @if (isEditing && showSecondRole) {
+            <span class="remove-profile-link" (click)="removeSecondRole()">{{
+              'BUTTONS.REMOVE_PROFILE' | translate
+            }}</span>
+          }
+        </div>
+        <div class="grid ruolo-grid">
+          @if (!isEditing) {
+            <piao-text-box
+              [label]="'GESTIONALE.PROFILO_UTENTE.PROFILO_UTENTE' | translate"
+              [typeInput]="'text'"
+              [inputClass]="'input'"
+              [control]="form.controls['profiloUtente']"
+              [id]="'ProfiloUtenteReadOnly'"
+              [isDetails]="true"
+            ></piao-text-box>
+
+            <piao-text-box
+              [label]="'GESTIONALE.PROFILO_UTENTE.SEZIONE_PIAO' | translate"
+              [typeInput]="'text'"
+              [inputClass]="'input'"
+              [control]="form.controls['sezionePiaoDisplay']"
+              [id]="'SezionePiaoReadOnly'"
+              [valueClass]="'section-clamp-3'"
+              [isDetails]="true"
+            ></piao-text-box>
+          } @else {
+            <piao-dropdown
+              [dropdown]="profiloDropdownOptions"
+              [title]="'GESTIONALE.PROFILO_UTENTE.PROFILO_UTENTE' | translate"
+              [formControl]="form.controls['profiloUtente']"
+              idName="profiloUtente"
+              [id]="'ProfiloUtente'"
+              (isChange)="handleChange($event)"
+              [isRequired]="true"
+              [dropContainerClass]="
+                'piao-modal-redigi-drop-container profilo-utente-drop-container'
+              "
+            ></piao-dropdown>
+
+            <piao-dropdown
+              [dropdown]="sezionePiaoOptions"
+              [title]="'GESTIONALE.PROFILO_UTENTE.SEZIONE_PIAO' | translate"
+              [formControl]="form.controls['sezionePiao']"
+              [idName]="'sezionePiao'"
+              [id]="'SezionePiao'"
+              [isRequired]="true"
+              [isMulti]="true"
+              [hasHierarchy]="true"
+              [showSelectAll]="true"
+              [selectAllLabel]="'GESTIONALE.PROFILO_UTENTE.SELEZIONA_TUTTI' | translate"
+              (isChange)="handleChange($event)"
+              [dropContainerClass]="
+                'piao-modal-redigi-drop-container profilo-utente-drop-container'
+              "
+            ></piao-dropdown>
+          }
+        </div>
+      </div>
+
+      @if (isEditing && canAddSecondRole && !showSecondRole) {
+        <div class="add-role-strip" (click)="addSecondRole()">
+          <span>{{ 'GESTIONALE.PROFILO_UTENTE.ADD_SECOND_ROLE_PROMPT' | translate }}</span>
+          <span class="add-role-action"
+            >{{ 'BUTTONS.ADD_PROFILE' | translate }}
+            <piao-svg
+              [icon]="'PlusCircle'"
+              [fillColor]="'#0066CC'"
+              [svgContainer]="'svg'"
+            ></piao-svg>
+          </span>
+        </div>
+      }
+
+      @if (showSecondRole) {
+        <div class="profilo-block second">
+          <div class="profilo-header">
+            <p>2° {{ 'GESTIONALE.PROFILO_UTENTE.PROFILO_UTENTE' | translate }}</p>
+            @if (isEditing) {
+              <span class="remove-profile-link" (click)="removeSecondRole()">{{
+                'BUTTONS.REMOVE_PROFILE' | translate
+              }}</span>
+            }
+          </div>
+          <div class="grid ruolo-grid">
+            @if (!isEditing) {
+              <piao-text-box
+                [label]="'GESTIONALE.PROFILO_UTENTE.PROFILO_UTENTE' | translate"
+                [typeInput]="'text'"
+                [inputClass]="'input'"
+                [control]="form.controls['profiloUtenteSecondario']"
+                [id]="'ProfiloUtenteSecondarioReadOnly'"
+                [isDetails]="true"
+              ></piao-text-box>
+
+              <piao-text-box
+                [label]="'GESTIONALE.PROFILO_UTENTE.SEZIONE_PIAO' | translate"
+                [typeInput]="'text'"
+                [inputClass]="'input'"
+                [control]="form.controls['sezionePiaoSecondarioDisplay']"
+                [id]="'SezionePiaoSecondarioReadOnly'"
+                [valueClass]="'section-clamp-3'"
+                [isDetails]="true"
+              ></piao-text-box>
+            } @else {
+              <piao-dropdown
+                [dropdown]="secondRoleOptions"
+                [title]="'GESTIONALE.PROFILO_UTENTE.PROFILO_UTENTE' | translate"
+                [formControl]="form.controls['profiloUtenteSecondario']"
+                idName="profiloUtenteSecondario"
+                [id]="'ProfiloUtenteSecondario'"
+                (isChange)="handleChange($event)"
+                [isRequired]="true"
+                [dropContainerClass]="
+                  'piao-modal-redigi-drop-container profilo-utente-drop-container'
+                "
+              ></piao-dropdown>
+
+              <piao-dropdown
+                [dropdown]="sezionePiaoOptions"
+                [title]="'GESTIONALE.PROFILO_UTENTE.SEZIONE_PIAO' | translate"
+                [formControl]="form.controls['sezionePiaoSecondario']"
+                [idName]="'sezionePiaoSecondario'"
+                [id]="'SezionePiaoSecondario'"
+                [isRequired]="true"
+                [isMulti]="true"
+                [hasHierarchy]="true"
+                [showSelectAll]="true"
+                [selectAllLabel]="'GESTIONALE.PROFILO_UTENTE.SELEZIONA_TUTTI' | translate"
+                (isChange)="handleChange($event)"
+                [dropContainerClass]="
+                  'piao-modal-redigi-drop-container profilo-utente-drop-container'
+                "
+              ></piao-dropdown>
+            }
+          </div>
+        </div>
+      }
+    </form>
+    @if (!isReferente) {
+      <div class="button pt-4" *hasFunzionalita="['GEST_CTA_NEW_PROFIL']">
+        @if (!isEditing) {
+          <piao-button (click)="handleEditProfile()">{{
+            'BUTTONS.EDIT_PROFILE' | translate
+          }}</piao-button>
+          @if (!isNewUser && selectedUser?.id) {
+            <piao-button [variant]="'secondary-outline'" (click)="handleRevokeProfile()">
+              {{ 'BUTTONS.REVOKE_PROFILE' | translate }}
+            </piao-button>
+          }
+        } @else {
+          <piao-button [variant]="'secondary-outline'" (click)="handleCancelEdit()">{{
+            'BUTTONS.CANCEL' | translate
+          }}</piao-button>
+          <piao-button [disabled]="isSaveProfileButtonDisabled" (click)="handleSaveButtonClick()">{{
+            isNewUser
+              ? ('BUTTONS.ASSIGN_PROFILE' | translate)
+              : ('BUTTONS.UPDATE_PROFILE_USER' | translate)
+          }}</piao-button>
+        }
+      </div>
+    }
+  </div>
+</div>
+
+@if (openAssignConfirmModal) {
+  <piao-modal
+    [isIcon]="true"
+    [icon]="'Docs'"
+    [iconStyle]="'icon-modal'"
+    [open]="openAssignConfirmModal"
+    (closed)="closeAssignConfirmModal()"
+    (confirm)="confirmAssignProfile()"
+  >
+    <div class="modal-main">
+      <p class="modal-title mb-3">
+        {{
+          isNewUser
+            ? ('GESTIONALE.PROFILO_UTENTE.ASSIGN_MODAL.TITLE' | translate)
+            : ('GESTIONALE.PROFILO_UTENTE.UPDATE_MODAL.TITLE' | translate)
+        }}
+      </p>
+      <p class="modal-message mb-2">
+        {{
+          isNewUser
+            ? ('GESTIONALE.PROFILO_UTENTE.ASSIGN_MODAL.MESSAGE' | translate)
+            : ('GESTIONALE.PROFILO_UTENTE.UPDATE_MODAL.MESSAGE' | translate)
+        }}
+      </p>
+      <p class="modal-message">
+        {{ 'GESTIONALE.PROFILO_UTENTE.MODAL_CONFIRM_MESSAGE' | translate }}
+      </p>
+    </div>
+  </piao-modal>
+}
+
+@if (openRevokeConfirmModal) {
+  <piao-modal
+    [isIcon]="true"
+    [icon]="'CloseCircle'"
+    [iconStyle]="'icon-modal'"
+    [open]="openRevokeConfirmModal"
+    (closed)="closeRevokeConfirmModal()"
+    (confirm)="confirmRevokeProfile()"
+  >
+    <div class="modal-main">
+      <p class="modal-title mb-3">
+        {{ 'GESTIONALE.PROFILO_UTENTE.REVOKE_MODAL.TITLE' | translate }}
+      </p>
+      <p class="modal-message mb-2">
+        {{ 'GESTIONALE.PROFILO_UTENTE.REVOKE_MODAL.MESSAGE' | translate }}
+      </p>
+      <p class="modal-message">
+        {{ 'GESTIONALE.PROFILO_UTENTE.MODAL_CONFIRM_MESSAGE' | translate }}
+      </p>
+    </div>
+  </piao-modal>
+}
+<br />

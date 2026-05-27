@@ -1,0 +1,40 @@
+.modal-add-entity-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 60rem;
+
+  .title {
+    font-weight: 400;
+    font-size: 2rem;
+    line-height: 1;
+  }
+
+  .sub-title {
+    color: #333;
+    font-weight: 400;
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    white-space: pre-line;
+  }
+
+  .form-row {
+    display: flex;
+    flex-direction: row;
+    gap: 1.5rem;
+    width: 100%;
+  }
+}
+
+@media (max-width: 1220px) {
+  :host .container-width-25 {
+    max-width: 100%;
+  }
+  .modal-add-entity-content {
+    width: 100%;
+    .form-row {
+      flex-direction: column;
+      gap: 1rem;
+    }
+  }
+}

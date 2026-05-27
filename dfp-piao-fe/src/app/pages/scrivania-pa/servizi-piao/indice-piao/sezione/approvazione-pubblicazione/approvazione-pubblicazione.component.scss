@@ -1,0 +1,17 @@
+.main {
+  display: flex;
+  flex-direction: column;
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1.5rem;
+  padding-top: 5rem;
+}
+
+.section-label {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1a1a1a;
+}

@@ -1,0 +1,44 @@
+<div class="main">
+  <p class="title">
+    {{ title | translate }}
+    @if (!isDettaglio) {
+      @if (isRequired) {
+        <span>*</span>
+      }
+    }
+  </p>
+
+  <p>
+    @if (isDettaglio && !showTable) {
+      <!--  dettaglio  solo <p>-->
+      <span class="subtitle-details">
+        {{ 'SEZIONE-3.3.1.OPEN_TABLE_MINERVA' | translate }}
+      </span>
+      <!-- in caso di compilabile  -->
+    } @else if (!showTable) {
+      <span class="subtitle" role="button" tabindex="0" (click)="handleOpenTable(true)">
+        {{ 'SEZIONE-3.3.1.OPEN_TABLE_MINERVA' | translate }}
+      </span>
+    }
+  </p>
+
+  @if (showTable) {
+    <div class="table-minerva">
+      <piao-table-minerva [data]="dataTable" [typeTable]="typeTable"></piao-table-minerva>
+    </div>
+  }
+</div>
+
+@if (openModal) {
+  <piao-modal
+    [isIcon]="true"
+    [icon]="icon"
+    [iconStyle]="iconStyle"
+    [open]="openModal"
+    [showButtonCancel]="false"
+    [showButtonConfirm]="false"
+    (closed)="handleCloseModal()"
+  >
+    <piao-modal-not-found-data-minerva></piao-modal-not-found-data-minerva>
+  </piao-modal>
+}

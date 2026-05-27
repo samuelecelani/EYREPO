@@ -1,0 +1,14 @@
+<div #layoutWrapper class="layout-wrapper w-full max-w-[1440px] mx-auto">
+  <piao-header />
+  <main>
+    @if (!isLoginRoute) {
+      <piao-sidebar-menu />
+    }
+    <div class="container-child" [class.no-sidebar]="isLoginRoute">
+      <piao-breadcrumb />
+      <!-- Renderizza le pagine child qui -->
+      <div class="container-router"><router-outlet /></div>
+    </div>
+  </main>
+  <piao-footer />
+</div>

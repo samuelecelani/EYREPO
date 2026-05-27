@@ -1,0 +1,103 @@
+server.port: ${port:8080}
+server.max-http-request-header-size: ${MAX_HTTP_HEADER_SIZE:3145728}
+
+management:
+  server:
+    port: ${port:8080}
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: never
+
+logging:
+  structured:
+    format:
+      console: logstash
+  level:
+    com.project.dfp.dfpGatewayService: ${MS_LOGGING_LEVEL:INFO}
+
+backend:
+  ###########################################
+  #### Subpath e backend uri piao ####
+  ###########################################
+  piao:
+    subpath: /api/piao
+    uri:
+      utenti_public: http://${GESTIONE_UTENTI_SVC:localhost:8069}
+      bff_private: http://${BFF_SVC:localhost:9082}
+
+gateway:
+  filter:
+    header:
+      useridKey: X-User-Id
+      amministrazioneidKey: X-Amministrazione-Id
+      profileKey: X-User-Profile
+
+spring:
+  application.name: gateway
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${KEYKLOACK_URL:http://localhost:8098/realms/PIAO}
+  cloud:
+    gateway.server.webflux:
+      routes:
+        ###############################################################
+        ####         Path match e rewrite role piao         ####
+        ###############################################################
+
+        # Rotte pubbliche servite sotto /area-riservata (no JWT)
+        # FE chiama /area-riservata/config/** e /area-riservata/external/**
+        # Strip del prefisso /area-riservata prima di inoltrare al BFF
+        # (es. /area-riservata/config/initializer -> /config/initializer)
+        - id: piao-bff-area-riservata-public
+          uri: ${backend.piao.uri.bff_private}
+          predicates:
+            - Path=/area-riservata/config/**,
+              /area-riservata/external/**
+          filters:
+            - StripPrefix=1
+
+        # Rotte pubbliche (no JWT) chiamate via apiEndpoint sotto /area-riservata
+        # es. /area-riservata/api/piao/bff/config/** -> /config/**
+        - id: piao-bff-area-riservata-api-public
+          uri: ${backend.piao.uri.bff_private}
+          predicates:
+            - Path=/area-riservata${backend.piao.subpath}/bff/config/**,
+              /area-riservata${backend.piao.subpath}/bff/external/**
+          filters:
+            - StripPrefix=4
+
+        # Rotte private (JWT) chiamate via apiEndpoint sotto /area-riservata
+        # es. /area-riservata/api/piao/bff/v1/piao/findAllPiao -> /api/v1/piao/findAllPiao
+        - id: piao-bff-area-riservata-private
+          uri: ${backend.piao.uri.bff_private}
+          predicates:
+            - Path=/area-riservata${backend.piao.subpath}/bff/**
+          filters:
+            - StripPrefix=4
+            - PrefixPath=/api
+            - JwtHeaderFilter
+
+        # Rotte senza prefisso /api (es. /config/initializer)
+        - id: piao-bff-public
+          uri: ${backend.piao.uri.bff_private}
+          predicates:
+            - Path=${backend.piao.subpath}/bff/config/**,
+              ${backend.piao.subpath}/bff/external/**
+          filters:
+            - StripPrefix=3
+
+        # Rotte con prefisso /api (es. /api/v1/piao/findAllPiao)
+        - id: piao-bff-private
+          uri: ${backend.piao.uri.bff_private}
+          predicates:
+            - Path=${backend.piao.subpath}/bff/**
+          filters:
+            - StripPrefix=3
+            - PrefixPath=/api
+            - JwtHeaderFilter

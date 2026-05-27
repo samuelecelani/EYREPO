@@ -1,0 +1,21 @@
+@if (tasks && tasks.length > 0) {
+  <div class="gantt-card">
+    <div class="chart-wrapper">
+      <div #chartEl class="echarts-container" aria-label="Gantt - Fase Monitoraggio"></div>
+    </div>
+
+    <div class="legend">
+      @for (item of legendItems; track $index) {
+        <div class="legend-item">
+          <span
+            class="legend-marker"
+            [class.diamond]="item.shape === 'diamond'"
+            [style.--legend-color]="item.color"
+            aria-hidden="true"
+          ></span>
+          <span class="legend-label">{{ item.label }}</span>
+        </div>
+      }
+    </div>
+  </div>
+}

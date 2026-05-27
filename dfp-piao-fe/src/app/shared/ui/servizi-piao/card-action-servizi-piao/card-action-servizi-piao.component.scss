@@ -1,0 +1,212 @@
+.card-action {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
+  flex-wrap: nowrap;
+  width: 100%;
+  padding-top: 2.5rem;
+  gap: 1.5rem;
+  padding-bottom: 3rem;
+}
+
+.card-action-item {
+  position: relative;
+  width: 404px;
+  height: 314px;
+}
+
+.card-shape-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.card-shape-mobile {
+  display: none;
+}
+
+.card-icon-wrapper {
+  position: absolute;
+  z-index: 2;
+}
+
+::ng-deep .icon-container-card-action {
+  width: 5.5rem;
+  height: 5.5rem;
+  border-radius: 0.625rem;
+  border: 1px solid #0e3468;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+}
+
+::ng-deep .icon-img-card-action {
+  width: 3.5rem;
+  height: 3.5rem;
+}
+
+.card-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem 2rem;
+  height: 100%;
+  box-sizing: border-box;
+  gap: 1rem;
+}
+
+.card-title {
+  font-weight: 600;
+  font-size: 1.75rem;
+  line-height: 2.25rem;
+  color: #333;
+  margin: 0;
+  padding-left: 6rem;
+  white-space: pre-line;
+}
+
+.card-subtitle {
+  font-weight: 400;
+  font-size: 1.125rem;
+  line-height: 1.5rem;
+  color: black;
+  margin: 0;
+}
+
+.card-button-wrapper {
+  margin-top: auto;
+  align-self: flex-end;
+}
+
+.card-action-button {
+  color: #fff;
+  font-weight: 600;
+  border-radius: 6px;
+  border: none;
+}
+
+::ng-deep .icon-modal {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+@media screen and (max-width: 1400px) {
+  .card-action {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .card-action-item {
+    width: 404px;
+    height: 314px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .card-action {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+    padding-top: 1.5rem;
+  }
+
+  .card-action-item {
+    width: 343px;
+    height: 268px;
+  }
+
+  .card-shape-desktop {
+    display: none;
+  }
+
+  .card-shape-mobile {
+    display: block;
+    width: 100%;
+  }
+
+  .card-content {
+    padding: 1.25rem 1.5rem 1.5rem;
+    gap: 0.75rem;
+  }
+
+  .card-title {
+    font-size: 1.6rem;
+    line-height: 2rem;
+    padding-left: 20%;
+  }
+
+  .card-subtitle {
+    font-size: 0.9rem;
+    line-height: 1.375rem;
+    display: -webkit-box;
+    line-clamp: 5;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+  }
+
+  ::ng-deep .icon-container-card-action {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  ::ng-deep .icon-img-card-action {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .card-button-wrapper {
+    align-self: stretch;
+  }
+
+  .card-action-button {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    font-size: 0.875rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .card-action {
+    padding-top: 1rem;
+    gap: 2rem;
+  }
+
+  .card-content {
+    padding: 1rem 1.25rem 1.25rem;
+  }
+
+  .card-title {
+    font-size: 1rem;
+    line-height: 1.375rem;
+    padding-left: 20%;
+    margin-top: -0.25rem;
+  }
+
+  .card-subtitle {
+    font-size: 0.8rem;
+    line-height: 1.25rem;
+    display: -webkit-box;
+    line-clamp: 5;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+  }
+
+  .card-button-wrapper {
+    align-self: stretch;
+  }
+
+  .card-action-button {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

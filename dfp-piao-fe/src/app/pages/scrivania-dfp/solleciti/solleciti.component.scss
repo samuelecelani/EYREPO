@@ -1,0 +1,373 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding-bottom: 3rem;
+  padding-right: 1rem;
+}
+
+.page-title {
+  font-size: 2.5rem;
+  font-weight: 400;
+  color: #1a1a1a;
+  margin: 0 0 1rem;
+}
+
+.page-subtitle {
+  font-size: 1rem;
+  color: #1c1c1c;
+  margin: 0 0 2rem;
+  line-height: 1.5;
+}
+
+.filter-title {
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: #1a1a1a;
+  margin: 0 0 1rem;
+}
+
+.filters-form {
+  width: 100%;
+}
+
+.filters-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1rem;
+}
+
+.results-section {
+  width: 100%;
+}
+
+.results-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.results-search-info {
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: #1c1c1c;
+}
+
+.results-total {
+  color: #5a6772;
+  font-size: 0.9rem;
+}
+
+/* ===== TABLE ===== */
+.table-container {
+  overflow-x: auto;
+  overflow-y: auto;
+}
+
+.table-custom {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table-custom th,
+.table-custom td {
+  padding: 1rem 0.75rem;
+  vertical-align: middle;
+  text-align: left;
+}
+
+.table-custom th.th-checkbox,
+.table-custom td.td-checkbox {
+  width: 8rem;
+  min-width: 8rem;
+  padding-left: 1.5rem;
+}
+
+.table-custom thead tr {
+  border-bottom: 2px solid #5c6f82;
+}
+
+.table-custom thead th {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #1c1c1c;
+}
+
+.table-custom tbody tr {
+  border-bottom: 1px solid #d9dadb;
+}
+
+.table-custom tbody tr:last-child {
+  border-bottom: 2px solid #5c6f82;
+}
+
+.select-all-label {
+  font-weight: 700;
+  color: #0066cc;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  white-space: pre-line;
+  line-height: 1.3;
+  text-decoration: underline;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.header-with-icon {
+  gap: 0.35rem;
+}
+
+.pointer {
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* ===== CHECKBOX (riprende lo stile di table-validazione) ===== */
+.td-checkbox input[type='checkbox'] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 2px solid #b0b0b0;
+  border-radius: 0.25rem;
+  background-color: #fff;
+  cursor: pointer;
+  position: relative;
+  vertical-align: middle;
+  transition:
+    background-color 0.2s,
+    border-color 0.2s;
+
+  &:checked {
+    background-color: #0066cc;
+    border-color: #0066cc;
+  }
+
+  &:checked::after {
+    content: '';
+    width: 0.35rem;
+    height: 0.7rem;
+    border: solid #fff;
+    border-width: 0 2px 2px 0;
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+
+  &:hover {
+    border-color: #0066cc;
+  }
+
+  &.is-readonly,
+  &:disabled {
+    background-color: #d9dadb;
+    border-color: #d9dadb;
+    cursor: default;
+    pointer-events: none;
+
+    &::after {
+      content: '' !important;
+      width: 0.6rem !important;
+      height: 0.125rem !important;
+      background-color: #5c6f82 !important;
+      border: none !important;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) !important;
+    }
+  }
+}
+
+/* ===== AZIONI ===== */
+.action-link {
+  color: #0066cc;
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.action-disabled {
+  color: #5a6772;
+  font-weight: 400;
+  cursor: default;
+}
+
+/* ===== PAGINATION ===== */
+.pagination-row {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1.5rem;
+}
+
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.selected-count {
+  position: absolute;
+  right: 0;
+  color: #1c1c1c;
+  font-size: 1rem;
+
+  strong {
+    font-weight: 700;
+  }
+}
+
+/* ===== EDITOR SECTION ===== */
+.editor-section {
+  width: 100%;
+}
+
+.editor-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0 0 0.5rem;
+}
+
+.editor-subtitle {
+  font-size: 1rem;
+  color: #1c1c1c;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.editor-container {
+  border: 1px solid #d9dadb;
+  border-radius: 0.25rem;
+  overflow: hidden;
+
+  .ck.ck-editor__editable_inline {
+    min-height: 300px;
+  }
+}
+
+.editor-word-count {
+  padding: 0.5rem 0.75rem;
+  font-size: 0.85rem;
+  color: #1a1a1a;
+  border-top: 1px solid #d9dadb;
+  background-color: #f8f9fa;
+}
+
+.editor-save-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.editor-bottom-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+/* ===== MODAL ===== */
+
+.modal-content {
+  width: 40rem;
+}
+
+.title-modal {
+  font-size: 2rem;
+  font-weight: 400;
+  color: #1a1a1a;
+}
+
+.message-text {
+  font-size: 1rem;
+  color: #1c1c1c;
+  line-height: 1.5;
+}
+
+@media screen and (max-width: 768px) {
+  .modal-content {
+    width: 100%;
+  }
+  .page-title {
+    font-size: 1.75rem;
+  }
+
+  .filters-actions {
+    flex-direction: row;
+    justify-content: stretch;
+
+    piao-button {
+      flex: 1;
+      display: block;
+
+      button {
+        width: 100% !important;
+        display: flex;
+        justify-content: center;
+      }
+    }
+  }
+
+  /* ===== STICKY LAST COLUMN - mobile only ===== */
+  .table-custom thead th:last-child,
+  .table-custom tbody td:last-child {
+    position: sticky;
+    right: 0;
+    z-index: 2;
+    background-color: #ffffff;
+  }
+
+  .table-custom thead th:last-child::after,
+  .table-custom tbody td:last-child::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -8px;
+    width: 8px;
+    pointer-events: none;
+    background: linear-gradient(to right, transparent, rgba(92, 111, 130, 0.15));
+  }
+
+  .table-custom thead th:last-child {
+    z-index: 3;
+  }
+
+  .results-toolbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .pagination-row {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .selected-count {
+    position: static;
+    margin-top: 1rem;
+  }
+
+  /* ===== EDITOR BUTTONS - mobile full width ===== */
+  .editor-save-actions,
+  .editor-bottom-actions {
+    flex-direction: column;
+
+    piao-button {
+      display: block;
+      width: 100%;
+
+      button {
+        width: 100% !important;
+        display: flex;
+        justify-content: center;
+      }
+    }
+  }
+}

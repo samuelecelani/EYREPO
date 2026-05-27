@@ -1,0 +1,17 @@
+.main {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 400;
+  color: #1a1a1a;
+}
+
+.sub-title {
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: #1a1a1a;
+  white-space: pre-line;
+}

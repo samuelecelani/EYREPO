@@ -1,0 +1,280 @@
+<div class="profilo-page">
+  <!-- Header -->
+  <div class="page-header">
+    <div class="header-content">
+      <div class="header-left">
+        <h1 class="page-title">
+          <span class="decoration-title">{{ 'PROFILE.PAGE_TITLE' | translate }}</span>
+        </h1>
+        <p class="page-subtitle">
+          {{ 'PROFILE.PAGE_SUBTITLE' | translate }}
+        </p>
+      </div>
+      <div class="content-amministrazione">
+        <div class="button-cambia">
+          <button
+            class="button-cambia-button fw-bold"
+            (click)="openModalSelezionaAmministrazione()"
+          >
+            {{ 'PROFILE.CAMBIA' | translate }}
+          </button>
+        </div>
+        <div class="info-amministrazione">
+          <div class="label-amministrazione">
+            {{ 'PROFILE.AMMINISTRAZIONE_OPERANTE' | translate }}
+          </div>
+          <span class="titolo-amministrazione"> {{ denominazionePA }} </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Le tue informazioni -->
+  <div class="info-section">
+    <div class="info-content">
+      <div class="avatar-container">
+        <svg
+          width="326"
+          height="245"
+          viewBox="0 0 326 245"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <g clip-path="url(#clip0_35_27508)">
+            <rect width="326" height="245" rx="10" fill="#003366" />
+            <path
+              d="M137.571 155.085V155.421C137.478 162.525 131.504 167.868 119.649 171.448C133.934 181.837 148.22 190.148 162.505 190.148C176.789 190.148 191.075 181.837 205.36 171.448C193.585 167.863 187.612 162.513 187.439 155.396C187.439 154.128 187.448 152.326 187.457 148.944C187.457 148.407 187.458 147.857 187.46 147.294C188.312 147.414 188.24 147.337 187.46 147.121C187.484 138.223 187.522 126.259 187.575 114.099C198.742 99.6243 194.64 82.6544 191.141 83.0775C186.851 83.6003 149.681 48.3279 142.552 46.5195C135.422 44.711 117.312 50.5494 114.195 66.815C111.078 83.0806 109.775 124.08 121.597 140.448C124.961 145.106 130.26 146.928 137.493 145.914C137.503 149.319 137.523 151.229 137.571 155.085Z"
+              fill="url(#paint0_linear_35_27508)"
+            />
+            <path
+              d="M137.57 145.897C154.712 143.949 165.621 136.547 165.621 136.547C165.621 136.547 153.824 152.222 137.57 155.247V145.897Z"
+              fill="#FFBE94"
+            />
+            <path
+              d="M193.278 114.344C198.647 101.433 220.16 75.1374 201.616 58.7744C195.382 28.386 160.942 31.7498 137.956 38.7625C122.507 43.4758 110.84 52.7879 108.347 45.7752C92.763 58.7744 100.567 71.4885 110.84 75.1374C120.164 78.449 135.93 81.7605 162.739 78.6438C167.528 78.0866 166.525 92.7533 169.084 94.339C172.923 96.7178 175.903 81.7605 186.428 86.2518C196.953 90.743 190.707 111.568 179.409 111.568C175.513 111.568 173.565 122.279 184.084 127.344C191.72 131.096 189.79 122.733 193.278 114.344Z"
+              fill="url(#paint1_linear_35_27508)"
+            />
+            <path
+              d="M244.318 195.226C251.735 210.309 256.005 245.094 256.005 245.094H69C69 245.094 73.2715 210.305 80.6878 195.226C88.1042 180.147 131.413 166.162 131.413 166.162C139.761 183.298 185.573 183.298 193.57 166.156C193.57 166.156 236.9 180.143 244.318 195.226Z"
+              fill="url(#paint2_linear_35_27508)"
+            />
+            <mask
+              id="mask0_35_27508"
+              style="mask-type: alpha"
+              maskUnits="userSpaceOnUse"
+              x="69"
+              y="166"
+              width="188"
+              height="80"
+            >
+              <path
+                d="M244.318 195.226C251.735 210.309 256.005 245.094 256.005 245.094H69C69 245.094 73.2715 210.305 80.6878 195.226C88.1042 180.147 131.413 166.162 131.413 166.162C139.761 183.298 185.573 183.298 193.57 166.156C193.57 166.156 236.9 180.143 244.318 195.226Z"
+                fill="url(#paint3_linear_35_27508)"
+              />
+            </mask>
+            <g mask="url(#mask0_35_27508)">
+              <path
+                d="M61.2031 229.268V223.035H263.792V229.268H61.2031ZM61.2031 213.684V207.451H263.792V213.684H61.2031ZM61.2031 198.101V191.867H263.792V198.101H61.2031Z"
+                fill="url(#paint4_linear_35_27508)"
+              />
+            </g>
+          </g>
+          <defs>
+            <linearGradient
+              id="paint0_linear_35_27508"
+              x1="158.703"
+              y1="46.2031"
+              x2="158.703"
+              y2="190.148"
+              gradientUnits="userSpaceOnUse"
+            >
+              <stop stop-color="#FFD4B3" />
+              <stop offset="1" stop-color="#FFDCC2" />
+            </linearGradient>
+            <linearGradient
+              id="paint1_linear_35_27508"
+              x1="154.273"
+              y1="128.267"
+              x2="154.273"
+              y2="34"
+              gradientUnits="userSpaceOnUse"
+            >
+              <stop stop-color="#E6864E" />
+              <stop offset="1" stop-color="#E67240" />
+            </linearGradient>
+            <linearGradient
+              id="paint2_linear_35_27508"
+              x1="162.503"
+              y1="245.094"
+              x2="162.503"
+              y2="166.156"
+              gradientUnits="userSpaceOnUse"
+            >
+              <stop stop-color="#E6864E" />
+              <stop offset="1" stop-color="#E67240" />
+            </linearGradient>
+            <linearGradient
+              id="paint3_linear_35_27508"
+              x1="162.503"
+              y1="245.094"
+              x2="162.503"
+              y2="166.156"
+              gradientUnits="userSpaceOnUse"
+            >
+              <stop stop-color="#E6864E" />
+              <stop offset="1" stop-color="#E67240" />
+            </linearGradient>
+            <linearGradient
+              id="paint4_linear_35_27508"
+              x1="162.498"
+              y1="191.867"
+              x2="162.498"
+              y2="229.268"
+              gradientUnits="userSpaceOnUse"
+            >
+              <stop stop-color="#F7B186" />
+              <stop offset="1" stop-color="#FFC299" />
+            </linearGradient>
+            <clipPath id="clip0_35_27508">
+              <rect width="326" height="245" rx="10" fill="white" />
+            </clipPath>
+          </defs>
+        </svg>
+      </div>
+
+      <div class="info-user">
+        <div class="section-header">
+          <h2 class="section-title">{{ 'PROFILE.LE_TUE_INFORMAZIONI' | translate }}</h2>
+          <piao-button
+            [variant]="'primary-outline'"
+            [size]="'md'"
+            (clicked)="openEditProfileModal()"
+          >
+            {{ 'PROFILE.MODIFICA_INFORMAZIONI' | translate }}
+          </piao-button>
+        </div>
+
+        <div class="info-grid">
+          <div class="info-item">
+            <label class="info-label">{{ 'PROFILE.NOME' | translate }}</label>
+            <p class="info-value">{{ user?.nome }}</p>
+          </div>
+          <div class="info-item">
+            <label class="info-label">{{ 'PROFILE.COGNOME' | translate }}</label>
+            <p class="info-value">{{ user?.cognome }}</p>
+          </div>
+          <div class="info-item">
+            <label class="info-label">{{ 'PROFILE.DATA_NASCITA' | translate }}</label>
+            <p class="info-value">{{ user?.dataNascita | date: 'dd/MM/yyyy' }}</p>
+          </div>
+          <div class="info-item">
+            <label class="info-label">{{ 'PROFILE.CODICE_FISCALE' | translate }}</label>
+            <p class="info-value">{{ user?.fiscalCode }}</p>
+          </div>
+          <div class="info-item">
+            <label class="info-label">{{ 'PROFILE.QUALIFICA' | translate }}</label>
+            <p class="info-value">{{ profiloData.qualifica }}</p>
+          </div>
+          <div class="info-item">
+            <label class="info-label">{{ 'PROFILE.PROFILO_UTENTE' | translate }}</label>
+            <p class="info-value">{{ profiloUtente }}</p>
+          </div>
+          <div class="info-item">
+            <label class="info-label">{{ 'PROFILE.TELEFONO' | translate }}</label>
+            <p class="info-value">{{ profiloData.telefono }}</p>
+          </div>
+          <div class="info-item">
+            <label class="info-label">{{ 'PROFILE.EMAIL' | translate }}</label>
+            <p class="info-value">{{ profiloData.email }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Funzioni abilitate utente -->
+  <div class="container-folder pb-4">
+    <div class="card">
+      <div class="card-inner">
+        <div class="box">
+          <div class="contentBox">
+            <div class="title">{{ 'PROFILE.FUNZIONI_ABILITATE' | translate }}</div>
+            <div class="description"></div>
+            <div class="funzioni-section">
+              <div class="accordion-container">
+                @for (funzione of funzioni; track funzione.id) {
+                  <div class="accordion-item" [class.expanded]="funzione.expanded">
+                    <button class="accordion-header" (click)="toggleFunzione(funzione)">
+                      <span class="accordion-title">{{ funzione.titolo }}</span>
+                      <span class="accordion-icon">
+                        @if (funzione.expanded) {
+                          <piao-svg
+                            [icon]="'Minus'"
+                            [fillColor]="'#0066cc'"
+                            [svgContainer]="'svg'"
+                          ></piao-svg>
+                        } @else {
+                          <piao-svg
+                            [icon]="'Plus'"
+                            [fillColor]="'#0066cc'"
+                            [svgContainer]="'svg'"
+                          ></piao-svg>
+                        }
+                      </span>
+                    </button>
+
+                    @if (funzione.expanded) {
+                      <div class="accordion-content">
+                        <p>{{ funzione.descrizione }}</p>
+                      </div>
+                    }
+                  </div>
+                }
+              </div>
+            </div>
+          </div>
+          <div class="rounded-zone"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+@if (openModalSelectPA) {
+  <piao-modal
+    [icon]="iconSelectPA"
+    [isIcon]="true"
+    [iconStyle]="'icon-modal'"
+    [open]="openModalSelectPA"
+    [titleButtonConfirm]="'BUTTONS.SELECT'"
+    [showButtonCancel]="true"
+    [disabledButtonConfirm]="child?.formGroup && child?.formGroup.invalid"
+    (closed)="this.openModalSelectPA = false"
+    (confirm)="savePaData()"
+    ><piao-modal-seleziona-pa #child [radioPaOptions]="radioPaOptions"></piao-modal-seleziona-pa>
+  </piao-modal>
+}
+
+<!-- Modale di modifica profilo -->
+@if (showEditProfileModal) {
+  <piao-modal
+    [isIcon]="true"
+    [icon]="iconProfile"
+    [iconStyle]="'icon-modal'"
+    [open]="showEditProfileModal"
+    [title]="'PROFILE.MODAL_PROFILE.TITLE'"
+    [titleButtonConfirm]="'PROFILE.MODAL_PROFILE.SAVE'"
+    [showButtonCancel]="true"
+    [disabledButtonConfirm]="child?.formGroup && child?.formGroup.invalid"
+    [required]="false"
+    (closed)="closeEditProfileModal()"
+    (confirm)="saveProfileData()"
+  >
+    <piao-modal-modify-info-profilo-component
+      #child
+      [profiloData]="profiloData"
+      (saved)="onModalDataSaved($event)"
+      (closed)="closeEditProfileModal()"
+    ></piao-modal-modify-info-profilo-component>
+  </piao-modal>
+}

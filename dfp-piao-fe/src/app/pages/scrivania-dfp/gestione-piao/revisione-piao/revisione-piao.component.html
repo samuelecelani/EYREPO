@@ -1,0 +1,153 @@
+<div class="main">
+  <p class="title" [innerHTML]="title | translate"></p>
+  <p class="subTitle-xs pt-2" [innerHTML]="subtitle | translate"></p>
+
+  <form [formGroup]="form" class="filters-form pt-4">
+    <div class="row">
+      <div class="col-12 col-lg-4">
+        <piao-dropdown
+          [title]="'SCRIVANIA_DFP.GESTIONE_PIAO.RICERCA_PIAO.FILTERS.TIPOLOGIA' | translate"
+          [dropContainerClass]="'container-width-full'"
+          [dropdown]="tipologiaOptions"
+          [formControl]="tipologiaControl"
+        ></piao-dropdown>
+      </div>
+      <div class="col-12 col-lg-4">
+        <piao-autocomplete-text-box
+          [label]="'SCRIVANIA_DFP.GESTIONE_PIAO.RICERCA_PIAO.FILTERS.AMMINISTRAZIONE' | translate"
+          [inputClass]="'input'"
+          [control]="amministrazioneControl"
+          [id]="'amministrazione'"
+          [containerClass]="'container-width-full'"
+          [iconPath]="'assets/icon/Monument.svg'"
+          [placeholder]="
+            'SCRIVANIA_DFP.GESTIONE_PIAO.RICERCA_PIAO.FILTERS.AMMINISTRAZIONE_PLACEHOLDER'
+              | translate
+          "
+          [suggestions]="denominazioneSuggestions()"
+          [loading]="denominazioneLoading()"
+          (searchChange)="onDenominazioneSearch($event)"
+          (cleared)="clearDenominazioneSuggestions()"
+          (selected)="onAmministrazioneSelected($event)"
+        ></piao-autocomplete-text-box>
+      </div>
+      <div class="col-12 col-lg-4">
+        <piao-autocomplete-text-box
+          [label]="'SCRIVANIA_DFP.GESTIONE_PIAO.RICERCA_PIAO.FILTERS.CODICE_IPA' | translate"
+          [inputClass]="'input'"
+          [control]="codiceIpaControl"
+          [id]="'codiceIpa'"
+          [containerClass]="'container-width-full'"
+          [iconPath]="'assets/icon/Pencil.svg'"
+          [placeholder]="
+            'SCRIVANIA_DFP.GESTIONE_PIAO.RICERCA_PIAO.FILTERS.CODICE_IPA_PLACEHOLDER' | translate
+          "
+          [suggestions]="codiceIpaSuggestions()"
+          [loading]="codiceIpaLoading()"
+          (searchChange)="onCodiceIpaSearch($event)"
+          (cleared)="clearCodiceIpaSuggestions()"
+          (selected)="onAmministrazioneSelected($event)"
+        ></piao-autocomplete-text-box>
+      </div>
+    </div>
+
+    <div class="filters-actions pt-4">
+      <piao-button [variant]="'secondary-outline'" [size]="'sm'" (clicked)="resetFilters()">
+        {{ 'SCRIVANIA_DFP.GESTIONE_PIAO.RICERCA_PIAO.FILTERS.RESET' | translate }}
+      </piao-button>
+      <piao-button
+        [variant]="'primary'"
+        [size]="'sm'"
+        [disabled]="
+          !tipologiaControl.value && (!codiceIpaControl.value || codiceIpaControl.value.length < 3)
+        "
+        (clicked)="search()"
+      >
+        {{ 'SCRIVANIA_DFP.GESTIONE_PIAO.RICERCA_PIAO.FILTERS.SEARCH' | translate }}
+      </piao-button>
+    </div>
+  </form>
+
+  <div class="results-section pt-5">
+    <p class="subTitle-bold">
+      {{ 'SCRIVANIA_DFP.GESTIONE_PIAO.RICERCA_PIAO.RESULTS.TITLE' | translate }}
+    </p>
+
+    <div class="results-toolbar pt-3">
+      <label class="checkbox-wrapper">
+        <input
+          type="checkbox"
+          [checked]="onlyLastVersion()"
+          (change)="toggleOnlyLastVersion($event)"
+        />
+        <span>
+          {{ 'SCRIVANIA_DFP.GESTIONE_PIAO.RICERCA_PIAO.RESULTS.ONLY_LAST_VERSION' | translate }}
+        </span>
+      </label>
+      <span class="results-total">
+        {{
+          'SCRIVANIA_DFP.GESTIONE_PIAO.RICERCA_PIAO.RESULTS.TOTAL'
+            | translate: { count: paginatedRows().length, total: totalItems() }
+        }}
+      </span>
+    </div>
+
+    <div class="table-container pt-3">
+      <table class="table-custom">
+        <thead>
+          <tr>
+            <th>
+              {{ 'SCRIVANIA_DFP.GESTIONE_PIAO.RICERCA_PIAO.RESULTS.TABLE.NOME_PIAO' | translate }}
+            </th>
+            <th>
+              {{
+                'SCRIVANIA_DFP.GESTIONE_PIAO.RICERCA_PIAO.RESULTS.TABLE.AMMINISTRAZIONE' | translate
+              }}
+            </th>
+            <th>
+              {{ 'SCRIVANIA_DFP.GESTIONE_PIAO.RICERCA_PIAO.RESULTS.TABLE.VERSION' | translate }}
+            </th>
+            <th>
+              {{ 'SCRIVANIA_DFP.GESTIONE_PIAO.RICERCA_PIAO.RESULTS.TABLE.TIPOLOGIA' | translate }}
+            </th>
+            <th>
+              {{ 'SCRIVANIA_DFP.GESTIONE_PIAO.RICERCA_PIAO.RESULTS.TABLE.STATO' | translate }}
+            </th>
+            <th>
+              {{ 'SCRIVANIA_DFP.GESTIONE_PIAO.RICERCA_PIAO.RESULTS.TABLE.AZIONI' | translate }}
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (row of paginatedRows(); track row.id) {
+            <tr [class.row-highlighted]="row.isLatest">
+              <td>{{ row.nomePiao }}</td>
+              <td>{{ row.amministrazione }}</td>
+              <td>{{ row.versione }}</td>
+              <td>{{ row.tipologia }}</td>
+              <td>
+                <piao-status [status]="row.stato"></piao-status>
+              </td>
+              <td>
+                <a class="action-link" (click)="vediPiao(row)">
+                  {{
+                    'SCRIVANIA_DFP.GESTIONE_PIAO.RICERCA_PIAO.RESULTS.TABLE.VEDI_PIAO' | translate
+                  }}
+                </a>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <div class="pagination-container">
+      <piao-pagination
+        [totalItems]="totalItems()"
+        [itemsPerPage]="itemsPerPage"
+        [currentPage]="currentPage()"
+        (pageChange)="onPageChange($event)"
+      ></piao-pagination>
+    </div>
+  </div>
+</div>

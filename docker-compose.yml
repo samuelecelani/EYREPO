@@ -1,0 +1,157 @@
+
+name: "DFP"
+
+# Definizione comune per le variabili d'ambiente dei servizi backend
+x-backend-env: &backend-env
+  AWS_REGION: eu-west-1
+  spring.application.name: PIAO
+  IS_PRODUCTION: "false"
+  MOCK_MINERVA: "false"
+  URL_IPA: "https://ac-api-coll.dfp.gov.it"
+  URL_OPENCMS: "http://localhost:8080"
+  PDF_LOW_TEXT_THRESHOLD: "35"
+  PDF_MIN_TOTAL_CHARS: "800"
+  PDF_MIN_DENSITY_PER_KB: "2.0"
+  PDF_MAX_LOW_PAGES_PCT: "70"
+  WEBCLIENT_MAX_BUFFER_KB: "512"
+  POSTGRES_HOST: "piaoserver.postgres.database.azure.com"
+  POSTGRES_PORT: "5432"
+  POSTGRES_DB: "postgres"
+  POSTGRES_USER: "utentepiao"
+  POSTGRES_PSW: "piaoSvil123"
+  POSTGRES_URL: "jdbc:postgresql://piaoserver.postgres.database.azure.com:5432/postgres?sslmode=require"
+
+  MONGO_HOST: "mongoserver.global.mongocluster.cosmos.azure.com"
+  MONGO_PORT: "27017"
+  MONGO_NAME: "TestMongo"
+  MONGO_USERNAME: "utentemongo"
+  MONGO_PASSWORD: "NoSQLSvil123"
+  MONGODB_URL_AUTH: "mongodb+srv://utentemongo:NoSQLSvil123@mongoserver.global.mongocluster.cosmos.azure.com/?authSource=admin&tls=true&retrywrites=false&maxIdleTimeMS=120000"
+  MONGO_DB: "TestMongo"
+  MONGO_PARAMS: "tls=true&authMechanism=SCRAM-SHA-256&retrywrites=false&maxIdleTimeMS=12000"
+  MONGO_SCHEME: "mongodb+srv"
+  KEYKLOACK_URL: "http://localhost:8098/realms/PIAO"
+  KEYKLOACK_CLIENT_ID: "piaoClient"
+  LOGIN_TYPE: "openid"
+  LOCAL_STORAGE_TOKEN: "access_token"
+  TOKEN_HEADER: "Authorization"
+  TOKEN_HEADER_PREFIX: ""
+  OPENID_ISSUER_URL: "http://localhost:8098/realms/PIAO"
+  OPENID_REDIRECT_URI: "http://dfp-piao.ey.test"
+  OPENID_LOGOUT_URL: "http://localhost:8098/realms/PIAO/protocol/openid-connect/logout"
+  OPENID_POSTLOGOUT_REDIRECT_URI: "http://dfp-piao.ey.test"
+  OPENID_CLIENTID: "piaoClient"
+  OPENID_RESPONSE_TYPE: "code"
+  OPENID_SCOPE: "openid profile"
+  OPENID_OIDC: "true"
+  OPENID_SHOW_DEBUG_INFO: "true"
+  OPENID_REQUIRE_HTTPS: "false"
+  OPENID_SKIP_ISSUER_CHECK: "true"
+  OPENID_STRICT_DISCOVERY_DOC_VALIDATION: "true"
+  OPENID_PRESERVE_REQUEST_ROUTE: "true"
+  OPENID_TIMEOUT_FACTOR: "0.7"  
+  CLIENT_ID_MINERVA: "2qknkd6bl7mb9p55n14bqsp3e5"
+  CLIENT_SECRET_MINERVA: "1ueepantpnns60e1t5h2fghvtvpm3rbh1f7e343ngg5ij5132ff4"
+  URL_TOKEN_MINERVA: "https://dfp-noprod-modint-userpool-domain.auth.eu-south-1.amazoncognito.com/oauth2/token"
+  URL_MINERVA: "https://fk2icfeifd.execute-api.eu-south-1.amazonaws.com/dfp-coll-modint/ms-piao"
+  ACTIVEMQ_URL: "tcp://localhost:61616"
+  ACTIVEMQ_USERNAME: "admin"
+  ACTIVEMQ_PASSWORD: "admin"
+  DESTINATION: "piao"
+  TOPIC: "eventi"
+  CONFIRMATION_TOPIC: "eventiProcessati"
+  S3_ENDPOINT: "http://localhost:19000"
+  S3_BUCKET: "b-piao-staging"
+  S3_ACCESS_KEY:  "admin"
+  S3_SECRET_KEY: "password123"
+  S3_REGION: "eu-south-1"
+  MS_LOGGING_LEVEL: "INFO"
+  POSTGRES_SCHEMA: "common_services"
+  BE_SVC: "dfp-piao-be:8080"
+  BFF_SVC: "dfp-piao-bff:8080"
+  GATEWAY_SVC: "piao-gateway:8080"
+  # Endpoint pubblico (relativo) restituito al FE da /config/initializer.
+  # Same-origin: niente DNS interno verso il browser.
+  PUBLIC_API_ENDPOINT: "/api/piao/bff"
+  FE_SVC: "piao-fe:80"
+  SYNC_PP_SVC: "dfp-sync-pp:8080"
+  NOTIFICHE_SVC: "host.minikube.internal:9183"
+  GESTIONE_UTENTI_SVC: "localhost:8069"
+  ticket-service_SVC: "http://localhost:9087"
+
+# ================================ BACKEND ================================
+
+services:
+  piao-gateway:
+    image: piao-gateway:0.0.0
+    pull_policy: never
+    build:
+      context: ./dfp-piao-gateway
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    extra_hosts:
+      - "dfp-piao.ey.test:host-gateway"
+    environment: *backend-env
+    networks:
+      default:
+        aliases:
+          - dfp-piao-gateway-svc
+
+  # backend-BE:
+  dfp-piao-be:
+    image: piao-be:0.0.0
+    pull_policy: never
+    build:
+      context: ./dfp-piao-be
+      dockerfile: Dockerfile
+    ports:
+      - "9081:8080"
+    extra_hosts:
+      - "dfp-piao.ey.test:host-gateway"
+    environment: *backend-env
+
+  # backend-BFF:
+  dfp-piao-bff:
+    image: piao-bff:0.0.0
+    pull_policy: never
+    build:
+      context: ./dfp-piao-bff
+      dockerfile: Dockerfile
+    ports:
+      - "9082:8080"
+    extra_hosts:
+      - "dfp-piao.ey.test:host-gateway"
+    environment:
+      <<: *backend-env
+      NOTIFICHE_SVC: "host.minikube.internal:9183"
+      
+  # sync-pp:
+  dfp-sync-pp:
+    image: sync-pp:0.0.0
+    pull_policy: never
+    build:
+      context: ./dfp-sync-pp
+      dockerfile: Dockerfile
+    ports:
+      - "9083:8080"
+    extra_hosts:
+      - "dfp-piao.ey.test:host-gateway"
+    environment:
+      <<: *backend-env
+      NOTIFICHE_SVC: "host.minikube.internal:9183"
+# ================================ FRONTEND ================================
+
+  piao-fe:
+    image: piao-fe:0.0.0
+    pull_policy: never
+    build:
+      context: ./dfp-piao-fe
+      dockerfile: Dockerfile
+    ports:
+      - "3001:80"
+    extra_hosts:
+      - "dfp-piao.ey.test:host-gateway"
+    environment:
+      ANGULAR_APP_API_URL: "http://localhost:9081"
+

@@ -1,0 +1,217 @@
+.container-tabella-funzionale {
+  display: flex;
+  flex-direction: column;
+}
+
+.empty-state-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding-top: 0.5rem;
+}
+
+.load-form {
+  display: flex;
+  flex-direction: row;
+  font-weight: 700;
+  font-size: 1rem;
+  color: #0066cc;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.table-elenco-container {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: auto;
+}
+
+.table-elenco {
+  width: 100%;
+  min-width: 90rem;
+  border-collapse: collapse;
+  margin-left: 0;
+
+  thead tr {
+    border-bottom: 0.125rem solid #5c6f82;
+  }
+
+  tbody tr {
+    border-bottom: 0.0625rem solid #d9dadb;
+  }
+
+  td {
+    padding: 1.5rem 0.5rem;
+    min-height: 6.5rem;
+    font-size: 1rem;
+    font-weight: 400;
+    text-align: left;
+    vertical-align: middle;
+  }
+
+  th {
+    font-size: 1rem;
+    padding: 0.75rem 0.5rem;
+    font-weight: 600;
+    text-align: left;
+    white-space: pre-line;
+  }
+
+  // 1 - Colonna Codice (sticky, definita fuori)
+
+  // 2 - Colonna OVP
+  th:nth-child(2),
+  td:nth-child(2) {
+    width: 15rem;
+    min-width: 15rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  // 3 - Colonna Denominazione Sintetica
+  th:nth-child(3),
+  td:nth-child(3) {
+    width: 15rem;
+    min-width: 15rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  // 4 - Colonna Responsabile Amministrativo
+  th:nth-child(4),
+  td:nth-child(4) {
+    width: 15rem;
+    min-width: 15rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  // 5 - Colonna Stakeholder
+  th:nth-child(5),
+  td:nth-child(5) {
+    width: 15rem;
+    min-width: 15rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  // 6 - Colonna Dimensioni
+  th:nth-child(6),
+  td:nth-child(6) {
+    width: 15rem;
+    min-width: 15rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  // 7 - Colonna Formula
+  th:nth-child(7),
+  td:nth-child(7) {
+    width: 15rem;
+    min-width: 15rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  // 8 - Colonna Polarità
+  th:nth-child(8),
+  td:nth-child(8) {
+    width: 15rem;
+    min-width: 15rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  // 9 - Colonna Baseline
+  th:nth-child(9),
+  td:nth-child(9) {
+    width: 15rem;
+    min-width: 15rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  // 10 - Colonna Target Anno N+1
+  th:nth-child(10),
+  td:nth-child(10) {
+    width: 15rem;
+    min-width: 15rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  // 11 - Colonna Target Anno N+2
+  th:nth-child(11),
+  td:nth-child(11) {
+    width: 15rem;
+    min-width: 15rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  // 12 - Colonna Target Anno N+3
+  th:nth-child(12),
+  td:nth-child(12) {
+    width: 15rem;
+    min-width: 15rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  // 13 - Colonna Fonte
+  th:nth-child(13),
+  td:nth-child(13) {
+    width: 15rem;
+    min-width: 15rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  // 14 - Colonna Azioni
+  th:nth-child(14),
+  td:nth-child(14) {
+    width: 6rem;
+    min-width: 6rem;
+    text-align: center;
+  }
+}
+
+.table-elenco thead th:first-child,
+.table-elenco tbody td:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 2;
+  background-color: #fafafa;
+  width: 15rem !important;
+  min-width: 15rem !important;
+}
+
+/* Chrome clippa box-shadow su sticky + overflow: usare pseudo-elemento */
+.table-elenco thead th:first-child::after,
+.table-elenco tbody td:first-child::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 8px;
+  width: 8px;
+  pointer-events: none;
+  background: linear-gradient(to right, transparent, rgba(92, 111, 130, 0.15));
+}
+
+.table-elenco thead th:first-child {
+  z-index: 3;
+}
+
+/* Alterna i tr: dispari */
+.white-blue-tr {
+  background: #e7eff7;
+}
+/* Alterna i tr: pari */
+.white-tr {
+  background: #fafafa;
+}

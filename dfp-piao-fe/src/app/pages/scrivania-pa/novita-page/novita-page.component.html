@@ -1,0 +1,126 @@
+<div class="novita-page">
+  <section class="hero-section">
+    <div class="hero-background" [style.background-image]="asset.bg('img/backHeaderNovita.jpg')">
+      <div class="hero-content">
+        <piao-card-header-novita-pa></piao-card-header-novita-pa>
+      </div>
+    </div>
+  </section>
+
+  <section class="featured-section">
+    <h2 class="section-title">{{ 'NOVITA_PA.HIGHLIGHTS_TITLE' | translate }}</h2>
+
+    @if (inEvidenzaQuery.status() === 'loading') {
+      <div class="featured-grid">
+        <article class="featured-card">
+          <p class="featured-card-description">Caricamento novita in evidenza...</p>
+        </article>
+      </div>
+    }
+
+    @if (inEvidenzaQuery.status() === 'success') {
+      <div class="featured-grid">
+        @for (news of highlightedNews(); track news.id) {
+          <article class="featured-card">
+            <h3 class="featured-card-title">{{ news.title }}</h3>
+            <p class="featured-card-description">{{ news.description }}</p>
+            <a [routerLink]="['/novita/dettaglio', news.id]" class="featured-card-link">
+              {{ 'SCRIVANIA_PA.NOVITA.ACTION' | translate }}
+              <piao-svg [icon]="'ArrowRight'" [fillColor]="'#0066CC'"></piao-svg>
+            </a>
+          </article>
+        }
+
+        @if (highlightedNews().length === 0) {
+          <article class="featured-card">
+            <p class="featured-card-description">Nessuna novita in evidenza disponibile.</p>
+          </article>
+        }
+      </div>
+    }
+
+    @if (inEvidenzaQuery.status() === 'error') {
+      <div class="featured-grid">
+        <article class="featured-card">
+          <p class="featured-card-description">Errore nel caricamento delle novita in evidenza.</p>
+        </article>
+      </div>
+    }
+  </section>
+
+  <section class="all-news-section">
+    <h2 class="section-title">{{ 'NOVITA_PA.ALL_NEWS_TITLE' | translate }}</h2>
+
+    <div class="search-shell">
+      <button
+        type="button"
+        class="search-icon-button"
+        [attr.aria-label]="'NOVITA_PA.SEARCH_ARIA' | translate"
+        (click)="applySearch()"
+      >
+        <piao-svg [icon]="'Search'" [fillColor]="'#003366'"></piao-svg>
+      </button>
+      <input
+        class="search-input"
+        type="text"
+        [value]="searchTerm"
+        [placeholder]="'NOVITA_PA.SEARCH_PLACEHOLDER' | translate"
+        (input)="onSearchInput($event)"
+        (keyup.enter)="applySearch()"
+      />
+    </div>
+
+    <div class="filters-grid">
+      <div class="filter-item">
+        <label class="filter-label">{{ 'NOVITA_PA.FILTERS.TYPOLOGY' | translate }}</label>
+        <select class="filter-field" [value]="selectedTypology" (change)="onTypologyChange($event)">
+          <option value="">{{ 'NOVITA_PA.FILTERS.OPTION_ALL' | translate }}</option>
+          @for (option of typologyOptions(); track option.value) {
+            <option [value]="option.value">{{ option.label }}</option>
+          }
+        </select>
+      </div>
+
+      <div class="filter-item">
+        <label class="filter-label">{{ 'NOVITA_PA.FILTERS.DATE' | translate }}</label>
+        <input
+          class="filter-field"
+          type="date"
+          [value]="selectedDate"
+          (change)="onDateChange($event)"
+        />
+      </div>
+
+      <div class="filter-item">
+        <label class="filter-label">{{ 'NOVITA_PA.FILTERS.ORDER_BY' | translate }}</label>
+        <select class="filter-field" [value]="selectedOrder" (change)="onOrderChange($event)">
+          <option value="">{{ 'NOVITA_PA.FILTERS.OPTION_SELECT' | translate }}</option>
+          <option value="recent">{{ 'NOVITA_PA.FILTERS.MOST_RECENT' | translate }}</option>
+          <option value="oldest">{{ 'NOVITA_PA.FILTERS.LEAST_RECENT' | translate }}</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="filters-actions">
+      <button type="button" class="action-button action-button-secondary" (click)="resetFilters()">
+        {{ 'NOVITA_PA.FILTERS.RESET' | translate }}
+      </button>
+      <button type="button" class="action-button action-button-primary" (click)="applyFilters()">
+        {{ 'NOVITA_PA.FILTERS.APPLY' | translate }}
+      </button>
+    </div>
+
+    <div class="news-list-wrap">
+      <piao-novita
+        [modulo]="'PIAO'"
+        [itemsPerPage]="3"
+        [pagination]="true"
+        [searchTerm]="appliedSearchTerm"
+        [typologyFilter]="appliedTypology"
+        [selectedDate]="appliedDate"
+        [orderBy]="appliedOrder"
+        [showSearchSummary]="hasAppliedSearch()"
+      ></piao-novita>
+    </div>
+  </section>
+</div>

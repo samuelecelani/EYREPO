@@ -1,0 +1,48 @@
+@if (label) {
+  <label class="label">
+    {{ label | translate }}
+
+    @if (required) {
+      <span class="required"> *</span>
+    }
+  </label>
+}
+
+@if (!multiSelect) {
+  <div class="button-list pt-2">
+    @for (button of buttonOptions; track $index) {
+      <div class="btn-group" role="group" aria-label="Opzioni">
+        <input
+          type="radio"
+          class="btn-check"
+          name="radio-options"
+          id="option-{{ $index }}"
+          autocomplete="off"
+          [checked]="isSelectedRadio(button.value)"
+          (click)="handleSelectedRadioProblem(button.value)"
+        />
+        <label class="btn btn-outline-primary" for="option-{{ $index }}">
+          {{ button.label | translate }}
+        </label>
+      </div>
+    }
+  </div>
+} @else {
+  <div class="button-list pt-2">
+    @for (button of buttonOptions; track $index) {
+      <div class="btn-group" role="group" aria-label="Opzioni">
+        <input
+          type="checkbox"
+          class="btn-check"
+          id="option-{{ $index }}"
+          autocomplete="off"
+          [checked]="isSelectedCheckbox(button.value)"
+          (click)="handleSelectedCheckboxProblem(button.value)"
+        />
+        <label class="btn btn-outline-primary" for="option-{{ $index }}">
+          {{ button.label | translate }}
+        </label>
+      </div>
+    }
+  </div>
+}

@@ -1,0 +1,17 @@
+package it.ey.dto;
+
+import it.ey.enums.TypeErrorEnum;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class Error {
+    private String messageError;
+    private String errorCode;
+    private TypeErrorEnum typeEnum;
+}

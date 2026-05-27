@@ -1,0 +1,166 @@
+@if (isPageView) {
+  <div class="main">
+    <div
+      class="header-backgroud"
+      [style.background-image]="asset.bg('img/backHeaderAvvisiDFP.png')"
+    >
+      <div class="container-header">
+        <div class="card-shape">
+          <svg
+            class="shape-bg shape-desktop"
+            viewBox="0 0 677 266"
+            preserveAspectRatio="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M0 9.99999C0 4.47715 4.47715 0 10 0H667C672.523 0 677 4.47715 677 10V208.571C677 214.093 672.523 218.571 667 218.571H570.002C564.479 218.571 560.002 223.048 560.002 228.571V256C560.002 261.523 555.524 266 550.002 266H296.523H10C4.47716 266 0 261.523 0 256L0 9.99999Z"
+              fill="#003366"
+            />
+          </svg>
+          <svg
+            class="shape-bg shape-mobile"
+            viewBox="0 0 343 251"
+            preserveAspectRatio="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M0.00113853 9.99996C0.00116462 4.47713 4.47831 0 10.0011 0H333C338.523 0 343 4.47718 343 10L342.999 203.635C342.999 209.157 338.522 213.634 332.999 213.634H176.781C171.258 213.634 166.781 218.112 166.781 223.634V241C166.781 246.523 162.304 251 156.781 251H133.39H10C4.47718 251 2.11511e-05 246.523 4.72421e-05 241L0.00113853 9.99996Z"
+              fill="#003366"
+            />
+          </svg>
+
+          <div class="shape-content">
+            <h1 class="card-title">Avvisi e Comunicazioni</h1>
+            <p class="card-subtitle">
+              In questa sezione puoi visualizzare l'elenco di tutti gli avvisi e comunicazioni utili
+              alla redazione del PIAO pubblicati sul portale. Inoltre, puoi pubblicare di nuovi o
+              modificare quelli gia redatti.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-content content">
+      <div class="list-header">
+        <p class="title">Elenco avvisi e comunicazioni</p>
+        <p class="results-counter">
+          {{ paginatedAvvisi().length }} di {{ totalItems() }} risultati
+        </p>
+      </div>
+
+      @if (avvisiPageQuery.status() === 'loading') {
+        <div class="loading-state page-loading-state">Caricamento avvisi...</div>
+      } @else if (avvisiPageQuery.status() === 'error') {
+        <div class="error-state">Errore nel caricamento degli avvisi</div>
+      } @else if (totalItems() === 0) {
+        <div class="empty-state">Non sono presenti avvisi o comunicazioni.</div>
+      } @else {
+        <div class="table-att-wrapper">
+          <table class="table-att">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Tipologia</th>
+                <th>Data</th>
+                <th>Anteprima testo</th>
+                <th>Stato</th>
+                <th class="actions-header">Azioni</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (row of paginatedAvvisi(); track row.id) {
+                <tr>
+                  <td>{{ row.id }}</td>
+                  <td>{{ row.tipologia }}</td>
+                  <td>{{ row.data }}</td>
+                  <td>
+                    <span class="preview-text">{{ row.anteprima }}</span>
+                  </td>
+                  <td>
+                    <piao-status [status]="row.stato"></piao-status>
+                  </td>
+                  <td class="actions-cell">
+                    <piao-azioni
+                      [isTitle]="false"
+                      [verticalEllipsis]="getActionsFor(row)"
+                    ></piao-azioni>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+
+        <piao-pagination
+          [totalItems]="totalItems()"
+          [itemsPerPage]="itemsPerPage"
+          [currentPage]="currentPage()"
+          (pageChange)="onPageChange($event)"
+        ></piao-pagination>
+      }
+
+      <div class="button pb-5">
+        <piao-button
+          [variant]="'primary'"
+          [size]="'lg-plus'"
+          [customClass]="'fw-bold'"
+          (clicked)="handleNewAvviso()"
+        >
+          NUOVA PUBBLICAZIONE
+        </piao-button>
+      </div>
+
+      @if (selectedRowToDelete(); as selectedRow) {
+        <piao-modal
+          [isIcon]="true"
+          [icon]="'CloseCircle'"
+          [iconStyle]="'icon-modal'"
+          [open]="true"
+          [disabledButtonConfirm]="isDeleting()"
+          (closed)="closeDeleteModal()"
+          (confirm)="confirmDelete()"
+        >
+          <div class="modal-main">
+            <p class="modal-title mb-3">Elimina avviso o comunicazione</p>
+            <p class="modal-message mb-2">Stai per eliminare l'elemento {{ selectedRow.id }}.</p>
+            <p class="modal-message">Questa operazione non puo essere annullata.</p>
+          </div>
+        </piao-modal>
+      }
+    </div>
+  </div>
+} @else {
+  @if (alertsQuery.status() === 'loading') {
+    <div class="loading-state">Caricamento avvisi...</div>
+  }
+
+  @if (alertsQuery.status() === 'error') {
+    <div class="error-state">Errore nel caricamento degli avvisi</div>
+  }
+
+  @if (alertsQuery.status() === 'success' && alertsQuery.data()) {
+    @for (alert of paginatedAlerts(); track alert.id) {
+      <hr class="hr-avvisi" />
+      <piao-alerts
+        [badgeText]="alert.badgeText"
+        [badgeVariant]="alert.badgeVariant"
+        [title]="alert.title"
+        [description]="alert.description"
+        [date]="alert.date"
+        [visualizzato]="alert.visualizzato"
+      ></piao-alerts>
+    }
+
+    <hr class="hr-avvisi" />
+
+    @if (pagination) {
+      <piao-pagination
+        [totalItems]="totalAlerts()"
+        [itemsPerPage]="itemsPerPage"
+        [currentPage]="currentPage()"
+        (pageChange)="onPageChange($event)"
+      ></piao-pagination>
+    }
+  }
+}

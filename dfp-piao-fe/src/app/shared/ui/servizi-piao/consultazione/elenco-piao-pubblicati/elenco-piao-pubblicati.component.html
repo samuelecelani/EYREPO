@@ -1,0 +1,130 @@
+<div class="main">
+  <p class="subTitle">{{ listaPiaoPubblicatiLabel | translate }}</p>
+  <div class="row pt-3">
+    <div class="col-12 col-lg-4">
+      <piao-dropdown
+        [title]="triennioDropdownLabel | translate"
+        [dropContainerClass]="'container-width-full'"
+        [dropdown]="triennioOptions"
+        (isChange)="populatePiaoPubblicati($event)"
+      ></piao-dropdown>
+    </div>
+  </div>
+  <div class="table-container pt-5">
+    <table class="table-custom">
+      <thead>
+        <tr>
+          <th></th>
+          <th>
+            {{
+              'SCRIVANIA_PA.SERVIZI_PIAO.CONSULTA_PIAO.ELENCO_PIAO_PUBBLICATI.TABLE.PIAO_TH'
+                | translate
+            }}
+          </th>
+          <th>
+            {{
+              'SCRIVANIA_PA.SERVIZI_PIAO.CONSULTA_PIAO.ELENCO_PIAO_PUBBLICATI.TABLE.VERSION_TH'
+                | translate
+            }}
+          </th>
+          <th>
+            {{
+              'SCRIVANIA_PA.SERVIZI_PIAO.CONSULTA_PIAO.ELENCO_PIAO_PUBBLICATI.TABLE.INSERT_BY_TH'
+                | translate
+            }}
+          </th>
+          <th>
+            {{
+              'SCRIVANIA_PA.SERVIZI_PIAO.CONSULTA_PIAO.ELENCO_PIAO_PUBBLICATI.TABLE.DATA_APPROVAZIONE_TH'
+                | translate
+            }}
+          </th>
+          <th>
+            {{
+              'SCRIVANIA_PA.SERVIZI_PIAO.CONSULTA_PIAO.ELENCO_PIAO_PUBBLICATI.TABLE.DATA_PUBBLICAZIONE_TH'
+                | translate
+            }}
+          </th>
+          <th>
+            {{
+              'SCRIVANIA_PA.SERVIZI_PIAO.CONSULTA_PIAO.ELENCO_PIAO_PUBBLICATI.TABLE.TIPOLOGIA_TH'
+                | translate
+            }}
+          </th>
+          <th class="col-azioni">
+            {{
+              'SCRIVANIA_PA.SERVIZI_PIAO.CONSULTA_PIAO.ELENCO_PIAO_PUBBLICATI.TABLE.AZIONI_TH'
+                | translate
+            }}
+          </th>
+        </tr>
+      </thead>
+
+      <tbody>
+        @for (row of paginatedTableData(); track row.id) {
+          <tr [class.row-selected]="isRowExpanded(row.id)">
+            <td>
+              <button type="button" class="accordion-trigger" (click)="toggleAccordion(row.id)">
+                <piao-svg
+                  [class.open]="isRowExpanded(row.id)"
+                  [svgContainer]="'icon-svg-arrow-table-center'"
+                  [icon]="'ArrowBottom'"
+                  [fillColor]="'#0066CC'"
+                ></piao-svg>
+              </button>
+            </td>
+            <td>
+              {{ row.triennio ? row.triennio : '-' }}
+            </td>
+            <td>
+              {{ row.versione ? row.versione : '-' }}
+            </td>
+            <td>{{ row.autore ? row.autore : '-' }}</td>
+            <td>
+              {{
+                row.dataApprovazione ? (row.dataApprovazione | date: 'dd/MM/yyyy') : 'dd/MM/yyyy'
+              }}
+            </td>
+            <td>
+              {{
+                row.dataPubblicazione ? (row.dataPubblicazione | date: 'dd/MM/yyyy') : 'dd/MM/yyyy'
+              }}
+            </td>
+            <td>{{ row.tipologia ? row.tipologia : '-' }}</td>
+            <td class="col-azioni">
+              <piao-azioni [isTitle]="false" [verticalEllipsis]="getActionsFor(row)"></piao-azioni>
+            </td>
+          </tr>
+
+          @if (isRowExpanded(row.id)) {
+            <tr class="accordion-row">
+              <td colspan="8">
+                <div class="accordion-content-container">
+                  <piao-attachment
+                    #attachmentAllegato
+                    [isElencoPiaoPubblicati]="true"
+                    [idPiao]="row.id"
+                    [codTipologia]="codTipologiaPiao"
+                    [codTipologiaAllegato]="codTipologiaAllegatoPiao"
+                    [externalPiaoLink]="getPiaoExternalUrl(row.id)"
+                    [zipBaseName]="getZipFileBaseName(row)"
+                    [piaoPubblicatoUrl]="row.url"
+                  ></piao-attachment>
+                </div>
+              </td>
+            </tr>
+          }
+        }
+      </tbody>
+    </table>
+  </div>
+
+  <div class="pagination-container">
+    <piao-pagination
+      [totalItems]="totalItems()"
+      [itemsPerPage]="itemsPerPage"
+      [currentPage]="currentPage()"
+      (pageChange)="onPageChange($event)"
+    ></piao-pagination>
+  </div>
+</div>

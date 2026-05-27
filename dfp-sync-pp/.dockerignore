@@ -1,0 +1,9 @@
+.git
+.gitignore
+.idea
+.vscode
+*.md
+target/
+**/target/
+node_modules/
+*.log

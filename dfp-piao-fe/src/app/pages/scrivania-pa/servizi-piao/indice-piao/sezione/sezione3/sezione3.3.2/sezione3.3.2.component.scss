@@ -1,0 +1,102 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.title {
+  font-weight: 400;
+  font-size: 2.8rem;
+}
+
+.subTitle {
+  font-weight: 400;
+  font-size: 2rem;
+}
+
+.title-section {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #333333;
+}
+.subTitle-section {
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: #333333;
+}
+
+/* ===== ACCORDION SECTION ===== */
+
+.accordion-section {
+  display: flex;
+  flex-direction: column;
+
+  ::ng-deep {
+    /* ===== HR TRA ACCORDION ===== */
+
+    piao-accordion {
+      display: block;
+      position: relative;
+    }
+
+    /* HR SOPRA ogni accordion */
+    piao-accordion::before {
+      content: '';
+      display: block;
+      width: 100%;
+      border-top: #ccc 0.06rem solid;
+    }
+
+    /* HR SOTTO l'ultimo accordion */
+    piao-accordion:last-of-type::after {
+      content: '';
+      display: block;
+      width: 100%;
+      border-bottom: #ccc 0.06rem solid;
+    }
+
+    /* PRIMO APERTO: no HR sopra */
+    piao-accordion.is-open:first-child::before {
+      display: none;
+    }
+
+    /* ULTIMO APERTO: no HR sotto */
+    piao-accordion.is-open:last-of-type::after {
+      display: none;
+    }
+
+    /* ===== ACCORDION BODY STYLES ===== */
+    .accordion-body {
+      padding: 0;
+      background: #e7eff7;
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+
+    .accordion-body > :not(hr) {
+      padding-block: 0.75rem;
+    }
+
+    .accordion-body > hr {
+      display: block;
+      width: calc(100% + 2rem);
+      margin-left: -1rem;
+      padding: 0;
+      border: 0;
+      border-top: 2px solid #000;
+      box-sizing: border-box;
+    }
+
+    .accordion-body > *:not(hr) + *:not(hr) {
+      margin-top: 0.75rem;
+    }
+
+    piao-accordion .accordion.is-closed .accordion-header {
+      background-color: #fafafa;
+
+      &:hover {
+        background-color: unset;
+      }
+    }
+  }
+}

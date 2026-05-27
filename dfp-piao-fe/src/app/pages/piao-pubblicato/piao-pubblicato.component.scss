@@ -1,0 +1,53 @@
+.main {
+  background-color: #00325d;
+  min-height: 100vh;
+}
+
+.img {
+  height: 80px;
+}
+
+.subTitle {
+  font-size: 0.9rem;
+}
+
+.info-list {
+  max-width: 720px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+
+  .info-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    @media (min-width: 576px) {
+      flex-direction: row;
+      align-items: baseline;
+      gap: 1.5rem;
+    }
+  }
+
+  .info-label {
+    color: #5cb3ff;
+    font-size: 0.95rem;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    flex: 0 0 12rem;
+  }
+
+  .info-value {
+    color: #fff;
+    font-size: 1.25rem;
+    font-weight: 500;
+    word-break: break-word;
+  }
+}

@@ -1,0 +1,179 @@
+@if (isFormReady) {
+  <div class="main">
+    <p class="title">{{ title | translate }}</p>
+
+    <p class="subTitle">{{ subTitle | translate }}</p>
+
+    <div class="accordion-section">
+      <!-- Accordion 1 - Aperto di default -->
+      <piao-accordion [index]="1" [title]="'Contesto di riferimento'" [isOpen]="false">
+        <div class="pt-4 pb-4">
+          <piao-text-area
+            [label]="isDettaglio ? contestoNormativoLabelDettaglio : contestoNormativoLabel"
+            [control]="form.controls['contestoNormativo']"
+            [id]="'contestoNormativo'"
+            textAreaClass="text-area"
+            [maxValidatorLength]="'20000'"
+            [containerClass]="'container-width-full'"
+            [isDettaglio]="isDettaglio"
+          ></piao-text-area>
+        </div>
+      </piao-accordion>
+
+      <!-- Accordion 2 - Chiuso di default -->
+      <piao-accordion [index]="2" [title]="'Condizionalità e fattori abilitanti'" [isOpen]="false">
+        <div class="pt-4 pb-4">
+          <piao-text-area
+            [label]="descrizioneQualitativaLabel"
+            [control]="form.controls['descrizioneQualitativa']"
+            [id]="'descrizioneQualitativa'"
+            textAreaClass="text-area"
+            [maxValidatorLength]="'20000'"
+            [containerClass]="'container-width-full'"
+            [isDettaglio]="isDettaglio"
+          ></piao-text-area>
+        </div>
+
+        <hr />
+
+        <p class="title-section pt-4">
+          {{ rappresentazioneStatoArteTitle | translate }}
+        </p>
+
+        <div class="pt-4">
+          <p class="title-section">
+            {{
+              isDettaglio
+                ? (fotografiaFormazioneTitleDettaglio | translate)
+                : (fotografiaFormazioneTitle | translate)
+            }}
+          </p>
+          <piao-elenco-fotografia-obiettivi
+            [form]="form"
+            [testoSezione]="testoSezione"
+            [codTipologiaFK]="'FOTOGRAFIA_FORMAZIONE'"
+            [isDettaglio]="isDettaglio"
+            [formArrayName]="'fotografiaFormazione'"
+          >
+          </piao-elenco-fotografia-obiettivi>
+        </div>
+
+        <div class="pt-4 pb-4">
+          <p class="title-section">
+            {{ attivitaFormativaTitle | translate }}
+          </p>
+          <piao-elenco-attivita-formativa
+            [piaoDTO]="piaoDTO"
+            [sezione332Data]="sezione332Data"
+            [testoSezione]="testoSezione"
+            [isDettaglio]="isDettaglio"
+          >
+          </piao-elenco-attivita-formativa>
+        </div>
+      </piao-accordion>
+
+      <!-- Accordion 3 - Chiuso di default -->
+      <piao-accordion
+        [index]="3"
+        [title]="'Strategie formative dell\'amministrazione'"
+        [isOpen]="false"
+      >
+        <div class="pt-4 pb-4">
+          <p class="title-section">
+            {{ prioritaStrategicaLabel | translate }}
+          </p>
+
+          <div class="pt-4">
+            <piao-text-area
+              [label]="descrizioneStrategiaLabel | translate"
+              [control]="form.controls['descrizioneStrategia']"
+              [id]="'descrizioneStrategia'"
+              textAreaClass="text-area"
+              [maxValidatorLength]="'20000'"
+              [containerClass]="'container-width-full'"
+              [isDettaglio]="isDettaglio"
+            ></piao-text-area>
+          </div>
+        </div>
+
+        <hr />
+
+        <div class="pt-4 pb-4">
+          <p class="title-section">
+            {{
+              isDettaglio
+                ? (obiettiviRisultatiTitleDettaglio | translate)
+                : (obiettiviRisultatiTitle | translate)
+            }}
+          </p>
+          <piao-elenco-fotografia-obiettivi
+            [form]="form"
+            [testoSezione]="testoSezione"
+            [codTipologiaFK]="'OBIETTIVI_RISULTATI'"
+            [isDettaglio]="isDettaglio"
+            [formArrayName]="'obiettiviRisultati'"
+          >
+          </piao-elenco-fotografia-obiettivi>
+        </div>
+
+        <hr />
+
+        <div class="pt-4 pb-4">
+          <p class="title-section">
+            {{ risorseDisponibiliTitle | translate }}
+          </p>
+
+          <div class="pt-4">
+            <piao-text-area
+              [label]="descrizioneRisorseLabel | translate"
+              [control]="form.controls['descrizioneRisorse']"
+              [id]="'descrizioneRisorse'"
+              textAreaClass="text-area"
+              [maxValidatorLength]="'20000'"
+              [containerClass]="'container-width-full'"
+              [isDettaglio]="isDettaglio"
+            ></piao-text-area>
+          </div>
+        </div>
+
+        <hr />
+        <div class="pt-4 pb-4">
+          <p class="title-section">
+            {{ incentiviTitle | translate }}
+          </p>
+
+          <div class="pt-3">
+            <piao-text-area
+              [label]="descrizioneIncentiviLabel | translate"
+              [control]="form.controls['descrizioneIncentivi']"
+              [id]="'descrizioneIncentivi'"
+              textAreaClass="text-area"
+              [maxValidatorLength]="'20000'"
+              [containerClass]="'container-width-full'"
+              [isDettaglio]="isDettaglio"
+            ></piao-text-area>
+          </div>
+        </div>
+      </piao-accordion>
+    </div>
+
+    <div class="pt-3">
+      <p class="subTitle pt-2">{{ funzionaleTitle | translate }}</p>
+      <p class="title-section pt-3">
+        {{
+          isDettaglio ? (tabFunzionaleTitleDettaglio | translate) : (tabFunzionaleTitle | translate)
+        }}
+      </p>
+
+      <div class="pt-3">
+        <piao-tabella-funzionale
+          [form]="form"
+          [codTipologiaFK]="codTipologiaFK"
+          [idEntitaFK]="piaoDTO.idSezione332 || null"
+          [testoSezione]="testoSezione"
+          [isDettaglio]="isDettaglio"
+        ></piao-tabella-funzionale>
+      </div>
+    </div>
+  </div>
+}

@@ -1,0 +1,41 @@
+@if (graficoData && graficoData.length > 0) {
+  <div class="piao-card">
+    <div class="chart-wrapper">
+      <div
+        #chartEl
+        class="echarts-container"
+        aria-label="Pie graphic - Dettaglio avanzamento PIAO"
+      ></div>
+    </div>
+
+    <div class="legend">
+      <div class="legend-labels">
+        @for (item of graficoData; track $index) {
+          <div class="legend-row">
+            <div class="legend-row-left">
+              <span
+                [style.--legend-color]="colors[$index]"
+                class="legend-color-indicator"
+                aria-hidden="true"
+              ></span>
+              <p class="legend-label">
+                <strong>{{ item.key }}</strong>
+              </p>
+            </div>
+            <p class="legend-perc">{{ total ? ((+item.value / total) * 100).toFixed(0) : 0 }}%</p>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+} @else {
+  @if (isDettaglio) {
+    <span class="value">
+      {{ labelDettaglio | translate }}
+    </span>
+  } @else {
+    <p class="load-form pb-4" (click)="handleDwnGrafico()">
+      {{ titleGrafico | translate }}
+    </p>
+  }
+}

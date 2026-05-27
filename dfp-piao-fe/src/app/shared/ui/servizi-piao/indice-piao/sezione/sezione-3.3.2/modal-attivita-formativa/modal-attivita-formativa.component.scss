@@ -1,0 +1,62 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-top: 1rem;
+  width: 62rem;
+}
+
+.title {
+  font-weight: 400;
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.sub-title {
+  color: #333;
+  font-weight: 400;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  white-space: pre-line;
+}
+
+.content-choice {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.required {
+  color: #2d455e;
+}
+
+@media (max-width: 1220px) {
+  .main {
+    max-width: 100%;
+  }
+
+  ::ng-deep .container-width-full,
+  ::ng-deep piao-text-box,
+  ::ng-deep piao-dropdown {
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+}
+
+@media (max-width: 820px) {
+  .main {
+    max-width: 100%;
+  }
+
+  ::ng-deep piao-text-box,
+  ::ng-deep piao-dropdown {
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+}

@@ -1,0 +1,165 @@
+<div class="novita-detail-page">
+  @if (newsQuery.status() === 'loading') {
+    <div class="state-message">{{ 'NOVITA_PA.DETAIL.LOADING' | translate }}</div>
+  }
+
+  @if (newsQuery.status() === 'error') {
+    <div class="state-message state-message-error">{{ 'NOVITA_PA.DETAIL.ERROR' | translate }}</div>
+  }
+
+  @if (newsQuery.status() === 'success' && currentNews(); as news) {
+    <section class="detail-layout" [class.detail-layout-circolare]="isCircolare()">
+      <article class="detail-main">
+        <span class="detail-badge">{{ news.badgeText }}</span>
+
+        <h1 class="detail-title">{{ news.title }}</h1>
+
+        <div class="detail-meta">
+          <button
+            type="button"
+            class="detail-share-button"
+            (click)="shareCurrentNews()"
+            [attr.aria-label]="'NOVITA_PA.DETAIL.SHARE_ARIA' | translate"
+          >
+            <span class="detail-share">{{ 'NOVITA_PA.DETAIL.SHARE' | translate }}</span>
+            <piao-svg [icon]="'Share'" [fillColor]="'#0066CC'"></piao-svg>
+          </button>
+          @if (shareFeedback()) {
+            <span class="detail-share-feedback">{{ shareFeedback() }}</span>
+          }
+        </div>
+
+        <p class="detail-date">{{ 'NOVITA_PA.DETAIL.PUBLISHED_ON' | translate }} {{ news.date }}</p>
+
+        <div
+          class="detail-image"
+          [class.detail-image-circolare]="isCircolare()"
+          [ngStyle]="detailImageStyle()"
+        ></div>
+
+        <div class="detail-body">
+          <p>{{ news.description }}</p>
+
+          @if (hasHtmlContent()) {
+            <div class="detail-content-html" [innerHTML]="contentHtml()"></div>
+          } @else {
+            @for (paragraph of contentParagraphs(); track $index) {
+              <p>{{ paragraph }}</p>
+            }
+          }
+
+          @if (news.keywords.length > 0) {
+            <div class="keywords-section">
+              <h3>{{ 'NOVITA_PA.DETAIL.KEYWORDS_TITLE' | translate }}</h3>
+              <div class="keywords-list">
+                @for (keyword of news.keywords; track keyword) {
+                  <span class="keyword-pill">{{ keyword }}</span>
+                }
+              </div>
+            </div>
+          }
+        </div>
+      </article>
+
+      @if (isCircolare()) {
+        <aside class="documents-panel">
+          <div class="documents-head">
+            <piao-svg [icon]="'Docs'" [fillColor]="'#FFFFFF'"></piao-svg>
+            <h3>{{ 'NOVITA_PA.DETAIL.DOCUMENTS_TITLE' | translate }}</h3>
+          </div>
+
+          <div class="documents-list">
+            @if (documents().length === 0) {
+              <p class="documents-empty">{{ 'NOVITA_PA.DETAIL.NO_DOCUMENTS' | translate }}</p>
+            } @else {
+              @for (doc of documents(); track doc.id) {
+                <div class="document-row">
+                  <div class="document-name">{{ doc.nome }}</div>
+                  <div class="document-meta">{{ doc.tipo }} | {{ doc.sizeMb }} MB</div>
+                  <a
+                    class="document-link"
+                    [href]="doc.downloadUrl"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {{ 'NOVITA_PA.DETAIL.DOCUMENT_DOWNLOAD' | translate }}
+                  </a>
+                </div>
+              }
+            }
+          </div>
+        </aside>
+      }
+    </section>
+
+    @if (relatedNews().length > 0) {
+      <section class="related-section">
+        <h2 class="related-title">{{ 'NOVITA_PA.DETAIL.RELATED_TITLE' | translate }}</h2>
+
+        <div class="related-grid">
+          @for (item of relatedNews(); track item.id) {
+            <article class="related-card">
+              <div class="related-top">
+                <div class="related-icon">
+                  <piao-svg [icon]="item.icon" [fillColor]="'#0E3468'"></piao-svg>
+                </div>
+                <span class="related-badge">{{ item.badgeText }}</span>
+              </div>
+
+              <h3 class="related-card-title">
+                <a
+                  class="related-card-title-link"
+                  [routerLink]="['/novita/dettaglio', item.id]"
+                  >{{ item.title }}</a
+                >
+              </h3>
+
+              <p class="related-card-description">{{ item.description }}</p>
+              <span class="related-date">{{ item.date }}</span>
+            </article>
+          }
+        </div>
+
+        <div class="related-pagination">
+          <div class="related-dots">
+            @for (dot of relatedDots(); track dot) {
+              <button
+                type="button"
+                class="dot"
+                [class.active]="relatedPage() === dot"
+                (click)="goToRelatedPage(dot)"
+                [attr.aria-label]="('NOVITA_PA.DETAIL.RELATED_DOT_ARIA' | translate) + ' ' + dot"
+              ></button>
+            }
+          </div>
+
+          <div class="related-arrows">
+            <button
+              type="button"
+              class="related-arrow"
+              [disabled]="!canGoPreviousRelated()"
+              [attr.aria-label]="'NOVITA_PA.DETAIL.RELATED_PREVIOUS' | translate"
+              (click)="previousRelatedPage()"
+            >
+              <piao-svg
+                [icon]="'ArrowRight'"
+                [fillColor]="'#6B7280'"
+                class="related-arrow-left"
+              ></piao-svg>
+            </button>
+
+            <button
+              type="button"
+              class="related-arrow"
+              [disabled]="!canGoNextRelated()"
+              [attr.aria-label]="'NOVITA_PA.DETAIL.RELATED_NEXT' | translate"
+              (click)="nextRelatedPage()"
+            >
+              <piao-svg [icon]="'ArrowRight'" [fillColor]="'#6B7280'"></piao-svg>
+            </button>
+          </div>
+        </div>
+      </section>
+    }
+  }
+</div>

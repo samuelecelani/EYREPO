@@ -1,0 +1,97 @@
+.table-container {
+  overflow-x: auto;
+  overflow-y: auto;
+}
+
+.table-custom {
+  table-layout: fixed;
+  width: 100%;
+}
+
+.table-custom th,
+.table-custom td {
+  height: auto;
+  width: 11rem;
+  min-width: 11rem;
+  max-width: 12rem;
+  padding: 0.75rem;
+  vertical-align: middle;
+  white-space: pre-line;
+}
+
+.table-custom thead tr {
+  border-bottom: 2px solid #5c6f82;
+}
+
+.table-custom tbody tr {
+  border-bottom: 1px solid #ccc;
+}
+
+.table-custom tbody tr.row-selected td {
+  font-weight: 700;
+}
+
+.table-custom thead th:last-child {
+  text-align: left;
+}
+
+.table-custom .col-azioni {
+  text-align: left;
+
+  piao-azioni {
+    display: inline-block;
+
+    ::ng-deep .icon-svg {
+      display: flex;
+      width: auto;
+      height: auto;
+    }
+  }
+}
+
+.table-custom th:nth-child(1),
+.table-custom td:nth-child(1) {
+  width: 3rem;
+  min-width: 3rem;
+  max-width: 3rem;
+}
+
+.accordion-trigger {
+  border: 0;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0;
+  cursor: pointer;
+
+  piao-svg {
+    transition: transform 0.2s ease;
+
+    &.open {
+      transform: rotate(180deg);
+    }
+  }
+}
+
+.accordion-row {
+  td {
+    padding: 0;
+    border: 0;
+  }
+}
+
+.accordion-content-container {
+  background: #eaf2ff;
+  border-top: 1px solid #c8d8f2;
+  border-bottom: 1px solid #c8d8f2;
+  padding: 1.45rem 1.4rem;
+}
+
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+}

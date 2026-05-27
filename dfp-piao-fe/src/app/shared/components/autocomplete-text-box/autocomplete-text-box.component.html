@@ -1,0 +1,66 @@
+@if (label) {
+  <label [for]="id" class="label" [class.detail-label]="isDetails">
+    @if (isLabelTranslate) {
+      {{ label | translate }}
+    } @else {
+      {{ label }}
+    }
+    @if (required && !isDetails) {
+      <span class="required">*</span>
+    }
+  </label>
+}
+
+@if (isDetails) {
+  <div class="detail-field">
+    <span>{{ control?.value || 'Nessun valore inserito' }}</span>
+  </div>
+} @else {
+  <div class="autocomplete-wrapper" [class.has-icon]="!!iconPath">
+    @if (iconPath) {
+      <img [src]="iconPath" alt="" class="autocomplete-icon" aria-hidden="true" />
+    }
+    <input
+      [id]="id"
+      type="text"
+      [ngClass]="inputClass"
+      [class.isReadOnly]="isReadOnly"
+      [class.with-icon]="!!iconPath"
+      [formControl]="control"
+      [placeholder]="placeholder"
+      [readOnly]="isReadOnly"
+      autocomplete="off"
+      spellcheck="false"
+      [attr.aria-label]="id"
+      [attr.aria-expanded]="isOpen"
+      aria-autocomplete="list"
+      (focus)="onFocus()"
+      (blur)="onBlur()"
+    />
+
+    @if (isOpen) {
+      <div class="autocomplete-popup" role="listbox">
+        @if (loading) {
+          <div class="autocomplete-empty">…</div>
+        } @else if (suggestions.length === 0) {
+          <div class="autocomplete-empty">{{ noResultsLabel }}</div>
+        } @else {
+          @for (opt of suggestions; track opt.value) {
+            <div class="autocomplete-option" role="option" (mousedown)="selectOption(opt)">
+              <span
+                class="autocomplete-option-label"
+                [innerHTML]="highlightMatch(opt.label)"
+              ></span>
+              @if (opt.sublabel) {
+                <span
+                  class="autocomplete-option-sublabel"
+                  [innerHTML]="highlightMatch(opt.sublabel)"
+                ></span>
+              }
+            </div>
+          }
+        }
+      </div>
+    }
+  </div>
+}

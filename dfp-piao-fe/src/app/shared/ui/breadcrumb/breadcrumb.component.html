@@ -1,0 +1,14 @@
+<nav class="piao-breadcrumb-container" *ngIf="breadcrumbs.length > 1" aria-label="breadcrumb">
+  <ol class="piao-breadcrumb">
+    <li *ngFor="let item of breadcrumbs; let last = last" class="piao-breadcrumb-item" [class.active]="item.active">
+      <a *ngIf="!item.active" [attr.href]="item.url" (click)="navigateTo(item); $event.preventDefault()"
+        class="piao-breadcrumb-link">
+        {{ item.label }}
+      </a>
+      <span *ngIf="item.active" class="piao-breadcrumb-active">
+        {{ item.label }}
+      </span>
+      <span *ngIf="!last" class="piao-breadcrumb-separator">/</span>
+    </li>
+  </ol>
+</nav>

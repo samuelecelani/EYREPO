@@ -1,0 +1,78 @@
+.main {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-weight: 600;
+  font-size: 1.57rem;
+  color: #1a1a1a;
+}
+
+.sub-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  padding-left: 0.5rem;
+  padding-bottom: 1rem;
+}
+
+::ng-deep .svg {
+  max-width: 1rem;
+  max-height: 1rem;
+}
+
+.delete-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.delete-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #cc334d;
+  gap: 0.5rem;
+  cursor: pointer;
+  align-items: center;
+}
+
+.detail-table-wrapper {
+  padding-top: 1rem;
+  overflow-x: auto;
+}
+
+.detail-table {
+  width: 100%;
+  min-width: 80rem;
+  border-collapse: collapse;
+}
+
+.detail-table th,
+.detail-table td {
+  padding: 0.875rem 0;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 0.0625rem solid #d6dde5;
+}
+
+.detail-table thead tr {
+  border-bottom: 0.125rem solid #1a1a1a;
+}
+
+.detail-table th {
+  font-weight: 600;
+  color: #1a1a1a;
+  text-align: left;
+}
+
+.detail-table td {
+  font-weight: 400;
+  color: #1a1a1a;
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}

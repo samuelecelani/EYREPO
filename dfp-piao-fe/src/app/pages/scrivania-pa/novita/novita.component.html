@@ -1,0 +1,53 @@
+<!-- Rendering condizionale basato sullo stato della query -->
+@if (newsQuery.status() === 'loading') {
+  <div class="loading-state">Caricamento news...</div>
+}
+
+@if (newsQuery.status() === 'error') {
+  <div class="error-state">Errore nel caricamento delle news</div>
+}
+
+@if (newsQuery.status() === 'success' && newsQuery.data()) {
+    <div class="results-headline" [class.results-headline-only-counter]="!showSearchSummary">
+      @if (showSearchSummary) {
+      <h2 class="results-title">
+        @if (hasSearchTerm()) {
+          {{ 'NOVITA_PA.RESULTS_SEARCH' | translate: { count: totalItems(), term: searchTerm } }}
+        } @else {
+          {{ 'NOVITA_PA.RESULTS_TOTAL' | translate: { count: totalItems() } }}
+        }
+      </h2>
+      }
+      <span class="results-counter">{{ visibleResultsText() }}</span>
+    </div>
+
+  @if (totalItems() === 0) {
+    <p class="empty-state">{{ 'NOVITA_PA.NO_RESULTS' | translate }}</p>
+  } @else {
+    <!-- Lista news paginata -->
+    @for (news of paginatedNews(); track news.id) {
+      <hr class="hr-novita" />
+      <piao-news
+        [icon]="news.icon"
+        [badgeText]="news.badgeText"
+        [badgeVariant]="news.badgeVariant"
+        [title]="news.title"
+        [titleLink]="news.titleLink"
+        [description]="news.description"
+        [date]="news.date"
+        [readMoreLink]="news.readMoreLink"
+      ></piao-news>
+    }
+    <hr class="hr-novita" />
+  }
+
+  <!-- Componente di paginazione (solo se abilitato) -->
+  @if (pagination && totalItems() > itemsPerPage) {
+    <piao-pagination
+      [totalItems]="totalItems()"
+      [itemsPerPage]="itemsPerPage"
+      [currentPage]="safeCurrentPage()"
+      (pageChange)="onPageChange($event)"
+    ></piao-pagination>
+  }
+}

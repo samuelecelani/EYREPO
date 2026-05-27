@@ -1,0 +1,69 @@
+<div class="main-table">
+  <table class="table">
+    <thead>
+      <tr>
+        <th *ngFor="let key of columnKeys">{{ columns[key] }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (row of rows; track $index; let i = $index; let isLast = $last) {
+        @switch (typeTable) {
+          @case ('onlyLast') {
+            <tr [ngClass]="isLast ? 'last-tr' : 'white-blue-tr'">
+              <td *ngFor="let key of columnKeys">{{ row[key] }}</td>
+            </tr>
+          }
+          @case ('noLast') {
+            <tr
+              [ngClass]="
+                i === rows.length - 2 || i === rows.length - 1 ? 'white-tr' : 'white-blue-tr'
+              "
+            >
+              <td *ngFor="let key of columnKeys">{{ row[key] }}</td>
+            </tr>
+          }
+          @case ('tableAreeContrattuali') {
+            <tr
+              [ngClass]="
+                isLast
+                  ? 'last-tr'
+                  : row[columnKeys[0]] === 'Totale aree'
+                    ? 'totale-aree-tr'
+                    : row[columnKeys[0]] === 'Totale'
+                      ? 'white-tr'
+                      : 'white-blue-tr'
+              "
+              [class.detached-row]="isLast"
+              [class.before-detached-row]="i === rows.length - 2"
+            >
+              <td *ngFor="let key of columnKeys">
+                {{ row[key] }}
+                @if (isLast && key === columnKeys[0]) {
+                  <piao-tooltip
+                    class="tooltip-gap"
+                    [descTooltip]="row[key]"
+                    [icon]="'InfoCircle'"
+                    [fillColor]="'#FFFFFF'"
+                  ></piao-tooltip>
+                }
+              </td>
+            </tr>
+          }
+          @default {
+            <tr
+              [ngClass]="
+                isLast
+                  ? 'last-tr'
+                  : i === rows.length - 2 || i === rows.length - 3
+                    ? 'white-tr'
+                    : 'white-blue-tr'
+              "
+            >
+              <td *ngFor="let key of columnKeys">{{ row[key] }}</td>
+            </tr>
+          }
+        }
+      }
+    </tbody>
+  </table>
+</div>

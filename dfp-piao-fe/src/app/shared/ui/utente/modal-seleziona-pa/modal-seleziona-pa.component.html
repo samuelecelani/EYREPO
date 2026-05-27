@@ -1,0 +1,25 @@
+<div [ngClass]="main">
+  <p class="title">{{ title | translate }}</p>
+  <p class="sub_title">{{ sub_title | translate }}</p>
+  <form [formGroup]="formGroup">
+    <div class="pt-2">
+      <p class="radio_title" [innerHTML]="radio | translate"></p>
+      <div class="radio-options">
+        @for (x of radioPaOptions; track $index) {
+          <div class="pt-4">
+            <label class="radio-option">
+              <input
+                type="radio"
+                [formControlName]="'radioPaOptions'"
+                [value]="x.value"
+                name="radioPaOptions"
+              />
+              <span class="custom-radio"></span>
+              <span class="label-text">{{ x.label | translate }}</span>
+            </label>
+          </div>
+        }
+      </div>
+    </div>
+  </form>
+</div>

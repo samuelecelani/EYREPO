@@ -1,0 +1,25 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 400;
+  color: #1a1a1a;
+}
+
+.subTitle {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  padding-bottom: 1rem;
+}
+
+.subTitle-2 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  padding-bottom: 1rem;
+}

@@ -1,0 +1,15 @@
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: services-cm
+data:
+  {{- range $key, $_ := .Values.deployments }}
+  {{- $default := $.Values.deploymentDefaults | deepCopy }}
+  {{- $override := index $.Values.deployments $key }}
+  {{- $values := mergeOverwrite  $default $override }}
+  {{ upper (replace "." "_" (replace "-" "_" $key)) }}_SVC: "{{ $.Release.Name }}-{{ $key }}-svc:{{ $values.service.port }}"
+  {{- end }}
+  "GESTIONE_UTENTI_SVC": "{{ .Values.externalRoute.gestioneUtentiSvc }}"
+  "NOTIFICHE_SVC": "{{ .Values.externalRoute.notificheSvc }}"
+  "ticket-service_SVC": "{{ .Values.externalRoute.ticketSvc }}"

@@ -1,0 +1,34 @@
+<piao-card
+  [title]="titleCardHeader"
+  [backgroundImg]="backgroundImgCardHeader"
+  [piaoCardContainer]="piaoCardHeaderContainerClass"
+  [piaoCardBody]="piaoCardHeaderBodyClass"
+  [piaoCardTitle]="piaoCardHeaderTitleClass"
+  [piaoCardSubTitle]="piaoCardHeaderSubTitleClass"
+>
+  <div wrapper class="card-revisione-container">
+    <div class="card-revisione-body">
+      <piao-icon [icon]="'Inbox'" [iconColor]="'#003366'"></piao-icon>
+      <span>{{ 'SCRIVANIA_DFP.HEADER.REVISIONE_PROMPT' | translate }}</span>
+      <piao-button [variant]="'primary-outline'" [size]="'md'" (clicked)="goToGestionePiao()">
+        {{ 'SCRIVANIA_DFP.HEADER.GESTIONE_PIAO_BUTTON' | translate }}
+      </piao-button>
+    </div>
+  </div>
+
+  <div container class="action-cards-grid">
+    <piao-action-card-scrivania-dfp
+      [title]="'SCRIVANIA_DFP.ACTIONS.PUBBLICA_AVVISO.TITLE'"
+      [description]="'SCRIVANIA_DFP.ACTIONS.PUBBLICA_AVVISO.DESCRIPTION'"
+      [ctaLabel]="'SCRIVANIA_DFP.ACTIONS.PUBBLICA_AVVISO.CTA'"
+      (ctaClicked)="goToAvvisi()"
+    ></piao-action-card-scrivania-dfp>
+
+    <piao-action-card-scrivania-dfp
+      [title]="'SCRIVANIA_DFP.ACTIONS.CRUSCOTTI.TITLE'"
+      [description]="'SCRIVANIA_DFP.ACTIONS.CRUSCOTTI.DESCRIPTION'"
+      [ctaLabel]="'SCRIVANIA_DFP.ACTIONS.CRUSCOTTI.CTA'"
+      (ctaClicked)="goToCruscotti()"
+    ></piao-action-card-scrivania-dfp>
+  </div>
+</piao-card>

@@ -1,0 +1,190 @@
+<div class="container-elenco-categoria-obiettivi pt-2">
+  <p class="section-subtitle">{{ titleElenco | translate }}</p>
+
+  <div class="pt-3">
+    @if (obiettiviArray.length === 0) {
+      <div class="empty-state-container">
+        <p class="empty-message">{{ notFoundElenco | translate }}</p>
+        @if (!isDettaglio) {
+          <span>
+            <p class="load-form" (click)="handleInsertObiettivo()">
+              {{ labelAdd | translate }}
+              <piao-svg
+                [icon]="'PlusCircle'"
+                [fillColor]="'#0066cc'"
+                [svgContainer]="'svg'"
+              ></piao-svg>
+            </p>
+          </span>
+        }
+      </div>
+    } @else {
+      <div class="table-elenco-container pt-2">
+        <table class="table-elenco">
+          <thead>
+            <tr>
+              <th>
+                <div class="d-flex flex-row align-items-center header-with-icon">
+                  {{ 'SEZIONE_4.TABLE.SOTTOFASE_RIFERIMENTO' | translate }}
+                  <div class="pointer" (click)="handleSortList('idSottoFaseMonitoraggio')">
+                    <piao-svg
+                      [svgContainer]="'icon-svg-arrow-table-center'"
+                      [icon]="'ArrowBottom'"
+                      [fillColor]="'#0066CC'"
+                    ></piao-svg>
+                  </div>
+                </div>
+              </th>
+              <th>
+                <div class="d-flex flex-row align-items-center header-with-icon">
+                  {{ 'SEZIONE_4.TABLE.CATEGORIA_OBIETTIVI' | translate }}
+                  <div class="pointer" (click)="handleSortList('idCategoriaObiettivi')">
+                    <piao-svg
+                      [svgContainer]="'icon-svg-arrow-table-center'"
+                      [icon]="'ArrowBottom'"
+                      [fillColor]="'#0066CC'"
+                    ></piao-svg>
+                  </div>
+                </div>
+              </th>
+              <th>
+                {{ 'SEZIONE_4.TABLE.ATTORI_COINVOLTI' | translate }}
+              </th>
+              <th>
+                {{ 'SEZIONE_4.TABLE.ATTIVITA' | translate }}
+              </th>
+              <th>
+                {{ 'SEZIONE_4.TABLE.DATA_INIZIO' | translate }}
+              </th>
+              <th>
+                {{ 'SEZIONE_4.TABLE.DATA_FINE' | translate }}
+              </th>
+              @if (!isDettaglio) {
+                <th>
+                  {{ 'SEZIONE_4.TABLE.AZIONI' | translate }}
+                </th>
+              }
+            </tr>
+          </thead>
+          <tbody>
+            @for (
+              obiettivo of obiettiviArray.controls;
+              track trackByObiettivoId($index, obiettivo);
+              let i = $index
+            ) {
+              <tr>
+                <td>
+                  <span>{{ getSottofaseLabel(obiettivo.get('idSottofase')?.value) }}</span>
+                </td>
+                <td>
+                  <span>{{ getCategoriaLabel(obiettivo.get('idCategoriaObiettivi')?.value) }}</span>
+                </td>
+                <td>
+                  <ul class="list-items">
+                    @for (prop of obiettivo.get('attore')?.value?.properties || []; track $index) {
+                      <li>{{ prop.value }}</li>
+                    }
+                  </ul>
+                </td>
+                <td>
+                  <ul class="list-items">
+                    @for (
+                      prop of obiettivo.get('attivita')?.value?.propertyAttivita || [];
+                      track $index
+                    ) {
+                      <li>{{ prop.value }}</li>
+                    }
+                  </ul>
+                </td>
+                <td>
+                  <ul class="list-items">
+                    @for (
+                      prop of obiettivo.get('attivita')?.value?.propertyAttivita || [];
+                      track $index
+                    ) {
+                      <li>
+                        {{
+                          prop.valueDateInizio ? (prop.valueDateInizio | date: 'dd/MM/yyyy') : ''
+                        }}
+                      </li>
+                    }
+                  </ul>
+                </td>
+                <td>
+                  <ul class="list-items">
+                    @for (
+                      prop of obiettivo.get('attivita')?.value?.propertyAttivita || [];
+                      track $index
+                    ) {
+                      <li>
+                        {{ prop.valueDateFine ? (prop.valueDateFine | date: 'dd/MM/yyyy') : '' }}
+                      </li>
+                    }
+                  </ul>
+                </td>
+                @if (!isDettaglio) {
+                  <td class="col-azioni">
+                    <piao-azioni
+                      [idSelected]="obiettivo.get('id')?.value || ''"
+                      [isTitle]="false"
+                      [verticalEllipsis]="getActionsFor(i)"
+                    ></piao-azioni>
+                  </td>
+                }
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+      @if (!isDettaglio) {
+        <p class="d-flex justify-content-end pt-3">
+          <span>
+            <p class="load-form" (click)="handleInsertObiettivo()">
+              {{ labelAdd | translate }}
+              <piao-svg
+                [icon]="'PlusCircle'"
+                [fillColor]="'#0066cc'"
+                [svgContainer]="'svg'"
+              ></piao-svg>
+            </p>
+          </span>
+        </p>
+      }
+    }
+  </div>
+</div>
+
+@if (openModalCategorieObiettivi && !isDettaglio) {
+  <piao-modal
+    [isIcon]="true"
+    [icon]="icon"
+    [iconStyle]="iconStyle"
+    [open]="openModalCategorieObiettivi"
+    [disabledButtonConfirm]="disabledButtonConfirm"
+    (confirm)="handleSaveCategoriaObiettivo()"
+    (closed)="handleCloseModalCategorieObiettivi()"
+  >
+    <piao-modal-categoria-obiettivi
+      #child
+      [piaoDTO]="piaoDTO"
+      [categoriaObiettiviEdit]="categoriaObiettiviToEdit"
+      [codTipologiaFK]="codTipologiaFK"
+      [dropdownSottofaseMonitoraggio]="sottofaseMonitoraggioDropdown"
+      [dropdownCategoriaObiettivi]="dropdownCategoriaObiettivi"
+    ></piao-modal-categoria-obiettivi>
+  </piao-modal>
+}
+
+<!-- Modal Delete -->
+@if (openModalDelete && !isDettaglio) {
+  <piao-modal-delete
+    [icon]="'AlertCircle'"
+    [title]="'MODAL_REMOVE.TITLE'"
+    [message]="'MODAL_REMOVE.MESSAGE'"
+    [subMessage]="'MODAL_REMOVE.CONFIRM_OPERATION'"
+    [openModalDelete]="openModalDelete"
+    [elementToDelete]="elementToDelete"
+    (confirm)="handleRemoveForm($event)"
+    (closed)="handleCloseModalDelete()"
+  ></piao-modal-delete>
+}

@@ -1,0 +1,505 @@
+@if (isFormReady) {
+  <div class="main">
+    <form [formGroup]="form">
+      <p class="title">{{ title | translate }}</p>
+      <p class="subTitle pt-3">{{ subTitle | translate }}</p>
+
+      <!-- ATTIVITÀ DI MONITORAGGIO -->
+      <div class="section-content pt-4">
+        <p class="description pb-3">
+          {{
+            isDettaglio
+              ? ('SEZIONE_4.ATTIVITA_MONITORAGGIO.DESC_DETTAGLIO' | translate)
+              : ('SEZIONE_4.ATTIVITA_MONITORAGGIO.DESC' | translate)
+          }}
+        </p>
+
+        <!-- Strumenti e modalità del monitoraggio -->
+        <div class="pt-3">
+          <piao-text-area
+            [label]="labelDescrStrumenti"
+            [control]="form.controls['descrStrumenti']"
+            [id]="'descrStrumenti'"
+            [textAreaClass]="isDettaglio ? 'text-area-dettaglio' : 'text-area'"
+            [maxValidatorLength]="'20000'"
+            [descTooltip]="labelDescrStrumenti"
+            [containerClass]="'container-width-full'"
+            [required]="true"
+            [isDettaglio]="isDettaglio"
+          ></piao-text-area>
+        </div>
+
+        <!-- Modalità di rilevazione della soddisfazione degli utenti -->
+        <div class="pt-3">
+          <piao-text-area
+            [label]="labelDescrModalitaRilevazione"
+            [control]="form.controls['descrModalitaRilevazione']"
+            [id]="'descrModalitaRilevazione'"
+            [textAreaClass]="'text-area'"
+            [maxValidatorLength]="'20000'"
+            [descTooltip]="labelDescrModalitaRilevazione"
+            [containerClass]="'container-width-full'"
+            [required]="true"
+            [isDettaglio]="isDettaglio"
+          ></piao-text-area>
+        </div>
+
+        <!-- Card Alert - Attenzione -->
+        <div class="pt-4">
+          <piao-card-alert
+            [icon]="'WarningCircle'"
+            [titleCardHeader]="titleCardAlert"
+            [subTitleCardHeader]="subTitleCardAlert"
+            [isDettaglio]="isDettaglio"
+          ></piao-card-alert>
+        </div>
+
+        <!-- Introduzione -->
+        <div class="pt-4">
+          <piao-text-area
+            [label]="labelIntro"
+            [control]="form.controls['intro']"
+            [id]="'intro'"
+            [textAreaClass]="'text-area'"
+            [maxValidatorLength]="'20000'"
+            [descTooltip]="labelIntro"
+            [containerClass]="'container-width-full'"
+            [isDettaglio]="isDettaglio"
+          ></piao-text-area>
+        </div>
+      </div>
+
+      <!-- ELENCO SOTTOFASI DI MONITORAGGIO -->
+      <div class="section-content pt-4">
+        <piao-elenco-sotto-fase-monitoraggio
+          [formGroup]="form"
+          [testoSezione]="testoSezione"
+          [isDettaglio]="isDettaglio"
+        ></piao-elenco-sotto-fase-monitoraggio>
+      </div>
+
+      <!-- MONITORAGGIO SEZIONE 2 -->
+      <div class="section-content pt-5">
+        <p class="subTitle">{{ titleMonitoraggioSez2 | translate }}</p>
+        <p class="description pt-2">
+          {{
+            isDettaglio
+              ? (descMonitoraggioSez2Dettaglio | translate)
+              : (descMonitoraggioSez2 | translate)
+          }}
+        </p>
+
+        <!-- Card Alert Sezione 2 -->
+        <div class="pt-4">
+          <piao-card-alert
+            [icon]="'WarningCircle'"
+            [titleCardHeader]="titleCardAlertSez2"
+            [subTitleCardHeader]="subTitleCardAlertSez2"
+            [isDettaglio]="isDettaglio"
+          ></piao-card-alert>
+        </div>
+
+        <!-- Accordion Sezione 2 -->
+        <div class="accordion-section pt-4">
+          <!-- ACCORDION 2.1 - Valore Pubblico -->
+          <piao-accordion
+            [index]="1"
+            [title]="titleAccordion21"
+            [isOpen]="openAccordionSez2Index === 1"
+          >
+            <div class="accordion-content-section">
+              <p class="description">
+                {{ 'SEZIONE_4.MONITORAGGIO_SEZ2.ACCORDION_21.DESC' | translate }}
+              </p>
+
+              <!-- Introduzione -->
+              <div class="pt-3">
+                <piao-text-area
+                  [label]="labelIntro21"
+                  [control]="form.controls['intro21']"
+                  [id]="'intro21'"
+                  [textAreaClass]="'text-area'"
+                  [maxValidatorLength]="'20000'"
+                  [descTooltip]="labelIntro21"
+                  [containerClass]="'container-width-full'"
+                  [isDettaglio]="isDettaglio"
+                ></piao-text-area>
+              </div>
+
+              <!-- Elenco categoria di obiettivi -->
+              <div class="pt-4 pb-3">
+                <piao-elenco-categoria-obiettivi
+                  [formGroup]="form"
+                  [formArrayName]="'monitoraggio21Obiettivi'"
+                  [codTipologiaFK]="codTipologiaCategoria.SEZIONE_21"
+                  [sottofaseMonitoraggioDropdown]="sottofaseMonitoraggioDropdown"
+                  [testoSezione]="testoSezione"
+                  [isDettaglio]="isDettaglio"
+                ></piao-elenco-categoria-obiettivi>
+              </div>
+            </div>
+          </piao-accordion>
+
+          <!-- ACCORDION 2.2 ORG - Performance Organizzativa -->
+          <piao-accordion
+            [index]="2"
+            [title]="titleAccordion22Org"
+            [isOpen]="openAccordionSez2Index === 2"
+          >
+            <div class="accordion-content-section">
+              <p class="description">
+                {{ 'SEZIONE_4.MONITORAGGIO_SEZ2.ACCORDION_22_ORG.DESC' | translate }}
+              </p>
+
+              <!-- Introduzione -->
+              <div class="pt-3">
+                <piao-text-area
+                  [label]="labelIntro22"
+                  [control]="form.controls['intro22']"
+                  [id]="'intro22'"
+                  [textAreaClass]="'text-area'"
+                  [maxValidatorLength]="'20000'"
+                  [descTooltip]="labelIntro22"
+                  [containerClass]="'container-width-full'"
+                  [isDettaglio]="isDettaglio"
+                ></piao-text-area>
+              </div>
+
+              <!-- Elenco categoria di obiettivi -->
+              <div class="pt-4 pb-3">
+                <piao-elenco-categoria-obiettivi
+                  [formGroup]="form"
+                  [formArrayName]="'monitoraggio22OrgObiettivi'"
+                  [codTipologiaFK]="codTipologiaCategoria.SEZIONE_22"
+                  [sottofaseMonitoraggioDropdown]="sottofaseMonitoraggioDropdown"
+                  [testoSezione]="testoSezione"
+                  [isDettaglio]="isDettaglio"
+                ></piao-elenco-categoria-obiettivi>
+              </div>
+            </div>
+          </piao-accordion>
+
+          <!-- ACCORDION 2.2 IND - Performance Individuale -->
+          <piao-accordion
+            [index]="3"
+            [title]="titleAccordion22Ind"
+            [isOpen]="openAccordionSez2Index === 3"
+          >
+            <div class="accordion-content-section">
+              <p class="description">
+                {{
+                  isDettaglio
+                    ? ('SEZIONE_4.MONITORAGGIO_SEZ2.ACCORDION_22_IND.DESC_DETTAGLIO' | translate)
+                    : ('SEZIONE_4.MONITORAGGIO_SEZ2.ACCORDION_22_IND.DESC' | translate)
+                }}
+              </p>
+
+              <!-- Descrizione delle modalità e delle tempistiche del monitoraggio -->
+              <div class="pt-3">
+                <piao-text-area
+                  [label]="labelDescr22"
+                  [control]="form.controls['descr22']"
+                  [id]="'descr22'"
+                  [textAreaClass]="'text-area-big'"
+                  [maxValidatorLength]="'20000'"
+                  [descTooltip]="labelDescr22"
+                  [containerClass]="'container-width-full'"
+                  [isDettaglio]="isDettaglio"
+                ></piao-text-area>
+              </div>
+            </div>
+          </piao-accordion>
+
+          <!-- ACCORDION 2.3 - Rischi corruttivi e trasparenza -->
+          <piao-accordion
+            [index]="4"
+            [title]="titleAccordion23"
+            [isOpen]="openAccordionSez2Index === 4"
+          >
+            <div class="accordion-content-section">
+              <p class="description">
+                {{ 'SEZIONE_4.MONITORAGGIO_SEZ2.ACCORDION_23.DESC' | translate }}
+              </p>
+
+              <!-- Descrizione delle modalità e delle tempistiche del monitoraggio -->
+              <div class="pt-3">
+                <piao-text-area
+                  [label]="labelDescr23"
+                  [control]="form.controls['descr23']"
+                  [id]="'descr23'"
+                  [textAreaClass]="'text-area-big'"
+                  [maxValidatorLength]="'20000'"
+                  [descTooltip]="labelDescr23"
+                  [containerClass]="'container-width-full'"
+                  [isDettaglio]="isDettaglio"
+                ></piao-text-area>
+              </div>
+            </div>
+          </piao-accordion>
+        </div>
+      </div>
+
+      <!-- MONITORAGGIO SEZIONE 3 -->
+      <div class="section-content pt-5">
+        <p class="subTitle">{{ titleMonitoraggioSez3 | translate }}</p>
+        <p class="description pt-2">
+          {{
+            isDettaglio
+              ? (descMonitoraggioSez3Dettaglio | translate)
+              : (descMonitoraggioSez3 | translate)
+          }}
+        </p>
+
+        <!-- Accordion Sezione 3 -->
+        <div class="accordion-section pt-4">
+          <!-- ACCORDION 3.1 - Organizzazione -->
+          <piao-accordion
+            [index]="1"
+            [title]="titleAccordion31"
+            [isOpen]="openAccordionSez3Index === 1"
+          >
+            <div class="accordion-content-section">
+              <p class="description">
+                {{
+                  isDettaglio
+                    ? ('SEZIONE_4.MONITORAGGIO_SEZ3.ACCORDION_31.DESC_DETTAGLIO' | translate)
+                    : ('SEZIONE_4.MONITORAGGIO_SEZ3.ACCORDION_31.DESC' | translate)
+                }}
+              </p>
+
+              <!-- Descrizione delle modalità e delle tempistiche del monitoraggio -->
+              <div class="pt-3">
+                <piao-text-area
+                  [label]="labelDescr31"
+                  [control]="form.controls['descr31']"
+                  [id]="'descr31'"
+                  [textAreaClass]="'text-area-big'"
+                  [maxValidatorLength]="'20000'"
+                  [descTooltip]="labelDescr31"
+                  [containerClass]="'container-width-full'"
+                  [isDettaglio]="isDettaglio"
+                ></piao-text-area>
+              </div>
+            </div>
+          </piao-accordion>
+
+          <!-- ACCORDION 3.2 - Lavoro agile -->
+          <piao-accordion
+            [index]="2"
+            [title]="titleAccordion32"
+            [isOpen]="openAccordionSez3Index === 2"
+          >
+            <div class="accordion-content-section">
+              <p class="description">
+                {{ 'SEZIONE_4.MONITORAGGIO_SEZ3.ACCORDION_32.DESC' | translate }}
+              </p>
+
+              <!-- Descrizione delle modalità e delle tempistiche del monitoraggio -->
+              <div class="pt-3">
+                <piao-text-area
+                  [label]="labelDescr32"
+                  [control]="form.controls['descr32']"
+                  [id]="'descr32'"
+                  [textAreaClass]="'text-area-big'"
+                  [maxValidatorLength]="'20000'"
+                  [descTooltip]="labelDescr32"
+                  [containerClass]="'container-width-full'"
+                  [isDettaglio]="isDettaglio"
+                ></piao-text-area>
+              </div>
+            </div>
+          </piao-accordion>
+
+          <!-- ACCORDION 3.3.1 - Fabbisogno del personale -->
+          <piao-accordion
+            [index]="3"
+            [title]="titleAccordion331"
+            [isOpen]="openAccordionSez3Index === 3"
+          >
+            <div class="accordion-content-section">
+              <p class="description">
+                {{ 'SEZIONE_4.MONITORAGGIO_SEZ3.ACCORDION_331.DESC' | translate }}
+              </p>
+
+              <!-- Descrizione delle modalità e delle tempistiche del monitoraggio -->
+              <div class="pt-3">
+                <piao-text-area
+                  [label]="labelDescr331"
+                  [control]="form.controls['descr331']"
+                  [id]="'descr331'"
+                  [textAreaClass]="'text-area-big'"
+                  [maxValidatorLength]="'20000'"
+                  [descTooltip]="labelDescr331"
+                  [containerClass]="'container-width-full'"
+                  [isDettaglio]="isDettaglio"
+                ></piao-text-area>
+              </div>
+            </div>
+          </piao-accordion>
+
+          <!-- ACCORDION 3.3.2 - Formazione del personale -->
+          <piao-accordion
+            [index]="4"
+            [title]="titleAccordion332"
+            [isOpen]="openAccordionSez3Index === 4"
+          >
+            <div class="accordion-content-section">
+              <p class="description">
+                {{ 'SEZIONE_4.MONITORAGGIO_SEZ3.ACCORDION_332.DESC' | translate }}
+              </p>
+
+              <!-- Descrizione delle modalità e delle tempistiche del monitoraggio -->
+              <div class="pt-3">
+                <piao-text-area
+                  [label]="labelDescr332"
+                  [control]="form.controls['descr332']"
+                  [id]="'descr332'"
+                  [textAreaClass]="'text-area-big'"
+                  [maxValidatorLength]="'20000'"
+                  [descTooltip]="labelDescr332"
+                  [containerClass]="'container-width-full'"
+                  [isDettaglio]="isDettaglio"
+                ></piao-text-area>
+              </div>
+            </div>
+          </piao-accordion>
+        </div>
+      </div>
+
+      <!-- IL MONITORAGGIO DEL PIAO -->
+      <div class="section-content pt-4">
+        <p class="section-title-big">{{ titleMonitoraggioPiao | translate }}</p>
+        <p class="description pt-2">{{ descMonitoraggioPiao | translate }}</p>
+
+        <!-- Text area monitoraggio -->
+        <div class="pt-4">
+          <piao-text-area
+            [label]="labelDescrMonitoraggio"
+            [control]="form.controls['descrMonitoraggio']"
+            [id]="'descrMonitoraggio'"
+            [textAreaClass]="'text-area'"
+            [maxValidatorLength]="'20000'"
+            [descTooltip]="labelDescrMonitoraggio"
+            [containerClass]="'container-width-full'"
+            [isDettaglio]="isDettaglio"
+          ></piao-text-area>
+        </div>
+
+        <!-- Grafico Gantt -->
+        <div class="blue-frame pt-4">
+          <div class="frame-content">
+            <piao-grafico-gantt
+              [tasks]="tasks"
+              [minDate]="minDate"
+              [maxDate]="maxDate"
+              [milestones]="milestone"
+            ></piao-grafico-gantt>
+
+            <div class="pt-4">
+              <piao-elenco-milestone
+                [formGroup]="form"
+                [dropdownSottofaseMonitoraggio]="sottofaseMonitoraggioDropdown"
+                [testoSezione]="testoSezione"
+                [isDettaglio]="isDettaglio"
+              ></piao-elenco-milestone>
+            </div>
+          </div>
+        </div>
+
+        <!-- Elenco milestone -->
+      </div>
+
+      <br />
+
+      <!-- DOCUMENTAZIONE A SUPPORTO DEL MONITORAGGIO -->
+      <div class="section-content pt-4">
+        <piao-attachment
+          [title]="titleDocumentazione"
+          [classTitle]="'title-attachment'"
+          [loadAttachment]="'SCRIVANIA_PA.SERVIZI_PIAO.INDICE_PIAO.SEZIONE.ATTACHMENT.LOAD_DOC'"
+          [idPiao]="piaoDTO.id"
+          [isDoc]="true"
+          [showDescription]="false"
+          [showName]="false"
+          [isDettaglio]="isDettaglio"
+          [codTipologia]="[codTipologia]"
+          [codTipologiaAllegato]="[codTipologiaAllegatoMonitoraggio]"
+          [sezione]="sezioneSection"
+          [testoSezione]="testoSezione"
+        ></piao-attachment>
+      </div>
+
+      <!-- ULTERIORI INFORMAZIONI -->
+      <div class="section-content pt-5">
+        @if (titleDynamicTBUlterioreInfo) {
+          <p class="subTitle">{{ titleDynamicTBUlterioreInfo | translate }}</p>
+        }
+        @if (subTitleDynamicTBUlterioreInfo) {
+          <p class="sub-title-ult-info">{{ subTitleDynamicTBUlterioreInfo | translate }}</p>
+        }
+
+        <div class="pt-3">
+          @if (form && ulterioriInfoConfig) {
+            <piao-dynamic-tb
+              [form]="form"
+              [dynamicTBConfig]="ulterioriInfoConfig"
+              [titleCardInfo]="titleCardUlterioriInfo"
+              [titleLoadNewForm]="labelBtnAddUlterioriInfo"
+              [nameArrayForm]="'ulterioriInfo.properties'"
+              [notFoundMessage]="'MESSAGE.NOT_FOUND_ULTERIORE_INFO'"
+              [modalType]="'ulterioreInfo'"
+              [isDettaglio]="isDettaglio"
+            >
+            </piao-dynamic-tb>
+          }
+        </div>
+      </div>
+
+      <!-- ALLEGATO -->
+      <div class="section-content pt-4">
+        <piao-attachment
+          [title]="'SCRIVANIA_PA.SERVIZI_PIAO.INDICE_PIAO.SEZIONE.ATTACHMENT.TITLE_ATTACHMENT'"
+          [subTitle]="
+            'SCRIVANIA_PA.SERVIZI_PIAO.INDICE_PIAO.SEZIONE.ATTACHMENT.SUB_TITLE_ATTACHMENT'
+          "
+          [loadAttachment]="
+            'SCRIVANIA_PA.SERVIZI_PIAO.INDICE_PIAO.SEZIONE.ATTACHMENT.LOAD_ATTACHMENT'
+          "
+          [idPiao]="piaoDTO.id"
+          [isDoc]="true"
+          [showDescription]="false"
+          [showName]="false"
+          [form]="form"
+          [codTipologia]="[codTipologia]"
+          [codTipologiaAllegato]="[codTipologiaAllegato]"
+          [isOnlyAttachment]="true"
+          [sezione]="sezioneSection"
+          [testoSezione]="testoSezione"
+          [isDettaglio]="isDettaglio"
+          (attachmentLoaded)="handleAttachmentLoaded()"
+        ></piao-attachment>
+      </div>
+    </form>
+  </div>
+}
+
+@if (openModalMilestone) {
+  <piao-modal
+    [isIcon]="true"
+    [icon]="icon"
+    [iconStyle]="iconStyle"
+    [open]="openModalMilestone"
+    [disabledButtonConfirm]="!modalMilestoneChild?.formGroup?.valid"
+    (closed)="handleCloseModalMilestone()"
+    (confirm)="handleConfirmModalMilestone()"
+  >
+    <!-- richiama il componente del modal, passando il piaoDTO come input -->
+    <piao-modal-milestone
+      #modalMilestoneChild
+      [milestoneEdit]="milestoneEdit"
+      [piaoDTO]="piaoDTO"
+      [dropdownSottofaseMonitoraggio]="dropdownSottofaseMonitoraggio"
+    >
+    </piao-modal-milestone>
+  </piao-modal>
+}

@@ -1,0 +1,55 @@
+footer {
+  position: relative;
+  z-index: 1100; // Più alto della sidebar (1050)
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  background-color: #003366;
+}
+
+.sub-footer {
+  position: relative;
+  z-index: 1100 !important;
+  background-color: #003366;
+  border-top: 1px solid #ffffff;
+}
+
+.container-fluid {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.footer-logos {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.footer-logo {
+  height: 60px;
+  max-width: 100%;
+  object-fit: contain;
+
+  &:first-child {
+    filter: brightness(0) invert(1);
+  }
+}
+
+// Responsive
+@media (max-width: 991px) {
+  .footer-logo {
+    height: 50px;
+  }
+}
+
+@media (max-width: 767px) {
+  .footer-logo {
+    height: 40px;
+  }
+
+  .footer-logos {
+    justify-content: center;
+    margin-top: 1rem;
+  }
+}

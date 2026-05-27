@@ -1,0 +1,151 @@
+<div class="avviso-page">
+  <div class="page-header" [class.is-details]="isDetails()">
+    @if (isDetails()) {
+      <h1 class="page-title"><span>Dettaglio</span> avviso o comunicazione</h1>
+      <hr class="page-divider" />
+      <p class="page-subtitle">
+        In questa sezione puoi consultare il dettaglio degli avvisi e delle comunicazioni
+        pubblicate, visualizzare gli allegati caricati e scaricarli.
+      </p>
+    } @else {
+      <h1 class="page-title">
+        <span>{{ avvisoId ? 'Modifica' : 'Pubblica' }}</span> un avviso o una comunicazione
+      </h1>
+      <p class="page-subtitle">
+        In questa sezione puoi pubblicare avvisi e comunicazioni utili specificando la tipologia e
+        inserendo il testo e la data di pubblicazione. Puoi, inoltre, caricare documenti utili e
+        scaricare o eliminare quelli gia presenti.
+      </p>
+    }
+  </div>
+
+  @if (loading()) {
+    <div class="panel-state">Caricamento dati...</div>
+  } @else {
+    <form class="avviso-form" [formGroup]="form">
+      <div class="form-grid">
+        <piao-dropdown
+          [title]="'Tipologia di contenuto'"
+          [dropdown]="contentTypeOptions"
+          [formControl]="tipologiaContenutoControl"
+          [dropContainerClass]="'container-width-full'"
+          [isTranslate]="false"
+          [isRequired]="!isDetails()"
+          [isDetails]="isDetails()"
+        ></piao-dropdown>
+
+        <piao-date-picker
+          [label]="'Data di pubblicazione'"
+          [control]="dataPubblicazioneControl"
+          [id]="'dataPubblicazione'"
+          [descTooltip]="'Data di pubblicazione'"
+          [isLabelTranslate]="false"
+          [isReadOnly]="true"
+          [isDettaglio]="isDetails()"
+          [containerClass]="'container-width-full'"
+        ></piao-date-picker>
+
+        <div class="field spacer"></div>
+
+        <piao-text-box
+          [label]="'Oggetto'"
+          [typeInput]="'text'"
+          [inputClass]="'input'"
+          [control]="oggettoControl"
+          [maxValidatorLength]="255"
+          [id]="'oggetto'"
+          [descTooltip]="'Oggetto'"
+          [isLabelTranslate]="false"
+          [required]="true"
+          [isDetails]="isDetails()"
+          [containerClass]="'container-width-full'"
+        ></piao-text-box>
+
+        <piao-dropdown
+          [title]="'Tipologia di Amministrazione'"
+          [dropdown]="administrationTypeOptions"
+          [formControl]="tipologiaAmministrazioneControl"
+          [dropContainerClass]="'container-width-full'"
+          [isTranslate]="false"
+          [isRequired]="!isDetails()"
+          [isDetails]="isDetails()"
+        ></piao-dropdown>
+
+        <piao-autocomplete-text-box
+          [label]="'Seleziona un\'Amministrazione'"
+          [inputClass]="'input'"
+          [control]="amministrazioneControl"
+          [placeholder]="
+            'SCRIVANIA_DFP.GESTIONE_PIAO.RICERCA_PIAO.FILTERS.AMMINISTRAZIONE_PLACEHOLDER'
+              | translate
+          "
+          [id]="'amministrazione'"
+          [containerClass]="'container-width-full'"
+          [iconPath]="'assets/icon/Monument.svg'"
+          [isLabelTranslate]="false"
+          [suggestions]="amministrazioneSuggestions()"
+          [loading]="amministrazioneLoading()"
+          (searchChange)="onAmministrazioneSearch($event)"
+          (cleared)="clearAmministrazioneSuggestions()"
+          (selected)="onAmministrazioneSelected($event)"
+          [required]="!isDetails()"
+          [isDetails]="isDetails()"
+        ></piao-autocomplete-text-box>
+      </div>
+
+      <piao-text-area
+        [label]="'Inserisci qui il messaggio'"
+        [id]="'messaggio'"
+        [textAreaClass]="'text-area'"
+        [control]="messaggioControl"
+        [maxValidatorLength]="2000"
+        [descTooltip]="'Messaggio'"
+        [isDettaglio]="isDetails()"
+        [containerClass]="'container-width-full'"
+        [required]="!isDetails()"
+      ></piao-text-area>
+
+      <div class="pt-4 pb-4">
+        <piao-attachment
+          [title]="
+            isDetails()
+              ? 'SCRIVANIA_DFP.AVVISI.ATTACHMENT.TITLE_ATTACHMENT_DETAILS'
+              : 'SCRIVANIA_DFP.AVVISI.ATTACHMENT.TITLE_ATTACHMENT'
+          "
+          [loadAttachment]="'SCRIVANIA_DFP.AVVISI.ATTACHMENT.LOAD_ATTACHMENT'"
+          [idPiao]="avvisoIdAttachment"
+          [isDoc]="true"
+          [showDescription]="false"
+          [showName]="false"
+          [codTipologia]="[codTipologia]"
+          [codTipologiaAllegato]="[codTipologiaAllegato]"
+          [sezione]="sezioneSection"
+          [isDettaglio]="isDetails()"
+        ></piao-attachment>
+      </div>
+
+      @if (!isDetails()) {
+        <div class="actions-bar pb-5">
+          <piao-button
+            [variant]="'secondary'"
+            [size]="'lg-plus'"
+            [customClass]="'fw-bold'"
+            [disabled]="form.invalid || isSubmitting()"
+            (click)="handleSubmit('BOZZA')"
+          >
+            {{ 'BUTTONS.SAVE_TO_DRAFT' | translate }}
+          </piao-button>
+          <piao-button
+            [variant]="'primary'"
+            [size]="'lg-plus'"
+            [customClass]="'fw-bold'"
+            [disabled]="form.invalid || isSubmitting()"
+            (click)="handleSubmit('PUBBLICATO')"
+          >
+            {{ 'BUTTONS.PUBLISH' | translate }}
+          </piao-button>
+        </div>
+      }
+    </form>
+  }
+</div>

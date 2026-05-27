@@ -1,0 +1,212 @@
+<div class="container-elenco-fotografia">
+  @if (fotografiaArray.length === 0) {
+    @if (!isDettaglio) {
+      <p class="load-form" (click)="handleOpenFotografiaModal()">
+        {{ titleElenco | translate }}
+      </p>
+    } @else {
+      <p class="not-found-label">{{ fotografiaNotFound | translate }}</p>
+    }
+  } @else {
+    <div class="table-elenco-container pt-2">
+      <table class="table-elenco">
+        <thead>
+          <tr>
+            <th>{{ 'SEZIONE-3.3.2.ELENCO_FOTOGRAFIA_OBIETTIVI.CODICE' | translate }}</th>
+            <th>{{ 'SEZIONE-3.3.2.ELENCO_FOTOGRAFIA_OBIETTIVI.TIPOLOGIA' | translate }}</th>
+            <th>{{ 'SEZIONE-3.3.2.ELENCO_FOTOGRAFIA_OBIETTIVI.TITOLO' | translate }}</th>
+            <th>{{ 'SEZIONE-3.3.2.ELENCO_FOTOGRAFIA_OBIETTIVI.AMBITO' | translate }}</th>
+            <th>{{ 'SEZIONE-3.3.2.ELENCO_FOTOGRAFIA_OBIETTIVI.AREA' | translate }}</th>
+            <th>
+              {{ 'SEZIONE-3.3.2.ELENCO_FOTOGRAFIA_OBIETTIVI.CARATTERE_OBBLIGATORIO' | translate }}
+            </th>
+            <th>
+              {{ 'SEZIONE-3.3.2.ELENCO_FOTOGRAFIA_OBIETTIVI.RIFERIMENTO_NORMATIVO' | translate }}
+            </th>
+            <th>{{ 'SEZIONE-3.3.2.ELENCO_FOTOGRAFIA_OBIETTIVI.TARGET_DIRIGENTI' | translate }}</th>
+            <th>
+              {{ 'SEZIONE-3.3.2.ELENCO_FOTOGRAFIA_OBIETTIVI.TARGET_NON_DIRIGENTI' | translate }}
+            </th>
+            @if (this.codTipologiaFK === 'FOTOGRAFIA_FORMAZIONE') {
+              <th>
+                {{ 'SEZIONE-3.3.2.ELENCO_FOTOGRAFIA_OBIETTIVI.NUMERO_DIRIGENTI' | translate }}
+              </th>
+              <th>
+                {{ 'SEZIONE-3.3.2.ELENCO_FOTOGRAFIA_OBIETTIVI.NUMERO_NON_DIRIGENTI' | translate }}
+              </th>
+            }
+
+            <th>{{ 'SEZIONE-3.3.2.ELENCO_FOTOGRAFIA_OBIETTIVI.ORE_FORMAZIONE' | translate }}</th>
+            <th>
+              {{ 'SEZIONE-3.3.2.ELENCO_FOTOGRAFIA_OBIETTIVI.VERIFICA_APPRENDIMENTO' | translate }}
+            </th>
+            <th>{{ 'SEZIONE-3.3.2.ELENCO_FOTOGRAFIA_OBIETTIVI.CREDITI_FORMATIVI' | translate }}</th>
+            <th>
+              {{
+                'SEZIONE-3.3.2.ELENCO_FOTOGRAFIA_OBIETTIVI.MODALITA_GESTIONE_FORMAZIONE' | translate
+              }}
+            </th>
+            <th>{{ 'SEZIONE-3.3.2.ELENCO_FOTOGRAFIA_OBIETTIVI.ENTE_EROGATORE' | translate }}</th>
+            <th>{{ 'SEZIONE-3.3.2.ELENCO_FOTOGRAFIA_OBIETTIVI.COSTO_ATTIVITA' | translate }}</th>
+            <th>{{ 'SEZIONE-3.3.2.ELENCO_FOTOGRAFIA_OBIETTIVI.DATA_INIZIO' | translate }}</th>
+            <th>{{ 'SEZIONE-3.3.2.ELENCO_FOTOGRAFIA_OBIETTIVI.DATA_FINE' | translate }}</th>
+            @if (!isDettaglio) {
+              <th class="col-azioni">
+                {{ 'SEZIONE-3.3.2.ELENCO_FOTOGRAFIA_OBIETTIVI.AZIONI' | translate }}
+              </th>
+            }
+          </tr>
+        </thead>
+        <tbody>
+          @for (
+            fotografia of fotografiaArray.controls;
+            track trackByFotografiaId($index, fotografia);
+            let i = $index
+          ) {
+            <tr>
+              <td>{{ fotografia.get('codice')?.value || '' }}</td>
+              <td>{{ getTipologiaAttivitaLabel(fotografia.get('idTipologiaAttivita')?.value) }}</td>
+              <td>
+                @if (
+                  fotografia.get('titolo')?.value && fotografia.get('titolo')!.value.length > 80
+                ) {
+                  @if (expandedTitoli.has(i)) {
+                    {{ fotografia.get('titolo')?.value }}
+                    <p class="link-blue pt-2" (click)="expandedTitoli.delete(i)">
+                      {{ 'SEZIONE-3.3.2.ELENCO_FOTOGRAFIA_OBIETTIVI.MOSTRA_MENO' | translate }}
+                    </p>
+                  } @else {
+                    {{ fotografia.get('titolo')?.value | truncate: 80 }}
+                    <p class="link-blue pt-2" (click)="expandedTitoli.add(i)">
+                      {{ 'SEZIONE-3.3.2.ELENCO_FOTOGRAFIA_OBIETTIVI.MOSTRA_PIU' | translate }}
+                    </p>
+                  }
+                } @else {
+                  {{ fotografia.get('titolo')?.value || '' }}
+                }
+              </td>
+              <td>{{ getAmbitoCompetenzaLabel(fotografia.get('idAmbitoCompetenza')?.value) }}</td>
+              <td>{{ getAreaTematicaLabel(fotografia.get('idAreaTematica')?.value) }}</td>
+              <td>{{ fotografia.get('carattereObbligatorio')?.value ? 'Sì' : 'No' }}</td>
+              <td>
+                @if (
+                  fotografia.get('riferimentoNormativo')?.value &&
+                  fotografia.get('riferimentoNormativo')!.value.length > 80
+                ) {
+                  @if (expandedRiferimenti.has(i)) {
+                    {{ fotografia.get('riferimentoNormativo')?.value }}
+                    <p class="link-blue pt-2" (click)="expandedRiferimenti.delete(i)">
+                      {{ 'SEZIONE-3.3.2.ELENCO_FOTOGRAFIA_OBIETTIVI.MOSTRA_MENO' | translate }}
+                    </p>
+                  } @else {
+                    {{ fotografia.get('riferimentoNormativo')?.value | truncate: 80 }}
+                    <p class="link-blue pt-2" (click)="expandedRiferimenti.add(i)">
+                      {{ 'SEZIONE-3.3.2.ELENCO_FOTOGRAFIA_OBIETTIVI.MOSTRA_PIU' | translate }}
+                    </p>
+                  }
+                } @else {
+                  {{ fotografia.get('riferimentoNormativo')?.value || '' }}
+                }
+              </td>
+              <td>{{ fotografia.get('targetDirigenti')?.value || '' }}</td>
+              <td>{{ fotografia.get('targetNonDirigenti')?.value || '' }}</td>
+              @if (this.codTipologiaFK === 'FOTOGRAFIA_FORMAZIONE') {
+                <td>{{ fotografia.get('numeroDirigenti')?.value || '' }}</td>
+                <td>{{ fotografia.get('numeroNonDirigenti')?.value || '' }}</td>
+              }
+
+              <td>{{ fotografia.get('oreFormazione')?.value || '' }}</td>
+              <td>{{ fotografia.get('verificaApprendimento')?.value ? 'Sì' : 'No' }}</td>
+              <td>{{ fotografia.get('creditiFormativi')?.value || '' }}</td>
+              <td>{{ fotografia.get('modalitaGestioneFormazione')?.value || '' }}</td>
+              <td>
+                @if (
+                  fotografia.get('enteErogatore')?.value &&
+                  fotografia.get('enteErogatore')!.value.length > 80
+                ) {
+                  @if (expandedEnti.has(i)) {
+                    {{ fotografia.get('enteErogatore')?.value }}
+                    <p class="link-blue pt-2" (click)="expandedEnti.delete(i)">
+                      {{ 'SEZIONE-3.3.2.ELENCO_FOTOGRAFIA_OBIETTIVI.MOSTRA_MENO' | translate }}
+                    </p>
+                  } @else {
+                    {{ fotografia.get('enteErogatore')?.value | truncate: 80 }}
+                    <p class="link-blue pt-2" (click)="expandedEnti.add(i)">
+                      {{ 'SEZIONE-3.3.2.ELENCO_FOTOGRAFIA_OBIETTIVI.MOSTRA_PIU' | translate }}
+                    </p>
+                  }
+                } @else {
+                  {{ fotografia.get('enteErogatore')?.value || '' }}
+                }
+              </td>
+              <td>{{ fotografia.get('costoAttivita')?.value || '' }}</td>
+              <td>{{ fotografia.get('dataInizio')?.value | date: 'dd/MM/yyyy' }}</td>
+              <td>{{ fotografia.get('dataFine')?.value | date: 'dd/MM/yyyy' }}</td>
+              @if (!isDettaglio) {
+                <td class="col-azioni">
+                  <piao-azioni
+                    [idSelected]="fotografia.get('id')?.value || ''"
+                    [isTitle]="false"
+                    [verticalEllipsis]="getActionsFor(i)"
+                  ></piao-azioni>
+                </td>
+              }
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+
+    @if (!isDettaglio) {
+      <p class="d-flex justify-content-end pt-3">
+        <span>
+          <p class="load-form" (click)="handleOpenFotografiaModal()">
+            {{ labelAddElenco | translate }}
+            <piao-svg
+              [icon]="'PlusCircle'"
+              [fillColor]="'#0066cc'"
+              [svgContainer]="'svg'"
+            ></piao-svg>
+          </p>
+        </span>
+      </p>
+    }
+  }
+</div>
+
+@if (openModalFotografia) {
+  <piao-modal
+    [isIcon]="true"
+    [icon]="icon"
+    [iconStyle]="iconStyle"
+    [open]="openModalFotografia"
+    [disabledButtonConfirm]="disabledButtonConfirm"
+    (closed)="this.openModalFotografia = false"
+    (confirm)="handleAddFotografia()"
+  >
+    <piao-modal-fotografia-obiettivi
+      #child
+      [piaoDTO]="piaoDTO"
+      [fotografiaEdit]="fotografiaToEdit"
+      [codTipologiaFK]="codTipologiaFK"
+      [dropdownTipologiaAttivita]="dropdownTipologiaAttivita"
+      [dropdownAmbitoCompetenza]="dropdownAmbitoCompetenza"
+      [dropdownAreaTematica]="dropdownAreaTematica"
+      [dropdownTipologiaDestinatari]="dropdownTipologiaDestinatari"
+      [lenghtArray]="fotografiaIndex"
+    ></piao-modal-fotografia-obiettivi>
+  </piao-modal>
+}
+
+@if (openModalDelete) {
+  <piao-modal-delete
+    [icon]="'AlertCircle'"
+    [title]="'MODAL_REMOVE.TITLE'"
+    [message]="'MODAL_REMOVE.MESSAGE'"
+    [subMessage]="'MODAL_REMOVE.CONFIRM_OPERATION'"
+    [openModalDelete]="openModalDelete"
+    [elementToDelete]="elementToDelete"
+    (confirm)="handleRemoveForm($event)"
+    (closed)="handleCloseModalDelete()"
+  ></piao-modal-delete>
+}

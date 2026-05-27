@@ -1,0 +1,172 @@
+<!-- MOBILE STEPPER (<600px) -->
+<div class="mobile-stepper" [class.dettaglio]="isDettaglio">
+  <div class="mobile-header" (click)="toggleMobilePanel()">
+    <div class="mobile-header-left">
+      <span class="mobile-header-label">{{ currentStepLabel }}</span>
+    </div>
+    <div class="mobile-header-right">
+      <piao-svg
+        [icon]="'ArrowBottom'"
+        [fillColor]="'#0066CC'"
+        [svgContainer]="mobileExpanded ? 'icon-svg-arrow-up' : 'icon-svg-arrow'"
+      ></piao-svg>
+    </div>
+  </div>
+
+  <div class="mobile-panel" *ngIf="mobileExpanded">
+    <ng-container *ngFor="let step of steps; let i = index">
+      <!-- Step genitore senza figli -->
+      <div
+        *ngIf="step.children.length === 0"
+        class="mobile-step"
+        [class.active]="
+          numeroSezioneOpen === step.numeroSezione ||
+          (numeroSezioneOpen === '' && i === currentStep)
+        "
+        [class.disabled]="step.disabled"
+        [class.dettaglio]="isStepSemplificato(step.numeroSezione)"
+        (click)="handleMobileStepClick(step, i)"
+      >
+        <div class="mobile-step-left">
+          <ng-container *ngIf="i !== 4; else mobileApprovedIcon">
+            <span class="step-number">{{ step.numeroSezione }}</span>
+          </ng-container>
+          <span class="step-text">{{ step.testo }}</span>
+        </div>
+        <div class="mobile-step-right">
+          @if (!isDettaglio) {
+            <piao-svg
+              *ngIf="statusCompilated.includes(step.statoSezione)"
+              [icon]="'CheckCircle'"
+              [fillColor]="'#008055'"
+              [svgContainer]="'icon-svg'"
+            ></piao-svg>
+          }
+        </div>
+      </div>
+
+      <!-- Step genitore con figli: mostra direttamente i figli in flat -->
+      <ng-container *ngIf="step.children.length > 0">
+        <div
+          class="mobile-step"
+          *ngFor="let child of step.children"
+          [class.active]="numeroSezioneOpen === child.numeroSezione"
+          [class.disabled]="step.disabled"
+          [class.dettaglio]="isStepSemplificato(child.numeroSezione)"
+          (click)="handleMobileStepClick(child, i)"
+        >
+          <div class="mobile-step-left">
+            <span class="step-number">{{ child.numeroSezione }}</span>
+            <span class="step-text">{{ child.testo }}</span>
+          </div>
+          <div class="mobile-step-right">
+            @if (!isDettaglio) {
+              <piao-svg
+                *ngIf="statusCompilated.includes(child.statoSezione)"
+                [icon]="'CheckCircle'"
+                [fillColor]="'#008055'"
+                [svgContainer]="'icon-svg'"
+              ></piao-svg>
+            }
+          </div>
+        </div>
+      </ng-container>
+    </ng-container>
+  </div>
+</div>
+
+<!-- DESKTOP STEPPER (>=600px) -->
+<div class="steps-container" [class.dettaglio]="isDettaglio">
+  <div
+    class="step"
+    *ngFor="let step of steps; let i = index"
+    [class.active]="i === currentStep"
+    [class.disabled]="step.disabled"
+    [class.dettaglio]="isStepSemplificato(step.numeroSezione)"
+    (click)="handleGoToStep(i, step, $event)"
+  >
+    <div class="step-body">
+      <div class="step-left">
+        <ng-container *ngIf="i !== 4; else approvedIcon">
+          <div class="step-number">{{ step.numeroSezione }}</div>
+        </ng-container>
+
+        <div class="step-text">{{ step.testo }}</div>
+      </div>
+
+      <div class="step-right">
+        @if (!isDettaglio) {
+          <piao-svg
+            *ngIf="statusCompilated.includes(step.statoSezione)"
+            [icon]="'CheckCircle'"
+            [fillColor]="'#008055'"
+            [svgContainer]="'icon-svg'"
+          ></piao-svg>
+        }
+
+        <div
+          *ngIf="step.children.length > 0"
+          role="button"
+          tabindex="0"
+          [attr.aria-expanded]="expandedStepIndex === i"
+          (click)="handleOpenChild(i, $event)"
+          [class.expanded]="expandedStepIndex === i"
+        >
+          <piao-svg
+            [icon]="'ArrowBottom'"
+            [fillColor]="'#0066CC'"
+            [svgContainer]="'icon-svg-arrow'"
+          ></piao-svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- PANNELLO FIGLI -->
+    <div *ngIf="expandedStepIndex === i" class="children-panel">
+      <div
+        class="children-step"
+        *ngFor="let child of step.children; let j = index"
+        [class.dettaglio]="isStepSemplificato(child.numeroSezione)"
+        (click)="handleGoToStepChild(i, child)"
+      >
+        <div class="step-body">
+          <div class="step-left">
+            <span class="step-number">{{ child.numeroSezione }}</span>
+            <div class="step-text">{{ child.testo }}</div>
+          </div>
+
+          <div class="step-right">
+            @if (!isDettaglio) {
+              <piao-svg
+                *ngIf="statusCompilated.includes(child.statoSezione)"
+                [icon]="'CheckCircle'"
+                [fillColor]="'#008055'"
+                [svgContainer]="'icon-svg'"
+              ></piao-svg>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #approvedIcon>
+  <div>
+    <piao-svg
+      [icon]="'ApprovedStepper'"
+      [fillColor]="'#0066CC'"
+      [svgContainer]="'icon-svg-approved'"
+    ></piao-svg>
+  </div>
+</ng-template>
+
+<ng-template #mobileApprovedIcon>
+  <div>
+    <piao-svg
+      [icon]="'ApprovedStepper'"
+      [fillColor]="'#0066CC'"
+      [svgContainer]="'icon-svg-approved'"
+    ></piao-svg>
+  </div>
+</ng-template>

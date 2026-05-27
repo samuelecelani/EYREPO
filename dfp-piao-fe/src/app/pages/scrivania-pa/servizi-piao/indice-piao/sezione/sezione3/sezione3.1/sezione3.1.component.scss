@@ -1,0 +1,278 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.title {
+  font-weight: 400;
+  font-size: 2.8rem;
+  color: #1a1a1a;
+  margin-bottom: 0;
+}
+
+.subTitle {
+  font-weight: 400;
+  font-size: 2rem;
+}
+
+.section-title {
+  font-weight: 600;
+  font-size: 1.25rem;
+}
+
+.description {
+  font-size: 0.95rem;
+  color: #5c6f82;
+  margin-bottom: 0;
+}
+
+/* ===== ACCORDION SECTION ===== */
+
+.accordion-section {
+  display: flex;
+  flex-direction: column;
+
+  ::ng-deep {
+    /* ===== HR TRA ACCORDION ===== */
+
+    piao-accordion {
+      display: block;
+      position: relative;
+    }
+
+    /* HR SOPRA ogni accordion */
+    piao-accordion::before {
+      content: '';
+      display: block;
+      width: 100%;
+      border-top: #ccc 0.06rem solid;
+    }
+
+    /* HR SOTTO l'ultimo accordion */
+    piao-accordion:last-of-type::after {
+      content: '';
+      display: block;
+      width: 100%;
+      border-bottom: #ccc 0.06rem solid;
+    }
+
+    /* PRIMO APERTO: no HR sopra */
+    piao-accordion.is-open:first-child::before {
+      display: none;
+    }
+
+    /* ULTIMO APERTO: no HR sotto */
+    piao-accordion.is-open:last-of-type::after {
+      display: none;
+    }
+
+    /* ===== ACCORDION BODY STYLES ===== */
+    .accordion-body {
+      padding: 0;
+      background: #e7eff7;
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+
+    .accordion-body > :not(hr) {
+      padding-block: 0.75rem;
+    }
+
+    .accordion-body > hr {
+      display: block;
+      width: calc(100% + 2rem);
+      margin-left: -1rem;
+      padding: 0;
+      border: 0;
+      border-top: 2px solid #000;
+      box-sizing: border-box;
+    }
+
+    .accordion-body > *:not(hr) + *:not(hr) {
+      margin-top: 0.75rem;
+    }
+
+    piao-accordion .accordion.is-closed .accordion-header {
+      background-color: #fafafa;
+
+      &:hover {
+        background-color: unset;
+      }
+    }
+  }
+}
+
+.section-label {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #1a1a1a;
+
+  &.required::after {
+    content: '*';
+    color: #1a1a1a;
+    margin-left: 0.25rem;
+  }
+}
+
+.section-label-small {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #5c6f82;
+  font-style: italic;
+  margin-bottom: 0;
+}
+
+.section-description {
+  font-size: 0.875rem;
+  color: #5c6f82;
+  margin-bottom: 0;
+}
+
+/* ===== ACTION LINK ===== */
+
+.action-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #0066cc;
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-bottom: 0;
+
+  &:hover {
+    color: #004d99;
+    text-decoration: underline;
+  }
+
+  ::ng-deep {
+    .svg {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+  }
+}
+
+/* ===== FUNCTIONAL SECTION ===== */
+
+.functional-section {
+  background-color: #f5f7f9;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  border: 1px solid #e0e0e0;
+}
+
+/* ===== ULTERIORI INFO ===== */
+
+.sub-title-ult-info {
+  font-size: 0.9rem;
+  color: #5c6f82;
+  margin-bottom: 0;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+
+/* Small devices (landscape phones, 576px and up) */
+@media (max-width: 575.98px) {
+  .title {
+    font-size: 1.75rem;
+  }
+
+  .subTitle {
+    font-size: 1.25rem;
+  }
+
+  .action-link {
+    justify-content: flex-start;
+    margin-top: 0.75rem;
+  }
+
+  .functional-section {
+    padding: 1rem;
+  }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .title {
+    font-size: 2rem;
+  }
+
+  .action-link {
+    justify-content: flex-start;
+    margin-top: 0.5rem;
+  }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 768px) {
+  .action-link {
+    justify-content: flex-end;
+    margin-top: 0;
+  }
+
+  .text-md-end {
+    text-align: right;
+  }
+}
+
+/* ===== UTILITY CLASSES ===== */
+
+.pt-3 {
+  padding-top: 1rem;
+}
+
+.pt-4 {
+  padding-top: 1.5rem;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+/* ===== CUSTOM CLASSES FOR INLINE STYLES ===== */
+
+.btn-upload-image {
+  display: flex;
+  align-items: flex-start;
+}
+
+.organigramma-container {
+  gap: 1rem;
+}
+
+.organigramma-description {
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+
+.no-padding-left {
+  padding-left: 0;
+}
+
+.action-link-start {
+  align-items: flex-start;
+  display: flex;
+  cursor: pointer;
+  padding: 0;
+}
+
+.action-link-block {
+  display: block;
+}
+
+.not-found-label {
+  width: 100%;
+  text-align: center;
+  padding: 0.5rem 0;
+  font-size: 1rem;
+  display: block;
+  padding-top: 20px;
+}

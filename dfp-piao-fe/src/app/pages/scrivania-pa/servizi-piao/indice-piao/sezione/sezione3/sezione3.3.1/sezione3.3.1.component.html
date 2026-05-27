@@ -1,0 +1,466 @@
+@if (isFormReady) {
+  <div class="main">
+    <form [formGroup]="form">
+      <p class="title">{{ title | translate }}</p>
+
+      @if (!isDettaglio) {
+        <div class="pt-4">
+          <piao-card-info
+            [icon]="icon"
+            [subTitleCardHeader]="subTitleCardInfo"
+            [showButton]="showButtonMinerva"
+            [hrefButton]="hrefButtonMinerva"
+            [titleButton]="titleButtonMinerva"
+            [showIconButton]="showIconButton"
+          >
+          </piao-card-info>
+        </div>
+      }
+
+      <p class="subTitle pt-4">{{ subTitle | translate }}</p>
+
+      <div class="accordion-section pt-4">
+        <!-- Accordion 1 - Aperto di default -->
+        <piao-accordion [index]="1" [title]="'Contesto di riferimento'" [isOpen]="false">
+          <div class="pt-4 pb-4">
+            <piao-text-area
+              [label]="isDettaglio ? contestoLabelDettaglio : contestoLabel"
+              [control]="form.controls['contesto']"
+              [id]="'contesto'"
+              textAreaClass="text-area"
+              [maxValidatorLength]="'20000'"
+              [containerClass]="'container-width-full'"
+              [isDettaglio]="isDettaglio"
+            ></piao-text-area>
+          </div>
+        </piao-accordion>
+
+        <!-- Accordion 2 - Chiuso di default -->
+        <piao-accordion
+          [index]="2"
+          [title]="'Fotografia del personale al 31.12 dell\'anno precedente'"
+          [isOpen]="false"
+        >
+          <div class="pt-4 pb-4">
+            <piao-body-table-minerva-sezione
+              [isMinerva]="true"
+              [title]="titleTab1"
+              [isRequired]="true"
+              [isDettaglio]="isDettaglio"
+              [formControlTable]="form.controls['valoreDotazioneOrganicaTable']"
+              [tipologiaTabellaSezione331]="
+                TipologiaTabellaSezione331.VALORE_FINANZIARIO_DOTAZIONE_ORGANICA
+              "
+              [tabelleMinerva]="tabelleMinerva"
+            ></piao-body-table-minerva-sezione>
+          </div>
+
+          <hr />
+          <div class="pt-4 pb-4">
+            <piao-body-table-minerva-sezione
+              [isMinerva]="true"
+              [title]="titleTab2"
+              [isRequired]="true"
+              [isDettaglio]="isDettaglio"
+              [formControlTable]="form.controls['consistenzaDirigenzialeTable']"
+              [tipologiaTabellaSezione331]="
+                TipologiaTabellaSezione331.CONSISTENZA_PERSONALE_DIRIGENZIALE
+              "
+              [tabelleMinerva]="tabelleMinerva"
+            ></piao-body-table-minerva-sezione>
+          </div>
+
+          <hr />
+          <div class="pt-4 pb-4">
+            <piao-body-table-minerva-sezione
+              [isMinerva]="true"
+              [title]="titleTab3"
+              [isRequired]="true"
+              [isDettaglio]="isDettaglio"
+              [formControlTable]="form.controls['consistenzaNonDirigenzialeTable']"
+              [typeTable]="'onlyLast'"
+              [tipologiaTabellaSezione331]="
+                TipologiaTabellaSezione331.CONSISTENZA_PERSONALE_NON_DIRIGENZIALE
+              "
+              [tabelleMinerva]="tabelleMinerva"
+            ></piao-body-table-minerva-sezione>
+          </div>
+
+          <hr />
+          <div class="pt-4 pb-4">
+            <piao-text-area
+              [label]="qualitativaLabel"
+              [control]="form.controls['descrizioneQualitativa']"
+              [id]="'descrizioneQualitativa'"
+              textAreaClass="text-area"
+              [maxValidatorLength]="'20000'"
+              [containerClass]="'container-width-full'"
+              [isDettaglio]="isDettaglio"
+            ></piao-text-area>
+          </div>
+
+          <hr />
+          <div class="pt-4 pb-4">
+            <p class="title-section">
+              {{ riepilogoLabel | translate }}
+            </p>
+            <div class="pt-4 pb-4">
+              <piao-body-table-minerva-sezione
+                [isMinerva]="true"
+                [title]="titleTab4"
+                [isRequired]="true"
+                [isDettaglio]="isDettaglio"
+                [formControlTable]="form.controls['personaleDirigenzialeAssuzioniTable']"
+                [typeTable]="'noLast'"
+                [tipologiaTabellaSezione331]="
+                  TipologiaTabellaSezione331.RIEPILOGO_ASSUNZIONI_DIRIGENZIALE
+                "
+                [tabelleMinerva]="tabelleMinerva"
+              ></piao-body-table-minerva-sezione>
+            </div>
+
+            <!--
+            da scommentare quando arrivera da minerva
+
+            <div class="pt-4 pb-4">
+              <piao-body-table-minerva-sezione
+                [isMinerva]="true"
+                [isDettaglio]="isDettaglio"
+                [title]="titleTab5"
+                [formControlTable]="form.controls['areeContrattualiAssuzioniTable']"
+                [typeTable]="'tableAreeContrattuali'"
+                [tipologiaTabellaSezione331]="
+                  TipologiaTabellaSezione331.RIEPILOGO_ASSUNZIONI_AREE_CONTRATTUALI
+                "
+                [tabelleMinerva]="tabelleMinerva"
+                [isRequired]="true"
+              ></piao-body-table-minerva-sezione>
+            </div>
+            -->
+          </div>
+
+          <hr />
+          <div class="pt-4 pb-4">
+            <piao-body-table-minerva-sezione
+              [isMinerva]="true"
+              [title]="titleTab6"
+              [isRequired]="true"
+              [isDettaglio]="isDettaglio"
+              [formControlTable]="form.controls['riepilogoCessazioniTable']"
+              [tipologiaTabellaSezione331]="TipologiaTabellaSezione331.RIEPILOGO_CESSAZIONI"
+              [tabelleMinerva]="tabelleMinerva"
+            ></piao-body-table-minerva-sezione>
+          </div>
+        </piao-accordion>
+
+        <!-- Accordion 3 - Chiuso di default -->
+        <piao-accordion
+          [index]="3"
+          [title]="'Programmazione strategica delle risorse umane'"
+          [isOpen]="false"
+        >
+          <div class="pt-4 pb-4">
+            <piao-text-area
+              [label]="isDettaglio ? contestoLabelDettaglio : contestoLabel"
+              [control]="form.controls['strategiaProgrammazione']"
+              [id]="'strategiaProgrammazione'"
+              textAreaClass="text-area"
+              [maxValidatorLength]="'20000'"
+              [containerClass]="'container-width-full'"
+              [isDettaglio]="isDettaglio"
+            ></piao-text-area>
+          </div>
+
+          <hr />
+
+          <p class="title-section pt-4">
+            {{ obiettivoTrasformazioneTitle | translate }}
+          </p>
+
+          <div class="pt-4">
+            <piao-text-area
+              [label]="
+                isDettaglio ? obiettivoTrasformazioneLabelDettaglio : obiettivoTrasformazioneLabel
+              "
+              [control]="form.controls['obiettivoTrasformazione']"
+              [id]="'obiettivoTrasformazione'"
+              textAreaClass="text-area"
+              [maxValidatorLength]="'20000'"
+              [containerClass]="'container-width-full'"
+              [isDettaglio]="isDettaglio"
+            ></piao-text-area>
+          </div>
+
+          <div class="pt-4 pb-4">
+            <p class="subTitle-section subTitle-section-details">
+              {{ (isDettaglio ? rimodulazioneLabelDettaglio : rimodulazioneLabel) | translate }}
+            </p>
+
+            <!-- se è DETTAGLIO: MOSTRA SOLO LA SCELTA (SI/NO) -->
+            @if (isDettaglio) {
+              <div class="content-choice">
+                <span class="label-text-details">
+                  {{
+                    form.controls['rimodulazione'].value
+                      ? (inputContent[0].label | translate)
+                      : (inputContent[1].label | translate)
+                  }}
+                </span>
+              </div>
+            }
+
+            <!-- RADIO BUTTON-->
+            @if (!isDettaglio) {
+              <div class="content-choice">
+                @for (x of inputContent; track $index) {
+                  <label class="radio-option">
+                    <input
+                      type="radio"
+                      [formControlName]="x.formControlName"
+                      [value]="x.value"
+                      name="rimodulazione"
+                    />
+                    <span class="custom-radio"></span>
+                    <span class="label-text">{{ x.label | translate }}</span>
+                  </label>
+                }
+              </div>
+            }
+          </div>
+
+          <hr />
+
+          @if (form.controls['rimodulazione'].value === true) {
+            <div class="pt-4 pb-4">
+              <piao-body-table-minerva-sezione
+                [isMinerva]="true"
+                [title]="titleTab7"
+                [isRequired]="!isDettaglio"
+                [formControlTable]="form.controls['rimodulazioneTable']"
+                [tipologiaTabellaSezione331]="
+                  TipologiaTabellaSezione331.DOTAZIONE_ORGANICA_RIMODULAZIONE
+                "
+                [tabelleMinerva]="tabelleMinerva"
+              ></piao-body-table-minerva-sezione>
+            </div>
+            <hr />
+          }
+
+          <p class="title-section pt-4">
+            {{ strategiaCoperturaTitle | translate }}
+          </p>
+
+          <!-- Nota Bene -->
+          <div class="pt-3">
+            <piao-card-info
+              [icon]="'HelpInfo'"
+              [piaoCardHeaderContainerClass]="'piao-card-info-alert-container-white'"
+              [titleCardHeader]="cardInfoTitle"
+              [subTitleCardHeader]="cardInfoSubTitle"
+              [piaoCardHeaderTitleClass]="'title-card-info-ovp'"
+              [loadNewForm]="false"
+            ></piao-card-info>
+          </div>
+
+          <div class="pt-3">
+            <piao-text-area
+              [label]="isDettaglio ? strategiaCoperturaLabelDettaglio : strategiaCoperturaLabel"
+              [control]="form.controls['strategiaCopertura']"
+              [id]="'strategiaCopertura'"
+              textAreaClass="text-area"
+              [maxValidatorLength]="'20000'"
+              [containerClass]="'container-width-full'"
+              [isDettaglio]="isDettaglio"
+            ></piao-text-area>
+          </div>
+          <hr />
+
+          <p class="title-section pt-4">
+            {{ coperturaFabbisognoTitle | translate }}
+          </p>
+
+          <div class="pt-4">
+            <piao-body-table-minerva-sezione
+              [isMinerva]="true"
+              [title]="titleTab8"
+              [isRequired]="true"
+              [isDettaglio]="isDettaglio"
+              [formControlTable]="form.controls['coperturaFabbisognoDirigTable']"
+              [typeTable]="'noLast'"
+              [tipologiaTabellaSezione331]="
+                TipologiaTabellaSezione331.COPERTURA_FABBISOGNO_ANNO_CORRENTE_DIRIGENZIALE
+              "
+              [tabelleMinerva]="tabelleMinerva"
+            ></piao-body-table-minerva-sezione>
+          </div>
+          <!--
+          <div class="pt-4">
+             da scommentare quando arrivera da minerva
+            <piao-body-table-minerva-sezione
+              [isMinerva]="true"
+              [title]="titleTab9"
+              [isDettaglio]="isDettaglio"
+              [formControlTable]="form.controls['coperturaFabbisognoContrTable']"
+              [typeTable]="'tableAreeContrattuali'"
+              [tipologiaTabellaSezione331]="
+                TipologiaTabellaSezione331.COPERTURA_FABBISOGNO_ANNO_CORRENTE_AREE_CONTRATTUALI
+              "
+              [tabelleMinerva]="tabelleMinerva"
+              [isRequired]="true"
+            ></piao-body-table-minerva-sezione>
+          </div>
+          -->
+
+          <div class="pt-3 pb-4">
+            <piao-text-area
+              [label]="descrizioneStrategiaLabel"
+              [control]="form.controls['descrizioneStrategia']"
+              [id]="'descrizioneStrategia'"
+              textAreaClass="text-area"
+              [maxValidatorLength]="'20000'"
+              [containerClass]="'container-width-full'"
+              [isDettaglio]="isDettaglio"
+            ></piao-text-area>
+          </div>
+        </piao-accordion>
+
+        <!-- Accordion 4 - Chiuso di default -->
+        <piao-accordion
+          [index]="4"
+          [title]="'Stima dell\'evoluzione dei bisogni dell\'Amministrazione'"
+          [isOpen]="false"
+        >
+          <div class="pt-4">
+            <piao-text-area
+              [label]="isDettaglio ? stimaEvoluzioneLabelDettaglio : stimaEvoluzioneLabel"
+              [control]="form.controls['stimaEvoluzione']"
+              [id]="'stimaEvoluzione'"
+              textAreaClass="text-area"
+              [maxValidatorLength]="'20000'"
+              [containerClass]="'container-width-full'"
+              [isDettaglio]="isDettaglio"
+            ></piao-text-area>
+          </div>
+
+          <hr />
+
+          <div class="pt-4 pb-4">
+            <piao-body-table-minerva-sezione
+              [isMinerva]="true"
+              [title]="titleTab10"
+              [isRequired]="true"
+              [isDettaglio]="isDettaglio"
+              [formControlTable]="form.controls['prospettoPrevisionaleBaseAnno1Table']"
+              [tipologiaTabellaSezione331]="TipologiaTabellaSezione331.CESSAZIONI_ANNO_CORRENTE"
+              [tabelleMinerva]="tabelleMinerva"
+            ></piao-body-table-minerva-sezione>
+          </div>
+
+          <hr />
+
+          <p class="title-section pt-4">
+            {{ prospettoPrevisionaleCessAnno1Title | translate }}
+          </p>
+          <div class="pt-4">
+            <piao-body-table-minerva-sezione
+              [isMinerva]="true"
+              [title]="titleTab11"
+              [isRequired]="true"
+              [isDettaglio]="isDettaglio"
+              [formControlTable]="form.controls['prospettoPrevisionaleCessAnno1DiriTable']"
+              [typeTable]="'noLast'"
+              [tipologiaTabellaSezione331]="
+                TipologiaTabellaSezione331.COPERTURA_FABBISOGNO_ANNO1_DIRIGENZIALE
+              "
+              [tabelleMinerva]="tabelleMinerva"
+            ></piao-body-table-minerva-sezione>
+          </div>
+          <!--
+          <div class="pt-4">
+            da scommentare quando arrivera da minerva
+            <piao-body-table-minerva-sezione
+              [isMinerva]="true"
+              [title]="titleTab12"
+              [isRequired]="true"
+              [isDettaglio]="isDettaglio"
+              [formControlTable]="form.controls['prospettoPrevisionaleCessAnno1ContrTable']"
+              [typeTable]="'tableAreeContrattuali'"
+              [tipologiaTabellaSezione331]="
+                TipologiaTabellaSezione331.COPERTURA_FABBISOGNO_ANNO1_AREE_CONTRATTUALI
+              "
+              [tabelleMinerva]="tabelleMinerva"
+            ></piao-body-table-minerva-sezione>
+          </div>
+          -->
+
+          <hr />
+
+          <div class="pt-4 pb-4">
+            <piao-body-table-minerva-sezione
+              [isMinerva]="true"
+              [title]="titleTab13"
+              [isRequired]="true"
+              [isDettaglio]="isDettaglio"
+              [formControlTable]="form.controls['prospettoPrevisionaleBaseAnno2Table']"
+              [tipologiaTabellaSezione331]="TipologiaTabellaSezione331.CESSAZIONI_SERVIZIO"
+              [tabelleMinerva]="tabelleMinerva"
+            ></piao-body-table-minerva-sezione>
+          </div>
+
+          <hr />
+
+          <p class="title-section pt-4">
+            {{ prospettoPrevisionaleCessAnno2Title | translate }}
+          </p>
+          <div class="pt-4">
+            <piao-body-table-minerva-sezione
+              [isMinerva]="true"
+              [title]="titleTab14"
+              [isRequired]="true"
+              [isDettaglio]="isDettaglio"
+              [formControlTable]="form.controls['prospettoPrevisionaleCessAnno2DiriTable']"
+              [typeTable]="'noLast'"
+              [tipologiaTabellaSezione331]="
+                TipologiaTabellaSezione331.COPERTURA_FABBISOGNO_ANNO2_DIRIGENZIALE
+              "
+              [tabelleMinerva]="tabelleMinerva"
+            ></piao-body-table-minerva-sezione>
+          </div>
+          <!--
+           da scommentare quando arrivera da minerva
+          <div class="pt-4 pb-4">
+            <piao-body-table-minerva-sezione
+              [isMinerva]="true"
+              [title]="titleTab15"
+              [isDettaglio]="isDettaglio"
+              [formControlTable]="form.controls['prospettoPrevisionaleCessAnno2ContrTable']"
+              [typeTable]="'tableAreeContrattuali'"
+              [tipologiaTabellaSezione331]="
+                TipologiaTabellaSezione331.COPERTURA_FABBISOGNO_ANNO2_AREE_CONTRATTUALI
+              "
+              [isRequired]="true"
+              [tabelleMinerva]="tabelleMinerva"
+            ></piao-body-table-minerva-sezione>
+          </div>
+          -->
+        </piao-accordion>
+      </div>
+      <div class="pt-3">
+        <p class="subTitle pt-2">{{ funzionaleTitle | translate }}</p>
+        <p class="title-section pt-3">
+          {{ (isDettaglio ? tabFunzionaleTitleDettaglio : tabFunzionaleTitle) | translate }}
+        </p>
+
+        <div class="pt-3">
+          <piao-tabella-funzionale
+            [form]="form"
+            [codTipologiaFK]="codTipologiaFK"
+            [idEntitaFK]="piaoDTO.idSezione331 || null"
+            [testoSezione]="testoSezione"
+            [isDettaglio]="isDettaglio"
+          ></piao-tabella-funzionale>
+        </div>
+      </div>
+    </form>
+  </div>
+}

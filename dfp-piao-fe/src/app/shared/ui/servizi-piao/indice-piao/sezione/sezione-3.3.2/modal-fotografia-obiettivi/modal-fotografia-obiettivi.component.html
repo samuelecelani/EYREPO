@@ -1,0 +1,325 @@
+<div [ngClass]="main">
+  <p class="title-small">{{ labelTitle | translate }}</p>
+  <p class="riga-subtitle pt-3">{{ labelSubTitle | translate }} {{ lenghtArray + 1 }}</p>
+  <form [formGroup]="formGroup">
+    <div class="container-full">
+      <div class="row pt-4">
+        <div class="col-12 col-xl-6">
+          <piao-text-box
+            [label]="labelAttivitaFormativa | translate"
+            [control]="formGroup.controls['codice']"
+            [id]="'codiceAttivitaFormativa'"
+            [descTooltip]="labelAttivitaFormativa | translate"
+            [typeInput]="'text'"
+            [inputClass]="'input'"
+            [maxValidatorLength]="'50'"
+            [isReadOnly]="true"
+            [containerClass]="'container-width-full'"
+          ></piao-text-box>
+        </div>
+        <div class="col-12 col-xl-6">
+          <piao-dropdown
+            [dropdown]="dropdownTipologiaAttivita"
+            [title]="labelTipologiaAttivita | translate"
+            [formControl]="formGroup.controls['idTipologiaAttivita']"
+            [dropContainerClass]="'container-width-full'"
+            [isRequired]="true"
+            [isTooltip]="true"
+            (isChange)="handleTipologiaAttivitaChange($event)"
+            [idName]="'tipologia_attivita'"
+          ></piao-dropdown>
+        </div>
+      </div>
+
+      <div class="pt-4">
+        <piao-text-area
+          [label]="labelTitoloAttivita | translate"
+          [required]="true"
+          [control]="formGroup.controls['titolo']"
+          textAreaClass="text-area"
+          [maxValidatorLength]="'20000'"
+          [containerClass]="'container-width-full'"
+          [descTooltip]="labelTitoloAttivita | translate"
+        >
+        </piao-text-area>
+      </div>
+
+      <div class="row pt-4">
+        <div class="col-12 col-xl-6">
+          <piao-dropdown
+            [dropdown]="dropdownAmbitoCompetenza"
+            [title]="labelAmbitoCompetenza | translate"
+            [formControl]="formGroup.controls['idAmbitoCompetenza']"
+            [dropContainerClass]="'container-width-full'"
+            [isRequired]="true"
+            [isTooltip]="true"
+            [idName]="'ambitoCompetenza'"
+          ></piao-dropdown>
+        </div>
+        <div class="col-12 col-xl-6">
+          <piao-dropdown
+            [dropdown]="dropdownAreaTematica"
+            [title]="labelAreaTematica | translate"
+            [formControl]="formGroup.controls['idAreaTematica']"
+            [dropContainerClass]="'container-width-full'"
+            [isRequired]="true"
+            [isTooltip]="true"
+            [idName]="'areaTematica'"
+          ></piao-dropdown>
+        </div>
+      </div>
+
+      <div class="pt-4">
+        <p class="radioFotografia">{{ labelCarattereObbligarorio | translate }}</p>
+        <div class="content-choice">
+          @for (x of radioCarattereOptions; track $index) {
+            <label class="radio-option">
+              <input
+                type="radio"
+                [formControlName]="x.formControlName"
+                [value]="x.value"
+                name="carattereObbligatorio"
+              />
+              <span class="custom-radio"></span>
+              <span class="label-text">{{ x.label | translate }}</span>
+            </label>
+          }
+        </div>
+      </div>
+
+      <div class="pt-4">
+        <piao-text-area
+          [label]="labelRiferimentoNormativo | translate"
+          [control]="formGroup.controls['riferimentoNormativo']"
+          textAreaClass="text-area"
+          [maxValidatorLength]="'20000'"
+          [containerClass]="'container-width-full'"
+          [descTooltip]="labelRiferimentoNormativo | translate"
+        >
+        </piao-text-area>
+      </div>
+
+      <div class="row pt-4">
+        <div class="col-12 col-xl-6">
+          <piao-dropdown
+            [dropdown]="dropdownTipologiaDestinatari"
+            [title]="labelDestinatari | translate"
+            [formControl]="formGroup.controls['idTipologiaDestinatari']"
+            [dropContainerClass]="'container-width-full'"
+            [isRequired]="true"
+            [isTooltip]="true"
+            [idName]="'tipologiaDestinatari'"
+          ></piao-dropdown>
+        </div>
+      </div>
+
+      @if (codTipologiaFK === 'FOTOGRAFIA_FORMAZIONE') {
+        <div class="row pt-4">
+          <div class="col-12 col-xl-6">
+            <piao-text-box
+              [label]="labelTargetDirigenti | translate"
+              [control]="formGroup.controls['targetDirigenti']"
+              [id]="'targetDirigenti'"
+              [containerClass]="'container-width-full'"
+              [maxValidatorLength]="'50'"
+              [descTooltip]="labelTargetDirigenti | translate"
+              [typeInput]="'text'"
+              [inputClass]="'input'"
+              [required]="true"
+            ></piao-text-box>
+          </div>
+          <div class="col-12 col-xl-6">
+            <piao-text-box
+              [label]="labelNumeroDirigenti | translate"
+              [control]="formGroup.controls['numeroDirigenti']"
+              [id]="'numeroDirigenti'"
+              [containerClass]="'container-width-full'"
+              [descTooltip]="labelNumeroDirigenti | translate"
+              [maxValidatorLength]="'10'"
+              [typeInput]="'text'"
+              [inputClass]="'input'"
+              [required]="true"
+            ></piao-text-box>
+          </div>
+        </div>
+
+        <div class="row pt-4">
+          <div class="col-12 col-xl-6">
+            <piao-text-box
+              [label]="labelTargetNonDirigenti | translate"
+              [control]="formGroup.controls['targetNonDirigenti']"
+              [id]="'targetNonDirigenti'"
+              [containerClass]="'container-width-full'"
+              [maxValidatorLength]="'10'"
+              [descTooltip]="labelTargetNonDirigenti | translate"
+              [typeInput]="'text'"
+              [inputClass]="'input'"
+              [required]="true"
+            ></piao-text-box>
+          </div>
+          <div class="col-12 col-xl-6">
+            <piao-text-box
+              [label]="labelNumeroNonDirigenti | translate"
+              [control]="formGroup.controls['numeroNonDirigenti']"
+              [id]="'numeroNonDirigenti'"
+              [maxValidatorLength]="'10'"
+              [containerClass]="'container-width-full'"
+              [descTooltip]="labelNumeroNonDirigenti | translate"
+              [typeInput]="'text'"
+              [inputClass]="'input'"
+              [required]="true"
+            ></piao-text-box>
+          </div>
+        </div>
+      } @else {
+        <div class="row pt-4">
+          <div class="col-12 col-xl-6">
+            <piao-text-box
+              [label]="labelTargetDirigenti | translate"
+              [control]="formGroup.controls['targetDirigenti']"
+              [id]="'targetDirigenti'"
+              [maxValidatorLength]="'10'"
+              [containerClass]="'container-width-full'"
+              [descTooltip]="labelTargetDirigenti | translate"
+              [typeInput]="'text'"
+              [required]="true"
+              [inputClass]="'input'"
+            ></piao-text-box>
+          </div>
+          <div class="col-12 col-xl-6">
+            <piao-text-box
+              [label]="labelTargetNonDirigenti | translate"
+              [control]="formGroup.controls['targetNonDirigenti']"
+              [id]="'targetNonDirigenti'"
+              [maxValidatorLength]="'10'"
+              [containerClass]="'container-width-full'"
+              [descTooltip]="labelTargetNonDirigenti | translate"
+              [typeInput]="'text'"
+              [inputClass]="'input'"
+              [required]="true"
+            ></piao-text-box>
+          </div>
+        </div>
+      }
+
+      <div class="row pt-4">
+        <div class="col-12 col-xl-6">
+          <piao-text-box
+            [label]="labelOreFormazione | translate"
+            [control]="formGroup.controls['oreFormazione']"
+            [id]="'oreFormazione'"
+            [maxValidatorLength]="'10'"
+            [containerClass]="'container-width-full'"
+            [descTooltip]="labelOreFormazione | translate"
+            [typeInput]="'text'"
+            [inputClass]="'input'"
+            [required]="true"
+          ></piao-text-box>
+        </div>
+      </div>
+
+      <div class="pt-5">
+        <p class="radioFotografia">{{ labelVerificaApprendimento | translate }}</p>
+        <div class="content-choice">
+          @for (x of radioVerificaOptions; track $index) {
+            <label class="radio-option">
+              <input
+                type="radio"
+                [formControlName]="x.formControlName"
+                [value]="x.value"
+                name="verificaApprendimento"
+              />
+              <span class="custom-radio"></span>
+              <span class="label-text">{{ x.label | translate }}</span>
+            </label>
+          }
+        </div>
+      </div>
+
+      <div class="row pt-4">
+        <div class="col-12 col-xl-6">
+          <piao-text-box
+            [label]="labelCreditiFormativi | translate"
+            [control]="formGroup.controls['creditiFormativi']"
+            [id]="'creditiFormativi'"
+            [maxValidatorLength]="'10'"
+            [containerClass]="'container-width-full'"
+            [descTooltip]="labelCreditiFormativi | translate"
+            [typeInput]="'text'"
+            [inputClass]="'input'"
+          ></piao-text-box>
+        </div>
+        <div class="col-12 col-xl-6">
+          <piao-text-box
+            [label]="labelModalitaGestioneFormazione | translate"
+            [control]="formGroup.controls['modalitaGestioneFormazione']"
+            [id]="'modalitaGestioneFormazione'"
+            [maxValidatorLength]="'100'"
+            [containerClass]="'container-width-full'"
+            [descTooltip]="labelModalitaGestioneFormazione | translate"
+            [typeInput]="'text'"
+            [inputClass]="'input'"
+            [required]="true"
+          ></piao-text-box>
+        </div>
+      </div>
+
+      <div class="pt-4">
+        <piao-text-area
+          [label]="labelEnteErogatore | translate"
+          [required]="true"
+          [id]="'enteErogatore'"
+          [control]="formGroup.controls['enteErogatore']"
+          textAreaClass="text-area"
+          [maxValidatorLength]="'20000'"
+          [containerClass]="'container-width-full'"
+          [descTooltip]="labelEnteErogatore | translate"
+          [required]="true"
+        >
+        </piao-text-area>
+      </div>
+
+      <div class="row pt-4">
+        <div class="col-12 col-xl-6">
+          <piao-text-box
+            [label]="labelCostoAttivita | translate"
+            [control]="formGroup.controls['costoAttivita']"
+            [id]="'costoAttivita'"
+            [maxValidatorLength]="'10'"
+            [containerClass]="'container-width-full'"
+            [descTooltip]="labelCostoAttivita | translate"
+            [typeInput]="'text'"
+            [inputClass]="'input'"
+            [required]="true"
+          ></piao-text-box>
+        </div>
+      </div>
+
+      <div class="row pt-4">
+        <div class="col-12 col-xl-6">
+          <piao-date-picker
+            [label]="labelDataInizio | translate"
+            [control]="formGroup.controls['dataInizio']"
+            [id]="'dataInizio'"
+            [containerClass]="'container-width-full'"
+            [required]="true"
+            [descTooltip]="labelDataInizio"
+          >
+          </piao-date-picker>
+        </div>
+        <div class="col-12 col-xl-6">
+          <piao-date-picker
+            [label]="labelDataFine | translate"
+            [control]="formGroup.controls['dataFine']"
+            [id]="'dataFine'"
+            [containerClass]="'container-width-full'"
+            [required]="true"
+            [descTooltip]="labelDataFine"
+            [min]="formGroup.controls['dataInizio'].value || minDate"
+          >
+          </piao-date-picker>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

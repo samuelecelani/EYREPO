@@ -1,0 +1,174 @@
+# Default values for dfp-piao.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+# This block is for setting up the ingress
+# L'ingress instrada /area-riservata/ al FE, /area-riservata/api e /area-riservata/config al gateway.
+# Tutto è same-origin sullo stesso host: nessun proxy_pass lato nginx FE.
+ingress:
+  public:
+    enabled: true
+    className: "nginx"
+    hosts:
+    - host: "dfp-piao.ey.test"
+      paths:
+        - path: /area-riservata
+          pathType: Prefix
+      service: fe
+  private:
+    enabled: true
+    className: "nginx"
+    hosts:
+      - host: "dfp-piao.ey.test"
+        paths:
+          - path: /area-riservata/api
+            pathType: Prefix
+          - path: /area-riservata/config
+            pathType: Prefix
+        service: gateway
+serviceAccount:
+  create: false
+  automount: true
+  annotations: {}
+
+deployments:
+  gateway:
+    image:
+      repository: host.minikube.internal:8443/dfp-docker-repo/dfp-piao-gateway
+    configMaps:
+      - iam-cm
+  be:
+    image:
+      repository: host.minikube.internal:8443/dfp-docker-repo/dfp-piao-be
+    configMaps:
+      - be-cm
+    secrets:
+      - db-security
+    livenessProbe:
+      httpGet:
+        path: /actuator/health/liveness
+        port: http
+      initialDelaySeconds: 120
+      periodSeconds: 20
+      failureThreshold: 5
+    readinessProbe:
+      httpGet:
+        path: /actuator/health/readiness
+        port: http
+      initialDelaySeconds: 30
+      periodSeconds: 10
+      failureThreshold: 30
+  bff:
+    image:
+      repository: host.minikube.internal:8443/dfp-docker-repo/dfp-piao-bff
+    livenessProbe:
+      httpGet:
+        path: /actuator/health/liveness
+        port: http
+      initialDelaySeconds: 120
+      periodSeconds: 20
+      failureThreshold: 5
+    readinessProbe:
+      httpGet:
+        path: /actuator/health/readiness
+        port: http
+      initialDelaySeconds: 30
+      periodSeconds: 10
+      failureThreshold: 30
+    configMaps:
+      - bff-cm
+      - iam-cm
+    secrets:
+      - queue-security
+      - s3-security
+      - minerva-security
+  sync-pp:
+    image:
+      repository: host.minikube.internal:8443/dfp-docker-repo/dfp-sync-pp
+    configMaps:
+      - sync-cm
+    secrets:
+      - db-security
+    livenessProbe:
+      httpGet:
+        path: /actuator/health/liveness
+        port: http
+      initialDelaySeconds: 120
+      periodSeconds: 20
+      failureThreshold: 5
+    readinessProbe:
+      httpGet:
+        path: /actuator/health/readiness
+        port: http
+      initialDelaySeconds: 30
+      periodSeconds: 10
+      failureThreshold: 30
+  fe:
+    image:
+      repository: host.minikube.internal:8443/dfp-docker-repo/dfp-piao-fe
+    livenessProbe:
+      httpGet:
+        path: /health
+        port: http
+    readinessProbe:
+      httpGet:
+        path: /health
+
+
+iam:
+  issuerUrl : https://keycloak.ey.test:8543/realms/PIAO
+  redirectUri: https://dfp-piao.ey.test
+  logoutUrl: https://keycloak.ey.test:8543/realms/PIAO/protocol/openid-connect/logout
+  clientid: "piaoClient"
+externalRoute:
+  gestioneUtentiSvc: "host.minikube.internal:8069"
+  notificheSvc: "http://host.minikube.internal:9183"
+  ticketSvc: "http://host.minikube.internal:9023"
+
+
+deploymentDefaults:
+  replicaCount: 1
+  image:
+    repository: host.minikube.internal:8443/dfp-docker-repo/dfp-piao-fe
+    pullPolicy: Always
+    tag: "0.0.0"
+  configMaps:
+    - services-cm
+    - logging-cm
+  secrets:
+    - db-security
+  imagePullSecrets:
+    - name: registry-security
+  service:
+    type: ClusterIP
+    port: 8080
+  resources:
+    limits:
+      cpu: 500m
+      memory: 1Gi
+    requests:
+      cpu: 10m
+      memory: 400Mi
+  livenessProbe:
+    httpGet:
+      path: /actuator/health/liveness
+      port: http
+    initialDelaySeconds: 60
+    periodSeconds: 20
+  readinessProbe:
+    httpGet:
+      path: /actuator/health/readiness
+      port: http
+    initialDelaySeconds: 20
+    periodSeconds: 10
+    failureThreshold: 3
+  autoscaling:
+    enabled: true
+    minReplicas: 1
+    maxReplicas: 1
+    targetCPUUtilizationPercentage: 80
+  volumes: {}
+  volumeMounts: {}
+  nodeSelector: {}
+  tolerations: []
+  affinity: {}

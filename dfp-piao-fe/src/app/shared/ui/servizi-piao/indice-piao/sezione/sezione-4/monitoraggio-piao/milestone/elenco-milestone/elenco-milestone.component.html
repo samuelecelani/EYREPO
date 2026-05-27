@@ -1,0 +1,149 @@
+<div class="container-elenco-milestone pt-2">
+  <p class="section-subtitle">{{ titleElencoMilestone | translate }}</p>
+
+  <div class="pt-3">
+    @if (milestoneList.length === 0) {
+      <div class="empty-state-container">
+        <p class="empty-message">{{ notFoundElencoMilestone | translate }}</p>
+        @if (!isDettaglio) {
+          <span>
+            <p class="load-form pr-2" (click)="handleOpenModalMilestone()">
+              {{ labelAddMilestone | translate }}
+              <piao-svg
+                [icon]="'PlusCircle'"
+                [fillColor]="'#0066cc'"
+                [svgContainer]="'svg'"
+              ></piao-svg>
+            </p>
+          </span>
+        }
+      </div>
+    } @else {
+      <div class="table-elenco-container pt-2">
+        <table class="table-elenco">
+          <thead>
+            <tr>
+              <th>
+                {{ 'SEZIONE_4.ELENCO_MILESTONE.TH.FASE_SOTTOFASE' | translate }}
+              </th>
+              <th>
+                {{ 'SEZIONE_4.ELENCO_MILESTONE.TH.DESCRIZIONE' | translate }}
+              </th>
+              <th>
+                {{ 'SEZIONE_4.ELENCO_MILESTONE.TH.DATA_MILESTONE' | translate }}
+              </th>
+              <th>
+                {{ 'SEZIONE_4.ELENCO_MILESTONE.TH.DATA_PROMEMORIA' | translate }}
+              </th>
+              @if (!isDettaglio) {
+                <th>
+                  {{ 'SEZIONE_4.ELENCO_MILESTONE.TH.AZIONI' | translate }}
+                </th>
+              }
+            </tr>
+          </thead>
+          <tbody>
+            @for (
+              milestone of paginatedMilestoneList;
+              track trackByMilestoneId($index, milestone)
+            ) {
+              <tr>
+                <td>
+                  <strong>Monitoraggio</strong>
+                  <br />
+                  <span>{{ getSottofaseName(milestone) }}</span>
+                </td>
+                <td>
+                  <span>{{ milestone.descrizione || '' }}</span>
+                </td>
+                <td>
+                  <span>{{ milestone.data | date: 'dd/MM/yyyy' }}</span>
+                </td>
+                <td>
+                  <span>{{
+                    milestone.isPromemoria
+                      ? milestone.idPromemoria === 6
+                        ? (milestone.dataPromemoria | date: 'dd/MM/yyyy')
+                        : getPromemoriaById(milestone.idPromemoria)
+                      : '-'
+                  }}</span>
+                </td>
+                @if (!isDettaglio) {
+                  <td class="col-azioni">
+                    <piao-azioni
+                      [idSelected]="milestone.id || ''"
+                      [isTitle]="false"
+                      [verticalEllipsis]="getActionsFor(milestone)"
+                    ></piao-azioni>
+                  </td>
+                }
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Paginazione -->
+      @if (totalItems > itemsPerPage) {
+        <div class="d-flex justify-content-center align-items-center pt-3">
+          <piao-pagination
+            [totalItems]="totalItems"
+            [itemsPerPage]="itemsPerPage"
+            [currentPage]="currentPage"
+            (pageChange)="onPageChange($event)"
+          ></piao-pagination>
+        </div>
+      }
+
+      @if (!isDettaglio) {
+        <p class="d-flex justify-content-end pt-3 pr-2">
+          <span>
+            <p class="load-form" (click)="handleOpenModalMilestone()">
+              {{ labelAddMilestone | translate }}
+              <piao-svg
+                [icon]="'PlusCircle'"
+                [fillColor]="'#0066cc'"
+                [svgContainer]="'svg'"
+              ></piao-svg>
+            </p>
+          </span>
+        </p>
+      }
+    }
+  </div>
+</div>
+
+<!-- Modal Milestone -->
+@if (openModalMilestone && !isDettaglio) {
+  <piao-modal
+    [isIcon]="true"
+    [icon]="icon"
+    [iconStyle]="iconStyle"
+    [open]="openModalMilestone"
+    [disabledButtonConfirm]="disabledButtonConfirm"
+    (closed)="handleCloseModalMilestone()"
+    (confirm)="handleConfirmModalMilestone()"
+  >
+    <piao-modal-milestone
+      #child
+      [piaoDTO]="piaoDTO"
+      [dropdownSottofaseMonitoraggio]="dropSottoFaseMon"
+      [milestoneEdit]="milestoneEdit"
+      [promemoriaDropdown]="promemoriaDropdown"
+    ></piao-modal-milestone>
+  </piao-modal>
+}
+
+<!-- Modal Delete -->
+@if (openModalDelete && !isDettaglio) {
+  <piao-modal-delete
+    [icon]="'AlertCircle'"
+    [title]="'MODAL_REMOVE.MILESTONE.TITLE'"
+    [message]="'MODAL_REMOVE.MILESTONE.MESSAGE'"
+    [subMessage]="'MODAL_REMOVE.CONFIRM_OPERATION'"
+    [openModalDelete]="openModalDelete"
+    [elementToDelete]="elementToDelete"
+    (confirm)="handleRemoveForm($event)"
+    (closed)="handleCloseModalDelete()"
+  ></piao-modal-delete>
+}

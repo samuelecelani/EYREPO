@@ -1,0 +1,127 @@
+.title-modal {
+  font-weight: 400;
+  font-size: 2rem;
+  padding-bottom: 1rem;
+}
+
+.sub-title-modal {
+  font-weight: 400;
+  font-size: 1.2rem;
+  white-space: pre-line;
+}
+
+:host {
+  display: block;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.table-container {
+  overflow-x: auto;
+  overflow-y: auto;
+}
+
+.table-custom {
+  border-bottom: 2px solid #5c6f82;
+  width: auto;
+  margin: 0 auto;
+}
+
+.table-custom th,
+.table-custom td {
+  height: 5.5rem !important;
+  padding: 0.75rem;
+  vertical-align: middle;
+  white-space: pre-line;
+  font-size: 0.95rem;
+}
+
+.table-custom th:nth-child(1),
+.table-custom td:nth-child(1) {
+  width: 5rem !important;
+  min-width: 5rem !important;
+  max-width: 5rem !important;
+  text-align: center;
+}
+
+.table-custom th:nth-child(2),
+.table-custom td:nth-child(2) {
+  width: 14rem !important;
+  min-width: 14rem !important;
+  max-width: 14rem !important;
+}
+
+.table-custom th:nth-child(3),
+.table-custom td:nth-child(3) {
+  width: 10rem !important;
+  min-width: 10rem !important;
+  max-width: 10rem !important;
+}
+
+.table-custom th:nth-child(4),
+.table-custom td:nth-child(4) {
+  width: 12rem !important;
+  min-width: 12rem !important;
+  max-width: 12rem !important;
+}
+
+.table-custom th:nth-child(5),
+.table-custom td:nth-child(5) {
+  width: 18rem !important;
+  min-width: 18rem !important;
+  max-width: 18rem !important;
+}
+
+.table-custom th:nth-child(6),
+.table-custom td:nth-child(6) {
+  width: 25rem !important;
+  min-width: 25rem !important;
+  max-width: 25rem !important;
+}
+
+.table-custom thead tr {
+  border-bottom: 2px solid #5c6f82;
+}
+
+.table-custom tbody tr {
+  border-bottom: 1px solid #ccc;
+}
+
+.table-custom th:last-child::after,
+.table-custom td:last-child::after {
+  display: none !important;
+}
+
+@media (max-width: 1024px) {
+  .table-container {
+    overflow-x: auto;
+  }
+
+  .table-custom {
+    min-width: 80rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .title-modal {
+    font-size: 1.6rem;
+  }
+
+  .sub-title-modal {
+    font-size: 1rem;
+  }
+
+  .table-container {
+    overflow-x: auto;
+  }
+
+  .table-custom {
+    min-width: 80rem;
+  }
+
+  .table-custom th,
+  .table-custom td {
+    font-size: 0.85rem;
+    padding: 0.5rem;
+  }
+}

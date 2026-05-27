@@ -1,0 +1,141 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding-bottom: 3rem;
+  padding-right: 1rem;
+}
+
+.page-title {
+  font-size: 2.5rem;
+  font-weight: 400;
+  color: #1a1a1a;
+  margin: 0 0 1.5rem;
+}
+
+.title-divider {
+  border: none;
+  border-top: 3px solid #1a1a1a;
+  margin: 0 0 2rem;
+}
+
+/* ===== TABLE ===== */
+.table-container {
+  overflow-x: auto;
+}
+
+.table-storico {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table-storico th,
+.table-storico td {
+  padding: 1.25rem 0.75rem;
+  vertical-align: middle;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.table-storico thead tr {
+  border-bottom: 3px solid #1a1a1a;
+}
+
+.table-storico thead th {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #1a1a1a;
+}
+
+.table-storico tbody tr {
+  border-bottom: 1px solid #d9dadb;
+}
+
+.cell-id {
+  font-weight: 700;
+}
+
+/* ===== STATO ===== */
+.stato {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.stato__dot {
+  width: 0.625rem;
+  height: 0.625rem;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.stato--da-leggere {
+  color: #c62828;
+
+  .stato__dot {
+    background-color: #c62828;
+  }
+}
+
+.stato--letto {
+  color: #2e7d32;
+
+  .stato__dot {
+    background-color: #2e7d32;
+  }
+}
+
+/* ===== AZIONI ===== */
+.action-link {
+  color: #0066cc;
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* ===== PAGINATION ===== */
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+@media screen and (max-width: 768px) {
+  .page-title {
+    font-size: 1.5rem;
+  }
+
+  .table-storico th,
+  .table-storico td {
+    font-size: 0.85rem;
+    padding: 0.75rem 0.5rem;
+  }
+
+  /* ===== STICKY LAST COLUMN (Azioni) - mobile only ===== */
+  .table-storico thead th:last-child,
+  .table-storico tbody td:last-child {
+    position: sticky;
+    right: 0;
+    z-index: 2;
+    background-color: #ffffff;
+  }
+
+  .table-storico thead th:last-child::after,
+  .table-storico tbody td:last-child::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -8px;
+    width: 8px;
+    pointer-events: none;
+    background: linear-gradient(to right, transparent, rgba(92, 111, 130, 0.15));
+  }
+
+  .table-storico thead th:last-child {
+    z-index: 3;
+  }
+}

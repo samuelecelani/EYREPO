@@ -1,0 +1,38 @@
+.title-dynamic-attivita-fields {
+  font-weight: 600;
+  font-size: 1.125rem;
+  color: #1a1a1a;
+  padding-bottom: 0.5rem;
+}
+
+.title-with-tooltip {
+  display: flex;
+  flex-direction: row;
+  align-items: last baseline;
+  gap: 0.5rem;
+}
+
+.attivita-row {
+  padding-top: 0.75rem;
+}
+
+// Colonna custom ~2.5/12 (20.833%) per i date picker
+@media (min-width: 992px) {
+  .col-lg-date {
+    flex: 0 0 auto;
+    width: 21.4%;
+  }
+}
+
+.col-lg-date + .field-remove {
+  gap: 0.5rem;
+}
+
+.field-remove {
+  padding-bottom: 0.5rem;
+  white-space: nowrap;
+
+  .link-blue {
+    margin: 0;
+  }
+}

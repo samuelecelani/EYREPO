@@ -1,0 +1,114 @@
+@if (isFormReady) {
+  <div class="help-desk-header">
+    <h1>{{ title | translate }}</h1>
+  </div>
+  <form [formGroup]="form" class="pt-3">
+    <div class="pt-1">
+      <piao-text-box
+        [label]="textboxNome"
+        [required]="true"
+        [typeInput]="'text'"
+        [inputClass]="'input'"
+        [containerClass]="'container-width-full'"
+        [id]="'nome'"
+        [maxValidatorLength]="100"
+        [control]="form.controls['nome']"
+      ></piao-text-box>
+    </div>
+    <div class="pt-3">
+      <piao-text-box
+        [label]="textboxCognome"
+        [required]="true"
+        [typeInput]="'text'"
+        [inputClass]="'input'"
+        [containerClass]="'container-width-full'"
+        [id]="'cognome'"
+        [maxValidatorLength]="100"
+        [control]="form.controls['cognome']"
+      ></piao-text-box>
+    </div>
+    <div class="pt-3">
+      <piao-text-box
+        [label]="textboxEmail"
+        [required]="true"
+        [typeInput]="'text'"
+        [inputClass]="'input'"
+        [maxValidatorLength]="100"
+        [id]="'email'"
+        [containerClass]="'container-width-full'"
+        [control]="form.controls['email']"
+      ></piao-text-box>
+    </div>
+    <div class="pt-3">
+      <piao-text-box
+        [label]="textboxVerificaEmail"
+        [required]="true"
+        [typeInput]="'text'"
+        [inputClass]="'input'"
+        [maxValidatorLength]="100"
+        [id]="'verificaEmail'"
+        [containerClass]="'container-width-full'"
+        [control]="form.controls['verificaEmail']"
+      ></piao-text-box>
+    </div>
+    <div class="pt-3">
+      <piao-text-area
+        [label]="textareaOggetto"
+        [id]="'oggetto'"
+        [maxValidatorLength]="500"
+        [required]="true"
+        [containerClass]="'container-width-full'"
+        textAreaClass="text-area"
+        [control]="form.controls['oggetto']"
+      ></piao-text-area>
+    </div>
+    <div class="pt-3">
+      <piao-text-area
+        [id]="'messaggio'"
+        [maxValidatorLength]="2000"
+        [label]="textareaMessaggio"
+        [required]="true"
+        [containerClass]="'container-width-full'"
+        textAreaClass="text-area-big"
+        [control]="form.controls['messaggio']"
+      ></piao-text-area>
+    </div>
+    <div class="pt-3 pb-3">
+      <piao-button-list
+        [label]="problemiList"
+        [buttonOptions]="buttonOptions"
+        [multiSelect]="false"
+        [required]="true"
+        [control]="form.controls['problema']"
+      ></piao-button-list>
+    </div>
+    <div class="row pt-3">
+      <piao-attachment
+        #attachmentHelpDesk
+        [title]="'HELP_DESK.ATTACHMENT_TITLE'"
+        [loadAttachment]="'HELP_DESK.ADD_ATTACHMENT'"
+        [isDoc]="true"
+        [codTipologia]="[codTipologia]"
+        [codTipologiaAllegato]="[codTipologiaAllegato]"
+      >
+      </piao-attachment>
+    </div>
+    <!-- attachment stile originale -->
+    <!-- button invia segnalazione che salva i dati del form a db (collega l'api di salvataggio della segnalazione al click) -->
+    <div class="row pt-5">
+      <piao-button
+        [size]="'lg'"
+        (clicked)="handleSendSegnalazione()"
+        [disabled]="!form.valid"
+        [customClass]="'container-width-full'"
+      >
+        {{ buttonSegnalazione | translate }}
+      </piao-button>
+    </div>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+  </form>
+}
