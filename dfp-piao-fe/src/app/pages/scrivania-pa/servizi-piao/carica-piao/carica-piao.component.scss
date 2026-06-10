@@ -1,0 +1,36 @@
+.main {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-weight: 400;
+  font-size: 3rem;
+}
+
+.subTitle {
+  font-weight: 400;
+  font-size: 1.2rem;
+}
+
+.title-dichiarazione {
+  font-weight: 400;
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.message-dichiarazione {
+  color: #333;
+  font-weight: 400;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  white-space: pre-line;
+}
+
+.main-dichiarazione {
+  width: 40rem;
+
+  @media (max-width: 1220px) {
+    max-width: 100%;
+  }
+}

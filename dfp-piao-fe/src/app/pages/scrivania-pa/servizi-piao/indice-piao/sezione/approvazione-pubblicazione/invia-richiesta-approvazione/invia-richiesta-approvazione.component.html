@@ -1,0 +1,95 @@
+@if (isFormReady) {
+  <div class="main">
+    <form [formGroup]="form">
+      <p class="title">{{ title | translate }}</p>
+      <br />
+      <p
+        class="section-label"
+        [innerHTML]="isDettaglio ? (subtitleDettaglio | translate) : (subtitle | translate)"
+      ></p>
+      <div class="row pt-4">
+        <div class="col-12 col-lg-4">
+          <piao-text-box
+            [label]="emailLabel"
+            [typeInput]="'email'"
+            [inputClass]="'input'"
+            [control]="form.controls['mail']"
+            [maxValidatorLength]="50"
+            [id]="'email'"
+            [descTooltip]="emailLabel"
+            [containerClass]="'container-width-full'"
+            [required]="true"
+            [isDetails]="isDettaglio"
+          >
+          </piao-text-box>
+        </div>
+        <div class="col-12 col-lg-4">
+          <piao-text-box
+            [label]="oggettoLabel"
+            [typeInput]="'text'"
+            [inputClass]="'input'"
+            [control]="form.controls['oggetto']"
+            [maxValidatorLength]="50"
+            [id]="'oggetto'"
+            [descTooltip]="oggettoLabel"
+            [containerClass]="'container-width-full'"
+            [required]="true"
+            [isDetails]="isDettaglio"
+          >
+          </piao-text-box>
+        </div>
+      </div>
+      <div class="pt-4">
+        <piao-text-area
+          [label]="isDettaglio ? testoLabelDettaglio : testoLabel"
+          [control]="form.controls['testo']"
+          [maxValidatorLength]="20000"
+          [id]="'testo'"
+          textAreaClass="text-area"
+          [descTooltip]="isDettaglio ? testoLabelDettaglio : testoLabel"
+          [containerClass]="'container-width-full'"
+          [required]="true"
+          [isDettaglio]="isDettaglio"
+        >
+        </piao-text-area>
+      </div>
+
+      <div class="pt-3">
+        <piao-attachment
+          [title]="isDettaglio ? (attachmentDettaglio | translate) : (attachment | translate)"
+          [loadAttachment]="'BUTTONS.DWN_ALL_ATTACHMENTS'"
+          [idPiao]="piaoDTO.id"
+          [isDoc]="true"
+          [showDescription]="false"
+          [showName]="false"
+          [codTipologia]="[codTipologia]"
+          [codTipologiaAllegato]="[codTipologiaAllegato]"
+          [sezione]="sezione"
+          [isdwnAllAttchment]="true"
+          [isDettaglio]="isDettaglio"
+        ></piao-attachment>
+      </div>
+
+      <div class="pt-3">
+        <piao-tabella-generazione-pdf
+          [form]="form"
+          [isDettaglio]="isDettaglio"
+          [idPiao]="piaoDTO.id"
+        >
+        </piao-tabella-generazione-pdf>
+      </div>
+
+      @if (!isDettaglio) {
+        <div class="button-container">
+          <piao-button
+            variant="primary"
+            [disabled]="!form.valid || isVisibleButtonInvia"
+            (click)="handleInviaRichiestaValidazione()"
+          >
+            {{ buttonLabel | translate }}
+          </piao-button>
+        </div>
+      }
+    </form>
+  </div>
+}

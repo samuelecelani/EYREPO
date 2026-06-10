@@ -1,0 +1,160 @@
+name: TEST - Build and Push Image
+
+on:
+  push:
+    tags:
+      - '*'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Indicare la versione (es: 1.2.3)"
+        required: true
+        type: string
+      deployment:
+        description: 'Seleziona il deployment'
+        required: true
+        type: choice
+        options:
+          - TUTTI
+          - dfp-piao-be
+          - dfp-piao-bff
+          - dfp-piao-fe
+          - dfp-piao-gateway
+          - dfp-sync-pp
+        default: TUTTI
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    environment: test
+    strategy:
+      matrix:
+        image: ["dfp-piao-be", "dfp-piao-bff", "dfp-piao-fe", "dfp-piao-gateway", "dfp-sync-pp"]
+    env:
+      PATH_IMAGE_REGISTRY: "dfp-docker-repo"
+      NEXUS_HOST: "nexus.bip.test"
+      NEXUS_IP: "20.229.105.117"
+      NEXUS_IMAGE_REGISTRY: "nexus.bip.test"
+      NEXUS_IMAGE_REGISTRY_USERNAME: "devops"
+      NEXUS_IMAGE_REGISTRY_PASSWORD: ${{ secrets.NEXUS_IMAGE_REGISTRY_PASSWORD }}
+
+    steps:
+      # 0a) Checkout del codice (necessario per trovare gli script)
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 0b) Build modulo Common/Entity e copia jar/pom nelle local-repo di BE e BFF
+      - name: Build entity
+        if: ${{ github.event.inputs.deployment == 'TUTTI' || matrix.image == github.event.inputs.deployment }}
+        shell: bash
+        run: |
+          chmod +x ./build-entity.sh
+          ./build-entity.sh
+      # 1. Imposta versione
+      - name: Acquisisci versione
+        if: ${{ github.event.inputs.deployment == 'TUTTI' || matrix.image == github.event.inputs.deployment }}
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "VERSION=${{ inputs.version }}" >> $GITHUB_ENV
+          else
+            echo "VERSION=${{ github.ref_name }}" >> $GITHUB_ENV
+          fi
+
+      # 2. Checkout codice
+      - name: Checkout code (with LFS)
+        if: ${{ github.event.inputs.deployment == 'TUTTI' || matrix.image == github.event.inputs.deployment }}
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+
+      # 3. Configurazione DNS locale per Nexus
+      - name: Configurazione DNS locale per Nexus
+        if: ${{ github.event.inputs.deployment == 'TUTTI' || matrix.image == github.event.inputs.deployment }}
+        run: |
+          echo ">>> Configurazione DNS locale per Nexus..."
+          if ! grep -q "${NEXUS_IP} ${NEXUS_HOST}" /etc/hosts; then
+            echo "${NEXUS_IP} ${NEXUS_HOST}" | sudo tee -a /etc/hosts > /dev/null
+            echo "Entry DNS locale aggiunta"
+          else
+            echo "Entry DNS già presente"
+          fi
+
+      # 4️. Recupero e configurazione TLS
+      - name: Recupera certificato TLS dal registry
+        if: ${{ github.event.inputs.deployment == 'TUTTI' || matrix.image == github.event.inputs.deployment }}
+        run: |
+          CERT_FILE=$(mktemp)
+          echo | openssl s_client -showcerts -servername $NEXUS_IMAGE_REGISTRY -connect $NEXUS_IMAGE_REGISTRY:443 2>/dev/null \
+            | openssl x509 -outform PEM > $CERT_FILE
+          echo "CERT_FILE=$CERT_FILE" >> $GITHUB_ENV
+
+      - name: Configura Docker con certificato TLS
+        if: ${{ github.event.inputs.deployment == 'TUTTI' || matrix.image == github.event.inputs.deployment }}
+        run: |
+          sudo mkdir -p /etc/docker/certs.d/$NEXUS_IMAGE_REGISTRY
+          sudo cp $CERT_FILE /etc/docker/certs.d/$NEXUS_IMAGE_REGISTRY/ca.crt
+          echo "Certificato aggiunto al trust di Docker"
+
+      # 5. Build Docker image
+      - name: Build Docker image
+        if: ${{ github.event.inputs.deployment == 'TUTTI' || matrix.image == github.event.inputs.deployment }}
+        run: |
+          IMAGE_NAME=${{ matrix.image }}
+          cd $IMAGE_NAME
+          mkdir -p certs
+          cp $CERT_FILE certs/cert.pem
+          cat certs/cert.pem
+          docker build . \
+            --file Dockerfile \
+            --tag $IMAGE_NAME:$VERSION
+
+      # 6. Docker login e push
+      - name: Docker login
+        if: ${{ github.event.inputs.deployment == 'TUTTI' || matrix.image == github.event.inputs.deployment }}
+        uses: docker/login-action@v2
+        with:
+          registry: ${{ env.NEXUS_IMAGE_REGISTRY }}
+          username: ${{ env.NEXUS_IMAGE_REGISTRY_USERNAME }}
+          password: ${{ env.NEXUS_IMAGE_REGISTRY_PASSWORD }}
+
+      - name: Tag & Push Docker image
+        if: ${{ github.event.inputs.deployment == 'TUTTI' || matrix.image == github.event.inputs.deployment }}
+        run: |
+          IMAGE_NAME=${{ matrix.image }}
+          docker tag $IMAGE_NAME:$VERSION $NEXUS_IMAGE_REGISTRY/$PATH_IMAGE_REGISTRY/$IMAGE_NAME:$VERSION
+          docker push $NEXUS_IMAGE_REGISTRY/$PATH_IMAGE_REGISTRY/$IMAGE_NAME:$VERSION
+
+  # =========================
+  # TAG (SINGOLO JOB)
+  # =========================
+  create-tag:
+    runs-on: ubuntu-latest
+    needs: build-and-push
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Crea tag
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          VERSION="${{ github.event.inputs.version || github.ref_name }}"
+
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git fetch --tags
+
+          if git ls-remote --exit-code --tags origin "$VERSION" >/dev/null 2>&1; then
+            echo "Tag $VERSION esistente, skip."
+            exit 0
+          fi
+
+          git tag "$VERSION"
+          git push origin "$VERSION"
+
+          echo "Tag $VERSION creato."

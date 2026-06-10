@@ -1,0 +1,114 @@
+.container-elenco-fotografia {
+  display: flex;
+  flex-direction: column;
+}
+
+.toggle-text {
+  display: block;
+  color: #0066cc;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding-top: 0.25rem;
+}
+
+.load-form {
+  display: flex;
+  flex-direction: row;
+  font-weight: 700;
+  font-size: 1rem;
+  color: #0066cc;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.table-elenco-container {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: auto;
+}
+
+.table-elenco {
+  width: 100%;
+  min-width: 120rem;
+  border-collapse: collapse;
+  margin-left: 0;
+
+  thead tr {
+    border-bottom: 0.125rem solid #5c6f82;
+  }
+
+  tbody tr {
+    border-bottom: 0.0625rem solid #d9dadb;
+  }
+
+  td {
+    padding: 1.5rem 0.5rem;
+    min-height: 6.5rem;
+    font-size: 1rem;
+    font-weight: 400;
+    text-align: left;
+    vertical-align: middle;
+  }
+
+  th {
+    font-size: 1rem;
+    padding: 0.75rem 0.5rem;
+    font-weight: 600;
+    text-align: left;
+    white-space: pre-line;
+  }
+
+  // Colonne generiche
+  @for $i from 1 through 19 {
+    th:nth-child(#{$i}):not(.col-azioni),
+    td:nth-child(#{$i}):not(.col-azioni) {
+      width: 16rem;
+      min-width: 16rem;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+    }
+  }
+
+  .col-azioni {
+    width: 5rem;
+    min-width: 5rem;
+    text-align: center;
+  }
+}
+
+.table-elenco thead th:first-child,
+.table-elenco tbody td:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 2;
+  background-color: #e7eff7;
+  width: 12rem !important;
+  min-width: 12rem !important;
+}
+
+.table-elenco thead th:first-child::after,
+.table-elenco tbody td:first-child::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 8px;
+  width: 8px;
+  pointer-events: none;
+  background: linear-gradient(to right, transparent, rgba(92, 111, 130, 0.15));
+}
+
+.table-elenco thead th:first-child {
+  z-index: 3;
+}
+
+.not-found-label {
+  width: 100%;
+  text-align: center;
+  padding: 0.5rem 0;
+  font-size: 1rem;
+  display: block;
+  padding-top: 20px;
+}

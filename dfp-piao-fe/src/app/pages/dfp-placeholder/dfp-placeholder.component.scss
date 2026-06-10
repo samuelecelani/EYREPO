@@ -1,0 +1,28 @@
+.dfp-placeholder {
+  border-radius: 0.75rem;
+  border: 1px solid #d6e4f6;
+  background: #ffffff;
+  padding: 1.5rem;
+}
+
+.dfp-placeholder h1 {
+  margin: 0;
+  color: #003366;
+}
+
+.dfp-placeholder p {
+  margin-top: 0.5rem;
+  color: #335c85;
+}
+
+.dfp-placeholder__back {
+  display: inline-block;
+  margin-top: 1rem;
+  color: #0059b3;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.dfp-placeholder__back:hover {
+  text-decoration: underline;
+}

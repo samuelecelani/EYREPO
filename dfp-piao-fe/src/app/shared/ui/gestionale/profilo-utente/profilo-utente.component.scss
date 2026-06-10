@@ -1,0 +1,273 @@
+.title {
+  font-weight: 400;
+  font-size: 2.6rem;
+  color: #1a1a1a;
+  padding-bottom: 0.5rem;
+}
+
+.sub-title {
+  display: block;
+  width: 100%;
+  margin-top: 1rem;
+  font-size: 1.125rem;
+  padding-bottom: 0.25rem;
+}
+
+.required-note {
+  color: #3d4752;
+  font-size: 0.875rem;
+  margin: 0 0 1rem;
+}
+
+.profilo-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  min-height: 0;
+  border-radius: 20px;
+  overflow: visible;
+}
+
+.profilo-bg-figma {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+piao-dropdown {
+  width: 100%;
+  max-width: 25.06rem;
+}
+
+::ng-deep .profilo-utente-drop-container {
+  max-width: 25.06rem;
+}
+
+.profilo-container {
+  position: relative;
+  z-index: 1;
+  overflow: visible;
+}
+
+piao-dropdown {
+  --dropdown-label-pt: 0rem;
+}
+
+piao-date-picker {
+  width: 100%;
+  max-width: 25.06rem;
+}
+
+.container-width-full {
+  width: 100%;
+}
+
+.section-title {
+  font-size: 1.625rem;
+  font-weight: 600;
+  margin: 0 0 1rem;
+  color: #0f1419;
+}
+
+.role-title {
+  margin-top: 2rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 1.5rem;
+  row-gap: 1rem;
+}
+
+.anagrafica-grid {
+  margin-bottom: 1.75rem;
+}
+
+piao-text-box {
+  width: 100%;
+  max-width: 25.06rem;
+}
+
+::ng-deep .input {
+  height: 2.5rem;
+  border: 1px solid #5c6f82;
+  border-radius: 10px;
+}
+
+.edit-input:focus {
+  border-bottom: 2px solid #1976d2;
+}
+
+.value {
+  font-weight: 600;
+  color: #0b1f33;
+  padding: 0.25rem 0;
+}
+
+::ng-deep .section-clamp-3 {
+  display: -webkit-box;
+  line-clamp: 3;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.4;
+  max-height: 4.2em;
+}
+
+.profilo-block {
+  position: relative;
+  overflow: visible;
+}
+
+.profilo-block.second {
+  margin-top: 1rem;
+}
+
+.profilo-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.profilo-header p {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #17324d;
+}
+
+.remove-profile-link {
+  color: #0066cc;
+  font-size: 0.875rem;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.ruolo-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-bottom: 0;
+  overflow: visible;
+}
+
+.ruolo-grid > piao-dropdown {
+  max-width: none;
+}
+
+.add-role-strip {
+  margin-top: 1rem;
+  border-radius: 12px;
+  background: #eef5fb;
+  min-height: 3rem;
+  padding: 0.75rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #17324d;
+}
+
+.add-role-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  color: #0066cc;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.add-role-icon {
+  font-size: 1.125rem;
+  line-height: 1;
+}
+
+.button {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  width: 100%;
+  background: none;
+}
+
+.modal-main {
+  width: 40rem;
+}
+
+.modal-title {
+  font-weight: 400;
+  font-size: 2rem;
+}
+
+.modal-message {
+  font-size: 1rem;
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .title {
+    font-size: 2.2rem;
+  }
+
+  .profilo-container {
+    padding: 2rem 1.5rem;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .ruolo-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .modal-main {
+    width: 100%;
+  }
+
+  .profilo-bg-figma {
+    -webkit-mask-size: 108% 102%;
+    mask-size: 108% 102%;
+    -webkit-mask-position: right center;
+    mask-position: right center;
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .title {
+    font-size: 1.6rem;
+  }
+
+  .sub-title {
+    font-size: 1rem;
+  }
+
+  .profilo-container {
+    padding: 1.5rem 1rem 2rem;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    row-gap: 0.75rem;
+  }
+
+  .ruolo-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .button {
+    width: 100%;
+    margin-top: 1rem;
+    justify-content: flex-end;
+  }
+
+  .add-role-strip {
+    gap: 0.5rem;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}

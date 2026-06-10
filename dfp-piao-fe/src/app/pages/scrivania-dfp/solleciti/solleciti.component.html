@@ -1,0 +1,199 @@
+<div class="main">
+  <h1 class="page-title">
+    Invia sollecito <span class="first-word">alle PA</span> per il PIAO {{ triennio }}
+  </h1>
+
+  <p class="page-subtitle">
+    Invia un sollecito alle PA che non hanno ancora pubblicato il PIAO per il triennio
+    <strong>{{ triennio }}</strong
+    >. Di seguito puoi filtrare per singola amministrazione o per tipologia di amministrazione e
+    visualizzare le amministrazioni che hanno provveduto ad inviare la dichiarazione di mancata o
+    ritardata compilazione.
+  </p>
+
+  <p class="filter-title">Filtra per</p>
+
+  <form [formGroup]="form" class="filters-form">
+    <div class="row align-items-end g-3">
+      <div class="col-12 col-lg-4">
+        <piao-dropdown
+          [title]="'Tipologia di Amministrazioni'"
+          [dropContainerClass]="'container-width-full'"
+          [dropdown]="tipologiaOptions"
+          [formControl]="tipologiaControl"
+        ></piao-dropdown>
+      </div>
+      <div class="col-12 col-lg-4">
+        <piao-autocomplete-text-box
+          [label]="'Seleziona un\'Amministrazione'"
+          [isLabelTranslate]="false"
+          [inputClass]="'input'"
+          [control]="amministrazioneControl"
+          [id]="'amministrazione'"
+          [containerClass]="'container-width-full'"
+          [iconPath]="'assets/icon/Monument.svg'"
+          [placeholder]="'Comune di Rimini'"
+          [suggestions]="amministrazioneSuggestions()"
+          [loading]="amministrazioneLoading()"
+          (searchChange)="onAmministrazioneSearch($event)"
+          (cleared)="clearAmministrazioneSuggestions()"
+          (selected)="onAmministrazioneSelected($event)"
+        ></piao-autocomplete-text-box>
+      </div>
+      <div class="col-12 col-lg-4">
+        <piao-dropdown
+          [title]="'Dichiarazione di mancata o ritardata compilazione'"
+          [dropContainerClass]="'container-width-full'"
+          [dropdown]="statoOptions"
+          [formControl]="statoControl"
+        ></piao-dropdown>
+      </div>
+    </div>
+
+    <div class="filters-actions pt-4">
+      <piao-button [variant]="'secondary-outline'" [size]="'sm'" (clicked)="resetFilters()">
+        AZZERA FILTRI
+      </piao-button>
+      <piao-button [variant]="'primary'" [size]="'sm'" (clicked)="search()"> FILTRA </piao-button>
+    </div>
+  </form>
+
+  <div class="results-section pt-5 pb-5">
+    <div class="results-toolbar">
+      <span class="results-search-info"> {{ totalItems() }} risultati mostrati </span>
+      <span class="results-total">
+        {{ paginatedRows().length }} di {{ totalItems() }} risultati
+      </span>
+    </div>
+
+    <div class="table-container pt-3">
+      <table class="table-custom">
+        <thead>
+          <tr>
+            <th class="th-checkbox">
+              <span class="select-all-label" (click)="selectAll()">SELEZIONA<br />TUTTE</span>
+            </th>
+            <th>
+              <div class="d-flex flex-row align-items-center gap-3 header-with-icon">
+                Amministrazione
+                <div class="pointer" (click)="handleSortAmministrazione()">
+                  <piao-svg
+                    [svgContainer]="'icon-svg-arrow-table-center'"
+                    [icon]="'ArrowBottom'"
+                    [fillColor]="'#0066CC'"
+                  ></piao-svg>
+                </div>
+              </div>
+            </th>
+            <th>
+              <div class="d-flex flex-row align-items-center gap-3 header-with-icon">
+                Dichiarazione di mancata<br />o ritardata compilazione
+                <div class="pointer" (click)="handleSortStato()">
+                  <piao-svg
+                    [svgContainer]="'icon-svg-arrow-table-center'"
+                    [icon]="'ArrowBottom'"
+                    [fillColor]="'#0066CC'"
+                  ></piao-svg>
+                </div>
+              </div>
+            </th>
+            <th>Visualizza<br />dichiarazione</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (row of paginatedRows(); track row.id) {
+            <tr>
+              <td class="td-checkbox">
+                <input
+                  type="checkbox"
+                  aria-label="Seleziona amministrazione"
+                  [checked]="row.selected"
+                  [class.is-readonly]="isReadOnly(row)"
+                  [disabled]="isReadOnly(row)"
+                  (change)="toggleRow(row, $event)"
+                />
+              </td>
+              <td>{{ row.amministrazione }}</td>
+              <td>{{ row.stato }}</td>
+              <td>
+                @if (hasDettaglio(row)) {
+                  <a class="action-link" (click)="goToDettaglio(row)">Dettaglio</a>
+                } @else {
+                  <span class="action-disabled">Dettaglio</span>
+                }
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <div class="pagination-row">
+      <div class="pagination-container">
+        <piao-pagination
+          [totalItems]="totalItems()"
+          [itemsPerPage]="itemsPerPage"
+          [currentPage]="currentPage()"
+          (pageChange)="onPageChange($event)"
+        ></piao-pagination>
+      </div>
+      <span class="selected-count">
+        Hai selezionato <strong>{{ selectedCount() }} amministrazioni</strong>
+      </span>
+    </div>
+  </div>
+
+  <div class="editor-section pt-5">
+    <h2 class="editor-title">Inserisci testo sollecito</h2>
+    <p class="editor-subtitle">
+      Di seguito è possibile impostare il testo del sollecito. Per i prossimi solleciti hai la
+      possibilità di modificarlo, se lo desideri, oppure lasciarlo invariato.
+    </p>
+
+    <div class="editor-container pt-3">
+      <ckeditor [editor]="Editor" [(ngModel)]="editorData" [config]="editorConfig"></ckeditor>
+      <div class="editor-word-count">
+        Parole: {{ wordCount().words }} &nbsp;&nbsp; Caratteri: {{ wordCount().characters }}
+      </div>
+    </div>
+
+    <div class="editor-save-actions pt-3">
+      <piao-button [variant]="'primary'" [size]="'sm'" (clicked)="saveEditorContent()">
+        SALVA LE MODIFICHE
+      </piao-button>
+    </div>
+
+    <div class="editor-bottom-actions pt-4">
+      <piao-button [variant]="'secondary-outline'" [size]="'lg'" (clicked)="annulla()">
+        ANNULLA
+      </piao-button>
+      <piao-button
+        [variant]="'primary'"
+        [size]="'lg'"
+        [disabled]="selectedCount() === 0"
+        (clicked)="invia()"
+      >
+        INVIA
+      </piao-button>
+    </div>
+  </div>
+</div>
+
+@if (openModalInvia) {
+  <piao-modal
+    [isIcon]="true"
+    [icon]="iconModalInvia"
+    [iconStyle]="iconStyle"
+    [open]="openModalInvia"
+    (closed)="openModalInvia = false"
+    (confirm)="confermaInvio()"
+  >
+    <div class="modal-content">
+      <p class="title-modal">Invia sollecito alle PA</p>
+      <p class="message-text">
+        Stai per inviare un sollecito alle amministrazioni che hai selezionato. Sei sicuro/a di
+        voler confermare questa operazione?
+      </p>
+    </div>
+  </piao-modal>
+}

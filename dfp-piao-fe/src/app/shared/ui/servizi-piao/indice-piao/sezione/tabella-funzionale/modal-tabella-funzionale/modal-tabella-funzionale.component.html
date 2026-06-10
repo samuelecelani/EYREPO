@@ -1,0 +1,191 @@
+<div [ngClass]="main">
+  <p class="title-small">{{ title | translate }}</p>
+  <p class="riga-subtitle pt-3">{{ subTitle | translate }} {{ lenghtArray + 1 }}</p>
+  <form [formGroup]="formGroup">
+    <div class="container-full pt-2">
+      <div class="row">
+        <div class="col-12 col-lg-6">
+          <piao-text-box
+            [label]="labelCodice"
+            [typeInput]="'text'"
+            [inputClass]="'input'"
+            [control]="formGroup.controls['codice']"
+            [maxValidatorLength]="50"
+            [id]="'codice'"
+            [containerClass]="'container-width-full'"
+            [required]="true"
+            [isReadOnly]="true"
+          >
+          </piao-text-box>
+        </div>
+        <div class="col-12 col-lg-6">
+          <piao-dropdown
+            [dropdown]="ovpOptions"
+            [title]="labelOvp"
+            [idName]="'idOVP'"
+            [formControl]="formGroup.controls['idOVP']"
+            [isTooltip]="false"
+            [isTranslate]="false"
+            [isRequired]="true"
+            [dropContainerClass]="'container-width-full'"
+            (isChange)="setCodiceValue($event)"
+          ></piao-dropdown>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 col-lg-6">
+          <piao-text-box
+            [label]="labelDenominazione"
+            [typeInput]="'text'"
+            [inputClass]="'input'"
+            [control]="formGroup.controls['denominazioneSintetica']"
+            [maxValidatorLength]="250"
+            [id]="'denominazioneSintetica'"
+            [containerClass]="'container-width-full'"
+            [required]="true"
+          >
+          </piao-text-box>
+        </div>
+        <div class="col-12 col-lg-6">
+          <piao-text-box
+            [label]="labelResponsabile"
+            [typeInput]="'text'"
+            [inputClass]="'input'"
+            [control]="formGroup.controls['responsabileAmministrativo']"
+            [maxValidatorLength]="250"
+            [id]="'responsabileAmministrativo'"
+            [containerClass]="'container-width-full'"
+            [required]="true"
+          >
+          </piao-text-box>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 col-lg-6">
+          <piao-dropdown
+            [dropdown]="stakeholderOptions"
+            [title]="labelStakeholder"
+            [idName]="'idStakeholder'"
+            [formControl]="formGroup.controls['idStakeholder']"
+            [isTooltip]="false"
+            [isTranslate]="false"
+            [isRequired]="true"
+            [dropContainerClass]="'container-width-full'"
+          ></piao-dropdown>
+        </div>
+        <div class="col-12 col-lg-6">
+          <piao-text-box
+            [label]="labelDimensioni"
+            [typeInput]="'text'"
+            [inputClass]="'input'"
+            [control]="formGroup.controls['dimensioni']"
+            [maxValidatorLength]="250"
+            [id]="'dimensioni'"
+            [containerClass]="'container-width-full'"
+            [required]="true"
+          >
+          </piao-text-box>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 col-lg-6">
+          <piao-text-box
+            [label]="labelFormula"
+            [typeInput]="'text'"
+            [inputClass]="'input'"
+            [control]="formGroup.controls['formula']"
+            [maxValidatorLength]="250"
+            [id]="'formula'"
+            [containerClass]="'container-width-full'"
+            [required]="true"
+          >
+          </piao-text-box>
+        </div>
+        <div class="col-12 col-lg-6">
+          <piao-text-box
+            [label]="labelPolarita"
+            [typeInput]="'text'"
+            [inputClass]="'input'"
+            [control]="formGroup.controls['polarita']"
+            [maxValidatorLength]="250"
+            [id]="'polarita'"
+            [containerClass]="'container-width-full'"
+            [required]="true"
+          >
+          </piao-text-box>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 col-lg-6">
+          <piao-text-box
+            [label]="labelBaseline"
+            [typeInput]="'text'"
+            [inputClass]="'input'"
+            [control]="formGroup.controls['baseline']"
+            [maxValidatorLength]="250"
+            [id]="'baseline'"
+            [containerClass]="'container-width-full'"
+            [required]="true"
+          >
+          </piao-text-box>
+        </div>
+        <div class="col-12 col-lg-6">
+          <piao-text-box
+            [label]="labelTargetN1"
+            [typeInput]="'text'"
+            [inputClass]="'input'"
+            [control]="formGroup.controls['targetAnnoN1']"
+            [maxValidatorLength]="250"
+            [id]="'targetAnnoN1'"
+            [containerClass]="'container-width-full'"
+            [required]="true"
+          >
+          </piao-text-box>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 col-lg-6">
+          <piao-text-box
+            [label]="labelTargetN2"
+            [typeInput]="'text'"
+            [inputClass]="'input'"
+            [control]="formGroup.controls['targetAnnoN2']"
+            [maxValidatorLength]="250"
+            [id]="'targetAnnoN2'"
+            [containerClass]="'container-width-full'"
+            [required]="true"
+          >
+          </piao-text-box>
+        </div>
+        <div class="col-12 col-lg-6">
+          <piao-text-box
+            [label]="labelTargetN3"
+            [typeInput]="'text'"
+            [inputClass]="'input'"
+            [control]="formGroup.controls['targetAnnoN3']"
+            [maxValidatorLength]="250"
+            [id]="'targetAnnoN3'"
+            [containerClass]="'container-width-full'"
+            [required]="true"
+          >
+          </piao-text-box>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 col-lg-6">
+          <piao-text-box
+            [label]="labelFonte"
+            [typeInput]="'text'"
+            [inputClass]="'input'"
+            [control]="formGroup.controls['fonte']"
+            [maxValidatorLength]="250"
+            [id]="'fonte'"
+            [containerClass]="'container-width-full'"
+            [required]="true"
+          >
+          </piao-text-box>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

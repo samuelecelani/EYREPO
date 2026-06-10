@@ -1,0 +1,118 @@
+<div class="container-ampiezza-organizzativa">
+  @if (ampiezzaOrganizzativaArray.length === 0) {
+    @if (!isDettaglio) {
+      <p class="load-form" (click)="handleOpenAmpiezzaModal()">
+        {{ titleElenco | translate }}
+      </p>
+    } @else {
+      <p class="no-value pt-3 pb-3">{{ ampiezzaNotFound | translate }}</p>
+    }
+  } @else {
+    <div class="table-elenco-container pt-2">
+      <table class="table-elenco">
+        <thead>
+          <tr>
+            <th>
+              {{ 'SEZIONE_31.ACCORDION_1.AMPIEZZA_ORG.TH.UNITA_ORGANIZZATIVA' | translate }}
+            </th>
+            <th>
+              {{ 'SEZIONE_31.ACCORDION_1.AMPIEZZA_ORG.TH.N_RISORSE_UMANE' | translate }}
+            </th>
+            @if (!isDettaglio) {
+              <th>{{ 'SEZIONE_31.ACCORDION_1.AMPIEZZA_ORG.TH.AZIONI' | translate }}</th>
+            }
+          </tr>
+        </thead>
+        <tbody>
+          @for (
+            ampiezza of ampiezzaOrganizzativaArray.controls;
+            track trackByAmpiezzaId($index, ampiezza);
+            let i = $index
+          ) {
+            <tr>
+              <td>
+                {{ ampiezza.get('unitaOrganizzativa')?.value || '' }}
+              </td>
+              <td>
+                <span>{{ ampiezza.get('numRisorseUmane')?.value || '' }}</span>
+              </td>
+              @if (!isDettaglio) {
+                <td class="col-azioni">
+                  <piao-azioni
+                    [idSelected]="ampiezza.get('id')?.value || ''"
+                    [isTitle]="false"
+                    [verticalEllipsis]="getActionsFor(i)"
+                  ></piao-azioni>
+                </td>
+              }
+            </tr>
+          }
+          <tr class="blue-tr">
+            <td>
+              {{ 'SEZIONE_31.ACCORDION_1.AMPIEZZA_ORG.TD.TOTALE_UNITA' | translate }}
+            </td>
+            <td>
+              <span>{{ totRisorse }}</span>
+            </td>
+            <td></td>
+          </tr>
+          <tr class="white-tr">
+            <td>
+              {{ 'SEZIONE_31.ACCORDION_1.AMPIEZZA_ORG.TD.AMPIEZZA_MEDIA' | translate }}
+            </td>
+            <td>
+              <span>{{ ampiezzaMedia }}</span>
+            </td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    @if (!isDettaglio) {
+      <p class="d-flex justify-content-end pt-3">
+        <span>
+          <p class="load-form" (click)="handleOpenAmpiezzaModal()">
+            {{ labelAddElenco | translate }}
+            <piao-svg
+              [icon]="'PlusCircle'"
+              [fillColor]="'#0066cc'"
+              [svgContainer]="'svg'"
+            ></piao-svg>
+          </p>
+        </span>
+      </p>
+    }
+  }
+</div>
+
+@if (openModalAmpiezza) {
+  <piao-modal
+    [isIcon]="true"
+    [icon]="icon"
+    [iconStyle]="iconStyle"
+    [open]="openModalAmpiezza"
+    [disabledButtonConfirm]="disabledButtonConfirm"
+    (closed)="this.openModalAmpiezza = false"
+    (confirm)="handleAddAmpiezzaOrganizzativa(); openModalAmpiezza = false"
+  >
+    <piao-modal-ampiezza-organizzativa
+      #child
+      [piaoDTO]="piaoDTO"
+      [ampiezzaToEdit]="ampiezzaToEdit"
+      [lenghtArray]="ampiezzaIndex"
+    ></piao-modal-ampiezza-organizzativa>
+  </piao-modal>
+}
+
+@if (openModalDelete) {
+  <piao-modal-delete
+    [icon]="'AlertCircle'"
+    [title]="'MODAL_REMOVE.TITLE'"
+    [message]="'MODAL_REMOVE.MESSAGE'"
+    [subMessage]="'MODAL_REMOVE.CONFIRM_OPERATION'"
+    [openModalDelete]="openModalDelete"
+    [elementToDelete]="elementToDelete"
+    (confirm)="handleRemoveForm($event)"
+    (closed)="handleCloseModalDelete()"
+  ></piao-modal-delete>
+}

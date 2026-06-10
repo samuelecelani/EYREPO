@@ -1,0 +1,45 @@
+<div class="avanzamento__header">
+  <h2 class="avanzamento__title">{{ 'SCRIVANIA_DFP.AVANZAMENTO.TITLE' | translate }}</h2>
+  <piao-button
+    class="sollecita-btn"
+    [variant]="'primary-outline'"
+    [size]="'md'"
+    (clicked)="goToSollecita()"
+  >
+    {{ 'SCRIVANIA_DFP.AVANZAMENTO.SOLLECITA' | translate }}
+  </piao-button>
+  <button type="button" class="sollecita-link" (click)="goToSollecita()">
+    <span>{{ 'SCRIVANIA_DFP.AVANZAMENTO.SOLLECITA' | translate }}</span>
+    <piao-svg [icon]="'ArrowRight'" [fillColor]="'#0066cc'"></piao-svg>
+  </button>
+</div>
+
+<hr class="avanzamento__divider" />
+
+<p class="avanzamento__description">{{ 'SCRIVANIA_DFP.AVANZAMENTO.DESCRIPTION' | translate }}</p>
+
+<div class="avanzamento__grid">
+  @for (card of cards; track card.titleKey) {
+    <div class="stat-card">
+      <h3 class="stat-card__title">{{ card.titleKey | translate }}</h3>
+      <div class="stat-card__body">
+        @for (row of card.rows; track row.labelKey) {
+          <div class="stat-card__row">
+            <span class="stat-card__label">{{ row.labelKey | translate }}</span>
+            <span class="stat-card__value">{{ row.value }}</span>
+          </div>
+        }
+        @if (card.ctaLabelKey) {
+          <button type="button" class="stat-card__link" (click)="goToStorico()">
+            <span>{{ card.ctaLabelKey | translate }}</span>
+            <piao-svg [icon]="'ArrowRight'" [fillColor]="'#0066cc'"></piao-svg>
+          </button>
+        }
+      </div>
+    </div>
+  }
+</div>
+
+<p class="avanzamento__footer">
+  {{ 'SCRIVANIA_DFP.AVANZAMENTO.DATI_ANNO' | translate: { anno: anno } }}
+</p>

@@ -1,0 +1,10 @@
+<div [ngClass]="main">
+  <p class="title-modal">
+    {{ title | translate }}
+  </p>
+
+  <p
+    class="sub-title-modal"
+    [innerHtml]="subTitle | translate: { idSection: activeSectionId, denominazione: denominazione }"
+  ></p>
+</div>

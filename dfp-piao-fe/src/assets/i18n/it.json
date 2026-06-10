@@ -1,0 +1,2463 @@
+{
+  "INDEX_PAGE": {
+    "HEADER": {
+      "TITLE": "Portale PIAO",
+      "SUB_TITLE": "Piano Integrato di Attività e Organizzazione"
+    },
+    "MAIN": {
+      "TITLE": "Index"
+    },
+    "CARD_NAVIGATION": {
+      "TITLE": {
+        "1": "1.",
+        "2": "2.",
+        "3": "3."
+      },
+      "SUB_TITLE": {
+        "TITLE_CARD_PUBLIC": "Area pubblica",
+        "TITLE_CARD_PA": "Area privata - Profilo PA",
+        "TITLE_CARD_DFP": "Area privata - Profilo DFP"
+      }
+    }
+  },
+  "SCRIVANIA_PA": {
+    "HEADER": {
+      "WELCOME_M": "Benvenuto {{name}}",
+      "WELCOME_F": "Benvenuta {{name}}"
+    },
+    "ALERT": {
+      "NEWS_ALERT": "Hai dei nuovi avvisi da leggere",
+      "TITLE": "Attenzione!",
+      "SUB_TITLE": "Scadenza compilazione PIAO. ",
+      "SECOND_SUB_TITLE": " Invia entro {{dataScadenza}}. Completa tutti i dati per evitare ritardi. Per segnalazioni, accedi alla pagina della",
+      "TEXT_HREF": "Dichiarazione di mancata/ritardata compilazione."
+    },
+    "INDICE_PIAO_CARD": {
+      "TITLE": "Monitoraggio dello stato di avanzamento PIAO",
+      "SUB_TITLE": "In questa sezione puoi monitorare lo stato di avanzamento del tuo documento PIAO. Il tracciamento ti permette di verificare le fasi completate e quelle ancora in \nlavorazione, consultare le date di aggiornamento della compilazione, fino alla validazione e pubblicazione finale all'interno del portale.",
+      "DROPDOWN": {
+        "TITLE": "Seleziona PIAO"
+      }
+    },
+    "GRAPHIC_INDICE_PIAO": {
+      "TITLE": "Dettaglio avanzamento PIAO",
+      "LEGEND": "LEGENDA",
+      "LABELS": {
+        "IN_VALIDATION": "Sezioni e\n sottosezioni\n in validazione",
+        "VALIDATE": "Sezioni e\n sottosezioni\n validate",
+        "TO_COMPILATION": "Sezioni e\n sottosezioni \nda compilare",
+        "IN_COMPILATION": "Sezioni e\n sottosezioni \nin compilazione",
+        "COMPILATION": "Sezioni e\n sottosezioni\n compilate",
+        "RICHIESTA_APPROVAZIONE": "Sezioni e\n sottosezioni \nin richiesta approvazione",
+        "PUBBLICATO": "Sezioni e\n sottosezioni \npubblicate"
+      }
+    },
+    "SERVIZI_PIAO": {
+      "TITLE": "Servizi PIAO",
+      "SUB_TITLE": "In questa sezione puoi consultare i documenti PIAO pubblicati, redigere o\n modificare il nuovo piano per il prossimo ciclo di programmazione e aggiornare\n l'ultimo documento pubblicato.",
+      "CARD_ACTIONS": {
+        "CONSULTA": {
+          "TITLE": "Consulta i \nPIAO pubblicati",
+          "SUB_TITLE": "Consulta i documenti PIAO disponibili e accedi ai cruscotti di analisi per analizzare tutti i dati e le informazioni riportate nei documenti."
+        },
+        "REDIGI": {
+          "TITLE": "Redigi o completa \nun nuovo PIAO",
+          "SUB_TITLE": "Avvia la redazione di un nuovo PIAO, compilandolo online o caricando un file."
+        },
+        "AGGIORNA": {
+          "TITLE": "Aggiorna il PIAO \ndell'anno corrente",
+          "SUB_TITLE": "Visualizza l'ultimo PIAO pubblicato dell'anno corrente, aggiorna i dati inseriti nelle diverse sezioni e pubblica."
+        }
+      },
+      "CONSULTA_PIAO": {
+        "TITLE": "<span class='first-word'>Consulta</span> PIAO pubblicati",
+        "SUBTITLE": "In questa sezione puoi accedere ai documenti PIAO già pubblicati e disponibili per la consultazione. Puoi effettuare ricerche, estrarre dati e analizzare le informazioni \ncontenute nei documenti.",
+        "BUTTON_CRUSCOTTI_ANALISI": "CRUSCOTTI ANALISI",
+        "ELENCO_PIAO_PUBBLICATI": {
+          "TITLE": "Lista PIAO pubblicati",
+          "TRIENNIO_DROPDOWN": "Seleziona triennio di riferimento",
+          "TABLE": {
+            "PIAO_TH": "PIAO",
+            "VERSION_TH": "Versione PIAO",
+            "INSERT_BY_TH": "Inserito da",
+            "DATA_APPROVAZIONE_TH": "Data approvazione",
+            "DATA_PUBBLICAZIONE_TH": "Data pubblicazione",
+            "TIPOLOGIA_TH": "Tipologia",
+            "AZIONI_TH": "Azioni"
+          }
+        },
+        "SVG": {
+          "TITLE": "Accedi al portale della performance",
+          "TEXT": "Di seguito puoi accedere al portale della performance, per visualizzare i documenti relativi \nal ciclo della Performance della Pubblica Amministrazione selezionata.",
+          "BUTTON": "VAI AL PORTALE"
+        }
+      },
+      "INDICE_PIAO": {
+        "TITLE": "<span class='first-word'>Indice</span> del PIAO",
+        "SUB_TITLE": "In questa sezione puoi accedere al dettaglio delle sezioni e sottosezioni del PIAO, visualizzare lo stato di compilazione e la data dell'ultima modifica. Inoltre, puoi caricare \neventuali documenti allegati e richiedere o validare tutto il PIAO.",
+        "INFO": {
+          "DESCRIPTION": "Denominazione PIAO",
+          "VERSION": "Versione PIAO",
+          "DETAILS": "Dettaglio PIAO",
+          "STATUS": "Stato PIAO",
+          "DETAILS_DESCRIPTION_REDIGI": "Redigi o completa un nuovo PIAO {{emp}}",
+          "DETAILS_DESCRIPTION_AGG": "Aggiornamento del PIAO dell'anno corrente"
+        },
+        "CHECKBOX": {
+          "LABEL": "Ho caricato e/o controllato gli <strong>allegati complessivi di tutto il PIAO</strong>"
+        },
+        "TABLE": {
+          "SEZ_SOTT_SEZ_TH": "Sezione/Sottosezione",
+          "DAT_U_MOD_TH": "Data ultima modifica",
+          "STAT_TH": "Stato",
+          "ACT_TH": "Azioni",
+          "PLACEHOLDER_ACT": "Vai al dettaglio",
+          "PLACEHOLDER_ACT_DWL": "Scarica sezione"
+        },
+        "ATTACHMENT": {
+          "TITLE": "Carica eventuali documenti allegati al PIAO",
+          "OPEN_MODAL": "CARICA IL DOCUMENTO",
+          "MODAL": {
+            "TITLE_DOC": "Carica un documento",
+            "TITLE_IMAGE": "Carica un immagine",
+            "FILE": "Allegato *",
+            "FILE_NAME": "Nome allegato *",
+            "SELECT_FILE_1": "Fare click per caricare",
+            "SELECT_FILE_2": " o trascina e rilascia il documento",
+            "DOC": "PDF (max. 20 MB)",
+            "IMAGE": "SVG, PNG, JPG o GIF (max. 800x400px)"
+          },
+          "SIZE": "MB",
+          "DESC_ATTACHMENT": "Descrizione allegato",
+          "DESC_ATTACHMENT_SHORT": "Breve descrizione",
+          "NAME_ATTACHMENT": "Nome documento",
+          "NO_ATTACHMENT": "Non sono presenti allegati per questa sezione"
+        },
+        "SEZIONE": {
+          "T_REDIGI_COMPLETA": "<span class='first-word'>Redigi</span> o completa un nuovo PIAO",
+          "ST_REDIGI_COMPLETA": "In questa sezione puoi avviare la redazione di un nuovo documento PIAO per il prossimo triennio. Compila di seguito tutti i campi disponibili.",
+          "T_AGGIORNA": "<span class='first-word'>Aggiorna</span> il PIAO dell'anno corrente",
+          "ST_AGGIORNA": "In questa sezione puoi visualizzare i documenti PIAO in fase di redazione, monitorare l'avanzamento della compilazione e verificare le sezioni completate. Puoi navigare liberamente tra le sezioni ancora da compilare cliccando sul relativo tab, senza dover seguire un ordine sequenziale.",
+          "T_DETTAGLIO": "<span class='decoration-title'>Dettagli</span> PIAO",
+          "ST_DETTAGLIO": "In questa sezione puoi consultare tutti i dati inseriti per ciascuna sezione del documento PIAO pubblicato e scaricare gli allegati presenti",
+          "GO_TO_PUBBLICATO": "VAI AL PIAO PUBBLICATO SUL PORTALE ISTITUZIONALE DELL'ENTE",
+          "ACTIONS": {
+            "TITLE": "AZIONI",
+            "VIEW_CHANGE_HISTORY": "Visualizza storico modifiche",
+            "RECOVER_INFO_PIAO": "Recupera info PIAO precedente",
+            "DOWNLOAD_DRAFT_PDF": "Scarica bozza in PDF",
+            "DOWNLOAD_TEMPLATE": "Scarica template copertina",
+            "SECTION_GUIDE": "Guida alla sezione",
+
+            "TABLE_STORICO_SEZIONI": {
+              "TITLE": "Visualizza lo storico modifiche",
+              "SUB_TITLE": "In questa sezione puoi consultare lo storico delle modifiche effettuate sul documento PIAO, con il dettaglio sugli utenti coinvolti,la data di aggiornamento e i \ncampi modificati.",
+              "ID_TH": "ID mod",
+              "NOME_COGNOME_TH": "Nome e cognome",
+              "PROFILO_TH": "Profilo utente",
+              "DATA_TH": "Data modifica",
+              "SEZIONE_SOTTOSEZIONE_TH": "Sezione/Sottosezione",
+              "CAMPI_MODIFICATI_TH": "Campi modificati"
+            }
+          },
+          "ATTACHMENT": {
+            "TITLE_ATTACHMENT": "Allegato",
+            "SUB_TITLE_ATTACHMENT": "In questa sezione puoi procedere con il caricamento di un allegato unico e inserire la sua descrizione nell'apposito campo di testo.",
+            "SUB_TITLE_ATTACHMENT_DETTAGLIO": "In questa sezione puoi visualizzare l'allegato unico caricato e la sua descrizione.",
+            "TITLE_ATTACHMENTS": "Allegati",
+            "LOAD_ATTACHMENT": "CARICA ALLEGATO",
+            "LOAD_DOC": "CARICA UN DOCUMENTO",
+            "LOAD_LOGO": "CARICA LOGO",
+            "LOAD_IMAGE": "CARICA IMMAGINE",
+            "TITLE_IMAGE": "Per facilitare la comprensione e la visualizzazione delle informazioni relative all'analisi del contesto è possibile caricare immagini (i.e., diagrammi, grafici, immagini a corredo)",
+            "TITLE_IMAGE_DETTAGLIO": "Visualizzazione delle immagini con informazioni relative all'analisi del contesto (i.e., diagrammi, grafici, immagini a corredo)",
+            "IMAGE_NOT_FOUND": "Non è stata caricata nessuna immagine"
+          },
+          "SEZIONE_1": {
+            "TITLE": "1 Presentazione metodologica e Anagrafica",
+            "SUB_TITLE_PREMESSA": "Premessa metodologica e obiettivo del documento",
+            "SUB_TITLE_PRIORITA": "Priorità politiche",
+            "SUB_TITLE_AREE_ORGANIZZATIVE": "Aree Organizzative",
+            "SUB_TITLE_STAKEHOLDER": "Stakeholder",
+            "ANAGRAFICA": {
+              "TITLE": "Scheda Anagrafica",
+              "SUB_TITLE_DATA": "Dati anagrafici",
+              "SUB_TITLE_LOGIC": "Assetto logistico",
+              "SUB_TITLE_CONTACT": "Contatti",
+              "SUB_TITLE_DATA_RPCT": "Dati RPCT (Responsabile della Prevenzione della Corruzione e della Trasparenza)",
+              "SUB_TITLE_DATA_RTD": "Dati RTD (Responsabile della Transazione Digitale)"
+            },
+            "MATRICE": {
+              "TITLE": "Matrice: Priorità politiche - aree organizzative - obiettivi VP",
+              "SUB_TITLE": "La matrice collega le priorità politiche, le aree organizzative e gli obiettivi di valore pubblico.",
+              "HEADER_1": "Priorità Politiche",
+              "HEADER_2": "Aree Organizzative",
+              "ALERT": {
+                "SUB_TITLE": "La matrice è generata in automatico dal portale e i contenuti al suo interno saranno visibili solo dopo aver inserito le informazioni nelle sezioni di riferimento. Inoltre, cliccando sugli ID degli obiettivi di valore pubblico è possibile consultarne i dettagli all'interno della modale"
+              }
+            },
+            "NUOVO_CAMPO": {
+              "LABEL": "Nome campo",
+              "TITLE": "Aggiungi un nuovo campo",
+              "SUB_TITLE": "Di seguito puoi aggiungere un nuovo campo, specificandone il nome. Il campo potrà essere compilato solo dopo il suo\n inserimento nella sezione."
+            },
+            "TEXT_AREA": {
+              "QUADRO_NORMATIVO": {
+                "TITLE": "Quadro normativo, istituzionale e scientifico per la redazione del PIAO",
+                "LABEL": "Descrizione quadro normativo, istituzionale e scientifico per la redazione del PIAO"
+              },
+              "STRUTTURA_PROGRAMMATICA": {
+                "TITLE": "Struttura, contenuti e logica programmatica del PIAO",
+                "LABEL": "Descrizione della struttura, contenuti e logica programmatica del PIAO"
+              },
+              "CRONOPROGRAMMA": {
+                "TITLE": "Cronoprogramma per la predisposizione del PIAO",
+                "LABEL": "Descrizione del cronoprogramma per la predisposizione del PIAO"
+              },
+              "MISSIONE": {
+                "TITLE": "Missione istituzionale",
+                "LABEL": "Missione istituzionale"
+              }
+            },
+            "TEXT_BOX": {
+              "ANAGRAFICA": {
+                "ENTE": "Denominazione dell'Ente",
+                "PA": "Acronimo della PA",
+                "CF": "Codice fiscale",
+                "IPA": "Codice IPA",
+                "TIP_PA": "Tipologia di PA",
+                "IVA": "Partita IVA",
+                "IND_S_L": "Indirizzo sede legale",
+                "IND_UFF_R_P": "Indirizzo Ufficio Relazioni con il Pubblico",
+                "WEB": "Sito web",
+                "EMAIL": "Email",
+                "TEL": "Contatto telefonico",
+                "PEC": "PEC",
+                "SOCIAL": "Social media",
+                "NAME_RPCT": "Nome RPCT",
+                "SURNAME_RPCT": "Cognome RPCT",
+                "ROLE_RPCT": "Ruolo svolto all'interno dell'Ente RPCT",
+                "DATE_RCPT": "Data dell'atto di nomina",
+                "N_RTD": "Nominativo RTD",
+                "S_R_RTD": "Struttura di riferimento RTD"
+              }
+            },
+            "DROPDOWN": {
+              "ANAGRAFICA": {
+                "COMUNI": "Comuni",
+                "REGIONI": "Regioni",
+                "PROVINCE": "Province",
+                "CITTA": "Citta metropolitane",
+                "UNIVERSITA": "Università e Enti di ricerca",
+                "ISTITUTI": "Istituti",
+                "AGENZIE": "Agenzie",
+                "MINISTRI": "Ministri",
+                "ALTRE_ENTI": "Altri enti che redigono il PIAO"
+              }
+            },
+            "DYNAMIC_TBTA": {
+              "PRINCIPIO_GUIDA": {
+                "TITLE": "Principi guida per la redazione del PIAO",
+                "TEXT_BOX": {
+                  "LABEL": "Principio guida"
+                },
+                "TEXT_AREA": {
+                  "LABEL": "Descrizione principio guida"
+                },
+                "CARD_INFO": {
+                  "TITLE": "Vuoi aggiungere un altro principio guida?",
+                  "ADD": "AGGIUNGI PRINCIPIO GUIDA"
+                }
+              },
+              "PRIORITA_POLITICHE": {
+                "TITLE": "Elenco priorità politiche",
+                "TEXT_BOX": {
+                  "LABEL": "Priorità politica"
+                },
+                "TEXT_AREA": {
+                  "LABEL": "Descrizione priorità politica"
+                },
+                "CARD_INFO": {
+                  "TITLE": "Vuoi aggiungere un'altra priorità politica?",
+                  "ADD": "AGGIUNGI PRIORITÀ POLITICA"
+                }
+              },
+              "AREE_ORGANIZZATIVE": {
+                "TITLE": "Area organizzativa",
+                "TEXT_BOX": {
+                  "LABEL": "Denominazione area organizzativa"
+                },
+                "TEXT_AREA": {
+                  "LABEL": "Descrizione area organizzativa"
+                },
+                "CARD_INFO": {
+                  "TITLE": "Vuoi aggiungere un'altra area organizzativa?",
+                  "ADD": "AGGIUNGI AREA ORGANIZZATIVA"
+                }
+              }
+            },
+            "DYNAMIC_TBTB": {
+              "INTEGRATION_TEAM": {
+                "TITLE": "Composizione dell'Integration Team",
+                "TEXT_BOX": {
+                  "LABEL": "Membro dell'Integration Team"
+                },
+                "TEXT_BOX2": {
+                  "LABEL": "Ruolo"
+                },
+                "CARD_INFO": {
+                  "TITLE": "Vuoi aggiungere un altro membro dell'Integration Team?",
+                  "ADD": "AGGIUNGI MEMBRO DELL'INTEGRATION TEAM"
+                }
+              },
+              "ORGANO_POLITICO": {
+                "TITLE": "Organo politico e gestionale di vertice",
+                "TEXT_BOX": {
+                  "LABEL": "Organo politico"
+                },
+                "TEXT_BOX2": {
+                  "LABEL": "Ruolo organo politico"
+                },
+                "CARD_INFO": {
+                  "TITLE": "Vuoi aggiungere un altro organo politico?",
+                  "ADD": "AGGIUNGI ORGANO POLITICO"
+                }
+              },
+              "STAKEHOLDER": {
+                "TITLE": "Stakeholder",
+                "TEXT_BOX": {
+                  "LABEL": "Stakeholder"
+                },
+                "TEXT_BOX2": {
+                  "LABEL": "Relazione con la PA"
+                },
+                "CARD_INFO": {
+                  "TITLE": "Vuoi aggiungere un altro stakeholder?",
+                  "ADD": "AGGIUNGI STAKEHOLDER"
+                }
+              }
+            },
+            "DYNAMIC_TB": {
+              "ULTERIORE_INFO": {
+                "TITLE": "Ulteriori informazioni",
+                "SUB_TITLE": "In questa sezione è possibile inserire informazioni aggiuntive. Per farlo, è necessario digitare il nome del nuovo campo desiderato nella modale e compilare il relativo\n contenuto nell'area dedicata.",
+                "SUB_TITLE_DETTAGLIO": "In questa sezione puoi visualizzare ulteriori informazioni",
+                "TEXT_BOX": {
+                  "LABEL": "Nome campo"
+                },
+                "CARD_INFO": {
+                  "TITLE": "Vuoi aggiungere un'altra ulteriore informazione?",
+                  "ADD": "AGGIUNGI ULTERIORE INFORMAZIONE"
+                },
+                "CARD_ALERT": {
+                  "TITLE": "Attenzione!",
+                  "SUB_TITLE": "In questa sezione puoi inserire le informazioni relative al Quadro normativo di riferimento."
+                }
+              }
+            }
+          },
+          "SEZIONE_21": {
+            "TITLE": "2.1 Valore pubblico",
+            "PARTE_GENERALE": "Parte generale",
+            "PARTE_FUNZIONALE": "Parte funzionale",
+            "ANALISI_CONTESTO": {
+              "TITLE": "Analisi contesto",
+              "DESCRIPTION": "In quest'area informativa puoi compilare e visualizzare le informazioni sull'analisi del contesto.",
+              "DESCRIPTION_DETTAGLIO": "In quest'area informativa puoi visualizzare le informazioni sull'analisi del contesto.",
+              "LABEL_INTERNO": "Analisi contesto interno",
+              "LABEL_ESTERNO": "Analisi contesto esterno"
+            },
+            "ANALISI_SWOT": {
+              "TITLE": "Analisi SWOT",
+              "DESCRIPTION": "In quest'area informativa puoi compilare e visualizzare l'analisi SWOT.",
+              "DESCRIPTION_DETTAGLIO": "In quest'area informativa puoi visualizzare l'analisi SWOT.",
+              "PUNTI_FORZA": {
+                "LABEL": "Punti di forza (S)",
+                "CARD_TITLE": "Vuoi aggiungere un altro punto di forza?",
+                "ADD": "Aggiungi elemento"
+              },
+              "PUNTI_DEBOLEZZA": {
+                "LABEL": "Punti di debolezza (W)",
+                "CARD_TITLE": "Vuoi aggiungere un altro punto di debolezza?",
+                "ADD": "Aggiungi elemento"
+              },
+              "OPPORTUNITA": {
+                "LABEL": "Opportunità (O)",
+                "CARD_TITLE": "Vuoi aggiungere un'altra opportunità?",
+                "ADD": "Aggiungi elemento"
+              },
+              "MINACCE": {
+                "LABEL": "Minacce (T)",
+                "CARD_TITLE": "Vuoi aggiungere un'altra minaccia?",
+                "ADD": "Aggiungi elemento"
+              }
+            },
+            "VALORE_PUBBLICO": {
+              "TITLE": "Concetto generale di valore pubblico",
+              "LABEL": "Descrizione",
+              "UPLOAD_DESCRIPTION": "Per facilitare la comprensione e la visualizzazione delle informazioni relative al concetto generale di valore pubblico è possibile caricare immagini (i.e., grafici, diagrammi, immagini a corredo).",
+              "BTN_UPLOAD": "CARICA IMMAGINE"
+            },
+            "OBIETTIVI_VP": {
+              "TITLE": "Obiettivi di valore pubblico",
+              "DESCRIPTION": "In quest'area informativa puoi definire e visualizzare gli obiettivi di valore pubblico; inoltre potrai definire le strategie attuative per ciascuno obiettivo.",
+              "DESCRIPTION_DETTAGLIO": "In quest'area informativa puoi visualizzare gli obiettivi di valore pubblico; inoltre potrai visualizzare le strategie attuative per ciascuno obiettivo.",
+              "ALERT_TITLE": "Attenzione!",
+              "ALERT_SUBTITLE": "È necessario <strong>inserire almeno un obiettivo di valore pubblico e una strategia attuativa ad esso associato</strong>. Clicca su \"AGGIUNGI OBIETTIVO\" per aggiungerne uno.",
+              "CARD_TITLE": "Vuoi aggiungere un nuovo obiettivo di valore pubblico?",
+              "BTN_ADD": "AGGIUNGI OBIETTIVO",
+              "OBIETTIVO_VP": {
+                "TITLE": "Obiettivo di valore pubblico",
+                "DETAILS": {
+                  "OBIETTIVO_VP": "Obiettivo di valore pubblico",
+                  "ID_OVP": "ID OVP",
+                  "ID_OVP_DETAILS": "ID OVP:",
+                  "DESCRIPTION": "Descrizione",
+                  "CONTEXT_ANALYSIS": "Analisi di contesto",
+                  "ORGANIZATIONAL_AREA": "Area organizzativa di riferimento",
+                  "POLITICAL_MANAGER": "Responsabile politico",
+                  "ADMINISTRATIVE_MANAGER": "Responsabile amministrativo",
+                  "STAKEHOLDERS": "Elenco stakeholder",
+                  "STAKEHOLDERS_SELECT": "Stakeholder coinvolti",
+                  "SECTOR": "Settore o ambito di intervento",
+                  "POLITICAL_PRIORITY": "Priorità politica",
+                  "CARD_INFO_TITLE": "<strong>Nota Bene:</strong>",
+                  "CARD_INFO_SUB_TITLE": "I seguenti dati sono estratti dalla <strong>Sezione 1 Presentazione metodologica e Anagrafica</strong> del presente PIAO",
+                  "INDEX": {
+                    "TITLE": "Indice sintetico di impatto multidimensionale",
+                    "VALUE": "Valore",
+                    "DESCRIPTION": "Descrizione"
+                  }
+                },
+                "MODAL": {
+                  "TITLE": "Obiettivo di valore pubblico",
+                  "SUB_TITLE": "Compila i campi per inserire un nuovo obiettivo di valore pubblico.",
+                  "NOTA_BENE": "Nota Bene:",
+                  "NOTA_BENE_TEXT": "I seguenti dati sono estratti dalla Sezione 1 Presentazione metodologica e Anagrafica del presente PIAO",
+                  "ADD_ORGANIZATIONAL_AREA": "Aggiungi area organizzativa",
+                  "ADD_POLITICAL_PRIORITY": "Aggiungi priorità politica",
+                  "ADD_STAKEHOLDER": "Aggiungi stakeholder",
+                  "SAVE": "SALVA"
+                },
+                "STRATEGIE_ATTUATIVE": {
+                  "TITLE": "Strategie attuative",
+                  "NOT_FOUND": "Non sono presenti strategie attuative per questo obiettivo di valore pubblico.",
+                  "STRATEGIA": {
+                    "TITLE": "Strategia attuativa",
+                    "SUB_TITLE": "Compila la strategia attuativa. È opportuno inserire almeno un indicatore per ciascuna strategia attuativa.",
+                    "CARD_TITLE": "Vuoi aggiungere una nuova strategia attuativa?",
+                    "BTN_ADD": "AGGIUNGI STRATEGIA ATTUATIVA",
+                    "DETAILS": {
+                      "ID_STRATEGIA": "ID Strategia",
+                      "STRATEGIA_ATTUATIVA": "Strategia attuativa",
+                      "DESCRIPTION": "Descrizione",
+                      "RESPONSIBLE_SUBJECT": "Soggetto responsabile"
+                    }
+                  }
+                }
+              }
+            },
+            "RISORSE_FINANZIARIE": {
+              "NOT_FOUND": "Non sono presenti risorse finanziarie.",
+              "TITLE": "Risorse finanziarie",
+              "DESCRIPTION": "In quest'area informativa puoi inserire e visualizzare le risorse finanziare utilizzate per iniziative riferite agli obiettivi di valore pubblico.",
+              "DESCRIPTION_DETTAGLIO": "In quest'area informativa puoi visualizzare le risorse finanziare utilizzate per iniziative riferite agli obiettivi di valore pubblico.",
+              "LABEL_INTRO": "Introduzione",
+              "CARD_TITLE": "Vuoi aggiungere una nuova iniziativa?",
+              "BTN_ADD": "AGGIUNGI INIZIATIVA",
+              "LABEL_OVP": "Obiettivo di VP",
+              "LABEL_INIZIATIVA": "Iniziativa",
+              "LABEL_DESCRIZIONE": "Descrizione",
+              "LABEL_DOTAZIONE": "Dotazione finanziaria (€)",
+              "LABEL_FONTE": "Fonte di finanziamento",
+              "ALERT_NO_OVP": "Non sono presenti obiettivi di valore pubblico. <strong>Per aggiungere una risorsa finanziaria è necessario prima inserire almeno un obiettivo di valore pubblico.</strong>"
+            },
+            "FONDI_EUROPEI": {
+              "TITLE": "Interventi sovvenzionati con fondi europei",
+              "DESCRIPTION": "In quest'area informativa puoi inserire e visualizzare i progetti sovvenzionati con fondi europei",
+              "DESCRIPTION_DETTAGLIO": "In quest'area informativa puoi visualizzare i progetti sovvenzionati con fondi europei",
+              "LABEL_INTRO": "Introduzione",
+              "LABEL_PROGETTO": "Progetto finanziato",
+              "LABEL_DESCRIZIONE": "Descrizione",
+              "LABEL_FONDI": "Fondi stanziati (€)",
+              "CARD_TITLE": "Vuoi aggiungere un nuovo progetto?",
+              "BTN_ADD": "AGGIUNGI PROGETTO",
+              "NOT_FOUND": "Non sono presenti progetti sovvenzionati con fondi europei."
+            },
+            "OBIETTIVI_TRASVERSALI": {
+              "TITLE": "Obiettivi trasversali",
+              "DESCRIPTION": "In quest'area informativa puoi inserire una descrizione sugli obiettivi trasversali. La definizione e la visualizzazione degli obiettivi trasversali è prevista nella sottosezione successiva 2.2 Performance.",
+              "DESCRIPTION_DETTAGLIO": "In quest'area informativa puoi visualizzare una descrizione sugli obiettivi trasversali. La visualizzazione degli obiettivi trasversali è prevista nella sottosezione successiva 2.2 Performance.",
+              "ACCESSIBILITA_DIGITALE": "Obiettivi di piena accessibilità digitale",
+              "ACCESSIBILITA_FISICA": "Obiettivi di piena accessibilità fisica",
+              "SEMPLIFICAZIONE": "Obiettivi di semplificazione",
+              "PARI_OPPORTUNITA": "Obiettivi di pari opportunità",
+              "LABEL_DESCRIZIONE": "Descrizione"
+            },
+            "PROCEDURE_SEMPLIFICARE": {
+              "TITLE": "Elenco procedure da semplificare o reingegnerizzare",
+              "DESCRIPTION": "In quest'area informativa puoi definire e visualizzare l'elenco delle procedure da semplificare o reingegnerizzare.",
+              "DESCRIPTION_DETTAGLIO": "In quest'area informativa puoi visualizzare l’elenco delle procedure da semplificare o reingegnerizzare.",
+              "LABEL_INTRO": "Introduzione",
+              "LABEL_DENOMINAZIONE": "Procedura",
+              "LABEL_DESCRIZIONE": "Descrizione",
+              "LABEL_UNITA_MISURA": "Unità di misura",
+              "LABEL_MISURAZIONE": "Misurazione attuale",
+              "LABEL_TARGET": "Target",
+              "LABEL_RESPONSABILE": "Ufficio responsabile",
+              "CARD_TITLE": "Vuoi aggiungere una nuova procedure da semplificare o reingegnerizzare?",
+              "BTN_ADD": "AGGIUNGI PROCEDURA",
+              "NOT_FOUND": "Non sono presenti procedure da semplificare o reingegnerizzare."
+            },
+            "ULTERIORI_INFO": {
+              "TITLE": "Ulteriori informazioni",
+              "DESCRIPTION": "In questa sezione è possibile inserire informazioni aggiuntive. Per farlo, è necessario digitare il nome del nuovo campo desiderato nella modale e compilare il relativo contenuto nell'area dedicata.",
+              "BTN_ADD_CAMPO": "AGGIUNGI NUOVO CAMPO",
+              "CARD_TITLE": "Vuoi aggiungere un'altra ulteriore informazione?",
+              "BTN_ADD": "AGGIUNGI ULTERIORE INFORMAZIONE"
+            },
+            "ALLEGATO": {
+              "TITLE": "Allegato",
+              "DESCRIPTION": "In questa sezione puoi procedere con il caricamento di un allegato unico e inserire la sua descrizione nell'apposito campo di testo.",
+              "BTN_UPLOAD": "CARICA UN ALLEGATO",
+              "LABEL_DESCRIZIONE": "Descrizione allegato",
+              "DETTAGLIO_TITLE": "Dettaglio allegato",
+              "TABLE": {
+                "NOME_DOC": "Nome documento",
+                "DATA": "Data caricamento",
+                "PROFILO": "Profilo utente di chi ha effettuato il caricamento",
+                "DIMENSIONE": "Dimensione e estensione",
+                "AZIONI": "Azioni"
+              }
+            }
+          }
+        },
+        "VALIDATION": {
+          "MODAL_TWO_ACTIONS": {
+            "TITLE": "Invia in validazione",
+            "SUB_TITLE": "Stai per inviare in validazione la sezione {{idSection}} del <strong>{{denominazione}}</strong>.\nSei sicuro di voler confermare questa operazione?",
+
+            "RADIO_BUTTONS": {
+              "CHOICE_1": "Richiedi Validazione",
+              "CHOICE_2": "Valida"
+            }
+          }
+        }
+      },
+      "MODAL": {
+        "REDIGI": {
+          "TITLE": "Redigi un nuovo PIAO",
+          "SUB_TITLE": "Redigi un nuovo documento del PIAO, scegliendo se compilarlo direttamente sulla \npiattaforma oppure caricarlo in formato pdf.",
+          "RADIO_BUTTONS": {
+            "CHOICE_1": "Compila il PIAO on-line",
+            "CHOICE_2": "Carica il PIAO in formato pdf"
+          },
+          "DROPDOWN": {
+            "TITLE": "Seleziona il numero dei dipendenti",
+            "PLACEHOLDER": "Seleziona",
+            "UP_50": "> 50 dipendenti",
+            "DOWN_50": "≤ 50 dipendenti"
+          },
+          "WARNING": {
+            "TIPOLOGIA_DIVERSA": "Attenzione: esiste già un PIAO con tipologia \"{{tipologiaCorrente}}\" per il triennio corrente. Confermando, la tipologia verrà modificata in \"{{tipologiaSelezionata}}\".",
+            "SOTTOTIPOLOGIA_DIVERSA": "Attenzione: esiste già un PIAO \"{{tipologiaCorrente}}\" per il triennio corrente. Confermando, la tipologia verrà modificata in \"{{tipologiaSelezionata}}\".",
+            "TIPOLOGIA": {
+              "ONLINE": "Online",
+              "PDF": "PDF",
+              "ORDINARIO": "Ordinario (> 50 dipendenti)",
+              "SEMPLIFICATO": "Semplificato (≤ 50 dipendenti)"
+            }
+          }
+        }
+      }
+    },
+    "NOVITA": {
+      "TITLE": "Novità",
+      "BUTTON": "VAI ALLE NOVITÀ",
+      "ACTION": "LEGGI"
+    },
+    "AVVISI": {
+      "TITLE": "Avvisi"
+    }
+  },
+  "NOVITA_PA": {
+    "TITLE": "Novità",
+    "SUB_TITLE": "In questa sezione puoi esplorare le ultime novità sul PIAO, con aggiornamenti, approfondimenti e comunicazioni ufficiali per supportare amministrazioni e stakeholder nell'attuazione del Piano Integrato di Attività e Organizzazione",
+    "HIGHLIGHTS_TITLE": "In evidenza",
+    "ALL_NEWS_TITLE": "Tutte le novità",
+    "SEARCH_PLACEHOLDER": "Ricerca per titolo",
+    "SEARCH_ARIA": "Cerca novità",
+    "FEATURED": {
+      "CARD_1_TITLE": "Pubblicazione PIAO: Aperto il triennio 2025-2027",
+      "CARD_1_DESCRIPTION": "Si informano le Amministrazioni che è possibile caricare i Piani riferiti al triennio 2025-2027 per la loro pubblicazione sul Portale PIAO...",
+      "CARD_2_TITLE": "Questionario PIAO: proroga al 10 novembre del termine per la compilazione",
+      "CARD_2_DESCRIPTION": "Si informa che, al fine di garantire la massima partecipazione all'indagine, la compilazione...",
+      "CARD_3_TITLE": "On line il primo questionario di monitoraggio sul PIAO",
+      "CARD_3_DESCRIPTION": "È partita oggi la prima iniziativa di monitoraggio del PIAO avviata dal Dipartimento della Funzione pubblica con il supporto tecnico..."
+    },
+    "FILTERS": {
+      "TYPOLOGY": "Tipologia",
+      "DATE": "Seleziona data",
+      "ORDER_BY": "Ordina per",
+      "CIRCULAR": "Circolare",
+      "NEWS": "Novità",
+      "OTHER": "Altro",
+      "MOST_RECENT": "Più recenti",
+      "LEAST_RECENT": "Meno recenti",
+      "OPTION_ALL": "Tutte",
+      "OPTION_SELECT": "Seleziona",
+      "RESET": "Azzera filtri",
+      "APPLY": "Filtra"
+    },
+    "RESULTS_SEARCH": "{{count}} risultati di ricerca per \"{{term}}\"",
+    "RESULTS_TOTAL": "{{count}} risultati di ricerca",
+    "NO_RESULTS": "Nessuna novità trovata con i filtri correnti.",
+    "DETAIL": {
+      "LOADING": "Caricamento dettaglio novità...",
+      "ERROR": "Errore nel caricamento del dettaglio.",
+      "SHARE": "CONDIVIDI",
+      "SHARE_ARIA": "Condividi notizia",
+      "SHARE_LINK_COPIED": "Link copiato negli appunti",
+      "SHARE_NOT_AVAILABLE": "Impossibile condividere al momento",
+      "PUBLISHED_ON": "Pubblicato il",
+      "KEYWORDS_TITLE": "PAROLE CHIAVE",
+      "DOCUMENTS_TITLE": "Documenti",
+      "DOCUMENT_DOWNLOAD": "Scarica",
+      "NO_DOCUMENTS": "Nessun documento disponibile",
+      "RELATED_TITLE": "Notizie correlate",
+      "RELATED_PREVIOUS": "Pagina precedente notizie correlate",
+      "RELATED_NEXT": "Pagina successiva notizie correlate",
+      "RELATED_DOT_ARIA": "Vai alla pagina"
+    }
+  },
+  "BUTTONS": {
+    "CONFIRM": "CONFERMA",
+    "CANCEL": "ANNULLA",
+    "CLOSE": "CHIUDI",
+    "ALERT": "VAI AGLI AVVISI",
+    "DETAILS": "VAI AL DETTAGLIO",
+    "DOWNLOAD": "Scarica",
+    "DELETE": "Elimina",
+    "VALIDATION_ALL_PIAO": "VALIDAZIONE DI TUTTO IL PIAO",
+    "GO_TO_MINERVA": "VAI SU MINERVA",
+    "VALIDATION": "VALIDAZIONE",
+    "TO_VALIDATION": "INVIA IN VALIDAZIONE",
+    "REQ_VALIDATION": "RICHIEDI VALIDAZIONE",
+    "SAVE": "SALVA",
+    "NEXT_SECTION": "SOTTO SEZIONE SUCCESSIVA",
+    "PREVIUOS_SECTION": "SEZIONE PRECEDENTE",
+    "REMOVE": "Rimuovi",
+    "ADD_SOCIAL": "Aggiungi social",
+    "INSERT": "INSERISCI",
+    "NEW_PROFILE": "NUOVO PROFILO",
+    "EDIT_PROFILE": "MODIFICA PROFILO",
+    "REVOKE_PROFILE": "REVOCA PROFILO",
+    "ASSIGN_PROFILE": "ASSEGNA PROFILO",
+    "UPDATE_PROFILE_USER": "AGGIORNA PROFILO",
+    "ADD_PROFILE": "AGGIUNGI PROFILO",
+    "REMOVE_PROFILE": "Rimuovi profilo",
+    "SAVE_PROFILE": "SALVA PROFILO",
+    "SAVE_EDIT_PROFILE": "SALVA",
+    "ADD_ELEMENT": "Aggiungi elemento",
+    "EDIT": "Modifica",
+    "DOWNLOAD_ALL_PIAO_WITH_ATTACHMENTS": "SCARICA TUTTO IL PIAO CON GLI ALLEGATI",
+    "NOT_SAVE": "NON SALVARE",
+    "VIEW": "Visualizza",
+    "ADD_CONTRIBUTOR": "Aggiungi contributore",
+    "ADD_ACTIONS": "INSERISCI AZIONI",
+    "LOAD_IMAGE": "CARICA IMMAGINE",
+    "FILL_TABLE": "COMPILA TABELLA",
+    "GENERATE_CHART": "GENERA GRAFICO",
+    "TO_STATEMENT": "INVIA DICHIARAZIONE",
+    "SEND": "INVIA",
+    "ACCEPT_VALIDATION": "ACCETTA VALIDAZIONE DELLE SEZIONI SELEZIONATE",
+    "ACCEPT_VALIDATION_PIAO": "ACCETTA VALIDAZIONE DEL PIAO",
+    "INSERISCI_SOTTOFASE": "INSERISCI SOTTOFASE",
+    "IMPOSTA_MILESTONE": "IMPOSTA UNA MILESTONE",
+    "DWN_ALL_ATTACHMENTS": "SCARICA TUTTI GLI ALLEGATI",
+    "EDIT_INFO_PROFILE": "MODIFICA INFORMAZIONI",
+    "SELECT": "SELEZIONA",
+    "SEND_VALIDATION_PIAO": "INVIA IN VALIDAZIONE DI TUTTO IL PIAO",
+    "SAVE_TO_DRAFT": "SALVA BOZZA",
+    "SAVE_IN_DRAFT": "SALVA IN BOZZA",
+    "PUBLISH": "PUBBLICA"
+  },
+  "TH_ATTACHMENTS": {
+    "DETAILS_DOC": "Dettaglio documento",
+    "DETAILS_DOC_DETTAGLIO": "Dettaglio allegato",
+    "NAME": "Nome documento",
+    "DESC": "Descrizione documento",
+    "TYPE": "Tipo",
+    "DATE": "Data caricamento",
+    "USER": "Profilo utente di chi ha\n effettuato il caricamento",
+    "SIZE": "Dimensione e\n estensione",
+    "ACTIONS": "Azioni"
+  },
+
+  "INDICATORI": {
+    "TITLE": "Indicatori",
+    "LIST_INDICATORI": "Elenco indicatori",
+    "ADD_INDICATORE": "Aggiungi indicatore",
+    "NOT_FOUND": "Non sono presenti indicatori. ",
+    "NOT_FOUND_ADD": "Inserisci almeno un indicatore.",
+    "MODAL": {
+      "TITLE": "Inserisci indicatore",
+      "TITLE_EDIT": "Modifica indicatore",
+      "SUB_TITLE": "Di seguito puoi selezionare un indicatore dalla lista degli indicatori oppure inserire un nuovo indicatore tramite digitazione manuale.",
+      "RADIO_BUTTONS": {
+        "CHOICE_1": "Recupera indicatore",
+        "CHOICE_2": "Inserisci nuovo indicatore"
+      },
+      "FORM": {
+        "TITLE": "Compila i campi utili per l'inserimento dell'indicatore.",
+        "SELECT_INDICATORE": "Seleziona indicatore"
+      },
+      "ADD_INFO": {
+        "TITLE": "Campi aggiuntivi",
+        "NOT_FOUND": "Non sono stati aggiunti campi aggiuntivi",
+        "ADD_FIELD": "Aggiungi campi"
+      }
+    },
+    "TH_INDICATORI": {
+      "ACTIONS": {
+        "EDIT": "Modifica",
+        "RELEVANT": "Rendi rilevante",
+        "REMOVE": "Rimuovi"
+      },
+      "DENOMINAZIONE": "Denominazione indicatore",
+      "DENOMINAZIONE_DETTAGLIO": "Indicatore",
+      "DIMENSIONE": "Dimensione",
+      "SUB_DIMENSIONE": "Sub dimensione",
+      "UNITA_MISURA": "Unità di misura",
+      "FORMULA": "Formula",
+      "PESO": "Peso",
+      "POLARITA": "Polarità",
+      "BASELINE": "Baseline",
+      "CONSUNTIVO": "Consuntivo",
+      "ANDAMENTO": "Andamento valore target ",
+      "VALORE": "Valore target ",
+      "FONTE_DATI": "Fonte dati",
+      "RILEVANTE": "Rilevante"
+    }
+  },
+
+  "PLACEHOLDER": {
+    "SELECT": "Seleziona",
+    "NO_VALUES_AVAILABLE": "Nessun valore disponibile"
+  },
+  "MESSAGE": {
+    "ALERT_MANDATORY_FIELDS": "I campi contrassegnati con asterisco (*) sono obbligatori",
+    "ALERT_WARNING_FIELD_NOT_SAVE": "Stai per uscire da questa pagina senza aver salvato le modifiche effettuate. Se non salvi ora, i\n dati inseriti andranno persi e non sarà possibile recuperarli. Vuoi procedere al salvataggio\n prima di continuare?",
+    "ATTENTION": "Attenzione",
+    "ATTENTION_SAVE": "Attenzione: Salva prima di uscire!",
+    "NOT_FOUND_ULTERIORE_INFO": "Non sono presenti ulteriori informazioni",
+    "LOAD_IMAGE": "Carica e inserisci un immagine all'analisi del contesto",
+    "LOAD_DOC": "Carica e inserisci un documento all'analisi del contesto",
+    "DEADLINE_PIAO": "<strong>Scadenza compilazione PIAO.</strong> Invia entro {{deadline}}",
+    "REVOCATA_RIFIUTATA_TOOLTIP": "La validazione della presente</br> sezione è stata <strong>{{status}}</strong>.</br> Pertanto occorre revisionarne il contenuto.",
+    "ANNULLATA_TOOLTIP": "Occorre revisionare la</br> presente sezione per poterne</br> richiedere la validazione",
+    "SEZIONE_NON_RICHIESTA_SEMPLIFICATO": "Sezione facoltativa"
+  },
+  "MODAL_REMOVE": {
+    "ATTIVITA_FORMATIVA": {
+      "TITLE": "Rimuovi attività formativa",
+      "MESSAGE": "Stai per rimuovere un'attività formativa."
+    },
+    "INDICATORE": {
+      "TITLE": "Rimuovi indicatore",
+      "MESSAGE": "Stai per rimuovere un indicatore."
+    },
+    "OVP": {
+      "TITLE": "Rimuovi obiettivo di valore pubblico",
+      "MESSAGE": "Stai per rimuovere un obiettivo di valore pubblico."
+    },
+    "TITLE": "Elimina contenuto",
+    "MESSAGE": "Stai per cancellare un contenuto.",
+    "CONFIRM_OPERATION": "Sei sicuro/a di confermare questa operazione?",
+    "TITLE_DELETE_ELEMENT": "Eliminazione elemento",
+    "SWOT_ELEMENT": {
+      "MESSAGE": "Stai per eliminare un elemento dalla SWOT analisi. Sei sicuro/a di voler confermare questa\n operazione?"
+    },
+    "STRATEGIA_ATTUATIVA": {
+      "MESSAGE": "Stai per eliminare una strategia attuativa. Sei sicuro/a di voler confermare questa\n operazione?"
+    },
+    "OBIETTIVO_PREVENZIONE": {
+      "TITLE": "Rimuovi obiettivo",
+      "MESSAGE": "Stai per rimuovere un obiettivo generale di prevenzione della corruzione e trasparenza."
+    },
+    "ATTACHMENT": {
+      "TITLE": "Eliminazione allegato",
+      "MESSAGE": "Stai per eliminare un documento dalla lista degli allegati."
+    },
+    "FASE": {
+      "TITLE": "Rimuovi fase",
+      "MESSAGE": "Stai per rimuovere una fase."
+    },
+    "AZIONE": {
+      "TITLE": "Rimuovi azione",
+      "MESSAGE": "Stai per rimuovere un'azione."
+    },
+    "ATTIVITA_SENSIBILE_RISCHIO_CORRUTTIVO": {
+      "TITLE": "Rimuovi attività sensibile a rischio corruttivo",
+      "MESSAGE": "Stai per rimuovere un'attività sensibile a rischio corruttivo."
+    },
+    "EVENTO_RISCHIO_ATTIVITA": {
+      "TITLE": "Elimina eventi rischiosi",
+      "MESSAGE": "Stai per cancellare tutti gl'eventi rischiosi collegati all'attività sensibile."
+    },
+    "EVENTO_RISCHIO": {
+      "TITLE": "Rimuovi evento rischioso",
+      "MESSAGE": "Stai per rimuovere un evento rischioso."
+    },
+    "MISURA_PREVENZIONE": {
+      "TITLE": "Rimuovi misura di prevenzione",
+      "MESSAGE": "Stai per rimuovere una misura di prevenzione."
+    },
+    "MISURA_PREVENZIONE_EVENTO_RISCHIO": {
+      "TITLE": "Elimina misure di prevenzione",
+      "MESSAGE": "Stai per cancellare tutte le misure di prevenzione collegate all'evento rischioso."
+    },
+    "OBBLIGO_LEGGE": {
+      "TITLE": "Rimuovi denominazione obbligo di legge",
+      "MESSAGE": "Stai per rimuovere una denominazione obbligo di legge."
+    },
+    "DATO_PUBBLICAZIONE": {
+      "TITLE": "Rimuovi dato da pubblicare",
+      "MESSAGE": "Stai per rimuovere un dato da pubblicare."
+    },
+    "SOTTO_FASE_MONITORAGGIO": {
+      "TITLE": "Rimuovi sottofase di monitoraggio",
+      "MESSAGE": "Stai per rimuovere una sottofase di monitoraggio."
+    },
+    "MILESTONE": {
+      "TITLE": "Rimuovi milestone",
+      "MESSAGE": "Stai per rimuovere una milestone."
+    }
+  },
+  "MODAL_ADD_ENTITY": {
+    "ALERT_TITLE": "Attenzione!",
+    "STAKEHOLDER": {
+      "TITLE": "Aggiungi voce all'elenco stakeholder",
+      "SUB_TITLE": "In questa sezione puoi aggiungere una voce all'elenco e confermare l'operazione di inserimento.",
+      "FIELD_1": "Denominazione",
+      "FIELD_2": "Descrizione relazione con la PA",
+      "ALERT_MESSAGE": "<u>Aggiungendo una voce all'elenco stakeholder modificherai anche la <strong>Sezione 1 Presentazione metodologica e Anagrafica</strong> del presente PIAO</u>"
+    },
+    "PRIORITA_POLITICA": {
+      "TITLE": "Aggiungi voce all'elenco priorità politiche",
+      "SUB_TITLE": "In questa sezione puoi aggiungere una voce all'elenco e confermare l'operazione di inserimento.",
+      "FIELD_1": "Denominazione",
+      "FIELD_2": "Descrizione priorità politica",
+      "ALERT_MESSAGE": "Aggiungendo una voce all'elenco priorità politiche modificherai anche la <strong>Sezione 1 Presentazione metodologica e Anagrafica</strong> del presente PIAO"
+    },
+    "AREA_ORGANIZZATIVA": {
+      "TITLE": "Aggiungi voce all'elenco aree organizzative",
+      "SUB_TITLE": "In questa sezione puoi aggiungere una voce all'elenco e confermare l'operazione di inserimento.",
+      "FIELD_1": "Denominazione",
+      "FIELD_2": "Descrizione area organizzativa",
+      "ALERT_MESSAGE": "Aggiungendo una voce all'elenco aree organizzative modificherai anche la <strong>Sezione 1 Presentazione metodologica e Anagrafica</strong> del presente PIAO"
+    }
+  },
+  "NOTIFICATION": {
+    "ERROR": {
+      "NOTIFICATION_NOT_FOUND": "Notifica non trovata all'indice:",
+      "MARK_AS_READ_ERROR": "Errore marcatura notifica:",
+      "MARK_AS_UNREAD_ERROR": "Errore marcatura notifica come da leggere:",
+      "CONNECTION_ERROR": "Errore nella connessione alle notifiche:",
+      "PARSING_ERROR": "Errore nell'elaborazione delle notifiche:",
+      "UNKNOWN_RESPONSE": "Struttura risposta non riconosciuta:"
+    },
+    "STATUS": {
+      "MARKED_AS_READ": "Notifica marcata come letta:",
+      "MARKED_AS_UNREAD": "Notifica marcata come da leggere:",
+      "NEW_NOTIFICATION": "Nuova notifica ricevuta:",
+      "NOTIFICATION_UPDATED": "Notifica aggiornata:",
+      "SERVICE_READY": "Servizio notifiche inizializzato correttamente",
+      "SERVICE_ERROR": "Errore nell'inizializzazione del servizio notifiche"
+    },
+    "LABELS": {
+      "UNREAD_COUNT": "notifiche non lette",
+      "TOTAL_COUNT": "notifiche totali",
+      "LOADING": "Caricamento notifiche...",
+      "NO_NOTIFICATIONS": "Nessuna notifica disponibile",
+      "ALL_READ": "Tutte le notifiche lette",
+      "NOTIFICATIONS": "Notifiche",
+      "SINGLE_UNREAD": "Notifica da leggere",
+      "MULTIPLE_UNREAD": "Notifiche da leggere",
+      "NO_NOTIFICATION": "Nessuna notifica",
+      "VIEW_ALL": "VEDI TUTTE",
+      "TO_READ": "Da leggere",
+      "MARK_AS_READ": "SEGNA COME GIÀ LETTA",
+      "MARK_AS_UNREAD": "SEGNA COME DA LEGGERE",
+      "NOW": "Adesso",
+      "MINUTES_AGO": "min fa",
+      "HOUR_AGO": "ora fa",
+      "HOURS_AGO": "ore fa",
+      "DAY_AGO": "giorno fa",
+      "DAYS_AGO": "giorni fa",
+      "DOWNLOAD_FILE": "Scarica il file",
+      "DOWNLOAD_FILE_DONE": "Già scaricato"
+    },
+    "HEADER": {
+      "NOTIFICATIONS": "Notifiche",
+      "UNREAD": "non lette",
+      "SEARCH": "Cerca",
+      "PROFILE": "Profilo",
+      "SETTINGS": "Impostazioni",
+      "CHANGE_ORGANIZATION": "Cambia organizzazione",
+      "LOGOUT": "Logout"
+    }
+  },
+  "ERRORS": {
+    "REQUIRED": "Questo campo è obbligatorio",
+    "MAX_LENGTH": "Massimo {{max}} caratteri",
+    "MIN_LENGTH": "Minimo {{min}} caratteri",
+    "PATTERN": "Sono consentiti solo: {{allowed}}",
+    "INVALID_DATE_FORMAT": "Formato data non valido (gg/mm/aaaa)",
+    "CUSTOM": "Valore non consentito",
+    "SERVER": "Errore di validazione dal server"
+  },
+  "TOOLTIP": {
+    "GRAPHIC_STATE": "<strong>Dettaglio stati PIAO</strong><br><strong>Da compilare:</strong> Stato visibile qualora l'utente debba ancora<br>iniziare a compilare i campi di testo.<br><strong>In compilazione:</strong> Stato visibile qualora l'utente non abbia<br>ancora terminato la compilazione dei campi di testo<br>obbligatori.<br><strong>Compilata:</strong> Stato visibile qualora l'utente abbia compilato tutti<br>i campi obbligatori, contrassegnati con l'asterisco.<br><strong>In validazione:</strong> Stato visibile qualora la sezione o<br>sottosezione sia stata inviata in validazione.<br><strong>Validata:</strong> Stato visibile qualora la sezione o sottosezione sia<br>stata validata internamente.",
+    "DENOMINAZIONE_OBIETTIVO": "<strong>Denominazione obiettivo:</strong><br>{{denominazione}}<br><br><p class='tooltip-link' data-clickable='true' style='text-decoration: underline !important; color: white !important; cursor: pointer !important; margin: 0; text-align: right !important; display: block !important;'>Vedi dettaglio</p>"
+  },
+  "GESTIONALE": {
+    "CARD_HEADER": {
+      "TITLE": "Gestionale",
+      "SUB_TITLE": "In questa sezione puoi assegnare o revocare i profili degli utenti per l’accesso al\n portale PIAO. Seleziona il profilo utente desiderato, inserisci i dati richiesti e\n conferma l'operazione desiderata."
+    },
+    "ELENCO_ATTIVITA": {
+      "TITLE": "Elenco Attività",
+      "TITLE_REWORK": "Elenco profili",
+      "TABLE": {
+        "ID_ACTIVITY_TH": "ID attività",
+        "PROFILE_TH": "Profilo utente",
+        "PROFILE_FIRST_TH": "1° profilo utente",
+        "PROFILE_SECOND_TH": "2° profilo utente",
+        "NAME_TH": "Nome",
+        "SURNAME_TH": "Cognome",
+        "FISCAL_CODE_TH": "Codice Fiscale",
+        "ACTIONS_TH": "Azioni",
+        "DETTAGLIO_TH": "Vedi dettaglio",
+        "PROFILO_TH": "Revoca Profilo Utente"
+      },
+      "NO_DATA": "Nessuna attività disponibile"
+    },
+    "DETTAGLIO_ATTIVITA": {
+      "TITLE": "Dettaglio Attività",
+      "SUB_TITLE": "In questa sezione puoi visualizzare e gestire tutte le attività eseguite di assegnazione o revoca dei profili utente per l'accesso al portale PIAO. Puoi consultarne i dettagli ed effettuarne di nuove.",
+      "PROFILO_UTENTE": "Profilo utente",
+      "SEZIONE_PIAO": "Sezione PIAO",
+      "AMMINISTRAZIONE": "Amministrazione",
+      "NOME": "Nome",
+      "COGNOME": "Cognome",
+      "CODICE_FISCALE": "Codice Fiscale",
+      "DATA_NASCITA": "Data di nascita",
+      "LUOGO_NASCITA": "Luogo di nascita",
+      "EMAIL_ISTITUZIONALE": "Email istituzionale",
+      "SELEZIONA_TUTTI": "Seleziona tutti"
+    },
+    "PROFILO_UTENTE": {
+      "TITLE": "Gestione profilo utente",
+      "SUB_TITLE": "In questa sezione puoi assegnare o revocare i profili utente al portale PIAO. Seleziona il profilo utente, la tipologia di azione da effettuare e inserisci tutti i dati richiesti prima di effettuare l'operazione desiderata.",
+      "SUB_TITLE_DETTAGLIO": "In questa sezione puoi visualizzare e gestire tutte le attività eseguite di assegnazione o revoca dei profili utente per l'accesso al portale PIAO. Puoi consultarne i dettagli ed effettuarne di nuove.",
+      "ANAGRAFICA_TITLE": "Dati anagrafici profilo utente",
+      "RUOLI_TITLE": "Profilo da assegnare",
+      "PROFILO_UTENTE": "Profilo utente",
+      "SEZIONE_PIAO": "Sezione PIAO",
+      "AMMINISTRAZIONE": "Amministrazione",
+      "NOME": "Nome",
+      "COGNOME": "Cognome",
+      "CODICE_FISCALE": "Codice Fiscale",
+      "DATA_NASCITA": "Data di nascita",
+      "LUOGO_NASCITA": "Luogo di nascita",
+      "EMAIL_ISTITUZIONALE": "Email istituzionale",
+      "SELEZIONA_TUTTI": "Seleziona tutti",
+      "ADD_SECOND_ROLE_PROMPT": "Vuoi assegnare un altro profilo a questo utente?",
+      "MODAL_CONFIRM_MESSAGE": "Sei sicuro/a di voler confermare questa operazione?",
+      "ASSIGN_MODAL": {
+        "TITLE": "Assegna profilo",
+        "MESSAGE": "Stai per assegnare il profilo all'utente."
+      },
+      "UPDATE_MODAL": {
+        "TITLE": "Aggiorna profilo",
+        "MESSAGE": "Stai per aggiornare il profilo all'utente."
+      },
+      "REVOKE_MODAL": {
+        "TITLE": "Revoca profilo utente",
+        "MESSAGE": "Stai per revocare il profilo dell'utente."
+      }
+    }
+  },
+  "MATRICE": {
+    "DETAIL_VP": {
+      "TITLE": "Dettaglio obiettivo di Valore Pubblico",
+      "SUB_TITLE": "Di seguito è possibile visualizzare i dettagli dell'obiettivo di valore pubblico selezionato.",
+      "ID_VP": "ID Obiettivo di Valore Pubblico",
+      "DENOMINATION": "Denominazione Obiettivo di Valore Pubblico",
+      "DESCRIPTION": "Descrizione dell' Obiettivo di Valore Pubblico"
+    }
+  },
+
+  "SEZIONE_22": {
+    "TITLE": "2.2 Performance",
+    "PARTE_GENERALE": "Parte generale",
+    "PARTE_FUNZIONALE": "Parte funzionale",
+    "SUB_TITLE_PARTE_FUNZIONALE": "Performance organizzativa",
+    "DESCRIPTION_PARTE_FUNZIONALE": "In quest'area informativa puoi  visualizzare e pianificare gli obbiettivi di performance organizzata.",
+    "CICLO_PERFORMANCE": "Ciclo performance",
+    "DESCRIPTION_CICLO_PERFORMANCE": "In quest'area informativa puoi compilare e visualizzare le informazioni sul ciclo della performance.",
+    "DESCRIPTION_CICLO_PERFORMANCE_DETTAGLIO": "In quest'area informativa puoi visualizzare le informazioni sul ciclo della performance.",
+    "INTRODUZIONE_CICLO_PERFORMANCE": "Introduzione ",
+    "TOOLTIP_CICLO_PERFORMANCE": "In quest'area informativa puoi compilare e visualizzare le informazioni sul ciclo della performance.",
+    "TITLE_OBIETTIVI_PERFORMANCE_PA": "Obiettivi di Performance relativi a tutta la PA",
+    "DESCRIPTION_OBIETTIVI_PERFORMANCE_PA": "In quest'area informativa puoi definire e visualizzare gli obiettivi di Performance relativi a tutta la PA",
+    "DESCRIPTION_OBIETTIVI_PERFORMANCE_PA_DETTAGLIO": "In quest'area informativa puoi  visualizzare gli obiettivi direlativi a tutta la PA.",
+    "TOOLTIP_OBIETTIVI_PERFORMANCE_PA": "In quest'area informativa puoi definire e visualizzare gli obiettivi di Performance relativi a tutta la PA",
+    "PERFORMANCE_ORGANIZZATIVA_TITLE": "Performance organizzativa",
+    "PERFORMANCE_ORGANIZZATIVA_DESCRIPTION": "In quest'area informativa puoi definire e visualizzare gli obiettivi di performance organizzativa.",
+    "PERFORMANCE_ORGANIZZATIVA_DESCRIPTION_DETTAGLIO": "In quest'area informativa puoi visualizzare gli obiettivi di performance organizzativa.",
+    "PERFORMANCE_ORGANIZZATIVA_LABEL": "Introduzione",
+    "ADEMPIMENTI": {
+      "TITLE_ADEMPIMENTI": "Adempimenti",
+      "SUB_TITLE_ADEMPIMENTI": "In quest'area informativa puoi visualizzare ed inserire le azioni utili per l'implementazione e il raggiungimento delle innovazioni amministrative, dei comportamenti uniformi, degli obbiettivi di tipo positivo, infrastrutturali digitali ed economico-finanziari.",
+      "SUB_TITLE_ADEMPIMENTI_DETTAGLIO": "In quest'area informativa puoi visualizzare le azioni utili per l'implementazione e il raggiungimento delle innovazioni amministrative,dei miglioramenti organizzativi, dei comportamenti uniformi, degli obbiettivi di tipo positivo, infrastrutturali digitali ed economico-finanziari.",
+      "TOOLTIP_ADEMPIMENTI": "In quest'area informativa puoi visualizzare ed inserire le azioni utili per l'implementazione e il raggiungimento delle innovazioni amministrative, dei comportamenti uniformi, degli obbiettivi di tipo positivo, infrastrutturali digitali ed economico-finanziari.",
+      "ELENCO_ADEMPIMENTI": "Elenco adempimenti*",
+      "ELENCO_ADEMPIMENTI_DETTAGLIO": "Elenco adempimenti",
+
+      "AZIONE_PROPOSTA": "Azione proposta",
+      "ADD_AZIONE_PROPOSTA": "Aggiungi azione proposta",
+      "NOT_FOUND_AZIONE_PROPOSTA": "Non sono state inserite azioni proposte",
+      "AZIONI": "Azioni",
+      "INNOVAZIONI_AMM": "Innovazioni amministrative",
+      "COMPORTAMENTI_UNI": "Comportamenti uniformi",
+      "OBIETTIVI": "Obiettivi di tipo positivo",
+      "OBIETTIVI_INFRA": "Obiettivi infrastrutturali e digitali",
+      "OBIETTIVI_PATRIMONIALI": "Obiettivi patrimoniali ed economico-finanziari",
+      "EMPTY_MESSAGE": {
+        "INNOVAZIONI_AMM": "Non sono state inserite innovazioni amministrative.",
+        "COMPORTAMENTI_UNI": "Non sono stati inseriti comportamenti uniformi.",
+        "OBIETTIVI": "Non sono stati inseriti obiettivi di tipo positivo.",
+        "OBIETTIVI_INFRA": "Non sono stati inseriti obiettivi infrastrutturali e digitali.",
+        "OBIETTIVI_PATRIMONIALI": "Non sono stati inseriti obiettivi patrimoniali ed economico-finanziari.",
+        "DEFAULT": "Non sono stati inseriti adempimenti."
+      },
+      "ADD_BUTTON": {
+        "INNOVAZIONI_AMM": "Aggiungi innovazione amministrativa",
+        "COMPORTAMENTI_UNI": "Aggiungi comportamento uniforme",
+        "OBIETTIVI": "Aggiungi obiettivo di tipo positivo",
+        "OBIETTIVI_INFRA": "Aggiungi obiettivo infrastrutturale e digitale",
+        "OBIETTIVI_PATRIMONIALI": "Aggiungi obiettivo patrimoniale",
+        "DEFAULT": "Aggiungi adempimento"
+      },
+      "MODAL": {
+        "TITLE_INN_AMM": "Inserisci innovazione amministrativa",
+        "SUB_TITLE_INN_AMM": "Di seguito puoi compilare le informazioni utili per l'inserimento dell’innovazione amministrativa, specificando descrizione e azione proposta.",
+        "TITLE_COMP_UNI": "Inserisci comportamento uniforme",
+        "SUB_TITLE_COMP_UNI": "Di seguito puoi compilare le informazioni utili per l'inserimento del comportamento uniforme, specificando descrizione e azione proposta.",
+        "TITLE_OBIET_POS": "Inserisci obiettivo di tipo positivo",
+        "SUB_TITLE_OBIET_POS": "Di seguito puoi compilare le informazioni utili per l'inserimento dell’obiettivo di tipo positivo, specificando descrizione e azione proposta.",
+        "TITLE_OBIET_INFRA": "Inserisci obiettivo infrastrutturale e digitale",
+        "SUB_TITLE_OBIET_INFRA": "Di seguito puoi compilare le informazioni utili per l'inserimento dell’obiettivo infrastrutturale e digitale, specificando descrizione e azione proposta.",
+        "TITLE_OBIET_PATRIM": "Inserisci obiettivo patrimoniale ed economico-finanziario",
+        "SUB_TITLE_OBIET_PATRIM": "Di seguito puoi compilare le informazioni utili per l'inserimento dell’obiettivo patrimoniale ed economico-finanziario, specificando descrizione e azione proposta.",
+        "LABELS": {
+          "INN_AMM": "Innovazione amministrativa",
+          "COMP_UNI": "Comportamento uniforme",
+          "OBIET_POS": "Obiettivo di tipo positivo",
+          "OBIET_INFRA": "Obiettivo infrastrutturale e digitale",
+          "OBIET_PATRIM": "Obiettivo patrimoniale ed economico-finanziario"
+        }
+      }
+    },
+    "FASI": {
+      "ELENCO_FASI": "Elenco fasi",
+      "INSERISCI_FASE": "Inserisci fase",
+      "FASI": "Fasi",
+      "DESCRIZIONE_FASI": "Descrizione fasi",
+      "ATTIVITA": "Attività",
+      "ATTORE": "Attori coinvolti",
+      "TEMPI": "Tempi",
+      "AZIONI": "Azioni",
+      "EMPTY_MESSAGE": "Non sono state inserite fasi.",
+      "ADD_BUTTON": "Aggiungi fase",
+      "MODAL": {
+        "TITLE": "Aggiungi fase",
+        "SUB_TITLE": "Di seguito puoi inserire le informazioni sul ciclo della performance, specificando le fasi del ciclo, la descrizione, le attività, gli attori coinvolti e i tempi previsti per ciascuna fase.",
+        "DENOMINAZIONE_LABEL": "Fase",
+        "NUOVA_DENOMINAZIONE_LABEL": "Nome nuova fase della performance",
+        "DESCRIZIONE_LABEL": "Descrizione fase",
+        "TEMPI_LABEL": "Tempi",
+        "ATTIVITA_TITLE": "Attività",
+        "ADD_ATTIVITA": "Aggiungi attività",
+        "NOT_FOUND_ATTIVITA": "Non sono state inserite attività",
+        "ATTORI_COINVOLTI_TITLE": "Attori coinvolti",
+        "ADD_ATTORI_COINVOLTI": "Aggiungi attore",
+        "NOT_FOUND_ATTORI_COINVOLTI": "Non sono stati inseriti attori coinvolti"
+      }
+    },
+    "OBBIETTIVI_TRASVERSALI": {
+      "TITLE_OBIETTIVI_TRASVERSALI": "Obiettivi Trasversali",
+      "SUB_TITLE_OBIETTIVI_TRASVERSALI": "In quest'area informativa puoi definire e visualizzare gli obiettivi trasversali",
+      "SUB_TITLE_OBIETTIVI_TRASVERSALI_DETTAGLIO": "In quest'area informativa puoi visualizzare gli obiettivi trasversali",
+      "TOOLTIP_OBIETTIVI_TRASVERSALI": "In quest'area informativa puoi definire e visualizzare gli obiettivi trasversali",
+      "ACCESSI_DIGITALE": "Obiettivi di piena accessibilità digitale",
+      "ACCESSI_FISICI": "Obiettivi di piena accessibilità fisica",
+      "SEMPLIFICAZIONE": "Obiettivi di semplificazione",
+      "PARI_OPPORTUNITA": "Obiettivi di pari opportunità",
+      "TITLE": "Inserisci gli obiettivi trasversali. È obbligatorio inserire almeno un indicatore per ciascun obiettivo pianificato. Si consiglia di valutare l'inserimento di molteplici indicatori.",
+      "TITLE_CARD_HEADER": "Obiettivi trasversali",
+      "LABELS": {
+        "ACCESSI_DIGITALE": "Inserisci gli obiettivi di piena accessibilità digitale. È obbligatorio inserire almeno un indicatore per ciascun obiettivo pianificato. Si consiglia di valutare l'inserimento di molteplici indicatori.",
+        "ACCESSI_FISICI": "Inserisci gli obiettivi di piena accessibilità fisica. È obbligatorio inserire almeno un indicatore per ciascun obiettivo pianificato. Si consiglia di valutare l'inserimento di molteplici indicatori.",
+        "SEMPLIFICAZIONE": "Inserisci gli obiettivi di semplificazione. È obbligatorio inserire almeno un indicatore per ciascun obiettivo pianificato. Si consiglia di valutare l'inserimento di molteplici indicatori.",
+        "PARI_OPPORTUNITA": "Inserisci gli obiettivi di pari opportunità. È obbligatorio inserire almeno un indicatore per ciascun obiettivo pianificato. Si consiglia di valutare l'inserimento di molteplici indicatori."
+      },
+      "OBIETTIVO": {
+        "SUB_TITLE": "1. Obiettivo*",
+        "OBIETTIVO_LABEL": "Obiettivo*",
+        "OBIETTIVO_LABEL_DETTAGLIO": "Obiettivo",
+
+        "CARD_TITLE": "Non sono stati inseriti obiettivi.",
+        "CARD_TITLE_ACCESSI_DIGITALE": "Vuoi aggiungere un nuovo obiettivo di piena accessibilità digitale?",
+        "CARD_TITLE_ACCESSI_FISICI": "Vuoi aggiungere un nuovo obiettivo di piena accessibilità fisica?",
+        "CARD_TITLE_SEMPLIFICAZIONE": "Vuoi aggiungere un nuovo obiettivo di semplificazione?",
+        "CARD_TITLE_PARI_OPPORTUNITA": "Vuoi aggiungere un nuovo obiettivo di pari opportunità?",
+        "BTN_ADD": "AGGIUNGI OBIETTIVO",
+        "BTN_DELETE": "Elimina",
+        "BTN_REMOVE": "Rimuovi",
+        "OBIETTIVO_PREFIX": "Obiettivo",
+        "INTRO_TEXT": "Inserisci gli obiettivi di performance. È obbligatorio inserire almeno un indicatore per ciascun obiettivo pianificato. Si consiglia di valutare l'inserimento di molteplici indicatori.",
+        "DETAILS": {
+          "ID_OBIETTIVO": "ID Obiettivo di performance relativo a tutta la PA",
+          "ID_ACCESSI_DIGITALE": "ID Obiettivo di piena accessibilità digitale",
+          "ID_ACCESSI_FISICI": "ID Obiettivo di piena accessibilità fisica",
+          "ID_SEMPLIFICAZIONE": "ID Obiettivo di semplificazione",
+          "ID_PARI_OPPORTUNITA": "ID Obiettivo di pari opportunità",
+          "OBIETTIVO_ACCESSI_DIGITALE": "Obiettivo di piena accessibilità digitale",
+          "OBIETTIVO_ACCESSI_FISICI": "Obiettivo di piena accessibilità fisica",
+          "OBIETTIVO_SEMPLIFICAZIONE": "Obiettivo di semplificazione",
+          "OBIETTIVO_PARI_OPPORTUNITA": "Obiettivo di pari opportunità",
+          "OBIETTIVO_VP": "Obiettivo di VP collegato",
+          "STRATEGIA_ATTUATIVA_OVP": "Strategia attuativa collegata all'OVP",
+          "OBIETTIVO_PERFORMANCE": "Obiettivo di performance relativo a tutta la PA",
+          "OBIETTIVO_PERFORMANCE_RISPETTO_PA": "Obiettivo di performance relativo a tutta la PA",
+          "RESPONSABILE_AMMINISTRATIVO": "Responsabile amministrativo",
+          "CONTRIBUTORI_INTERNI": "Contributori interni",
+          "CONTRIBUTORE_INTERNO": "Contributore interno",
+          "ADD_CONTRIBUTORE": "Aggiungi contributore",
+          "NOT_FOUND_CONTRIBUTORI": "Non sono stati inseriti contributori interni",
+          "STAKEHOLDER": "Stakeholder",
+          "SELEZIONA_STAKEHOLDER": "Seleziona stakeholder",
+          "AGGIUNGI_CONTRIBUTORE": "Aggiungi contributore",
+          "NOT_FOUND_STAKEHOLDER": "Non sono stati inseriti stakeholder"
+        }
+      }
+    },
+    "TITLE_COLLEGAMENTO_PERFORMANCE": "Dalla performance organizzativa alla performance individuale",
+    "DESCRIPTION_COLLEGAMENTO_PERFORMANCE": "In quest'area informativa puoi visualizzare e descrivere il collegamento presente tra la performance organizzativa e quella individuale.",
+    "DESCRIPTION_COLLEGAMENTO_PERFORMANCE_DETTAGLIO": "In quest'area informativa puoi visualizzare il collegamento presente tra la performance organizzativa e quella individuale.",
+
+    "TOOLTIP_COLLEGAMENTO_PERFORMANCE": "In quest'area informativa puoi visualizzare e descrivere il collegamento presente tra la performance organizzativa e quella individuale.",
+    "TITLE_PERFORMANCE_INDIVIDUALE": "Performance individuale",
+    "DESCRIPTION_PERFORMANCE_INDIVIDUALE": "In quest'area informativa puoi visualizzare e pianificare gli obiettivi di performance individuale.",
+    "DESCRIPTION_PERFORMANCE_INDIVIDUALE_DETTAGLIO": "In quest'area informativa puoi visualizzare  gli obiettivi di performance individuale.",
+
+    "TOOLTIP_PERFORMANCE_INDIVIDUALE": "In quest'area informativa puoi visualizzare e pianificare gli obiettivi di performance individuale.",
+    "LABEL_INTRODUZIONE": "Introduzione",
+    "LABEL_DESCRIZIONE": "Descrizione",
+    "OBIETTIVI_PERFORMANCE": {
+      "CARD_ALERT": {
+        "TITLE": "Attenzione!",
+        "SUB_TITLE": "Si suggerisce di pianificare un obiettivo relativo al rispetto dei tempi di pagamento."
+      },
+      "TITLE": "Inserisci gli obiettivi di performance. È obbligatorio inserire almeno un indicatore per ciascun obiettivo pianificato. Si consiglia di valutare l'inserimento di molteplici indicatori.",
+      "NOT_FOUND": "Non è stato inserito nessun obiettivo di performance",
+      "NOT_FOUND_PA": "Non è stato inserito nessun obiettivo di performance relativo alla PA",
+      "NOT_FOUND_ORGANIZZATIVA": "Non è stato inserito nessun obiettivo di performance organizzativa",
+      "OBIETTIVO": {
+        "SUB_TITLE": "1. Obiettivo*",
+        "CARD_TITLE": "Vuoi aggiungere un nuovo obiettivo di performance relativo a tutta la PA?",
+        "BTN_ADD": "AGGIUNGI OBIETTIVO",
+        "OBIETTIVO_PREFIX": "Obiettivo",
+        "INTRO_TEXT": "Inserisci gli obiettivi di performance. È obbligatorio inserire almeno un indicatore per ciascun obiettivo pianificato. Si consiglia di valutare l'inserimento di molteplici indicatori.",
+        "DETAILS": {
+          "ID_OBIETTIVO": "ID Obiettivo di performance relativo a tutta la PA",
+          "OBIETTIVO_VP": "Obiettivo di VP collegato",
+          "STRATEGIA_ATTUATIVA_OVP": "Strategia attuativa collegata all'OVP",
+          "OBIETTIVO_PERFORMANCE": "Obiettivo di performance",
+          "OBIETTIVO_PERFORMANCE_RISPETTO_PA": "Obiettivo di performance relativo a tutta la PA",
+          "RESPONSABILE_AMMINISTRATIVO": "Responsabile amministrativo",
+          "CONTRIBUTORI_INTERNI": "Contributori interni",
+          "CONTRIBUTORE_INTERNO": "Contributore interno",
+          "ADD_CONTRIBUTORE": "Aggiungi contributore",
+          "NOT_FOUND_CONTRIBUTORI": "Non sono stati inseriti contributori interni",
+          "STAKEHOLDER": "Stakeholder",
+          "SELEZIONA_STAKEHOLDER": "Seleziona stakeholder",
+          "AGGIUNGI_CONTRIBUTORE": "Aggiungi contributore",
+          "NOT_FOUND_STAKEHOLDER": "Non sono stati inseriti stakeholder"
+        }
+      }
+    },
+    "OBIETTIVO_PERFORMANCE_ORGANIZZATIVA": {
+      "CARD_INFO_TITLE": "Vuoi aggiungere un nuovo obiettivo di performance organizzativa?",
+      "RISORSE_TITLE": "Pianificazione risorse",
+      "RISORSE_UMANE_LABEL": "Risorse umane",
+      "RISORSE_FINANZIARIE_LABEL": "Risorse economico-finanziarie",
+      "RISORSE_STRUMENTALI_LABEL": "Risorse strumentali"
+    },
+    "OBIETTIVO_PERFORMANCE_INDIVIDUALE": {
+      "CARD_INFO_TITLE": "Vuoi aggiungere un nuovo obiettivo di performance individuale?",
+      "NOT_FOUND": "Non sono stati inseriti obiettivi di performance individuale",
+      "INTRO_TEXT": "Compila l’obiettivo di performance individuale. È obbligatorio inserire almeno un indicatore per ciascun obiettivo pianificato.",
+      "TIPOLOGIA_RISORSA_LABEL": "Tipologia risorsa",
+      "OBIETTIVO_PERFORMANCE_ORGANIZZATIVA_LABEL": "Obiettivo di performance organizzativa collegato",
+      "ID_OBIETTIVO_PERFORMANCE_INDIVIDUALE_LABEL": "ID Obiettivo di performance individuale",
+      "OBIETTIVO_PERFORMANCE_INDIVIDUALE_LABEL": "Obiettivo di performance individuale"
+    }
+  },
+  "SEZIONE_23": {
+    "TITLE": "2.3 Rischi corruttivi e trasparenza",
+    "PARTE_GENERALE": "Parte Generale",
+    "PARTE_FUNZIONALE": "Parte Funzionale",
+    "ATTUAZIONE_TITLE": "Attuazione degli adempimenti normativi",
+    "ATTUAZIONE_SUB_TITLE": "In quest'area informativa puoi definire e visualizzare le modalità utili per l'attuazione degli adempimenti normativi.",
+    "ATTUAZIONE_SUB_TITLE_DETTAGLIO": "In quest'area informativa puoi visualizzare le modalità utili per l'attuazione degli adempimenti normativi.",
+    "ATTUAZIONE_LABEL": "Introduzione",
+    "ELENCO_AZIONI_TITLE": "Elenco attività previste per adempiere alla normativa",
+    "NOT_FOUND_AZIONI": "Non sono state inserite azioni previste per adempiere alla normativa",
+    "ANALISI_CONTESTO_TITLE": "Analisi del contesto",
+    "ANALISI_CONTESTO_SUB_TITLE": "In quest'area informativa puoi descrivere e visualizzare i dettagli relativi all'impatto del contesto esterno e all'impatto del contesto interno sul rischio corruttivo.",
+    "ANALISI_CONTESTO_SUB_TITLE_DETTAGLIO": "In quest'area informativa puoi visualizzare i dettagli relativi all'impatto del contesto esterno e all'impatto del contesto interno sul rischio corruttivo.",
+    "CARD_ALERT_ANALISI_TITLE": "Attenzione!",
+    "CARD_ALERT_ANALISI_SUB_TITLE": "<p>Per compilare la seguente area informativa, si suggerisce di allineare i contenuti con quelli presenti nell'analisi del contesto della sotto sezione <strong>2.1 Valore pubblico</strong>. Inoltre, per la compilazione dell'impatto del contesto interno sul rischio corruttivo, si raccomanda di prendere in considerazione la mappatura dei processi della PA presente nell’Allegato unico della sotto sezione 2.1.</p>",
+    "IMPATTO_CONTESTO_ESTERNO_LABEL": "Impatto del contesto esterno sul rischio corruttivo",
+    "IMPATTO_CONTESTO_INTERNO_LABEL": "Impatto del contesto interno sul rischio corruttivo",
+    "PREVENZIONE_CORRUZIONE_TITLE": "Prevenzione della corruzione e trasparenza",
+    "PREVENZIONE_CORRUZIONE_SUB_TITLE": "In quest'area informativa puoi definire e visualizzare i dettagli relativi al sistema di gestione del rischio corruttivo della PA.",
+    "PREVENZIONE_CORRUZIONE_SUB_TITLE_DETTAGLIO": "In quest'area informativa puoi visualizzare i dettagli relativi al sistema di gestione del rischio corruttivo della PA.",
+    "MODALITA_GESTIONE_TITLE": "Modalità di gestione del rischio corruttivo",
+    "DESC_SISTEMA_GESTIONE_LABEL": "Descrizione del Sistema di gestione del rischio corruttivo",
+    "DESC_MODALITA_INDENTIFICAZIONE_LABEL": "Descrizione delle modalità di identificazione del rischio corruttivo",
+    "DESC_MODALITA_ANALISI_LABEL": "Descrizione delle modalità di analisi del rischio corruttivo",
+    "DESC_MODALITA_MISURAZIONE_LABEL": "Descrizione delle modalità di misurazione del rischio corruttivo",
+    "DESC_MODALITA_TRATTAMENTO_LABEL": "Descrizione delle modalità di trattamento del rischio corruttivo",
+    "DESC_MODALITA_MONITORAGGIO_LABEL": "Descrizione delle modalità di monitoraggio del rischio corruttivo",
+    "ELENCO_AZIONI": {
+      "TITLE_ELENCO_AZIONI": "Elenco attività previste per adempiere alla normativa",
+      "NOT_FOUND_AZIONI": "Non sono state inserite azioni previste per adempiere alla normativa",
+      "ADD_AZIONE": "INSERISCI AZIONE",
+      "TH": {
+        "NORMATIVA": "Normativa",
+        "AZIONE_PREVISTA": "Azione prevista",
+        "AZIONI": "Azioni"
+      },
+      "MODAL": {
+        "TITLE": "Inserisci azione prevista per adempiere alla normativa",
+        "SUB_TITLE": "Di seguito puoi inserire le informazioni sulla normativa e l’azione prevista",
+        "NORMATIVA_LABEL": "Normativa",
+        "AZIONE_PREVISTA_LABEL": "Azione prevista"
+      }
+    },
+    "OBIETTIVI_PREVENZIONE_CORRUZIONE": {
+      "OBIETTIVI_PREVENZIONE_CORRUZIONE_TITLE": "Obiettivi generali di prevenzione della corruzione e trasparenza",
+      "NOT_FOUND": "Non sono presenti obiettivi generali di prevenzione",
+      "INTRO_DEFINIZIONE_OBIETTIVI_LABEL": "Introduzione alla definizione di obiettivi generali di prevenzione della corruzione e trasparenza",
+      "CARD_INFO_NOT_FOUND": "Non sono stati pianificati obiettivi generali di prevenzione della corruzione e trasparenza.",
+      "CARD_INFO_TITLE": "Vuoi aggiungere un nuovo obiettivo generale di prevenzione della corruzione e trasparenza?",
+      "CARD_INFO_ADD": "AGGIUNGI OBIETTIVO",
+      "ACCORDION_TITLE": "Obiettivo",
+      "DESCRIPTION": "Di seguito puoi pianificare gli obiettivi generali di prevenzione della corruzione e trasparenza.",
+      "DESCRIPTION_DETTAGLIO": "Di seguito puoi visualizzare gli obiettivi generali di prevenzione della corruzione e trasparenza.",
+      "ID_OBIETTIVO_LABEL": "ID obiettivo generale di prevenzione della\n corruzione e trasparenza",
+      "DENOMINAZIONE_LABEL": "Obiettivo generale di prevenzione della corruzione \ne trasparenza",
+      "DESCRIZIONE_LABEL": "Descrizione obiettivo generale di prevenzione della corruzione e trasparenza",
+      "ELENCO_INDICATORI": "Elenco Indicatori",
+      "INDICATORI_TITLE": "Indicatori*",
+      "ADD_INDICATORE": "Inserisci indicatore",
+      "TH_INDICATORI": {
+        "INDICATORE": "Indicatore",
+        "UNITA_MISURA": "Unità di misura",
+        "FORMULA": "Formula",
+        "PESO": "Peso",
+        "POLARITA": "Polarità",
+        "BASELINE": "Baseline",
+        "CONSUNTIVO": "Consuntivo",
+        "TARGET": "Target",
+        "FONTE_DATI": "Fonte dati",
+        "AZIONI": "Azioni"
+      },
+      "MODAL": {
+        "TITLE": "Inserisci obiettivo generale",
+        "SUB_TITLE": "Di seguito puoi inserire le informazioni sull'obiettivo generale di prevenzione della corruzione e trasparenza."
+      }
+    },
+    "MISURE_GENERALI_PREVENZIONE": {
+      "MISURE_GENERALI_PREVENZIONE_TITLE": "Misure generali di prevenzione del rischio corruttivo",
+      "INTRO_DEFINIZIONE_MISURE_LABEL": "Introduzione alla definizione delle misure generali di prevenzione del rischio corruttivo.",
+      "INTRO_DEFINIZIONE_MISURE_LABEL_DETTAGLIO": "Introduzione",
+      "CARD_INFO_NOT_FOUND": "Non sono state pianificate misure di prevenzione della corruzione e trasparenza.",
+      "CARD_INFO_TITLE": "Vuoi pianificare altre misure generali di prevenzione della corruzione e trasparenza?",
+      "CARD_INFO_ADD": "IDENTIFICA MISURE GENERALI DI PREVENZIONE",
+      "TITLE": "Inserisci le misure generali di prevenzione. È obbligatorio inserire almeno un indicatore per ciascuna misura pianificata.",
+      "MISURA": {
+        "SUB_TITLE": "1. Misura*",
+        "CARD_TITLE": "Vuoi aggiungere una nuova misura generale di prevenzione?",
+        "BTN_ADD": "AGGIUNGI MISURA",
+        "MISURA_PREFIX": "Misura",
+        "MISURA_PREFIX_DETTAGLIO": "Misura generale di prevenzione",
+        "INTRO_TEXT": "Inserisci le misure generali di prevenzione. È obbligatorio inserire almeno un indicatore per ciascuna misura pianificata.",
+        "INTRO_TEXT_DETTAGLIO": "Di seguito puoi visualizzare le misure generali di prevenzione del rischio corruttivo.",
+        "DETAILS": {
+          "ID_MISURA": "ID della misura generale di prevenzione del rischio corruttivo",
+          "OBIETTIVO_PREVENZIONE": "Obiettivo generale di prevenzione del rischio di corruzione e trasparenza collegato",
+          "MISURA_NOT_FOUND": "Non sono presenti misure di prevenzione",
+          "MISURA_GENERALE": "Misura generale di prevenzione",
+          "TIPOLOGIA_DESCRIZIONE": "Tipologia e descrizione della misura generale di prevenzione del rischio corruttivo",
+          "RESPONSABILE_MISURA": "Responsabile della misura generale di prevenzione del rischio corruttivo",
+          "STAKEHOLDER": "Stakeholder",
+          "SELEZIONA_STAKEHOLDER": "Seleziona stakeholder",
+          "NOT_FOUND_STAKEHOLDER": "Non sono stati inseriti stakeholder"
+        }
+      }
+    },
+    "TRASPARENZA": {
+      "TITLE_TRASPARENZA": "Trasparenza",
+      "SUB_TITLE_TRASPARENZA": "In quest'area informativa puoi definire e visualizzare le iniziative previste per garantire la trasparenza all'interno dell'Amministrazione. Inoltre, è possibile compilare una\n tabella per descrivere i dati che devono essere obbligatoriamente pubblicati da normativa.",
+      "SUB_TITLE_TRASPARENZA_DETTAGLIO": "In quest'area informativa puoi visualizzare le iniziative previste per garantire la trasparenza all'interno dell'Amministrazione.",
+      "DESC_TRASPARENZA_LABEL": "Descrizione iniziative previste per garantire la trasparenza",
+      "DESC_TRASPARENZA_LABEL_DETTAGLIO": "Descrizione delle iniziative previste per garantire la trasparenza",
+      "CARD_INFO_NOT_FOUND": "Non sono stati inseriti denominazioni obblighi di legge .",
+      "CARD_INFO_TITLE": "Vuoi inserire altre denominazioni obblighi di legge?",
+      "CARD_INFO_ADD": "INSERISCI DENOMINAZIONE OBBLIGO DI LEGGE",
+      "OBBLIGO_LEGGE": {
+        "ACCORDION_TITLE": "Denominazione obbligo di legge",
+        "OBBLIGO_LEGGE_NOT_FOUND": "Non sono presenti obblighi di legge",
+        "INTRO_TEXT": "Di seguito puoi inserire la denominazione e il contenuto dell'obbligo di legge.",
+        "INTRO_TEXT_DETTAGLIO": "Di seguito puoi visualizzare la denominazione e il contenuto dell'obbligo di legge.",
+        "DENOMINAZIONE_LABEL": "Denominazione obbligo di legge",
+        "DESCRIZIONE_LABEL": "Contenuto dell'obbligo di legge",
+        "ELENCO_DATI_LABEL": "Elenco dati da pubblicare*",
+        "ELENCO_DATI_LABEL_DETTAGLIO": "Elenco dati da pubblicare",
+        "NOT_FOUND_DATI": "Non sono stati inseriti dati da pubblicare",
+        "ADD_DATI": "Inserisci dati da pubblicare",
+        "CARD_INFO_TITLE": "Vuoi inserire altre denominazioni obblighi di legge?",
+        "CARD_INFO_NOT_FOUND": "Non sono stati inseriti denominazioni obblighi di legge.",
+        "CARD_INFO_ADD": "INSERISCI DENOMINAZIONE OBBLIGO DI LEGGE",
+        "TH": {
+          "DATO_PUBBLICARE": "Dato da pubblicare",
+          "TIPOLOGIA_DATO": "Tipologia di dato",
+          "RESPONSABILE": "Responsabile della trasmissione dai dati",
+          "TERMINI_SCADENZA": "Termini della scadenza della pubblicazione",
+          "MODALITA_MONITORAGGIO": "Modalità di monitoraggio dell'attuazione degli obblighi di legge",
+          "MOTIVAZIONE_IMPOSSIBILITA": "Motivazione in caso di impossibilità di pubblicazione",
+          "AZIONI": "Azioni"
+        }
+      }
+    },
+    "ANTICORRUZIONE": {
+      "TITLE_ANTICORRUZIONE": "Valore pubblico e anticorruzione",
+      "OBIETTIVI_PREVENZIONE_NOT_FOUND": "Non sono presenti obiettivi di prevenzione",
+      "SUB_TITLE_ANTICORRUZIONE": "In quest'area informativa puoi definire e visualizzare le informazioni sul sistema di gestione del rischio corruttivo. Inoltre, è possibile pianificare gli obiettivi di prevenzione della corruzione e trasparenza con i relativi indicatori.",
+      "SUB_TITLE_OBIETTIVI_ANTICORRUZIONE_DETTAGLIO": "In quest'area informativa puoi visualizzare le informazioni sul sistema di gestione del rischio corruttivo. Inoltre, è possibile pianificare gli obiettivi di prevenzione della corruzione e trasparenza con i relativi indicatori.",
+      "SUB_TITLE_OBIETTIVI_ANTICORRUZIONE": "Obiettivi di prevenzione della corruzione e trasparenza",
+      "DESC_ANTICORRUZIONE_LABEL": "Introduzione",
+      "CARD_INFO_NOT_FOUND": "Non sono stati pianificati obiettivi.",
+      "CARD_INFO_TITLE": "Vuoi aggiungere un nuovo obiettivo?",
+      "CARD_INFO_ADD": "AGGIUNGI OBIETTIVO",
+      "OBIETTIVO_PREVENZIONE": {
+        "TITLE": "Obiettivo di prevenzione della corruzione e della trasparenza",
+        "TITLE_DETTAGLIO": "Obiettivo",
+        "INTRO_TEXT": "Di seguito puoi compilare le informazioni utili per l'inserimento degli obiettivi di prevenzione della corruzione e della trasparenza.",
+        "INTRO_TEXT_DETTAGLIO": "Di seguito puoi visualizzare le informazioni utili degli obiettivi di prevenzione della corruzione e della trasparenza.",
+        "OVP_LABEL": "Obiettivo di Valore Pubblico collegato",
+        "STRATEGIA_ATTUATIVA_OVP_LABEL": "Strategia attuativa dell’obiettivo di Valore Pubblico collegato",
+        "OBIETTIVO_PERFORMANCE_LABEL": "Obiettivo di Performance organizzativa collegato",
+        "CODICE_LABEL": "ID obiettivo di prevenzione della corruzione e trasparenza",
+        "DENOMINAZIONE_LABEL": "Obiettivo di prevenzione della corruzione e della trasparenza",
+        "DESCRIZIONE_LABEL": "Descrizione obiettivo di prevenzione della corruzione e della trasparenza"
+      }
+    },
+    "ATTIVITA_SENSIBILI": {
+      "TITLE_ATTIVITA_SENSIBILI": "Mappatura delle attività sensibili al rischio corruttivo",
+      "SUB_TITLE_ATTIVITA_SENSIBILI": "In quest'area informativa puoi definire e visualizzare la mappatura delle attività sensibili al rischio corruttivo.",
+      "SUB_TITLE_ATTIVITA_SENSIBILI_DETTAGLIO": "In quest'area informativa puoi visualizzare la mappatura delle attività sensibili al rischio corruttivo.",
+      "DESC_ATTIVITA_SENSIBILI_LABEL": "Introduzione",
+      "CARD_ALERT_SUB_TITLE": "<p>Si suggerisce di prendere in considerazione la mappatura di processi della PA presente nell’Allegato unico nella sezione <strong>2.1 Valore pubblico</strong></p>",
+      "TITLE_ELENCO_ATTIVITA_SENSIBILE": "Elenco attività sensibile al rischio corruttivo*",
+      "TITLE_ELENCO_ATTIVITA_SENSIBILE_DETTAGLIO": "Elenco attività sensibile al rischio corruttivo",
+      "NOT_FOUND_ATTIVITA_SENSIBILI": "Non sono presenti attività sensibili al rischio corruttivo",
+      "ADD_ATTIVITA": "INSERISCI ATTIVITÀ",
+      "MODAL": {
+        "TITLE": "Inserisci attività sensibile al rischio corruttivo",
+        "SUB_TITLE": "Di seguito puoi inserire le informazioni sulle attività sensibili al rischio corruttivo, specificando le descrizioni delle attività e per ciascuna gli attori coinvolti e processi collegati.",
+        "ATTIVITA_SENSIBILE_LABEL": "Attività sensibile al rischio corruttivo",
+        "PROCESSO_COLLEGATO_LABEL": "Processo collegato",
+        "DESCRIZIONE_LABEL": "Descrizione attività",
+        "ATTORI_COINVOLTI_TITLE": "Attori coinvolti",
+        "ADD_ATTORI_COINVOLTI": "Aggiungi attori",
+        "NOT_FOUND_ATTORI_COINVOLTI": "Non sono stati inseriti attori coinvolti"
+      },
+      "TH": {
+        "ATTIVITA_SENSIBILE": "Attività sensibile al rischio corruttivo",
+        "PROCESSO_COLLEGATO": "Processo collegato",
+        "DESCRIZIONE": "Descrizione attività",
+        "ATTORI_COINVOLTI": "Attori coinvolti",
+        "AZIONI": "Azioni"
+      }
+    },
+    "VALUTAZIONE_RISCHIO": {
+      "TITLE_VALUTAZIONE_RISCHIO": "Valutazione del rischio",
+      "SUB_TITLE_VALUTAZIONE_RISCHIO": "In quest'area informativa puoi definire e visualizzare le modalità di valutazione del rischio utilizzate nella PA.",
+      "SUB_TITLE_VALUTAZIONE_RISCHIO_DETTAGLIO": "In quest'area informativa puoi visualizzare le modalità di valutazione del rischio utilizzate nella PA.",
+      "DESC_VALUTAZIONE_RISCHIO_LABEL": "Introduzione",
+      "CARD_INFO_NOT_FOUND": "Non sono stati identificati gli eventi rischiosi per ciascuna attività sensibile al rischio.",
+      "CARD_INFO_TITLE": "Vuoi identificare altri eventi rischiosi per per ciascuna attività sensibile al rischio?",
+      "ADD_VALUTAZIONE": "IDENTIFICA ATTIVITÀ",
+      "ATTIVITA_SENSIBILE": {
+        "TITLE": "Attività sensibile",
+        "SUB_TITLE": "Di seguito puoi selezionare l'attività sensibile al rischio e individuare gli eventi rischiosi per ciascuna attività identificata.",
+        "SUB_TITLE_DETTAGLIO": "Di seguito puoi visualizzare l'attività sensibile al rischio e individuare gli eventi rischiosi per ciascun processo identificato.",
+        "SELECT_LABEL": "Seleziona attività sensibile",
+        "SELECT_LABEL_DETTAGLIO": "Attività sensibile",
+        "EVENTI_RISCHIOSI_LABEL": "Eventi rischiosi",
+        "NOT_FOUND_EVENTI_RISCHIOSI": "Non sono stati identificati eventi.",
+        "NOT_FOUND": "Non sono presenti attività sensibili",
+        "ADD_EVENTO_RISCHIOSO": "Inserisci eventi rischiosi",
+        "EVENTI_RISCHIOSI_TITLE": "Eventi rischiosi*",
+        "EVENTI_RISCHIOSI_TITLE_DETTAGLIO": "Eventi rischiosi",
+        "EVENTI_RISCHIOSI_NOT_FOUND": "Non sono stati inseriti eventi rischiosi.",
+        "TH": {
+          "EVENTI_RISCHIOSI": "Eventi rischiosi",
+          "FATTORI": "Fattori che abilitano il rischio corruttivo",
+          "PROBABILITA": "Probabilità (P)",
+          "IMPATTO": "Impatto (I)",
+          "CONTROLLI": "Controlli (C)",
+          "VALUTAZIONE_RISCHIO": "Valutazione del rischio (P*I*C)",
+          "LIVELLO_RISCHIO": "Livello del rischio",
+          "MOTIVAZIONE": "Motivazione del rischio",
+          "AZIONI": "Azioni"
+        }
+      }
+    },
+    "GESTIONE_RISCHIO": {
+      "TITLE_GESTIONE_RISCHIO": "Gestione del rischio",
+      "SUB_TITLE_GESTIONE_RISCHIO": "In quest'area informativa puoi definire e visualizzare le modalità di trattamento del rischio utilizzate nella PA.",
+      "SUB_TITLE_GESTIONE_RISCHIO_DETTAGLIO": "In quest'area informativa puoi visualizzare le modalità di trattamento del rischio utilizzate nella PA.",
+      "DESC_GESTIONE_RISCHIO_LABEL": "Introduzione",
+      "CARD_INFO_NOT_FOUND": "Non sono state pianificate misure specifiche di prevenzione per gli eventi rischiosi.",
+      "CARD_INFO_TITLE": "Vuoi pianificare altre misure di prevenzione del rischio per ciascun evento rischioso?",
+      "ADD_EVENTO_RISCHIOSO": "IDENTIFICA EVENTO RISCHIOSO",
+      "EVENTO_RISCHIOSO": {
+        "TITLE": "Evento rischioso",
+        "SUB_TITLE": "Di seguito puoi pianificare le misure di prevenzione per ciascun evento rischioso individuato.",
+        "SUB_TITLE_DETTAGLIO": "Di seguito puoi visualizzare le misure di prevenzione per ciascun evento rischioso individuato.",
+        "SELECT_LABEL": "Seleziona evento rischioso",
+        "SELECT_LABEL_DETTAGLIO": "Evento rischioso",
+        "MISURE_PREVENZIONE_LABEL": "Misure di prevenzione",
+        "MISURE_PREVENZIONE_LABEL_DETTAGLIO": "Misura di prevenzione",
+        "NOT_FOUND_MISURE_PREVENZIONE": "Non sono presenti misure di prevenzione.",
+        "ADD_MISURE_PREVENZIONE": "AGGIUNGI MISURA DI PREVENZIONE",
+        "ADD_MISURE_PREVENZIONE_2": "Vuoi aggiungere una nuova misura di prevenzione?",
+        "OBB_PREV_LABEL": "Obiettivo di prevenzione della corruzione e trasparenza collegato",
+        "CODICE_MISURA_LABEL": "ID della misura di prevenzione",
+        "DENOMINAZIONE_MISURA_LABEL": "Misura specifica di prevenzione",
+        "DESCRIZIONE_MISURA_LABEL": "Tipologia e descrizione della misura specifica di prevenzione",
+        "RESPONSABILE_MISURA_LABEL": "Responsabile della misura specifica di prevenzione",
+        "NOT_FOUND": "Non sono presenti eventi rischiosi"
+      }
+    },
+    "MONITORAGGIO_MISURE": {
+      "TITLE_MONITORAGGIO_MISURE": "Monitoraggio delle misure di prevenzione del rischio corruttivo",
+      "SUB_TITLE_MONITORAGGIO_MISURE": "In quest'area informativa puoi definire e visualizzare le modalità di monitoraggio dell’attuazione delle misure di prevenzione pianificate.",
+      "TITLE_MONITORAGGIO_MISURE_DETTAGLIO": "Monitoraggio delle misure di prevenzione",
+      "SUB_TITLE_MONITORAGGIO_MISURE_DETTAGLIO": "In quest'area informativa puoi visualizzare le modalità di monitoraggio dell’attuazione delle misure di prevenzione pianificate.",
+      "DESC_MONITORAGGIO_MISURE_LABEL": "Introduzione",
+      "TITLE_ELENCO_MONITORAGGIO_MISURE": "Modalita di monitoraggio",
+      "NOT_FOUND_MONITORAGGIO_MISURE": "Non sono state inserite modalità di monitoraggio per le misure di prevenzione",
+      "ADD_MONITORAGGIO": "INSERISCI MODALITÀ DI MONITORAGGIO",
+      "ELENCO_MODALITA_MONITORAGGIO": {
+        "TITLE_MODALITA_MONITORAGGIO": "Modalità di monitoraggio",
+        "NOT_FOUND_MODALITA_MONITORAGGIO": "Non sono state inserite modalità di monitoraggio per le misure di prevenzione",
+        "ADD_MODALITA_MONITORAGGIO": "INSERISCI MODALITÀ DI MONITORAGGIO",
+        "TH": {
+          "MISURA_PREVENZIONE": "Misura di prevenzione",
+          "TIPOLOGIA_PREVENZIONE": "Tipologia di prevenzione",
+          "MODALITA_MONITORAGGIO": "Modalità di monitoraggio",
+          "RESPONSABILE_MONITORAGGIO": "Responsabile del monitoraggio",
+          "TEMPISTICHE_MONITORAGGIO": "Tempistiche del monitoraggio",
+          "AZIONI": "Azioni"
+        },
+        "MODAL": {
+          "TITLE": "Inserisci monitoraggio delle misure di prevenzione",
+          "SUB_TITLE": "Di seguito puoi compilare le informazioni per le modalità di monitoraggio previste per ciascuna misura di prevenzione",
+          "MISURA_PREVENZIONE_LABEL": "Misura di prevenzione",
+          "TIPOLOGIA_MISURA_PREVENZIONE_LABEL": "Tipologia misura di prevenzione",
+          "MODALITA_MONITORAGGIO_LABEL": "Modalità di monitoraggio",
+          "RESPONSABILE_MONITORAGGIO_LABEL": "Responsabile del monitoraggio",
+          "TEMPISTICHE_MONITORAGGIO_LABEL": "Tempistiche del monitoraggio"
+        }
+      }
+    },
+    "EVENTI_RISCHIOSI": {
+      "MODAL": {
+        "TITLE": "Inserisci eventi rischiosi",
+        "SUB_TITLE": "Di seguito puoi compilare le informazioni utili per l'inserimento degli eventi rischiosi e visualizzare la graduatoria degli eventi rischiosi sulla base della valutazione del rischio stimata.",
+        "DENOMINAZIONE_LABEL": "Evento rischioso",
+        "PROBABILITA_LABEL": "Probabilità (P)",
+        "IMPATTO_LABEL": "Impatto (I)",
+        "CONTROLLI_LABEL": "Controlli (C)",
+        "VALUTAZIONE_LABEL": "Valutazione del rischio",
+        "LIVELLO_RISCHIO_LABEL": "Livello del rischio",
+        "MOTIVAZIONE_LABEL": "Motivazione del rischio",
+        "FATTORI_TITLE": "Fattori che abilitano il rischio corruttivo",
+        "ADD_FATTORE": "Aggiungi fattore",
+        "FATTORI_NOT_FOUND": "Non sono stati inseriti fattori",
+        "ULTERIORI_INFO_TITLE": "Campi aggiuntivi",
+        "ULTERIORI_INFO_NOT_FOUND": "Non sono stati inseriti campi aggiuntivi",
+        "ADD_ULTERIORI_INFO": "Aggiungi campi",
+        "LIVELLO_BASSO": "Basso",
+        "LIVELLO_MEDIO": "Medio",
+        "LIVELLO_ALTO": "Alto"
+      }
+    },
+    "DATI_PUBBLICAZIONE": {
+      "MODAL": {
+        "TITLE": "Inserisci dati da pubblicare",
+        "SUB_TITLE": "Di seguito puoi compilare i campi utili per l'inserimento dei dati da pubblicare.",
+        "REQUIRED_FIELDS": "I campi contrassegnati con asterisco (*) sono obbligatori",
+        "DATO_PUBBLICARE_LABEL": "Dato da pubblicare",
+        "TIPOLOGIA_DATO_LABEL": "Tipologia di dato da pubblicare",
+        "RESPONSABILE_TRASMISSIONE_LABEL": "Responsabile della trasmissione dei dati",
+        "DENOMINAZIONE_LABEL": "Dato da pubblicare",
+        "TIPOLOGIA_LABEL": "Tipologia di dato da pubblicare",
+        "RESPONSABILE_LABEL": "Responsabile della trasmissione dei dati",
+        "TERMINI_SCADENZA_LABEL": "Termini di scadenza della pubblicazione",
+        "MODALITA_MONITORAGGIO_LABEL": "Modalità di monitoraggio dell'attuazione degli obblighi di legge",
+        "MOTIVAZIONE_IMPOSSIBILITA_LABEL": "Motivazione in caso di impossibilità di pubblicazione",
+        "CAMPI_AGGIUNTIVI_TITLE": "Campi aggiuntivi",
+        "CAMPI_AGGIUNTIVI_DESCRIPTION": "Al momento non sono presenti campi aggiuntivi.",
+        "CAMPI_AGGIUNTIVI_ADD": "Aggiungi campi",
+        "BTN_ANNULLA": "ANNULLA",
+        "BTN_SALVA": "SALVA"
+      }
+    }
+  },
+  "SEZIONE_31": {
+    "TITLE": "3.1 Struttura organizzativa",
+    "PARTE_GENERALE": "Parte generale",
+    "PARTE_FUNZIONALE": "Parte funzionale",
+    "ACCORDION_1": {
+      "TITLE": "Fotografia dell'organizzazione al 31.12 dell'anno precedente",
+      "STRUTTURA_ORG": {
+        "SUBTITLE": "Struttura organizzativa al 31.12 dell'anno precedente",
+        "LABEL": "Descrizione della struttura organizzativa adottata dall'Amministrazione/Ente"
+      },
+      "ORGANIGRAMMA": {
+        "LABEL": "Rappresentazione dell'organigramma",
+        "DESC": "Per facilitare la comprensione e la visualizzazione dell'organigramma è possibile caricare un'immagine (i.e., diagrammi, grafici, immagini a corredo)*"
+      },
+      "AMPIEZZA_ORG": {
+        "LABEL": "Ampiezza organizzativa e relativa media al 31.12 dell'anno precedente",
+        "TITLE_ELENCO": "COMPILA TABELLA",
+        "LABEL_ADD_ELENCO": "AGGIUNGI RIGA",
+        "NOT_FOUND": "Nessuna ampiezza organizzativa inserita",
+        "TH": {
+          "UNITA_ORGANIZZATIVA": "Unità Organizzative",
+          "N_RISORSE_UMANE": "N. Risorse Umane",
+          "AZIONI": "Azioni"
+        },
+        "TD": {
+          "TOTALE_UNITA": "Totale unità",
+          "AMPIEZZA_MEDIA": "Ampiezza media U.O."
+        },
+        "MODAL": {
+          "TITLE": "Compilazione tabella",
+          "SUB_TITLE": "Riga",
+          "UNITA_ORGANIZZATIVA_LABEL": "Unità Organizzative",
+          "N_RISORSE_UMANE_LABEL": "N.Risorse umane"
+        }
+      },
+      "ULTERIORI_DETTAGLI": {
+        "LABEL": "Integrazione di ulteriori dettagli relativi all'ampiezza organizzativa"
+      },
+      "INCARICHI_DIR": {
+        "SUBTITLE": "Incarichi dirigenziali e simili",
+        "LABEL": "Descrizione del numero di incarichi dirigenziali e simili (es. posizioni organizzative)*",
+        "LABEL_DETTAGLIO": "Descrizione del numero di incarichi dirigenziali e simili (es. posizioni organizzative)"
+      },
+      "PROFILI_PROF": {
+        "SUBTITLE": "Rappresentazione dei profili professionali",
+        "LABEL": "Descrizione del modello di rappresentazione dei profili professionali come definiti dalle Linee Guida di cui all'articolo 6-ter, comma 1, del decreto-legislativo 30 marzo 2001, n. 165*",
+        "LABEL_DETTAGLIO": "Descrizione del modello di rappresentazione dei profili professionali come definiti dalle Linee Guida di cui all'articolo 6-ter, comma 1, del decreto-legislativo 30 marzo 2001, n. 165"
+      },
+      "RAPP_GRAFICA": {
+        "LABEL": "Rappresentazione grafica della composizione dell'organico dell'Amministrazione/Ente in termini di profili di ruolo",
+        "LABEL_DETTAGLIO": "Nessun grafico inserito"
+      }
+    },
+    "ACCORDION_2": {
+      "TITLE": "Linee strategiche dell'organizzazione",
+      "LINEE_STRATEGICHE": {
+        "LABEL": "Descrizione del modello di rappresentazione dei profili professionali come definiti dalle Linee Guida di cui all'articolo 6-ter, comma 1, del decreto-legislativo 30 marzo 2001, n. 165"
+      }
+    },
+    "TABELLA_FUNZIONALE": {
+      "LABEL": "Tabella per la parte funzionale"
+    },
+    "MODAL_IMMAGINE": {
+      "BREVE_DESCRIZIONE": "Breve descrizione"
+    },
+    "GRAFICO": {
+      "GENERA": "GENERA GRAFICO",
+      "NOT_FOUND": "Impossibile generare il grafico"
+    }
+  },
+  "SEZIONE_332": {
+    "BUTTON": {
+      "INSERISCI": "Inserisci"
+    },
+    "MODAL": {
+      "TITLE": "Compilazione tabella",
+      "SUB_TITLE": "Riga 1",
+      "TIPOLOGIA_ATTIVITA": "Tipologia di attività",
+      "AREA_TEMATICA": "Area tematica",
+      "AMBITO_COMPETENZA": "Ambito di competenza",
+      "NUMERO_NON_DIRIGENTI": "N. formati non dirigenti",
+      "NUMERO_DIRIGENTI": "N. formati dirigenti",
+      "ORE_FORMAZIONE": "Ore di formazione",
+      "VERIFICA_APPRENDIMENTO": "Verifica dell'apprendimento",
+      "SI": "Si",
+      "NO": "No"
+    },
+    "ELENCO_ATTIVITA_FORMATIVE": {
+      "TITLE": "COMPILA TABELLA",
+      "NOT_FOUND": "Nessuna attività formativa presente",
+      "ADD_RIGA": "AGGIUNGI RIGA",
+      "TH": {
+        "TIPOLOGIA_ATTIVITA": "Tipologia attività",
+        "AMBITO_COMPETENZA": "Ambito di competenza",
+        "AREA_TEMATICA": "Area tematica",
+        "N_FORMATI_DIRIGENTI": "N. formati dirigenti",
+        "N_FORMATI_NON_DIRIGENTI": "N. formati non dirigenti",
+        "ORE_FORMAZIONE": "Ore di formazione",
+        "VERIFICA_APPRENDIMENTO": "Verifica di apprendimento",
+        "AZIONI": "Azioni"
+      }
+    }
+  },
+  "SEZIONE_32": {
+    "TITLE": "3.2 Lavoro agile",
+    "PARTE_GENERALE": "Parte generale",
+    "PARTE_FUNZIONALE": "Parte funzionale",
+    "ACCORDION_1": {
+      "TITLE": "Contesto di riferimento",
+      "LABEL": "Inserire il contesto di riferimento dell'attuazione dell'istituto del lavoro agile, in relazione a quanto desumibile dalla normativa di riferimento e dalla contrattazione collettiva, specificando eventuali peculiarita dell'Amministrazione/Ente, anche in termini di policy in materia di organizzazione del lavoro e introduzione di modelli di lavoro flessibili e in funzione delle caratteristiche del capitale umano.",
+      "LABEL_DETTAGLIO": "Visualizza il contesto di riferimento dell'attuazione dell'istituto del lavoro agile, in relazione a quanto desumibile dalla normativa di riferimento e dalla contrattazione collettiva, specificando eventuali peculiarita dell'Amministrazione/Ente, anche in termini di policy in materia di organizzazione del lavoro e introduzione di modelli di lavoro flessibili e in funzione delle caratteristiche del capitale umano.",
+
+      "TOOLTIP": "Inserire il contesto di riferimento dell'attuazione dell'istituto del lavoro agile"
+    },
+    "ACCORDION_2": {
+      "TITLE": "Obiettivi dell'Amministrazione/Ente perseguiti attraverso l'attuazione del lavoro agile",
+      "LABEL": "Inserire, esplicitandoli, gli obiettivi che l'Amministrazione/Ente intende perseguire prioritariamente attraverso l'attuazione del lavoro agile.",
+      "LABEL_DETTAGLIO": "Visualizza gli obiettivi che l'Amministrazione/Ente intende perseguire prioritariamente attraverso l'attuazione del lavoro agile.",
+
+      "TOOLTIP": "Inserire gli obiettivi prioritari perseguiti tramite l'attuazione del lavoro agile"
+    },
+    "ACCORDION_3": {
+      "TITLE": "Obiettivi di consolidamento e sviluppo del lavoro agile",
+      "DESCRIZIONE_STATO_ATTUAZIONE_LABEL": "Inserire una descrizione dello stato di attuazione del lavoro agile al 31.12 dell'anno precedente, ricorrendo ad indicatori di tipo quantitativo e qualitativo.",
+      "DESCRIZIONE_STATO_ATTUAZIONE_LABEL_DETTAGLIO": "Visualizza descrizione dello stato di attuazione del lavoro agile al 31.12 dell'anno precedente, ricorrendo ad indicatori di tipo quantitativo e qualitativo.",
+
+      "DESCRIZIONE_FATTORI_ABILITANTI_LABEL": "Descrivere obiettivi e azioni che l'Amministrazione/Ente si pone attraverso l'attuazione del lavoro agile e i relativi risultati attesi, per ciascuno dei principali fattori abilitanti (es. fattori abilitanti di natura organizzativa, natura logistica, di natura digitale, di natura professionale e di natura economico-finanziaria).",
+      "DESCRIZIONE_FATTORI_ABILITANTI_LABEL_DETTAGLIO": "Visualizza obiettivi e azioni che l'Amministrazione/Ente si pone attraverso l'attuazione del lavoro agile e i relativi risultati attesi, per ciascuno dei principali fattori abilitanti (es. fattori abilitanti di natura organizzativa, natura logistica, di natura digitale, di natura professionale e di natura economico-finanziaria).",
+
+      "FATTORI_ABILITANTI_TOOLTIP": "Indicare obiettivi, azioni e risultati attesi sui fattori abilitanti",
+      "CARD_INFO_TITLE": "<strong>Nota Bene:</strong>",
+      "CARD_INFO_SUBTITLE": "<ul class='list-items-square'><li><strong>Fattori abilitanti di natura organizzativa.</strong> Ad esempio: adozione, da parte dell'Amministrazione/Ente di un documento di policy relativo alla disciplina e organizzazione del lavoro agile; definizione di modelli organizzativi di gestione \"per obiettivi\"; progettazione e/o realizzazione di interventi di reingegnerizzazione dei processi e digitalizzazione delle procedure per rendere possibile il lavoro da remoto; disponibilita/sviluppo di strumenti/applicazioni per la stipula, la gestione e il monitoraggio degli accordi individuali di lavoro agile; adeguamento/sviluppo del sistema di misurazione e valutazione della performance del personale; adeguamento/sviluppo di sistemi di misurazione e valutazione degli effetti e degli impatti del lavoro agile sul personale, all'interno e all'esterno della PA; ecc.</li><li><strong>Fattori abilitanti di natura logistica.</strong> Ad esempio: allestimento e disponibilita di spazi di co-working; condivisione di postazioni di lavoro e piani di turnazione per il lavoro in presenza; ecc.</li><li><strong>Fattori abilitanti di natura digitale.</strong> Ad esempio: assegnazione ai dipendenti di dotazioni informatiche per il lavoro agile e da remoto (percentuale sul totale dei dipendenti); disponibilita / implementazione / sviluppo di piattaforme collaborative per supportare il lavoro da remoto; disponibilita di sistemi informativi dell'Amministrazione per i quali e possibile l'accesso da remoto (percentuale sul totale); ecc.</li><li><strong>Fattori abilitanti di natura professionale.</strong> Ad esempio: disponibilita di sistemi di assessment delle competenze di dirigenti e funzionari, per la verifica del possesso, da parte dei dipendenti, di quelle abilitanti il lavoro agile; previsione di percorsi di formazione a valle della stipula dell'accordo individuale, prima dell'avvio del lavoro agile (cosi come previsto dalla Direttiva del Ministro per la pubblica amministrazione del 14 gennaio 2025); ecc.</li><li><strong>Fattori abilitanti di natura economico-finanziaria.</strong> Ad esempio: disponibilita/previsione di risorse finanziarie specificamente destinate allo sviluppo delle condizioni abilitanti del lavoro agile per uno o piu fattori.</li></ul>",
+      "PERSONALE_AGILE_TITLE": "Personale che presta la propria attivita in lavoro agile",
+      "PERSONALE_AGILE_LABEL": "Descrizione della consistenza, al 31.12 dell'anno precedente dei dipendenti in lavoro agile e degli obiettivi del Piano, con distribuzione (assoluta e in percentuale) del personale in lavoro agile in base a, per esempio: unita organizzative; aree di inquadramento (Dirigenti, Personale non dirigenziale, ecc.); rapporto di lavoro (TI e TD); sesso; eta (<35; 36-45; 46-55; >56); categoria.",
+      "GIORNATE_LAVORATE_TITLE": "Giornate lavorate dal personale in lavoro agile rispetto al totale delle giornate lavorabili",
+      "GIORNATE_LAVORATE_LABEL": "Indicare il numero complessivo delle giornate di smart working effettuate dal personale in lavoro agile in rapporto a quelle complessive lavorabili al 31.12 dell'anno precedente e gli obiettivi del Piano (in termini di 'mantenimento' o 'incremento'), anche in funzione degli obiettivi di investimento sui fattori abilitanti sopra esplicitati. Differenziare il dato per alcune categorie di personale, ad esempio: dirigenti e personale non dirigenziale; sesso, ecc.",
+      "GIORNATE_LAVORATE_LABEL_DETTAGLIO": "Visualizza il numero complessivo delle giornate di smart working effettuate dal personale in lavoro agile in rapporto a quelle complessive lavorabili al 31.12 dell'anno precedente e gli obiettivi del Piano (in termini di 'mantenimento' o 'incremento'), anche in funzione degli obiettivi di investimento sui fattori abilitanti sopra esplicitati.",
+
+      "LIVELLO_SODDISFAZIONE_TITLE": "Livello di soddisfazione dei dipendenti in lavoro agile",
+      "LIVELLO_SODDISFAZIONE_LABEL": "Indicare la percentuale dei dipendenti in lavoro agile soddisfatti - per i profili di conciliazione vita-lavoro; produttivita; ecc. - rispetto al totale di quelli che lo praticano. Specificare le modalita di rilevazione dei dati (ad esempio: somministrazione ad un campione di dipendenti e/o all'intero universo; ecc.)",
+      "LIVELLO_SODDISFAZIONE_LABEL_DETTAGLIO": "Visualizza la percentuale dei dipendenti in lavoro agile soddisfatti - per i profili di conciliazione vita-lavoro; produttivita; ecc. - rispetto al totale di quelli che lo praticano. ",
+
+      "CONTRIBUTI_TITLE": "Contributi del lavoro agile al miglioramento della performance individuale e organizzativa",
+      "CONTRIBUTI_LABEL": "Inserire una descrizione dei contributi al miglioramento della performance, in termini di efficienza ed efficacia, a livello individuale e organizzativo. Specificare la modalita di rilevazione dei dati.",
+      "CONTRIBUTI_LABEL_DETTAGLIO": "Visualizza descrizione dei contributi al miglioramento della performance, in termini di efficienza ed efficacia, a livello individuale e organizzativo. ",
+
+      "CONTRIBUTI_TOOLTIP": "Specificare come vengono misurati i contributi del lavoro agile alla performance",
+      "IMPATTI_TITLE": "Impatti del lavoro agile",
+      "IMPATTI_LABEL": "Descrizione e quantificazione degli impatti del lavoro agile distinti per: l'amministrazione: economici (- costi gestionali; - costi logistici); i dipendenti: sociali (- work-life balance), economici (- costi di commuting); gli stakeholder: ambientali (- inquinamento)."
+    },
+    "TABELLA_FUNZIONALE": {
+      "LABEL": "Tabella per la parte funzionale *",
+      "LABEL_DETTAGLIO": "Tabella per la parte funzionale"
+    }
+  },
+  "SEZIONE_4": {
+    "TITLE": "4 Monitoraggio",
+    "SUB_TITLE": "Attività di monitoraggio",
+    "ATTIVITA_MONITORAGGIO": {
+      "DESC": "In quest'area informativa puoi definire e visualizzare l'attività di monitoraggio con il dettaglio sugli strumenti e modalità da utilizzare. Inoltre, è possibile fornire informazioni sulla modalità di rilevazione della soddisfazione degli utenti e inserire un'introduzione alla tabella visualizzata.",
+      "DESC_DETTAGLIO": "In quest'area informativa puoi visualizzare l'attività di monitoraggio con il dettaglio sugli strumenti, modalità da utilizzare e visualizzare le informazioni sulla modalità di rilevazione della soddisfazione degli utenti.",
+      "DESCR_STRUMENTI": {
+        "LABEL": "Strumenti e modalità del monitoraggio integrato del PIAO"
+      },
+      "DESCR_MODALITA_RILEVAZIONE": {
+        "LABEL": "Modalità di rilevazione della soddisfazione degli utenti"
+      },
+      "INTRO": {
+        "LABEL": "Introduzione"
+      }
+    },
+    "CARD_ALERT": {
+      "TITLE": "Attenzione!",
+      "SUB_TITLE": "Si suggerisce di approfondire la fase di monitoraggio inserita nella tabella del ciclo della performance prevista nella sotto sezione \"<b>2.2 Performance</b>\" Inoltre, si raccomanda di allineare le tempistiche del Monitoraggio con quelle previste per la redazione e pubblicazione della Relazione Annuale sulla Performance e del Report Integrato."
+    },
+    "ELENCO_SOTTOFASI": {
+      "LABEL": "Elenco sottofasi di monitoraggio",
+      "DESC": "Non sono state inserite sottofasi",
+      "ADD": "INSERISCI SOTTOFASE",
+      "TH": {
+        "FASE": "Fase",
+        "SOTTOFASE": "Sottofase",
+        "DESCRIZIONE_SOTTOFASE": "Descrizione sottofase",
+        "ATTORI_COINVOLTI": "Attori coinvolti",
+        "STRUMENTI": "Strumenti",
+        "DATA_INIZIO": "Data inizio",
+        "DATA_FINE": "Data fine",
+        "FONTE_DATO": "Fonte dato",
+        "AZIONI": "Azioni"
+      }
+    },
+    "MODAL_SOTTOFASE": {
+      "TITLE": "Inserisci sottofase",
+      "DESC": "Di seguito puoi inserire le informazioni sulla sottofase, specificando la descrizione, la descrizione, gli attori coinvolti, gli strumenti utilizzati, la data di inizio, la data di fine e le fonti dato per ciascuna sottofase inserita.",
+      "CAMPI_OBBLIGATORI": "I campi contrassegnati con asterisco (*) sono obbligatori",
+      "FASE": {
+        "LABEL": "Fase"
+      },
+      "DENOMINAZIONE": {
+        "LABEL": "Sottofase"
+      },
+      "DESCRIZIONE_SOTTOFASE": {
+        "LABEL": "Descrizione sottofase"
+      },
+      "DATA_INIZIO": {
+        "LABEL": "Data inizio"
+      },
+      "DATA_FINE": {
+        "LABEL": "Data fine"
+      },
+      "STRUMENTI": {
+        "LABEL": "Strumenti"
+      },
+      "FONTE_DATO": {
+        "LABEL": "Fonte dato"
+      },
+      "ATTORI_COINVOLTI": {
+        "LABEL": "Attori coinvolti",
+        "INSERISCI_ATTORE": "Inserisci attore"
+      },
+      "BTN_AGGIUNGI_ATTORE": "AGGIUNGI ATTORE"
+    },
+    "MODAL_CATEGORIA_OBIETTIVO": {
+      "TITLE": "Inserisci categoria di obiettivi",
+      "DESC": "Di seguito puoi inserire le informazioni sulla sottofase, specificando la categoria di obiettivi, le attività, gli attori coinvolti, le date previste di inizio e di fine per ciascuna categoria di obiettivi.",
+      "SOTTO_FASE_LABEL": "Sottofase di riferimento",
+      "CATEGORIA_LABEL": "Categoria di obiettivi",
+      "ATTIVITA_TITLE": "Attività",
+      "ATTIVITA_ADD": "Aggiungi attività",
+      "ATTIVITA_NOT_FOUND": "Non sono state inserite attività"
+    },
+    "ACCORDION_CONTENT": {
+      "INTRO_21": {
+        "LABEL": "Introduzione"
+      },
+      "INTRO_22": {
+        "LABEL": "Introduzione"
+      },
+      "DESCR_22": {
+        "LABEL": "Descrizione delle modalità e delle tempistiche del monitoraggio"
+      },
+      "DESCR_23": {
+        "LABEL": "Descrizione delle modalità e delle tempistiche del monitoraggio"
+      },
+      "DESCR_31": {
+        "LABEL": "Descrizione delle modalità e delle tempistiche del monitoraggio"
+      },
+      "DESCR_32": {
+        "LABEL": "Descrizione delle modalità e delle tempistiche del monitoraggio"
+      },
+      "DESCR_331": {
+        "LABEL": "Descrizione delle modalità e delle tempistiche del monitoraggio"
+      },
+      "DESCR_332": {
+        "LABEL": "Descrizione delle modalità e delle tempistiche del monitoraggio"
+      },
+      "ELENCO_CATEGORIA_OBIETTIVI": "Elenco categoria di obiettivi",
+      "NON_INSERITE_CATEGORIE": "Non sono stati inserite categorie di obiettivi",
+      "INSERISCI_CATEGORIA_OBIETTIVI": "INSERISCI CATEGORIA DI OBIETTIVI"
+    },
+    "TABLE": {
+      "SOTTOFASE_RIFERIMENTO": "Sottofase di riferimento",
+      "CATEGORIA_OBIETTIVI": "Categoria obiettivi",
+      "ATTORI_COINVOLTI": "Attori coinvolti",
+      "ATTIVITA": "Attività",
+      "DATA_INIZIO": "Data inizio",
+      "DATA_FINE": "Data fine",
+      "AZIONI": "Azioni"
+    },
+    "MONITORAGGIO_SEZ2": {
+      "TITLE": "Monitoraggio sezione 2 \"Valore pubblico, performance, rischi corruttivi e trasparenza\"",
+      "DESC": "In quest'area informativa puoi definire e visualizzare l'attività di monitoraggio relativa alla sezione 2 \"Valore pubblico, performance, rischi corruttivi e trasparenza\".",
+      "DESC_DETTAGLIO": "In quest'area informativa visualizzare l'attività di monitoraggio relativa alla sezione 2 \"Valore pubblico, performance, rischi corruttivi e trasparenza\".",
+      "CARD_ALERT": {
+        "TITLE": "Attenzione!",
+        "SUB_TITLE": "Si suggerisce di allineare le tempistiche del Monitoraggio con quelle previste nell'area informativa \"Attività di monitoraggio\"."
+      },
+      "ACCORDION_21": {
+        "TITLE": "Monitoraggio sotto sezione 2.1 \"Valore Pubblico\"",
+        "DESC": "Inserisci e visualizza il dettaglio inerente all'attività di monitoraggio prevista per la sotto sezione 2.1 \"Valore Pubblico\"."
+      },
+      "ACCORDION_22_ORG": {
+        "TITLE": "Monitoraggio sotto sezione 2.2 \"Performance\" - Performance Organizzativa",
+        "DESC": "Inserisci e visualizza il dettaglio inerente all'attività di monitoraggio prevista per la sotto sezione 2.2 \"Performance\" - Performance organizzativa."
+      },
+      "ACCORDION_22_IND": {
+        "TITLE": "Monitoraggio sotto sezione 2.2 \"Performance\" - Performance Individuale",
+        "DESC": "Inserisci e visualizza il dettaglio inerente all'attività di monitoraggio prevista per la sotto sezione 2.2 \"Performance\" - Performance individuale.",
+        "DESC_DETTAGLIO": "Inserisci e visualizza il dettaglio inerente alle modalità e tempistiche dell'attività di monitoraggio prevista per la sotto sezione 2.2 \"Performance\" - Performance \nindividuale."
+      },
+      "ACCORDION_23": {
+        "TITLE": "Monitoraggio sotto sezione 2.3 \"Rischi corruttivi e trasparenza\"",
+        "DESC": "Inserisci e visualizza il dettaglio inerente all'attività di monitoraggio prevista per la sotto sezione 2.3 \"Rischi corruttivi e trasparenza\"."
+      }
+    },
+    "MONITORAGGIO_SEZ3": {
+      "TITLE": "Monitoraggio sezione 3 \"Organizzazione e capitale umano\"",
+      "DESC": "In quest'area informativa puoi definire e visualizzare l'attività di monitoraggio relativa alla sezione 3 \"Organizzazione e capitale umano\".",
+      "DESC_DETTAGLIO": "In quest'area informativa puoi visualizzare l'attività di monitoraggio relativa alla sezione 3 \"Organizzazione e capitale umano\".",
+      "ACCORDION_31": {
+        "TITLE": "Monitoraggio sotto sezione 3.1 \"Organizzazione\"",
+        "DESC": "Inserisci e visualizza il dettaglio inerente all'attività di monitoraggio prevista per la sotto sezione 3.1 \"Organizzazione\".",
+        "DESC_DETTAGLIO": "Inserisci e visualizza il dettaglio inerente alle modalità e tempistiche dell'attività di monitoraggio prevista per la sotto sezione 3.1 \"Organizzazione\"."
+      },
+      "ACCORDION_32": {
+        "TITLE": "Monitoraggio sotto sezione 3.2 \"Lavoro agile\"",
+        "DESC": "Inserisci e visualizza il dettaglio inerente all'attività di monitoraggio prevista per la sotto sezione 3.2 \"Lavoro agile\"."
+      },
+      "ACCORDION_331": {
+        "TITLE": "Monitoraggio sotto sezione 3.3.1 \"Fabbisogno del personale\"",
+        "DESC": "Inserisci e visualizza il dettaglio inerente all'attività di monitoraggio prevista per la sotto sezione 3.3.1 \"Fabbisogno del personale\"."
+      },
+      "ACCORDION_332": {
+        "TITLE": "Monitoraggio sotto sezione 3.3.2 \"Formazione del personale\"",
+        "DESC": "Inserisci e visualizza il dettaglio inerente all'attività di monitoraggio prevista per la sotto sezione 3.3.2 \"Formazione del personale\"."
+      }
+    },
+    "MONITORAGGIO_PIAO": {
+      "TITLE": "Il monitoraggio del PIAO",
+      "DESC": "In quest'area puoi visualizzare un GANTT relativo al monitoraggio del PIAO, prodotto sulla base delle informazioni inserite nell'area informativa \"Attività di monitoraggio\". Nel grafico sottostante è inoltre possibile definire delle milestone, scadenze per attività rilevanti scelte discrezionalmente dalla PA. Ad esse è possibile collegare dei promemoria temporali per ricordarne la scadenza. Inoltre, è prevista la possibilità di inserire una breve descrizione del grafico e di alegare immagini, tabelle o grafici.",
+      "DESCR_MONITORAGGIO": {
+        "LABEL": "Descrizione"
+      },
+      "GANTT_TITLE": "Fase Monitoraggio",
+      "GANTT_PLACEHOLDER": "Il grafico Gantt verrà visualizzato qui una volta inseriti i dati di monitoraggio",
+      "ELENCO_MILESTONE": "Elenco milestone",
+      "ELENCO_MILESTONE_DESC": "Non sono state impostate milestone nel GANTT"
+    },
+    "ELENCO_MILESTONE": {
+      "LABEL": "Elenco milestone",
+      "DESC": "Non sono state inserite milestone. Inserisci almeno una milestone.",
+      "ADD": "IMPOSTA UNA MILESTONE",
+      "TH": {
+        "FASE_SOTTOFASE": "Fase-sottofase",
+        "DESCRIZIONE": "Descrizione",
+        "DATA_MILESTONE": "Data milestone",
+        "DATA_PROMEMORIA": "Data promemoria",
+        "AZIONI": "Azioni"
+      }
+    },
+    "DOCUMENTAZIONE": {
+      "TITLE": "Documentazione a supporto del monitoraggio"
+    },
+    "ULTERIORI_INFO": {
+      "TITLE": "Ulteriori informazioni",
+      "SUB_TITLE": "In questa sezione è possibile inserire informazioni aggiuntive. Per farlo, è necessario digitare il nome del nuovo campo desiderato nella modale e completare il relativo contenuto nell'area della stessa.",
+      "CARD_TITLE": "Vuoi aggiungere un'altra ulteriore informazione?",
+      "BTN_ADD": "AGGIUNGI NUOVO CAMPO"
+    },
+    "ALLEGATO": {
+      "TITLE": "Allegato",
+      "SUB_TITLE": "In questa sezione puoi procedere con il caricamento di un allegato unico e inserire la sua descrizione nell'apposito campo di testo."
+    },
+    "MILESTONE": {
+      "TITLE": "Imposta milestone",
+      "SUB_TITLE": "Di seguito puoi impostare una o piu' milestone, selezionare la fase o la sotto\n fase a cui si riferisce e inserire la data di scadenza. Per ogni milestone\n definita, e' possibile impostare un promemoria.",
+      "SOTTOFASE": "Seleziona la fase-sottofase",
+      "DATA": "Inserisci la data della milestone",
+      "DESCRIZIONE": "Descrizione milestone",
+      "CHECKBOX_PROMEMORIA": "<strong>Imposta un promemoria</strong>",
+      "DROPDOWN_PROMEMORIA": "Imposta un promemoria",
+      "DATA_PROMEMORIA": "Data personalizzata"
+    }
+  },
+  "VALIDAZIONE": {
+    "TITLE": "Validazione",
+    "SUB_TITLE": "In questa sezione puoi visualizzare lo stato di validazione per le singole sezioni\n e sotto sezioni del PIAO.",
+    "DROPDOWN": {
+      "TITLE": "Triennio di riferimento"
+    },
+    "TABLE": {
+      "SEL_ALL_TH": "SELEZIONA\nTUTTE",
+      "TRIEN_TH": "Triennio di\n riferimento",
+      "PIAO_SEZ_TH": "PIAO/Sezione",
+      "VAL_STATE_TH": "Stato della validazione",
+      "USER_PROF_SEND_REQ_TH": "Profilo utente che ha\n inviato la richiesta\n di validazione",
+      "DATE_SEND_VAL_REQ_TH": "Data invio\n della richiesta\n di validazione",
+      "USER_EVAD_VAL_REQ_TH": "Profilo utente che ha\n evaso la richiesta\n di validazione",
+      "DATE_EVAD_VAL_REQ_TH": "Data evasione\n della richiesta\n di validazione",
+      "OBS_TH": "Osservazioni",
+      "WIP_TH": "WIP",
+      "ACT_TH": "Azioni",
+      "SELECT_SECTION": "Hai selezionato <strong>{{n}} sezioni</strong>",
+      "ACTIONS": {
+        "REVOKE_VALIDATION": "Revoca la validazione",
+        "ACCEPT_VALIDATION_REQUEST": "Accetta la richiesta di validazione",
+        "REJECT_VALIDATION_REQUEST": "Rifiuta la richiesta di validazione",
+        "CANCEL_SENDED_VALIDATION_REQUEST": "Annulla la richiesta di validazione\n inviata"
+      }
+    },
+    "CHECKBOX": {
+      "LABEL": "*Hai caricato e/o controllato gli <strong>allegati complessivi di tutto il PIAO</strong> presenti nella pagina di indice? Se non lo hai ancora fatto ",
+      "TEXT_HREF": "<strong>clicca qui</strong>"
+    },
+    "MODAL_VALIDATION": {
+      "TITLE": "Accetta la validazione",
+      "SEZIONE": {
+        "MULTIPLE_SUB_TITLE": "Stai per accettare la richiesta di validazione delle sezioni : <strong>{{section}}</strong>.",
+        "SUB_TITLE": "Stai per accettare la richiesta di validazione della sezione : <strong>{{section}}</strong>.",
+        "CANCEL_TITLE": "Annulla la richiesta di validazione",
+        "CANCEL_SUB_TITLE": "Stai per annullare la richiesta di validazione inviata.",
+        "ACCEPT_TITLE": "Accetta la richiesta di validazione",
+        "ACCEPT_SUB_TITLE": "Stai per accettare la richiesta di validazione",
+        "TITLE_REVOKE": "Revoca la validazione",
+        "TITLE_REJECT": "Rifiuta la richiesta di validazione inviata",
+        "DESCRIPTION_MOD": "Descrivi eventuali modifiche da apportare.",
+        "OSSERVAZIONI_LABEL": "Osservazioni"
+      },
+      "PIAO": {
+        "SUB_TITLE": "Stai per accettare la richiesta di validazione del PIAO."
+      },
+      "INFO_OPERAZIONE": "Sei sicuro/a di voler confermare questa operazione?"
+    }
+  },
+  "MANCATA_COMPILAZIONE": {
+    "TITLE": "Dichiarazione di mancata o ritardata compilazione",
+    "SUB_TITLE": "Compila e invia il form dedicato alla dichiarazione di mancata o ritardata compilazione del documento PIAO previsto da riferimento\n normativo. In particolare, l'articolo 10, comma 5, del decreto legislativo n. 150 del 2009, prevede che, in caso di ritardo nell'adozione del\n Piano o della Relazione annuale sulla performance, l'amministrazione comunica tempestivamente le ragioni del mancato rispetto dei\n termini al Dipartimento della funzione pubblica.",
+    "DETTAGLIO_TITLE": "Dettaglio dichiarazione di mancata o ritardata compilazione",
+    "DETTAGLIO_SUB_TITLE": "In questa sezione puoi consultare tutti i dettagli del form dedicato alla dichiarazione di mancata o ritardata compilazione del documento PIAO.",
+    "DENOMINAZIONE_LABEL": "Denominazione amministrazione",
+    "ANNO_LABEL": "Anno di riferimento",
+    "DATA_PUBBLICAZIONE_LABEL": "Data prevista di pubblicazione",
+    "NOTE_LABEL": "Note",
+    "MOTIVAZIONE_LABEL": "Motivazione",
+    "DESCRIZIONE_LABEL": "Descrizione dettagliata della motivazione",
+    "RESPONSABILE_LABEL": "Responsabile segnalazione",
+    "CARICA_ALLEGATO_LABEL": "Carica allegati",
+    "ADD_ALLEGATO_LABEL": "CARICA ALTRA DOCUMENTAZIONE",
+    "MODAL": {
+      "TITLE": "Invio dichiarazione",
+      "MESSAGE": "Stai per inviare la dichiarazione di mancata o ritardata compilazione.",
+      "SUB_MESSAGE": "Sei sicuro/a di voler confermare questa operazione?"
+    }
+  },
+  "PIAO_PDF": {
+    "REVISIONE": {
+      "TITLE": "<span class='first-word'>Revisiona</span> il PIAO",
+      "SUB_TITLE": "In questa sezione puoi revisionare il PIAO, ed i relativi allegati, oltre a scaricare tutti i documenti già presenti."
+    },
+    "CARICA": {
+      "TITLE": "<span class='first-word'>Carica</span> il PIAO",
+      "SUB_TITLE": "In questa sezione puoi caricare un nuovo documento PIAO, ed i relativi allegati, oltre a scaricare o eliminare tutti i documenti già presenti.",
+      "SUBMIT": "PUBBLICA"
+    },
+    "AGGIORNA": {
+      "TITLE": "<span class='first-word'>Aggiorna</span> il PIAO dell'anno corrente",
+      "CARD_INFO_TITLE": "<strong>Nel caso in cui venisse caricata una nuova versione del PIAO, sarà necessario caricare il documento completo di tutte le sezioni per essere pubblicato nuovamente.</strong>",
+      "SUB_TITLE": "In questa sezione puoi visualizzare i documenti PIAO caricati a sistema. Nel caso di modifiche puoi eliminare e caricare una nuova versione.",
+      "SUBMIT": "PUBBLICA UNA NUOVA VERSIONE"
+    },
+    "DATA_APPROVAZIONE_LABEL": "Data di approvazione",
+    "DATA_APPROVAZIONE_LABEL_TOOLTIP": "Inserire la stessa data di approvazione riportata nel documento",
+    "AUTORITA_LABEL": "Autorità approvatore",
+    "ESTREMI_ATTO_LABEL": "Estremi atto di approvazione",
+    "TRIENNIO_LABEL": "Triennio di riferimento",
+    "NUM_DIPENDENTI_LABEL": "Numero di dipendenti",
+    "URL_LABEL": "URL PIAO (sezione amministrazione trasparente)",
+    "CARICA_ALLEGATO_LABEL": "Carica il documento PIAO",
+    "ADD_ALLEGATO_LABEL": "CARICA DOCUMENTO",
+    "ATTACHMENTS": {
+      "APPROVAL": {
+        "REVISIONE": {
+          "TITLE": "Revisione approvazione",
+          "SUB_TITLE": "Revisiona il documento pdf di atto approvativo del PIAO approvato esternamente dal soggetto responsabile.",
+          "LOAD": "SCARICA IL DOCUMENTO"
+        },
+        "TITLE": "Carica approvazione",
+        "SUB_TITLE": "Carica il documento pdf di atto approvativo del PIAO approvato esternamente dal soggetto responsabile.",
+        "LOAD": "CARICA IL DOCUMENTO"
+      },
+      "PIAO_PDF": {
+        "REVISIONE": {
+          "TITLE": "Revisiona il PIAO in formato pdf",
+          "LOAD": "SCARICA IL PIAO REVISIONATO"
+        },
+        "CARICA": {
+          "TITLE": "Carica il PIAO in formato pdf",
+          "LOAD": "CARICA IL PIAO"
+        },
+        "AGGIORNA": {
+          "TITLE": "Carica una nuova versione del PIAO in formato pdf",
+          "LOAD": "CARICA UNA NUOVA VERSIONE DEL PIAO"
+        }
+      },
+      "EXTRA": {
+        "REVISIONE": {
+          "TITLE": "Revisiona allegati",
+          "LOAD": "SCARICA ALLEGATI"
+        },
+        "TITLE": "Carica allegati",
+        "LOAD": "CARICA ALTRA DOCUMENTAZIONE"
+      }
+    },
+    "BUTTONS": {
+      "DOWNLOAD": "SCARICA",
+      "DELETE": "ELIMINA"
+    },
+    "MODAL": {
+      "TITLE": "Pubblicazione PIAO",
+      "MESSAGE": "Stai per pubblicare il documento PIAO. Sei sicuro/a di voler confermare questa operazione?",
+      "CARICA": {
+        "TITLE": "Pubblicazione PIAO",
+        "MESSAGE": "Stai per pubblicare il documento PIAO. Sei sicuro/a di voler confermare questa operazione?"
+      },
+      "AGGIORNA": {
+        "TITLE": "Pubblicazione nuova versione PIAO",
+        "MESSAGE": "Stai per pubblicare una nuova versione del documento PIAO. Sei sicuro/a di voler confermare questa operazione?"
+      }
+    },
+    "SUCCESS_MESSAGE": "Documento PIAO caricato con successo",
+    "ERROR_MESSAGE": "Si prega di compilare tutti i campi obbligatori"
+  },
+  "APPROVAZIONE_E_PUBBLICAZIONE": {
+    "INVIA_RICHIESTA_APPROVAZIONE": {
+      "TITLE": "Approvazione e pubblicazione",
+      "SUB_TITLE": "<strong>Invia richiesta di approvazione</strong>",
+      "SUB_TITLE_DETTAGLIO": "<strong>Richiesta di approvazione</strong>",
+      "EMAIL_LABEL": "Indirizzo e-mail",
+      "EMAIL_OBJECT_LABEL": "Oggetto e-mail",
+      "EMAIL_TEXT_LABEL": "Testo dell'e-mail",
+      "EMAIL_TEXT_LABEL_DETTAGLIO": "Testo della e-mail",
+      "BUTTON_LABEL": "INVIA RICHIESTA APPROVAZIONE",
+      "TABELLA_GENERAZIONE_PDF": {
+        "TITLE": "PIAO",
+        "TABLE": {
+          "DESC_TH": "Descrizione",
+          "DATE_TH": "Data",
+          "STATE_TH": "Stato",
+          "ACTION_TH": "Azioni",
+          "BUTTON": "GENERA PIAO",
+          "BUTTON_DOWNLOAD": "Scarica PIAO"
+        }
+      }
+    },
+    "CARICA_APPROVAZIONE": {
+      "TITLE": "Carica approvazione",
+      "TITLE_DETTAGLIO": "Approvazione",
+      "SUB_TITLE": "Carica il documento pdf di atto approvativo del PIAO approvato esternamente dal soggetto responsabile ed inserisci la sua data di approvazione",
+      "SUB_TITLE_DETTAGLIO": "Visualizza il documento pdf di atto approvativo del PIAO approvato esternamente dal soggetto responsabile con la sua data di approvazione",
+      "DATA_APPROVAZIONE_LABEL": "Data approvazione",
+      "DATA_APPROVAZIONE_LABEL_DETTAGLIO": "Data di approvazione",
+      "URL_PIAO_LABEL": "URL PIAO (sezione amministrazione trasparente)",
+      "BUTTON_LABEL": "PUBBLICA"
+    },
+    "MODALE_PUBBLICAZIONE": {
+      "TITLE": "Pubblica",
+      "SUB_TITLE": "Il documento PIAO è stato approvato e puo' essere pubblicato. Sei sicuro/a di voler\n confermare questa operazione?",
+      "CHECKBOX": "Confermo di aver compilato il PIAO in conformità' alle normative di riferimento attualmente vigenti"
+    },
+    "ATTACHMENT": {
+      "TITLE": "Allegato",
+      "TITLE_DETTAGLIO": "Allegati",
+      "TITLE_PUBBLICAZIONE": "Non è stata caricata nessuna approvazione",
+      "LOAD_PUBBLICAZIONE": "CARICA APPROVAZIONE"
+    }
+  },
+  "PROFILE": {
+    "PAGE_TITLE": "Profilo",
+    "PAGE_SUBTITLE": "In questa sezione puoi visualizzare e modificare le tue informazioni e consultare tutti gli incarichi assegnati in base al tuo profilo utente.",
+    "CAMBIA": "Cambia",
+    "AMMINISTRAZIONE_OPERANTE": "Amministrazione operante",
+    "LE_TUE_INFORMAZIONI": "Le tue informazioni",
+    "MODIFICA_INFORMAZIONI": "MODIFICA INFORMAZIONI",
+    "NOME": "Nome",
+    "COGNOME": "Cognome",
+    "DATA_NASCITA": "Data di nascita",
+    "CODICE_FISCALE": "Codice Fiscale",
+    "QUALIFICA": "Qualifica",
+    "PROFILO_UTENTE": "Profilo utente",
+    "TELEFONO": "Numero di telefono",
+    "EMAIL": "E-mail",
+    "FUNZIONI_ABILITATE": "Funzioni abilitate utente",
+    "MODAL_PROFILE": {
+      "TITLE": "Modifica profilo",
+      "QUALIFICA": "Qualifica",
+      "PHONE_NUMBER": "Numero di telefono",
+      "EMAIL": "E-mail",
+      "SAVE": "SALVA",
+      "ANNULLA": "ANNULLA"
+    },
+    "MODAL_SELECT_PA": {
+      "TITLE": "Seleziona amministrazione",
+      "SUB_TITLE": "Seleziona l'amministrazione e visualizza i contenuti associati",
+      "RADIO": "<strong>Seleziona l'amministrazione</strong>"
+    }
+  },
+  "SEZIONE-3.3.2": {
+    "TITLE": "3.3.2 Formazione del personale",
+    "PARTE_GENERALE": "Parte generale",
+    "PARTE_FUNZIONALE": "Parte funzionale",
+    "TAB_FUNZIONALE_TITLE": "Tabella per la parte funzionale*",
+    "ACCORDION": {
+      "1": {
+        "CONTESTO_NORMATIVO_LABEL": "Inserire contesto normativo di riferimento e relativi adempimenti",
+        "CONTESTO_NORMATIVO_LABEL_DETTAGLIO": "Visualizza il contesto normativo di riferimento e relativi adempimenti"
+      },
+      "2": {
+        "DESCRIZIONE_QUALITATIVA_LABEL": "Descrizione qualitativa dello stato dell'arte della formazione al 31.12 dell'anno precedente",
+        "RAPPRESENTAZIONE_STATO_ARTE_TITLE": "Rappresentazione dello stato dell'arte della formazione al 31.12 dell'anno precedente",
+        "FOTOGRAFIA_FORMAZIONE_TITLE": "Fotografia della formazione al 31.12 dell'anno precedente*",
+        "FOTOGRAFIA_FORMAZIONE_TITLE_DETTAGLIO": "Fotografia della formazione al 31.12 dell'anno precedente",
+        "ATTIVITA_FORMATIVA_TITLE": "Attività formative promosse dal singolo riconosciute"
+      },
+      "3": {
+        "PRIORITA_STRATEGICHE_TITLE": "Priorità strategiche in ambito formativo",
+        "DESCRIZIONE_STRATEGIA_LABEL": "Descrizione della strategia generale in ambito formativo dell'amministrazione",
+        "OBIETTIVI_RISULTATI_TITLE": "Obiettivi e risultati attesi*",
+        "OBIETTIVI_RISULTATI_TITLE_DETTAGLIO": "Obiettivi e risultati attesi",
+        "RISORSE_DISPONIBILI_TITLE": "Risorse disponibili e/o attivabili ai fini delle strategie formative",
+        "DESCRIZIONE_RISORSE_LABEL": "Descrizione delle risorse interne ed esterne disponibili e/o 'attivabili' ai fini delle strategie formative",
+        "INCENTIVI_TITLE": "Incentivi in ambito formativo",
+        "DESCRIZIONE_INCENTIVI_LABEL": "Descrizione delle misure volte ad incentivare e favorire l'accesso a percorsi di istruzione e qualificazione del personale laureato e non laureato"
+      }
+    },
+    "MODAL": {
+      "MODAL_FOTOGRAFIA_FORMAZIONE": {
+        "TITLE": "Compilazione tabella",
+        "SUB_TITLE": "Riga",
+        "ATTIVITA_FORMATIVA": "Codice attività formativa",
+        "TIPOLOGIA_ATTIVITA": "Tipologia attività",
+        "TITOLO_ATTIVITA": "Titolo dell'attività",
+        "AMBITO_COMPETENZA": "Ambito di competenza",
+        "AREA_TEMATICA": "Area tematica",
+        "RATIO_CARATTERE_OBBLIGATORIO": "Carattere obbligatorio *",
+        "RIFERIMENTO_NORMATIVO": "Riferimento normativo (se obbligatorio)",
+        "CHOICE1_LABEL": "Sì",
+        "CHOICE2_LABEL": "No",
+        "DESTINATARI": "Destinatari",
+        "TARGET_DIRIGENTI": "Target previsto dirigenti",
+        "NUMERO_DIRIGENTI": "N. formati dirigenti",
+        "TARGET_NON_DIRIGENTI": "Target previsto non dirigenti",
+        "NUMERO_NON_DIRIGENTI": "N. formati non dirigenti",
+        "ORE_FORMAZIONE": "Ore di formazione",
+        "RATIO_VERIFICA_APPRENDIMENTO": "Verifica di apprendimento *",
+        "CREDITI_FORMATIVI": "Crediti formativi previsti",
+        "MODALITA_GESTIONE_FORMAZIONE": "Modalità di gestione della formazione",
+        "ENTE_EROGATORE": "Ente erogatore",
+        "COSTO_ATTIVITA": "Costo della singola attività formativa",
+        "DATA_INIZIO": "Data di inizio",
+        "DATA_FINE": "Data di fine"
+      }
+    },
+    "TABELLA_FUNZIONALE": {
+      "LABEL": "Tabella per la parte funzionale *",
+      "LABEL_DETTAGLIO": "Tabella per la parte funzionale"
+    },
+    "ELENCO_FOTOGRAFIA_OBIETTIVI": {
+      "CODICE": "Codice attività formativa",
+      "TIPOLOGIA": "Tipologia attività",
+      "TITOLO": "Titolo dell'attività",
+      "AMBITO": "Ambito di competenza",
+      "AREA": "Area tematica",
+      "CARATTERE_OBBLIGATORIO": "Carattere obbligatorio",
+      "RIFERIMENTO_NORMATIVO": "Riferimento normativo",
+      "DESTINATARI": "Destinatari",
+      "TARGET_DIRIGENTI": "Target previsto dirigenti",
+      "NUMERO_DIRIGENTI": "N. formati dirigenti",
+      "TARGET_NON_DIRIGENTI": "Target previsto non dirigenti",
+      "NUMERO_NON_DIRIGENTI": "N. formati non dirigenti",
+      "ORE_FORMAZIONE": "Ore di formazione",
+      "VERIFICA_APPRENDIMENTO": "Verifica di apprendimento",
+      "CREDITI_FORMATIVI": "Crediti formativi previsti",
+      "MODALITA_GESTIONE_FORMAZIONE": "Modalità di gestione della formazione",
+      "ENTE_EROGATORE": "Ente erogatore",
+      "COSTO_ATTIVITA": "Costo della singola attività formativa",
+      "DATA_INIZIO": "Data di inizio",
+      "DATA_FINE": "Data di fine",
+      "AZIONI": "Azioni",
+      "MOSTRA_PIU": "Mostra di più",
+      "MOSTRA_MENO": "Mostra di meno",
+      "TITLE_ELENCO": "COMPILA TABELLA",
+      "LABEL_ADD_ELENCO": "AGGIUNGI RIGA",
+      "NOT_FOUND": "Non è stata inserita nessuna fotografia"
+    }
+  },
+  "SEZIONE-3.3.1": {
+    "TITLE": "3.3.1 Piano triennali dei fabbisogni del personale",
+    "SUB_TITLE": "Parte generale",
+    "CONTESTO_LABEL": "Inserire il contesto di riferimento e relativi adempimenti e rinvio all'analisi di contesto interno contenuta nella SottoSezione 2.1.",
+    "CONTESTO_LABEL_DETTAGLIO": " Visualizza il contesto di riferimento e relativi adempimenti e rinvio all'analisi di contesto interno contenuta nella SottoSezione 2.1.",
+
+    "CARD_INFO_MINERVA": {
+      "TITLE": "Attenzione!",
+      "SUB_TITLE": "Per compilare o modificare accedi alla piattaforma Minerva."
+    },
+    "OPEN_TABLE_MINERVA": "Tabella da valorizzare su minerva",
+    "PARTE_FUNZIONALE_TITLE": "Parte funzionale",
+    "ACCORDION": {
+      "1": {
+        "TAB_1": "Valore finanziario della dotazione organica al 31.12 dell'anno precedente",
+        "TAB_2": "Rappresentazione della consistenza di personale dirigenziale al 31.12 dell'anno precedente",
+        "TAB_3": "Rappresentazione della consistenza di personale non dirigenziale al 31.12 dell'anno precedente",
+        "TAB_TEMP_DETER_DIR": "Rappresentazione della consistenza di personale dirigenziale a tempo determinato al 31.12 dell'anno precedente",
+        "TAB_TEMP_DETER_NON_DIR": "Rappresentazione della consistenza di personale non dirigenziale a tempo determinato al 31.12 dell'anno precedente",
+        "QUALITATIVA_LABEL": "Descrizione qualitativa della consistenza del personale al 31.12 dell'anno precendente in termini di tipologia di rapporto di lavoro, sesso, età e profili professionali",
+        "RIEPILOGO_LABEL": "Riepilogo assunzioni al 31.12 dell'anno precedente",
+        "TAB_4": "Tabella del personale dirigenziale",
+        "TAB_5": "Tabella delle aree contrattuali",
+        "TAB_6": "Riepilogo cessazioni al 31.12 dell'anno precedente"
+      },
+      "2": {
+        "STRATEGIE_PROGRAMMAZIONE_LABEL": "Inserire strategie di programmazione delle risorse umane dell'Amministrazione",
+        "OBIETTIVO_TRASFORMAZIONE_TITLE": "Obiettivi di trasformazione dell'allocazione delle risorse",
+        "OBIETTIVO_TRASFORMAZIONE_LABEL": "Inserire le possibili azioni finalizzate ad un'allocazione del personale seguendo le priorità strategiche individuate",
+        "OBIETTIVO_TRASFORMAZIONE_LABEL_DETTAGLIO": " Possibili azioni finalizzate ad un'allocazione del personale seguendo le priorità strategiche individuate",
+
+        "RIMODULAZIONE_LABEL": "L'Amministrazione intende procedere alla rimodulazione della propria dotazione organica?*",
+        "RIMODULAZIONE_LABEL_DETTAGLIO": "L'Amministrazione intende procedere alla rimodulazione della propria dotazione organica?",
+
+        "CHOICE1_LABEL": "Sì",
+        "CHOICE2_LABEL": "No",
+        "TAB_7": "Dotazione organica in seguito alla rimodulazione",
+        "STRATEGIA_COPERTURA_TITLE": "Strategia di copertura del fabbisogno",
+        "CARD_INFO_TITLE": "<strong>Nota Bene:</strong>",
+        "CARD_INFO_SUBTITLE": "La strategia di copertura del fabbisogno potrà essere rappresentata, a titolo esemplificativo, in termini di:<ul class='list-items'><li>mobilità interna tra dipartimenti, direzione generali, uffici, ecc.;</li><li>progressione di carriera all'interno del Ministero (sviluppo di carriera);</li><li>job enlargement attraverso la riscrittura dei profili professionali;</li><li>mobilità esterna o altre forme di assegnazione temporanea di personale tra PA (comandi e distacchi) e con il privato (convenzioni)</li><li>ricorso a forme flessibili di lavoro;</li><li>concorsi, con distribuzione assoluta e % tra concorsi per il reclutamento di competenze tecniche o trasversali</li><li>stabilizzazioni;</li></ul>",
+        "STRATEGIA_COPERTURA_LABEL": "Inserire la strategia di attrazione (anche tramite politiche attive) e acquisizione delle competenze necessarie e individua le scelte qualitative e quantitative di copertura dei fabbisogni",
+        "STRATEGIA_COPERTURA_LABEL_DETTAGLIO": "Visualizza la strategia di attrazione (anche tramite politiche attive) e acquisizione delle competenze necessarie e individua le scelte qualitative e quantitative di copertura dei fabbisogni",
+
+        "COPERTURA_FABBISOGNO_TITLE": "Copertura del fabbisogno dell'anno corrente",
+        "TAB_8": "Tabella del personale dirigenziale",
+        "TAB_9": "Tabella delle aree contrattuali",
+        "DESCRIZIONE_STRATEGIA_LABEL": "Descrizione qualitativa della strategia di copertura del fabbisogno di personale con riferimento alle tipologie di rapporto a tempo determinato o altre forme contrattuali"
+      },
+      "3": {
+        "STIMA_EVOLUZIONE_LABEL": "Inserire la stima dell'evoluzione dei bisogni dettata da processi/fattori esterni e interni che richiedono una discontinuità nel profilo delle risorse umane in termini di profili di competenze e/o quantitativi",
+        "STIMA_EVOLUZIONE_LABEL_DETTAGLIO": "Visualizza la stima dell'evoluzione dei bisogni dettata da processi/fattori esterni e interni che richiedono una discontinuità nel profilo delle risorse umane in termini di profili di competenze e/o quantitativi",
+
+        "TAB_10": "Prospetto previsionale cessazioni dal servizio e risparmio su base annua per l'anno corrente",
+        "PROSPETTO_PREV_CESS_ANNO1_TITLE": "Prospetto previsionale della copertura del fabbisogno per il primo anno successivo all'anno corrente",
+        "TAB_11": "Tabella del personale dirigenziale",
+        "TAB_12": "Tabella delle aree contrattuali",
+        "TAB_13": "Prospetto previsionale cessazioni dal servizio e risparmio su base annua per il primo anno successivo all'anno corrente",
+        "PROSPETTO_PREV_CESS_ANNO2_TITLE": "Prospetto previsionale della copertura del fabbisogno per il secondo anno successivo all'anno corrente",
+        "TAB_14": "Tabella del personale dirigenziale",
+        "TAB_15": "Tabella delle aree contrattuali",
+        "PROSPETTO_CALCOLO_ASSUNZIONALI_LABEL": "Prospetto calcolo facoltà assunzionali ai sensi del D.M. 17 marzo 2020",
+        "TAB_16": "Tabella delle entrate degli ultimi tre rendiconti approvati",
+        "TAB_17": "Tabella delle spese del personale anno t-2",
+        "TAB_18": "Verifica del valore soglia",
+        "LIMITE_SPESA_LABEL": "Limiti spesa del personale ai sensi dell'art. 1, comma 557, legge n. 296/2006",
+        "TAB_19": "Tabella limite spesa del personale 2011-2013",
+        "TAB_20": "Tabella spesa personale"
+      }
+    },
+    "MODAL": {
+      "MODAL_DATA_NF_MINERVA": {
+        "TITLE_1": "Dati non rilevati sul sistema esterno. ",
+        "HREF": "Clicca qui ",
+        "TITLE_2": "per compilare i valori su Minerva."
+      }
+    },
+    "TABELLA_FUNZIONALE": {
+      "LABEL": "Tabella per la parte funzionale *",
+      "LABEL_DETTAGLIO": "Tabella per la parte funzionale"
+    }
+  },
+  "TABELLA_FUNZIONALE": {
+    "TITLE_ELENCO": "COMPILA TABELLA",
+    "LABEL_NOT_FOUND": "Non è stata inserita la tabella funzionale",
+    "LABEL_ADD_ELENCO": "AGGIUNGI RIGA",
+    "MODAL": {
+      "TITLE": "Compilazione tabella",
+      "SUB_TITLE": "Riga",
+      "CODICE_LABEL": "Codice",
+      "OVP_LABEL": "Obiettivo di valore pubblico",
+      "DENOMINAZIONE_LABEL": "Denominazione sintetica",
+      "RESPONSABILE_LABEL": "Responsabile amministrativo",
+      "STAKEHOLDER_LABEL": "Stakeholder interni ed esterni",
+      "DIMENSIONI_LABEL": "Dimensioni",
+      "FORMULA_LABEL": "Formula",
+      "POLARITA_LABEL": "Polarità",
+      "BASELINE_LABEL": "Baseline Anno N",
+      "TARGET_N1_LABEL": "Target Anno N+1",
+      "TARGET_N2_LABEL": "Target Anno N+2",
+      "TARGET_N3_LABEL": "Target Anno N+3",
+      "FONTE_LABEL": "Fonte",
+      "AZIONI_LABEL": "Azioni"
+    }
+  },
+  "HELP_DESK": {
+    "TITLE": "HelpDesk",
+    "TEXTBOX_NOME": "Nome",
+    "TEXTBOX_COGNOME": "Cognome",
+    "TEXTBOX_EMAIL": "Email",
+    "TEXTBOX_VERIFICA_EMAIL": "Verifica E-mail",
+    "TEXTAREA_OGGETTO": "Oggetto",
+    "TEXTAREA_MESSAGGIO": "Messaggio",
+    "PROBLEMI": "Problema",
+    "BUTTON_SEGNALAZIONE": "Invia Segnalazione",
+    "ATTACHMENT_TITLE": "Allega file",
+    "ADD_ATTACHMENT": "Scegli file"
+  },
+  "SCRIVANIA_DFP": {
+    "HEADER": {
+      "WELCOME_M": "Benvenuto {{name}}",
+      "WELCOME_F": "Benvenuta {{name}}",
+      "REVISIONE_PROMPT": "Vuoi revisionare dei PIAO?",
+      "GESTIONE_PIAO_BUTTON": "VAI A GESTIONE PIAO"
+    },
+    "ACTIONS": {
+      "PUBBLICA_AVVISO": {
+        "TITLE": "Pubblica un avviso",
+        "DESCRIPTION": "In questa sezione puoi pubblicare avvisi e comunicazioni utili alla redazione del PIAO e caricare documenti utili.",
+        "CTA": "VAI AGLI AVVISI"
+      },
+      "CRUSCOTTI": {
+        "TITLE": "Cruscotti di analisi",
+        "DESCRIPTION": "In questa sezione puoi visualizzare in modo chiaro e dettagliato le informazioni presenti nelle diverse sezioni del PIAO. Inoltre, puoi effettuare ricerche rapide e confrontare le informazioni tra diverse amministrazioni in modo intuitivo.",
+        "CTA": "VAI AI CRUSCOTTI DI ANALISI"
+      }
+    },
+    "GESTIONE_PIAO": {
+      "TITLE": "Gestione PIAO",
+      "SUB_TITLE": "In questa sezione puoi cercare i PIAO da visionare per i quali\nsupportare le amministrazioni e scaricare massivamente i dati dei\ndocumenti PIAO di interesse.",
+      "CARD_ACTIONS": {
+        "RICERCA": {
+          "TITLE": "Ricerca PIAO\nda visionare",
+          "SUB_TITLE": "Visualizza i dettagli dei PIAO pubblicati e in fase di redazione e individua i documenti per i quali le amministrazioni necessitano supporto nella compilazione e procedi al loro aggiornamento."
+        },
+        "SCARICO_MASSIVO": {
+          "TITLE": "Scarico massivo\ndei documenti PIAO",
+          "SUB_TITLE": "Scarica massivamente i dati dei documenti PIAO pubblicati e redatti on-line."
+        }
+      },
+      "RICERCA_PIAO": {
+        "TITLE": "<span class='first-word'>Ricerca</span> PIAO da visionare",
+        "SUBTITLE": "Di seguito puoi ricercare, per tipologia di amministrazione o codice IPA, tutti i documenti PIAO pubblicati nel triennio più recente o in fase di redazione per quello futuro.\nInoltre, puoi aprire, modificare e inviare ciascun documento.",
+        "FILTERS": {
+          "TIPOLOGIA": "Tipologia di Amministrazione",
+          "TIPOLOGIA_PLACEHOLDER": "Seleziona",
+          "AMMINISTRAZIONE": "Seleziona un'Amministrazione",
+          "AMMINISTRAZIONE_PLACEHOLDER": "Comune di Rimini",
+          "CODICE_IPA": "Seleziona un codice IPA",
+          "CODICE_IPA_PLACEHOLDER": "c_h294",
+          "RESET": "AZZERA FILTRI",
+          "SEARCH": "CERCA"
+        },
+        "RESULTS": {
+          "TITLE": "Visualizza i risultati",
+          "ONLY_LAST_VERSION": "Visualizza solo ultime versioni",
+          "TOTAL": "{{count}} di {{total}} risultati",
+          "TABLE": {
+            "NOME_PIAO": "Nome PIAO",
+            "AMMINISTRAZIONE": "Amministrazione",
+            "VERSION": "Versione PIAO",
+            "TIPOLOGIA": "Tipologia",
+            "STATO": "Stato",
+            "AZIONI": "Azioni",
+            "VEDI_PIAO": "Vedi PIAO"
+          }
+        }
+      },
+      "SCARICO_MASSIVO": {
+        "TITLE": "<span class='first-word'>Scarico</span> massivo dei documenti PIAO",
+        "SUBTITLE": "Di seguito puoi scaricare massivamente i dati dei documenti PIAO in template excel. Puoi selezionare i documenti di interesse, selezionando i filtri di ricerca per tipologia di amministrazione e triennio di riferimento.",
+        "ALERT": {
+          "TITLE": "Attenzione!",
+          "SUBTITLE": "È possibile scaricare i dati esclusivamente dei PIAO già pubblicati e redatti on-line"
+        },
+        "MANDATORY_HINT": "I campi contrassegnati con asterisco (*) sono obbligatori",
+        "FILTERS": {
+          "TIPOLOGIA": "Tipologia di Amministrazione",
+          "TIPOLOGIA_PLACEHOLDER": "Seleziona",
+          "TRIENNIO": "Triennio di riferimento*",
+          "TRIENNIO_PLACEHOLDER": "Seleziona",
+          "RESET": "AZZERA FILTRI",
+          "SEARCH": "CERCA"
+        },
+        "RESULTS": {
+          "TITLE": "Visualizza i risultati",
+          "SEARCH_INFO": "{{count}} risultati di ricerca per \"{{query}}\"",
+          "TOTAL": "{{count}} di {{total}} risultati",
+          "TABLE": {
+            "SELECT_ALL": "SELEZIONA\nTUTTO",
+            "NOME_PIAO": "Nome PIAO",
+            "TIPOLOGIA": "Tipologia di Amministrazione",
+            "AZIONI": "Azioni",
+            "SCARICA_PIAO": "Scarica PIAO"
+          },
+          "SELECTED": "Hai selezionato <strong>{{count}} PIAO</strong>",
+          "DOWNLOAD_ALL": "SCARICA TUTTI I PIAO SELEZIONATI"
+        }
+      }
+    },
+    "AVVISI": {
+      "ATTACHMENT": {
+        "TITLE_ATTACHMENT": "Carica allegati",
+        "TITLE_ATTACHMENT_DETAILS": "Allegati",
+        "LOAD_ATTACHMENT": "CARICA ALTRA DOCUMENTAZIONE"
+      }
+    },
+    "AVANZAMENTO": {
+      "TITLE": "Avanzamento Amministrazioni",
+      "SOLLECITA": "SOLLECITA",
+      "DESCRIPTION": "In questa sezione puoi monitorare lo stato di avanzamento della redazione del PIAO da parte delle Amministrazioni.",
+      "N_AMMINISTRAZIONI": "N° AMMINISTRAZIONI",
+      "DI_CUI_PAC": "DI CUI PAC",
+      "DI_CUI_PAL": "DI CUI PAL",
+      "CARD_1": {
+        "TITLE": "Amministrazioni tenute alla redazione PIAO"
+      },
+      "CARD_2": {
+        "TITLE": "Amministrazioni che hanno redatto e pubblicato PIAO"
+      },
+      "CARD_3": {
+        "TITLE": "Amministrazioni con PIAO in stato di bozza"
+      },
+      "CARD_4": {
+        "TITLE": "Amministrazioni che non hanno pubblicato il PIAO entro il termine previsto",
+        "MANDATO_FORM": "CHE HANNO MANDATO IL FORM",
+        "NON_MANDATO_FORM": "CHE NON HANNO MANDATO IL FORM"
+      },
+      "VEDI_STORICO": "VEDI STORICO",
+      "DATI_ANNO": "Dati relativi all'anno {{anno}}"
+    }
+  }
+}

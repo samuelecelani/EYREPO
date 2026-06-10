@@ -1,0 +1,18 @@
+<div class="main">
+  <p class="title" [innerHTML]="title | translate"></p>
+  <p class="subtitle" [innerHTML]="subtitle | translate"></p>
+
+  <div class="row pt-5">
+    <piao-button (clicked)="clickCruscottoAnalisi()">
+      {{ buttonLabel | translate }}
+    </piao-button>
+  </div>
+
+  <div class="pt-5 pb-5">
+    <piao-elenco-piao-pubblicati></piao-elenco-piao-pubblicati>
+  </div>
+
+  <div class="pb-5">
+    <piao-card-portale-performance></piao-card-portale-performance>
+  </div>
+</div>

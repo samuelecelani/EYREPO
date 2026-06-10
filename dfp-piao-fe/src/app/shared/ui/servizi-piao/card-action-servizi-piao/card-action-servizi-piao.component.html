@@ -1,0 +1,66 @@
+<div class="card-action">
+  <div class="card-action-item" *ngFor="let card of cardAction; trackBy: trackByCardId">
+    <svg
+      class="card-shape-bg card-shape-desktop"
+      viewBox="0 0 404 314"
+      fill="none"
+      preserveAspectRatio="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M104.764 0.5H394C399.247 0.500003 403.5 4.75336 403.5 10V304C403.5 309.247 399.247 313.5 394 313.5H10C4.7533 313.5 0.5 309.247 0.5 304V109.359C0.5 104.113 4.75329 99.8594 10 99.8594H84.7637C90.5625 99.8594 95.2635 95.1582 95.2637 89.3594V10C95.2637 4.75337 99.5171 0.500113 104.764 0.5Z"
+        fill="#F2F7FC"
+        stroke="#207AD5"
+      />
+    </svg>
+    <svg
+      class="card-shape-bg card-shape-mobile"
+      viewBox="0 0 344 268"
+      fill="none"
+      preserveAspectRatio="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M68.918 0.5H334C339.247 0.500002 343.5 4.75335 343.5 10V258C343.5 263.247 339.247 267.5 334 267.5H10C4.75333 267.5 0.500002 263.247 0.5 258V69.9951C0.499998 64.7484 4.75329 60.4951 10 60.4951H48.918C54.7168 60.4951 59.4177 55.7939 59.418 49.9951V10C59.418 4.7533 63.6713 0.499998 68.918 0.5Z"
+        fill="#F2F7FC"
+        stroke="#4392E0"
+      />
+    </svg>
+    <div class="card-icon-wrapper">
+      <piao-icon
+        [iconContainerClass]="'icon-container-card-action'"
+        [iconImgClass]="'icon-img-card-action'"
+        [icon]="card.icon"
+        [iconColor]="'#003366'"
+      ></piao-icon>
+    </div>
+    <div class="card-content">
+      <h2 class="card-title">{{ card.title | translate }}</h2>
+      <p class="card-subtitle pt-3">{{ card.subTitle | translate }}</p>
+      <div class="card-button-wrapper">
+        <piao-button
+          class="card-action-button"
+          [variant]="'primary'"
+          [size]="'md'"
+          (clicked)="handleGoToPath(card)"
+          [disabled]="!card?.disabled"
+          >{{ 'BUTTONS.DETAILS' | translate }}</piao-button
+        >
+      </div>
+    </div>
+  </div>
+</div>
+
+@if (openModal) {
+  <piao-modal
+    [disabledButtonConfirm]="disabledButtonConfirm"
+    [isIcon]="true"
+    [icon]="icon"
+    [iconStyle]="iconStyle"
+    [open]="openModal"
+    (closed)="handleCloseModal()"
+    (confirm)="handleConfirmModal()"
+  >
+    <piao-modal-redigi-piao #child [codPAFK]="paRiferimento?.codePA"></piao-modal-redigi-piao>
+  </piao-modal>
+}

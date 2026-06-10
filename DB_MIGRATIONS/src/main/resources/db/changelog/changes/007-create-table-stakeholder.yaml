@@ -1,0 +1,80 @@
+databaseChangeLog:
+  - changeSet:
+      id: 007-create-table-stakeholder
+      author: developer
+      comment: "Creazione tabella stakeholder con foreign key a Piao"
+      changes:
+        - createTable:
+            tableName: stakeholder
+            columns:
+              # Chiave primaria
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: pk_stakeholder
+                    nullable: false
+                    
+              # Foreign key
+              - column:
+                  name: idpiao
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    
+              # Campi business
+              - column:
+                  name: nomestakeholder
+                  type: VARCHAR(255)
+              - column:
+                  name: relazionepa
+                  type: TEXT
+                  
+              # Campi tecnici
+              - column:
+                  name: X_VALIDITY_IN
+                  type: BOOLEAN
+                  defaultValueBoolean: true
+                  constraints:
+                    nullable: false
+              - column:
+                  name: X_CREATEDBY
+                  type: VARCHAR(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: X_CREATED_TS
+                  type: DATE
+                  constraints:
+                    nullable: false
+              - column:
+                  name: X_UPDATEDBY
+                  type: VARCHAR(20)
+              - column:
+                  name: X_UPDATED_TS
+                  type: DATE
+                  
+        - addForeignKeyConstraint:
+            baseTableName: stakeholder
+            baseColumnNames: idpiao
+            constraintName: fk_stakeholder_piao
+            referencedTableName: Piao
+            referencedColumnNames: id
+            onDelete: CASCADE
+            onUpdate: CASCADE
+            
+        - createIndex:
+            tableName: stakeholder
+            indexName: idx_stakeholder_piao
+            columns:
+              - column:
+                  name: idpiao
+                  
+        - createIndex:
+            tableName: stakeholder
+            indexName: idx_stakeholder_nome
+            columns:
+              - column:
+                  name: nomestakeholder

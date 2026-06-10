@@ -1,0 +1,33 @@
+<div class="action-card">
+  <svg
+    class="action-card__bg"
+    viewBox="0 0 595 258"
+    preserveAspectRatio="none"
+    xmlns="http://www.w3.org/2000/svg"
+    aria-hidden="true"
+    focusable="false"
+  >
+    <path
+      d="M0.499981 10.5L0.499999 247.5C0.5 253.023 4.97714 257.5 10.5 257.5L234.183 257.5C239.706 257.5 244.183 253.023 244.183 247.5L244.183 200.556C244.183 195.034 248.66 190.556 254.183 190.556L584.477 190.556C590 190.556 594.477 186.079 594.477 180.556L594.477 10.5C594.477 4.97714 590 0.499979 584.477 0.499979L10.5 0.50003C4.97713 0.50003 0.49998 4.97717 0.499981 10.5Z"
+      fill="#004D99"
+      stroke="#BFDFFF"
+    />
+  </svg>
+
+  <div class="action-card__content">
+    <h3 class="action-card__title">{{ title | translate }}</h3>
+    <p class="action-card__description">{{ description | translate }}</p>
+  </div>
+
+  <div class="action-card__cta">
+    <piao-button
+      [variant]="'secondary'"
+      [size]="'md'"
+      [icon]="'arrowRight'"
+      [iconPosition]="'right'"
+      (clicked)="onCta()"
+    >
+      {{ ctaLabel | translate }}
+    </piao-button>
+  </div>
+</div>

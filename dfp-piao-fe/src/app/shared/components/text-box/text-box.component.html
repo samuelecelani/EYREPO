@@ -1,0 +1,63 @@
+@if (label) {
+  <label *ngIf="label" for="{{ id }}" class="label" [class.detail-label]="isDetails">
+    @if (isLabelTranslate) {
+      {{ label | translate }}
+    } @else {
+      {{ label }}
+    }
+
+    @if (additionalLabel) {
+      {{ additionalLabel }}
+    }
+
+    @if (required && !isDetails) {
+      <span class="required">*</span>
+    }
+
+    @if (descTooltip && !isDetails) {
+      <piao-tooltip [descTooltip]="descTooltip" [icon]="'InfoCircle'"></piao-tooltip>
+    }
+  </label>
+}
+
+@if (isDetails) {
+  <div class="detail-field">
+    <ng-container *ngIf="isArray; else singleValue">
+      @if (value?.length === 0) {
+        <span class="value">Nessun valore inserito</span>
+      } @else {
+        <ul class="value-list">
+          <li *ngFor="let item of value; trackBy: trackByIndex">
+            {{ getItemString(item) }}
+          </li>
+        </ul>
+      }
+    </ng-container>
+
+    <ng-template #singleValue>
+      <span [ngClass]="valueClass">
+        {{ value ?? 'Nessun valore inserito' }}
+      </span>
+    </ng-template>
+  </div>
+} @else {
+  <input
+    id="{{ id }}"
+    [type]="typeInput"
+    [ngClass]="inputClass"
+    [class.isReadOnly]="isReadOnly"
+    [formControl]="control"
+    aria-label="{{ id }}"
+    spellcheck="false"
+    [maxlength]="maxValidatorLength"
+    [readOnly]="isReadOnly"
+  />
+  @if (
+    (control?.hasError('pattern') || control?.hasError('emailMismatch')) &&
+    (control?.touched || control?.dirty)
+  ) {
+    <small class="error-message">
+      {{ patternError }}
+    </small>
+  }
+}

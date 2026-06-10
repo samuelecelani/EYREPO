@@ -1,0 +1,34 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  annotations:
+    argocd-image-updater.argoproj.io/image-list: piao-fe=354280290990.dkr.ecr.eu-south-1.amazonaws.com/piao/dfp-piao-fe,piao-gateway=354280290990.dkr.ecr.eu-south-1.amazonaws.com/piao/dfp-piao-gateway,piao-be=354280290990.dkr.ecr.eu-south-1.amazonaws.com/piao/dfp-piao-be,piao-bff=354280290990.dkr.ecr.eu-south-1.amazonaws.com/piao/dfp-piao-bff,sync-pp=354280290990.dkr.ecr.eu-south-1.amazonaws.com/piao/dfp-sync-pp
+    argocd-image-updater.argoproj.io/dfp-piao-gateway.helm.image-name: deployments.gateway.image.name
+    argocd-image-updater.argoproj.io/dfp-piao-gateway.helm.image-tag: deployments.gateway.image.tag
+    argocd-image-updater.argoproj.io/dfp-piao-be.helm.image-name: deployments.be.image.name
+    argocd-image-updater.argoproj.io/dfp-piao-be.helm.image-tag: deployments.be.image.tag
+    argocd-image-updater.argoproj.io/dfp-piao-bff.helm.image-name: deployments.bff.image.name
+    argocd-image-updater.argoproj.io/dfp-piao-bff.helm.image-tag: deployments.bff.image.tag
+    argocd-image-updater.argoproj.io/dfp-piao-fe.helm.image-name: deployments.fe.image.name
+    argocd-image-updater.argoproj.io/dfp-piao-fe.helm.image-tag: deployments.fe.image.tag
+    argocd-image-updater.argoproj.io/dfp-sync-pp.helm.image-name: deployments.sync-pp.image.name
+    argocd-image-updater.argoproj.io/dfp-sync-pp.helm.image-tag: deployments.sync-pp.image.tag
+    argocd-image-updater.argoproj.io/update-strategy: latest
+    argocd-image-updater.argoproj.io/write-back-method: git
+  name: dfp-piao-coll
+  namespace: dfp-devops-coll
+spec:
+  destination:
+    namespace: dfp-piao-coll
+    server: https://kubernetes.default.svc
+  project: dfp
+  source:
+    path: arch/dfp-piao
+    repoURL: https://github.com/samuelecelani/EYREPO.git
+    targetRevision: main
+    helm:
+      valueFiles:
+        - values-collaudo.yaml
+  syncPolicy:
+    automated:
+      prune: true

@@ -1,0 +1,88 @@
+<div class="main">
+  <div class="header-backgroud" [style.background-image]="asset.bg('img/backHeaderServizi.png')">
+    <div class="container-header">
+      <div class="card-shape">
+        <svg
+          class="shape-bg shape-desktop"
+          viewBox="0 0 677 266"
+          preserveAspectRatio="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M0 9.99999C0 4.47715 4.47715 0 10 0H667C672.523 0 677 4.47715 677 10V208.571C677 214.093 672.523 218.571 667 218.571H570.002C564.479 218.571 560.002 223.048 560.002 228.571V256C560.002 261.523 555.524 266 550.002 266H296.523H10C4.47716 266 0 261.523 0 256L0 9.99999Z"
+            fill="#003366"
+          />
+        </svg>
+        <svg
+          class="shape-bg shape-mobile"
+          viewBox="0 0 343 251"
+          preserveAspectRatio="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M0.00113853 9.99996C0.00116462 4.47713 4.47831 0 10.0011 0H333C338.523 0 343 4.47718 343 10L342.999 203.635C342.999 209.157 338.522 213.634 332.999 213.634H176.781C171.258 213.634 166.781 218.112 166.781 223.634V241C166.781 246.523 162.304 251 156.781 251H133.39H10C4.47718 251 2.11511e-05 246.523 4.72421e-05 241L0.00113853 9.99996Z"
+            fill="#003366"
+          />
+        </svg>
+        <div class="shape-content">
+          <h1 class="card-title">{{ 'SCRIVANIA_DFP.GESTIONE_PIAO.TITLE' | translate }}</h1>
+          <p class="card-subtitle">{{ 'SCRIVANIA_DFP.GESTIONE_PIAO.SUB_TITLE' | translate }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-content content">
+    <div class="card-action">
+      <div class="card-action-item" *ngFor="let card of cardAction; trackBy: trackByCardId">
+        <svg
+          class="card-shape-bg card-shape-desktop"
+          viewBox="0 0 613 314"
+          fill="none"
+          preserveAspectRatio="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M104.764 0.5H603C608.247 0.500002 612.5 4.75336 612.5 10V304C612.5 309.247 608.247 313.5 603 313.5H10C4.7533 313.5 0.5 309.247 0.5 304V109.359C0.5 104.113 4.75329 99.8594 10 99.8594H84.7637C90.5625 99.8594 95.2635 95.1582 95.2637 89.3594V10C95.2637 4.75337 99.5171 0.50011 104.764 0.5Z"
+            fill="#F2F7FC"
+            stroke="#207AD5"
+          />
+        </svg>
+        <svg
+          class="card-shape-bg card-shape-mobile"
+          viewBox="0 0 344 316"
+          fill="none"
+          preserveAspectRatio="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M68.918 0.5H334C339.247 0.500003 343.5 4.75336 343.5 10V306C343.5 311.247 339.247 315.5 334 315.5H10C4.75333 315.5 0.500001 311.247 0.5 306V80.7402C0.499999 75.4935 4.75329 71.2402 10 71.2402H48.918C54.7168 71.2402 59.4178 66.5391 59.418 60.7402V10C59.418 4.7533 63.6713 0.499997 68.918 0.5Z"
+            fill="#F2F7FC"
+            stroke="#4392E0"
+          />
+        </svg>
+        <div class="card-icon-wrapper">
+          <piao-icon
+            [iconContainerClass]="'icon-container-card-action'"
+            [iconImgClass]="'icon-img-card-action'"
+            [icon]="card.icon"
+            [iconColor]="'#003366'"
+          ></piao-icon>
+        </div>
+        <div class="card-content">
+          <h2 class="card-title">{{ card.title | translate }}</h2>
+          <p class="card-subtitle pt-3">{{ card.subTitle | translate }}</p>
+          <div class="card-button-wrapper">
+            <piao-button
+              class="card-action-button"
+              [variant]="'primary'"
+              [size]="'md'"
+              (clicked)="handleGoToPath(card)"
+              >{{ 'BUTTONS.DETAILS' | translate }}</piao-button
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

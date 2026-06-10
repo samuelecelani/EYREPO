@@ -1,0 +1,64 @@
+@if (isFormReady) {
+  <div class="main">
+    <form [formGroup]="form">
+      <piao-invia-richiesta-approvazione
+        [piaoDTO]="piaoDTO"
+        [testoSezione]="testoSezione"
+        [isDettaglio]="isDettaglioInvia"
+        (richiestaApprovazioneSaved)="richiestaApprovazioneSaved.emit()"
+      ></piao-invia-richiesta-approvazione>
+      <p class="section-label pt-4">
+        {{ isDettaglio ? (titleDettaglio | translate) : (title | translate) }}
+      </p>
+      <p
+        class="subtitle pt-3"
+        [innerHTML]="isDettaglio ? (subtitleDettaglio | translate) : (subtitle | translate)"
+      ></p>
+      <div class="row pl-1 pt-5">
+        <div class="col-12 col-lg-4">
+          <piao-date-picker
+            [label]="isDettaglio ? (dataDettaglio | translate) : (data | translate)"
+            [control]="form.controls['data']"
+            [id]="'data'"
+            [descTooltip]="data"
+            [required]="true"
+            [min]="today"
+            [isDettaglio]="isDettaglio"
+          >
+          </piao-date-picker>
+        </div>
+        <div class="col-12 col-lg-4">
+          <piao-text-box
+            [label]="url"
+            [typeInput]="'text'"
+            [inputClass]="'input'"
+            [control]="form.controls['url']"
+            [id]="'url'"
+            [descTooltip]="url"
+            [required]="true"
+            [maxValidatorLength]="100"
+            [isDetails]="isDettaglio"
+          >
+          </piao-text-box>
+        </div>
+      </div>
+
+      <div class="pt-5">
+        <piao-attachment
+          [title]="'APPROVAZIONE_E_PUBBLICAZIONE.ATTACHMENT.TITLE_PUBBLICAZIONE'"
+          [loadAttachment]="'APPROVAZIONE_E_PUBBLICAZIONE.ATTACHMENT.LOAD_PUBBLICAZIONE'"
+          [form]="form"
+          [idPiao]="piaoDTO.id"
+          [isDoc]="true"
+          [showDescription]="false"
+          [showName]="false"
+          [codTipologia]="[codTipologia]"
+          [codTipologiaAllegato]="[codTipologiaAllegato]"
+          [isPubblicazione]="true"
+          [sezione]="sezione"
+          [isDettaglio]="isDettaglio"
+        ></piao-attachment>
+      </div>
+    </form>
+  </div>
+}

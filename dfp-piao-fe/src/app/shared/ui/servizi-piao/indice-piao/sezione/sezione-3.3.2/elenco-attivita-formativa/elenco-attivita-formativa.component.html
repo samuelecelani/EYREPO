@@ -1,0 +1,119 @@
+<div class="container-elenco-attivita-formativa">
+  @if (attivitaFormative.length === 0) {
+    @if (!isDettaglio) {
+      <p class="load-form" (click)="handleOpenModal()">
+        {{ titleElenco | translate }}
+      </p>
+    } @else {
+      <p class="not-found-label">{{ notFoundMessage | translate }}</p>
+    }
+  } @else {
+    <div class="table-elenco-container pt-2">
+      <table class="table-elenco">
+        <thead>
+          <tr>
+            <th>
+              {{ 'SEZIONE_332.ELENCO_ATTIVITA_FORMATIVE.TH.TIPOLOGIA_ATTIVITA' | translate }}
+            </th>
+            <th>
+              {{ 'SEZIONE_332.ELENCO_ATTIVITA_FORMATIVE.TH.AMBITO_COMPETENZA' | translate }}
+            </th>
+            <th>{{ 'SEZIONE_332.ELENCO_ATTIVITA_FORMATIVE.TH.AREA_TEMATICA' | translate }}</th>
+            <th>
+              {{ 'SEZIONE_332.ELENCO_ATTIVITA_FORMATIVE.TH.N_FORMATI_DIRIGENTI' | translate }}
+            </th>
+            <th>
+              {{ 'SEZIONE_332.ELENCO_ATTIVITA_FORMATIVE.TH.N_FORMATI_NON_DIRIGENTI' | translate }}
+            </th>
+            <th>{{ 'SEZIONE_332.ELENCO_ATTIVITA_FORMATIVE.TH.ORE_FORMAZIONE' | translate }}</th>
+            <th>
+              {{ 'SEZIONE_332.ELENCO_ATTIVITA_FORMATIVE.TH.VERIFICA_APPRENDIMENTO' | translate }}
+            </th>
+            @if (!isDettaglio) {
+              <th>{{ 'SEZIONE_332.ELENCO_ATTIVITA_FORMATIVE.TH.AZIONI' | translate }}</th>
+            }
+          </tr>
+        </thead>
+        <tbody>
+          @for (attivita of attivitaFormative; track attivita.id || $index) {
+            <tr>
+              <td>{{ getTipologiaAttivitaLabel(attivita.idTipologiaAttivita || 0) }}</td>
+              <td>{{ getAmbitoCompetenzaLabel(attivita.idAmbitoCompetenza || 0) }}</td>
+              <td>{{ getAreaTematicaLabel(attivita.idAreaTematica || 0) }}</td>
+              <td>{{ formatNumberForDisplay(attivita.numeroDirigenti) }}</td>
+              <td>{{ formatNumberForDisplay(attivita.numeroNonDirigenti) }}</td>
+              <td>{{ formatNumberForDisplay(attivita.oreFormazione) }}</td>
+              <td>
+                {{
+                  attivita.verificaApprendimento
+                    ? ('SEZIONE_332.MODAL.SI' | translate)
+                    : ('SEZIONE_332.MODAL.NO' | translate)
+                }}
+              </td>
+              @if (!isDettaglio) {
+                <td class="col-azioni">
+                  <piao-azioni
+                    [idSelected]="attivita.id?.toString() || ''"
+                    [isTitle]="false"
+                    [verticalEllipsis]="getActionsFor(attivita)"
+                  ></piao-azioni>
+                </td>
+              }
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+    @if (!isDettaglio) {
+      <p class="d-flex justify-content-end pt-3">
+        <span>
+          <p class="load-form" (click)="handleOpenModal()">
+            {{ labelAddRiga | translate }}
+            <piao-svg
+              [icon]="'PlusCircle'"
+              [fillColor]="'#0066cc'"
+              [svgContainer]="'svg'"
+            ></piao-svg>
+          </p>
+        </span>
+      </p>
+    }
+  }
+</div>
+
+@if (openModalAttivitaFormativa) {
+  <piao-modal
+    [isIcon]="true"
+    [icon]="icon"
+    [iconStyle]="iconStyle"
+    [open]="openModalAttivitaFormativa"
+    [disabledButtonConfirm]="disabledButtonConfirm"
+    (closed)="handleCloseModal()"
+    (confirm)="handleConfirmModal()"
+  >
+    <piao-modal-attivita-formativa
+      #child
+      [piaoDTO]="piaoDTO"
+      [attivitaFormativaToEdit]="attivitaToEdit"
+      [dropdownTipologiaAttivita]="dropdownTipologiaAttivita"
+      [dropdownAmbitoCompetenza]="dropdownAmbitoCompetenza"
+      [dropdownAreaTematica]="dropdownAreaTematica"
+      [lengthArray]="attivitaFormative.length"
+      [rowIndex]="rowIndex"
+    >
+    </piao-modal-attivita-formativa>
+  </piao-modal>
+}
+
+@if (openModalDelete) {
+  <piao-modal-delete
+    [icon]="'AlertCircle'"
+    [title]="'MODAL_REMOVE.ATTIVITA_FORMATIVA.TITLE'"
+    [message]="'MODAL_REMOVE.ATTIVITA_FORMATIVA.MESSAGE'"
+    [subMessage]="'MODAL_REMOVE.CONFIRM_OPERATION'"
+    [openModalDelete]="openModalDelete"
+    [elementToDelete]="elementToDelete"
+    (confirm)="handleDeleteAttivita($event)"
+    (closed)="handleCloseModalDelete()"
+  ></piao-modal-delete>
+}

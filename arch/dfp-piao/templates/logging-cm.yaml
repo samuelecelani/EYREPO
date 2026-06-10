@@ -1,0 +1,7 @@
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: logging-cm
+data:
+  MS_LOGGING_LEVEL: "INFO"

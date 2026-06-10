@@ -1,0 +1,95 @@
+<div class="pt-4 d-flex flex-column">
+  @if (titleLabel) {
+    <div class="title-with-tooltip">
+      <p class="title-dynamic-attivita-fields">
+        {{ titleLabel | translate }}
+        @if (isRequired) {
+          <span>*</span>
+        }
+      </p>
+      @if (isTooltip) {
+        <piao-tooltip [descTooltip]="titleLabel" [icon]="'InfoCircle'"></piao-tooltip>
+      }
+    </div>
+  }
+
+  <div class="pb-2">
+    @for (x of arrayForm?.controls; track $index) {
+      @let i = $index + 1;
+      @let labelAndDescTool = getLabelForIndex($index);
+
+      <div class="row attivita-row align-items-end">
+        <div class="col-12 col-lg-6">
+          <piao-text-box
+            [label]="labelAndDescTool"
+            [typeInput]="dynamicAttivitaConfig.typeTB"
+            [control]="x.controls[dynamicAttivitaConfig.controlTB]"
+            [id]="dynamicAttivitaConfig.idTB"
+            [inputClass]="dynamicAttivitaConfig.classTB"
+            [maxValidatorLength]="dynamicAttivitaConfig.maxValidatorLengthTB"
+            [descTooltip]="labelAndDescTool"
+            [isLabelTranslate]="false"
+            [containerClass]="'container-width-full'"
+          ></piao-text-box>
+        </div>
+
+        <div class="col-12 col-lg-date">
+          <piao-date-picker
+            [label]="dynamicAttivitaConfig.labelDataInizio || 'Data inizio'"
+            [control]="x.controls['valueDateInizio']"
+            [id]="'dateInizio_' + $index"
+            [descTooltip]="dynamicAttivitaConfig.descTooltipDataInizio || 'Data di inizio'"
+            [isLabelTranslate]="false"
+            [containerClass]="'container-width-full'"
+          ></piao-date-picker>
+        </div>
+
+        <div class="col-12 col-lg-date">
+          <piao-date-picker
+            [label]="dynamicAttivitaConfig.labelDataFine || 'Data fine'"
+            [control]="x.controls['valueDateFine']"
+            [id]="'dateFine_' + $index"
+            [descTooltip]="dynamicAttivitaConfig.descTooltipDataFine || 'Data di fine'"
+            [isLabelTranslate]="false"
+            [containerClass]="'container-width-full'"
+            [min]="x.controls['valueDateInizio'].value ? x.controls['valueDateInizio'].value : null"
+          ></piao-date-picker>
+        </div>
+
+        <div class="col-auto d-flex align-items-end field-remove g-3">
+          @if (isFirstRemove) {
+            <p class="link-blue" (click)="handleOpenModalDelete($index)">
+              {{ 'BUTTONS.REMOVE' | translate }}
+            </p>
+          } @else if (!isFirstRemove && $index !== 0) {
+            <p class="link-blue" (click)="handleOpenModalDelete($index)">
+              {{ 'BUTTONS.REMOVE' | translate }}
+            </p>
+          }
+        </div>
+      </div>
+    }
+  </div>
+
+  <div class="pt-2 d-flex flex-column justify-content-center align-items-center">
+    @if (!properties?.value || properties?.value.length === 0) {
+      <p>
+        {{ notFoundLabel | translate }}
+      </p>
+    }
+    <p class="link-blue" (click)="handleAddNewField()">
+      {{ addFieldLabel | translate }}
+    </p>
+  </div>
+</div>
+
+<piao-modal-delete
+  [icon]="'AlertCircle'"
+  [title]="'MODAL_REMOVE.TITLE'"
+  [message]="'MODAL_REMOVE.MESSAGE'"
+  [subMessage]="'MODAL_REMOVE.CONFIRM_OPERATION'"
+  [openModalDelete]="openModalDelete"
+  [elementToDelete]="elementToDelete"
+  (confirm)="handleRemoveForm($event)"
+  (closed)="handleCloseModalDelete()"
+></piao-modal-delete>

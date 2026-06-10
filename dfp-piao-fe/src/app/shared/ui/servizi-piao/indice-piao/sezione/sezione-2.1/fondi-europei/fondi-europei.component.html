@@ -1,0 +1,128 @@
+<p class="subTitle pt-4">{{ subTitleFondiEuropei | translate }}</p>
+<p class="description">
+  {{
+    isDettaglio
+      ? (descriptionFondiEuropeiDettaglio | translate)
+      : (descriptionFondiEuropei | translate)
+  }}
+</p>
+
+<div class="pt-3">
+  <piao-text-area
+    [label]="labelTAIntroduzioneFondiEuropei"
+    [control]="form.controls['introFondiEuropei']"
+    [isDettaglio]="isDettaglio"
+    [id]="'introFondiEuropei'"
+    textAreaClass="text-area"
+    [maxValidatorLength]="'20000'"
+    [descTooltip]="labelTAIntroduzioneFondiEuropei"
+    [containerClass]="'container-width-full'"
+  ></piao-text-area>
+
+  @if (isDettaglio) {
+    @if (fondiEuropeiArray && fondiEuropeiArray.length > 0) {
+      <div class="pt-2 table-container">
+        <table class="detail-table">
+          <thead>
+            <tr>
+              <th>{{ labelTBProgettoFinanziato | translate }}</th>
+              <th>{{ labelTADescrizioneFondi | translate }}</th>
+              <th>{{ labelTBFondiStanziati | translate }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (fondoEuropeo of fondiEuropeiArray.controls; track $index) {
+              <tr>
+                <td>{{ fondoEuropeo.controls['progettoFinanziato'].value }}</td>
+                <td>{{ fondoEuropeo.controls['descrizione'].value }}</td>
+                <td>
+                  {{
+                    fondoEuropeo.controls['fondiStanziati'].value | currency: 'EUR' : '' : '1.2-2'
+                  }}
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    } @else {
+      <div class="no-value">
+        {{
+          'SCRIVANIA_PA.SERVIZI_PIAO.INDICE_PIAO.SEZIONE.SEZIONE_21.FONDI_EUROPEI.NOT_FOUND'
+            | translate
+        }}
+      </div>
+    }
+  } @else {
+    <div class="pt-3">
+      @if (fondiEuropeiArray && fondiEuropeiArray.length > 0) {
+        @for (fondoEuropeo of fondiEuropeiArray.controls; track $index) {
+          <div class="row-grid-3 pt-3">
+            <piao-text-area
+              [label]="labelTBProgettoFinanziato"
+              [control]="fondoEuropeo.controls['progettoFinanziato']"
+              [isDettaglio]="isDettaglio"
+              [id]="'fondiEuropei-progettoFinanziato-' + $index"
+              textAreaClass="text-area-small"
+              [maxValidatorLength]="'20000'"
+              [descTooltip]="labelTBProgettoFinanziato"
+              [containerClass]="'container-flex-1'"
+            ></piao-text-area>
+
+            <piao-text-area
+              [label]="labelTADescrizioneFondi"
+              [control]="fondoEuropeo.controls['descrizione']"
+              [isDettaglio]="isDettaglio"
+              [id]="'fondiEuropei-descrizione-' + $index"
+              textAreaClass="text-area-small"
+              [maxValidatorLength]="'20000'"
+              [descTooltip]="labelTADescrizioneFondi"
+              [containerClass]="'container-flex-1'"
+            ></piao-text-area>
+
+            <piao-text-box
+              [label]="labelTBFondiStanziati"
+              [typeInput]="'text'"
+              [inputClass]="'input'"
+              [control]="fondoEuropeo.controls['fondiStanziati']"
+              [isDetails]="isDettaglio"
+              [maxValidatorLength]="20"
+              [id]="'fondiEuropei-fondiStanziati-' + $index"
+              [containerClass]="'container-width-full'"
+            ></piao-text-box>
+
+            <div class="btn-remove-container">
+              <p class="link-blue" (click)="handleOpenModalDelete(fondoEuropeo, $index)">
+                {{ labelBtnRimuovi | translate }}
+              </p>
+            </div>
+          </div>
+        }
+      }
+
+      <div class="pt-2">
+        <piao-card-info
+          [titleCardHeader]="titleCardFondiEuropei"
+          [piaoCardHeaderTitleClass]="'title-card-info'"
+          [titleLoadNewForm]="labelBtnAddFondiEuropei"
+          [loadNewForm]="true"
+          [piaoCardHeaderContainerClass]="'piao-card-info-container-new-form'"
+          (clicked)="handleAddFondiEuropei()"
+        ></piao-card-info>
+      </div>
+    </div>
+  }
+</div>
+
+@if (openModalDelete && !isDettaglio) {
+  <piao-modal-delete
+    [icon]="'AlertCircle'"
+    [title]="'MODAL_REMOVE.TITLE'"
+    [message]="'MODAL_REMOVE.MESSAGE'"
+    [subMessage]="'MODAL_REMOVE.CONFIRM_OPERATION'"
+    [openModalDelete]="openModalDelete"
+    [elementToDelete]="elementToDelete"
+    (confirm)="confirmDeleteFondo()"
+    (closed)="handleCloseModalDelete()"
+  ></piao-modal-delete>
+}

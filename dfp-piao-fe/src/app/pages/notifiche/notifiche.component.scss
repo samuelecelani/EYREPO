@@ -1,0 +1,276 @@
+.notifiche-page {
+  min-height: 100vh;
+  background-color: #f8f9fa;
+  padding: 2rem 3rem; // Padding left come le altre pagine
+
+  &__container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  // Breadcrumb
+  &__breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    font-size: 0.875rem;
+  }
+
+  &__breadcrumb-link {
+    color: #6c757d;
+    text-decoration: none;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: #0066cc;
+      text-decoration: underline;
+    }
+  }
+
+  &__breadcrumb-separator {
+    color: #6c757d;
+  }
+
+  &__breadcrumb-current {
+    color: #212529;
+    font-weight: 500;
+  }
+
+  // Titolo
+  &__title {
+    margin: 0 0 2rem 0;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #212529;
+  }
+
+  // Header con Tab e Azioni
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    gap: 1rem;
+  }
+
+  // Tab Navigation
+  &__tabs {
+    display: flex;
+    gap: 2rem;
+    border-bottom: 2px solid #e9ecef;
+    flex: 1;
+  }
+
+  &__tab {
+    position: relative;
+    padding: 0.75rem 0.25rem;
+    background: none;
+    border: none;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #6c757d;
+    cursor: pointer;
+    transition: color 0.2s ease;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -2px;
+
+    &:hover {
+      color: #212529;
+    }
+
+    &--active {
+      color: #0066cc;
+      border-bottom-color: #0066cc;
+      font-weight: 600;
+    }
+  }
+
+  &__tab-count {
+    margin-left: 0.25rem;
+  }
+
+  // Pulsante "Segna tutte come lette"
+  &__mark-all-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0;
+    background: none;
+    border: none;
+    color: #0066cc;
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: color 0.2s ease;
+    white-space: nowrap;
+    letter-spacing: 0.025rem;
+
+    &:hover {
+      color: #0052a3;
+      text-decoration: underline;
+    }
+
+    // Stili per piao-svg component
+    piao-svg {
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+
+      ::ng-deep svg {
+        width: 20px;
+        height: 20x;
+      }
+    }
+  }
+
+  // Contenuto
+  &__content {
+    overflow: hidden;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  // Stato vuoto
+  &__empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 2rem;
+    text-align: center;
+  }
+
+  &__empty-icon {
+    margin-bottom: 1.5rem;
+    opacity: 0.25;
+    color: #6c757d;
+  }
+
+  &__empty-title {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #212529;
+  }
+
+  &__empty-text {
+    margin: 0;
+    font-size: 1rem;
+    color: #6c757d;
+  }
+
+  // Paginazione
+  &__pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1.5rem 1rem;
+    border-top: 1px solid #e9ecef;
+  }
+
+  &__pagination-btn,
+  &__pagination-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2rem;
+    height: 2rem;
+    padding: 0.25rem 0.5rem;
+    background-color: white;
+    border: 1px solid #dee2e6;
+    border-radius: 0.25rem;
+    color: #495057;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover:not(:disabled) {
+      background-color: #e7f1ff;
+      border-color: #0066cc;
+      color: #0066cc;
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    svg {
+      width: 14px;
+      height: 14px;
+    }
+  }
+
+  &__pagination-number {
+    &--active {
+      background-color: #0066cc;
+      border-color: #0066cc;
+      color: white;
+      font-weight: 600;
+
+      &:hover {
+        background-color: #0052a3;
+        border-color: #0052a3;
+        color: white;
+      }
+    }
+  }
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .notifiche-page {
+    padding: 1rem;
+
+    &__title {
+      font-size: 1.5rem;
+    }
+
+    &__header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    &__tabs {
+      width: 100%;
+      gap: 1rem;
+    }
+
+    &__tab {
+      font-size: 0.875rem;
+    }
+
+    &__list {
+      gap: 2rem;
+    }
+
+    &__pagination {
+      flex-wrap: wrap;
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .notifiche-page {
+    padding: 0.75rem;
+
+    &__title {
+      font-size: 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+
+    &__list {
+      gap: 1.5rem;
+    }
+
+    &__mark-all-btn {
+      font-size: 0.7rem;
+    }
+  }
+}

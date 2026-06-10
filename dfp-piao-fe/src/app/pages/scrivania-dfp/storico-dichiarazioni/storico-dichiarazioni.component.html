@@ -1,0 +1,52 @@
+<div class="main">
+  <h1 class="page-title">Storico dichiarazioni</h1>
+
+  <hr class="title-divider" />
+
+  <div class="table-container">
+    <table class="table-storico">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Amministrazione</th>
+          <th>Data ricezione</th>
+          <th>Data prevista di pubblicazione</th>
+          <th>Stato</th>
+          <th>Azioni</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (row of paginatedRows(); track row.id) {
+          <tr>
+            <td class="cell-id">{{ row.id }}</td>
+            <td>{{ row.amministrazione }}</td>
+            <td>{{ row.dataRicezione | date: 'dd/MM/yyyy' }}</td>
+            <td>{{ row.dataPrevistaPubblicazione | date: 'dd/MM/yyyy' }}</td>
+            <td>
+              <span
+                class="stato"
+                [class.stato--da-leggere]="row.stato === false"
+                [class.stato--letto]="row.stato === true"
+              >
+                <span class="stato__dot"></span>
+                {{ row.stato ? 'Letto' : 'Da leggere' }}
+              </span>
+            </td>
+            <td>
+              <a class="action-link" (click)="goToDettaglio(row)">Dettaglio</a>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+
+  <div class="pagination-container">
+    <piao-pagination
+      [totalItems]="totalItems()"
+      [itemsPerPage]="itemsPerPage"
+      [currentPage]="currentPage()"
+      (pageChange)="onPageChange($event)"
+    ></piao-pagination>
+  </div>
+</div>

@@ -1,0 +1,127 @@
+<div class="main-table">
+  <table class="table">
+    <thead>
+      <tr>
+        <th *ngFor="let key of columnKeys; trackBy: trackByKey">{{ columns[key] }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (row of rows; track $index; let i = $index; let isLast = $last) {
+        @switch (typeTable) {
+          @case ('onlyLast') {
+            <tr [ngClass]="isLast ? 'last-tr' : 'white-blue-tr'">
+              <td *ngFor="let key of columnKeys; trackBy: trackByKey">{{ row[key] }}</td>
+            </tr>
+          }
+          @case ('noLast') {
+            <tr
+              [ngClass]="
+                i === rows.length - 2 || i === rows.length - 1 ? 'white-tr' : 'white-blue-tr'
+              "
+            >
+              <td *ngFor="let key of columnKeys; trackBy: trackByKey">{{ row[key] }}</td>
+            </tr>
+          }
+          @case ('tableAreeContrattuali') {
+            <tr
+              [ngClass]="
+                isLast
+                  ? 'last-tr'
+                  : row[columnKeys[0]] === 'Totale aree'
+                    ? 'totale-aree-tr'
+                    : row[columnKeys[0]] === 'Totale'
+                      ? 'white-tr'
+                      : 'white-blue-tr'
+              "
+              [class.detached-row]="isLast"
+              [class.before-detached-row]="i === rows.length - 2"
+            >
+              <td *ngFor="let key of columnKeys; trackBy: trackByKey">
+                {{ row[key] }}
+                @if (isLast && key === columnKeys[0]) {
+                  <piao-tooltip
+                    class="tooltip-gap"
+                    [descTooltip]="row[key]"
+                    [icon]="'InfoCircle'"
+                    [fillColor]="'#FFFFFF'"
+                  ></piao-tooltip>
+                }
+              </td>
+            </tr>
+          }
+          @case ('ultimi3RendApprovati') {
+            <tr
+              [ngClass]="
+                isLast
+                  ? 'last-tr'
+                  : row[columnKeys[0]] === 'Media entrate correnti ultimi tre rendiconti approvati'
+                    ? 'totale-aree-tr'
+                    : row[columnKeys[0]] === 'Totale entrate correnti a rendiconto' ||
+                        row[columnKeys[0]] === 'FCDE ultimo rendiconto approvato'
+                      ? 'white-tr'
+                      : 'white-blue-tr'
+              "
+              [class.detached-row]="isLast"
+              [class.before-detached-row]="i === rows.length - 2"
+            >
+              <td *ngFor="let key of columnKeys; trackBy: trackByKey">{{ row[key] }}</td>
+            </tr>
+          }
+          @case ('limiteSpesa') {
+            <tr [ngClass]="isLast ? 'totale-aree-tr' : 'white-tr'">
+              <td *ngFor="let key of columnKeys; trackBy: trackByKey">{{ row[key] }}</td>
+            </tr>
+          }
+          @case ('spesaPersonale') {
+            <tr
+              [ngClass]="
+                isLast
+                  ? 'last-tr'
+                  : row[columnKeys[0]] === 'Componenti assoggettate al limite di spesa (A-B=C)' ||
+                      row[columnKeys[0]] === 'Limite spesa media triennio 2011-2013 (D)'
+                    ? 'totale-aree-tr'
+                    : row[columnKeys[0]] === 'Totale spesa personale (A)'
+                      ? 'white-tr'
+                      : 'white-blue-tr'
+              "
+            >
+              <td *ngFor="let key of columnKeys; trackBy: trackByKey">{{ row[key] }}</td>
+            </tr>
+          }
+          @case ('totDir1Dir2') {
+            <tr
+              [ngClass]="
+                isLast
+                  ? 'last-tr'
+                  : i === rows.length - 2 || i === rows.length - 3
+                    ? 'white-tr'
+                    : 'white-blue-tr'
+              "
+            >
+              <td *ngFor="let key of columnKeys; trackBy: trackByKey">{{ row[key] }}</td>
+            </tr>
+          }
+          @case ('totDirigenti') {
+            <tr
+              [ngClass]="isLast ? 'last-tr' : 'white-blue-tr'"
+              [class.detached-row]="isLast"
+              [class.before-detached-row]="i === rows.length - 2"
+            >
+              <td *ngFor="let key of columnKeys; trackBy: trackByKey">{{ row[key] }}</td>
+            </tr>
+          }
+          @case ('tabellaSpese') {
+            <tr [ngClass]="isLast ? 'white-tr' : 'white-blue-tr'">
+              <td *ngFor="let key of columnKeys; trackBy: trackByKey">{{ row[key] }}</td>
+            </tr>
+          }
+          @case ('verificaSoglia') {
+            <tr class="white-blue-tr">
+              <td *ngFor="let key of columnKeys; trackBy: trackByKey">{{ row[key] }}</td>
+            </tr>
+          }
+        }
+      }
+    </tbody>
+  </table>
+</div>

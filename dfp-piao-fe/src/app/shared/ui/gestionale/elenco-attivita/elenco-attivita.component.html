@@ -1,0 +1,71 @@
+<div class="list-header">
+  <p class="title">{{ 'GESTIONALE.ELENCO_ATTIVITA.TITLE_REWORK' | translate }}</p>
+  <p class="results-counter">{{ paginatedAlerts().length }} di {{ totalItems() }} risultati</p>
+</div>
+
+<div class="table-att-wrapper">
+  <table class="table-att">
+    <thead>
+      <tr>
+        <th>{{ 'GESTIONALE.ELENCO_ATTIVITA.TABLE.ID_ACTIVITY_TH' | translate }}</th>
+        <th>{{ 'GESTIONALE.ELENCO_ATTIVITA.TABLE.PROFILE_FIRST_TH' | translate }}</th>
+        <th>{{ 'GESTIONALE.ELENCO_ATTIVITA.TABLE.PROFILE_SECOND_TH' | translate }}</th>
+        <th>{{ 'GESTIONALE.ELENCO_ATTIVITA.TABLE.NAME_TH' | translate }}</th>
+        <th>{{ 'GESTIONALE.ELENCO_ATTIVITA.TABLE.SURNAME_TH' | translate }}</th>
+        <th>{{ 'GESTIONALE.ELENCO_ATTIVITA.TABLE.FISCAL_CODE_TH' | translate }}</th>
+        <th class="actions-header">{{ 'GESTIONALE.ELENCO_ATTIVITA.TABLE.ACTIONS_TH' | translate }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (x of paginatedAlerts(); track $index) {
+        <tr>
+          <td>{{ x.codiceAttivita }}</td>
+          <td>{{ x.profiloUtente || '-' }}</td>
+          <td>{{ x.profiloUtenteSecondario || '-' }}</td>
+          <td>{{ x.nome }}</td>
+          <td>{{ x.cognome }}</td>
+          <td>{{ x.codiceFiscale }}</td>
+          <td class="actions-cell">
+            <piao-azioni [isTitle]="false" [verticalEllipsis]="getActionsFor(x)"></piao-azioni>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
+
+<piao-pagination
+  [totalItems]="totalItems()"
+  [itemsPerPage]="itemsPerPage"
+  [currentPage]="currentPage()"
+  (pageChange)="onPageChange($event)"
+></piao-pagination>
+
+<div class="button" *hasFunzionalita="['GEST_CTA_NEW_PROFIL']">
+  <piao-button
+    [variant]="'primary'"
+    [size]="'lg-plus'"
+    [customClass]="'fw-bold'"
+    (clicked)="handleNewProfile()"
+    >{{
+    'BUTTONS.NEW_PROFILE' | translate
+  }}</piao-button
+  >
+</div>
+
+@if (openRevokeConfirmModal) {
+  <piao-modal
+    [isIcon]="true"
+    [icon]="'CloseCircle'"
+    [iconStyle]="'icon-modal'"
+    [open]="openRevokeConfirmModal"
+    (closed)="closeRevokeConfirmModal()"
+    (confirm)="confirmRevokeProfile()"
+  >
+    <div class="modal-main">
+      <p class="modal-title mb-3">{{ 'GESTIONALE.PROFILO_UTENTE.REVOKE_MODAL.TITLE' | translate }}</p>
+      <p class="modal-message mb-2">{{ 'GESTIONALE.PROFILO_UTENTE.REVOKE_MODAL.MESSAGE' | translate }}</p>
+      <p class="modal-message">{{ 'GESTIONALE.PROFILO_UTENTE.MODAL_CONFIRM_MESSAGE' | translate }}</p>
+    </div>
+  </piao-modal>
+}

@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: be-cm
+data:
+  spring.application.name: PIAO
+  AWS_REGION: eu-west-1
+  POSTGRES_SCHEMA: "piao_private"

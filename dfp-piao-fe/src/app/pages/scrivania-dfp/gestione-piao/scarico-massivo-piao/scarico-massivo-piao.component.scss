@@ -1,0 +1,300 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding-bottom: 3rem;
+  padding-right: 1rem;
+}
+
+.alert-box {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  background-color: #fcecbd;
+  border-radius: 4px;
+  padding: 1rem 1.25rem;
+}
+
+.alert-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.alert-title {
+  margin: 0;
+  font-weight: 700;
+  color: #0066cc;
+}
+
+.alert-subtitle {
+  margin: 0;
+  color: #1c1c1c;
+}
+
+.filters-form {
+  width: 100%;
+}
+
+.filters-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1rem;
+}
+
+.results-section {
+  width: 100%;
+}
+
+.results-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.results-search-info {
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: #1c1c1c;
+}
+
+.results-total {
+  color: #5a6772;
+  font-size: 0.9rem;
+}
+
+.checkbox-wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  color: #1c1c1c;
+  cursor: pointer;
+  margin: 0;
+}
+
+.td-checkbox {
+  padding-left: 1.5rem !important;
+}
+
+.td-checkbox input[type='checkbox'],
+.th-checkbox input[type='checkbox'] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 2px solid #b0b0b0;
+  border-radius: 0.25rem;
+  background-color: #fff;
+  cursor: pointer;
+  position: relative;
+  vertical-align: middle;
+  transition:
+    background-color 0.2s,
+    border-color 0.2s;
+
+  &:checked {
+    background-color: #0066cc;
+    border-color: #0066cc;
+  }
+
+  &:checked::after {
+    content: '';
+    width: 0.35rem;
+    height: 0.7rem;
+    border: solid #fff;
+    border-width: 0 2px 2px 0;
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+
+  &:hover {
+    border-color: #0066cc;
+  }
+}
+
+.select-all-label {
+  font-weight: 700;
+  color: #0066cc;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  white-space: pre-line;
+  line-height: 1.1;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* ===== TABLE ===== */
+.table-container {
+  overflow-x: auto;
+  overflow-y: auto;
+}
+
+.table-custom {
+  table-layout: fixed;
+  width: 100%;
+}
+
+.table-custom th,
+.table-custom td {
+  height: auto;
+  width: 11rem;
+  min-width: 11rem;
+  max-width: 14rem;
+  padding: 1rem 0.75rem;
+  vertical-align: middle;
+  white-space: pre-line;
+  text-align: left;
+}
+
+.table-custom th.th-checkbox,
+.table-custom td.td-checkbox {
+  width: 8rem;
+  min-width: 8rem;
+}
+
+.table-custom thead tr {
+  border-bottom: 2px solid #5c6f82;
+}
+
+.table-custom thead th {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #1c1c1c;
+}
+
+.table-custom tbody tr {
+  border-bottom: 1px solid #ccc;
+}
+
+.action-link {
+  color: #0066cc;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+
+  ::ng-deep piao-svg {
+    display: inline-flex;
+    align-items: center;
+
+    .svg {
+      display: inline-flex;
+      align-items: center;
+      width: 1.1rem;
+      height: 1.1rem;
+
+      svg {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.pagination-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+}
+
+.selected-count {
+  color: #1c1c1c;
+  font-size: 1rem;
+
+  strong {
+    font-weight: 700;
+  }
+}
+
+.download-all-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+@media screen and (max-width: 768px) {
+  .filters-actions {
+    flex-direction: row;
+    justify-content: stretch;
+
+    piao-button {
+      flex: 1;
+
+      ::ng-deep button {
+        width: 100%;
+      }
+    }
+  }
+
+  /* ===== STICKY LAST COLUMN (Azioni) - mobile only ===== */
+  .table-custom thead th:last-child,
+  .table-custom tbody td:last-child {
+    position: sticky;
+    right: 0;
+    z-index: 2;
+    background-color: #ffffff;
+  }
+
+  .table-custom thead th:last-child::after,
+  .table-custom tbody td:last-child::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -8px;
+    width: 8px;
+    pointer-events: none;
+    background: linear-gradient(to right, transparent, rgba(92, 111, 130, 0.15));
+  }
+
+  .table-custom thead th:last-child {
+    z-index: 3;
+  }
+
+  .results-toolbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .pagination-row {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .selected-count {
+    text-align: center;
+  }
+
+  .download-all-actions {
+    justify-content: stretch;
+
+    piao-button {
+      width: 100%;
+
+      ::ng-deep button {
+        width: 100%;
+      }
+    }
+  }
+}

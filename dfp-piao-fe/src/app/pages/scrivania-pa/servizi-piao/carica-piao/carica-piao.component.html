@@ -1,0 +1,217 @@
+<div class="main">
+  <form [formGroup]="form">
+    <!-- Header Section -->
+    <div class="pt-3 pb-5">
+      <p class="title" [innerHTML]="piaoPageLabels['title'] | translate"></p>
+      <p class="subTitle pt-2" [innerHTML]="piaoPageLabels['subtitle'] | translate"></p>
+    </div>
+
+    @if (isUpdateMode) {
+      <div class="pt-3">
+        <piao-card-info
+          [icon]="'WarningCircle'"
+          [titleCardHeader]="'PIAO_PDF.AGGIORNA.CARD_INFO_TITLE'"
+          [piaoCardHeaderTitleClass]="'title-card-info-pdf'"
+          [piaoCardHeaderContainerClass]="'piao-card-info-pdf-container'"
+          [loadNewForm]="false"
+        ></piao-card-info>
+      </div>
+    }
+
+    <!-- Form Content -->
+    <div class="container-full pt-5">
+      <div class="row g-4">
+        <div class="col-12 col-lg-4">
+          <piao-date-picker
+            [label]="dataApprovazioneLabel"
+            [control]="form.controls['dataApprovazione']"
+            [id]="'dataApprovazione'"
+            [descTooltip]="dataApprovazioneLabelTooltip"
+            [containerClass]="'container-width-full'"
+            [required]="true"
+            [isDettaglio]="isDettaglio"
+          >
+          </piao-date-picker>
+        </div>
+
+        <div class="col-12 col-lg-4">
+          <piao-dropdown
+            [dropdown]="autoritaOptions"
+            [title]="autoritaLabel"
+            [idName]="'autorità'"
+            [formControl]="form.controls['autorità']"
+            [isTooltip]="true"
+            [isTranslate]="false"
+            [isRequired]="!isDettaglio"
+            [dropContainerClass]="'container-width-full'"
+            [isDetails]="isDettaglio"
+          ></piao-dropdown>
+        </div>
+
+        <div class="col-12 col-lg-4">
+          <piao-text-box
+            [label]="estremiAttoLabel"
+            [typeInput]="'text'"
+            [inputClass]="'input'"
+            [control]="form.controls['estremiAtto']"
+            [maxValidatorLength]="200"
+            [id]="'estremiAtto'"
+            [descTooltip]="estremiAttoLabel"
+            [containerClass]="'container-width-full'"
+            [required]="true"
+            [isDetails]="isDettaglio"
+          >
+          </piao-text-box>
+        </div>
+
+        <div class="col-12 col-lg-4">
+          <piao-dropdown
+            [dropdown]="triennioOptions"
+            [title]="triennioLabel"
+            [idName]="'triennio'"
+            [formControl]="form.controls['triennio']"
+            [isTooltip]="true"
+            [isTranslate]="false"
+            [isRequired]="!isDettaglio"
+            [dropContainerClass]="'container-width-full'"
+            [isDetails]="isDettaglio"
+            [isReadOnly]="!isDettaglio"
+          ></piao-dropdown>
+        </div>
+
+        <div class="col-12 col-lg-4">
+          <piao-dropdown
+            [dropdown]="numDipendentiOptions"
+            [title]="numDipendentiLabel"
+            [idName]="'numDipendenti'"
+            [formControl]="form.controls['numDipendenti']"
+            [isTooltip]="true"
+            [isTranslate]="true"
+            [isRequired]="!isDettaglio"
+            [dropContainerClass]="'container-width-full'"
+            [isDetails]="isDettaglio"
+          ></piao-dropdown>
+        </div>
+
+        <div class="col-12 col-lg-4">
+          <piao-text-box
+            [label]="urlLabel"
+            [typeInput]="'url'"
+            [inputClass]="'input'"
+            [control]="form.controls['url']"
+            [maxValidatorLength]="500"
+            [id]="'url'"
+            [descTooltip]="urlLabel"
+            [containerClass]="'container-width-full'"
+            [required]="true"
+            [isDetails]="isDettaglio"
+          >
+          </piao-text-box>
+        </div>
+      </div>
+
+      <div class="upload-sections pt-5">
+        <!-- UPDATE PIAO MODE -->
+        <div class="pt-5 pb-5" *hasFunzionalita="['PIAO_AGGIORNA_APPR_INPUT_DATA']">
+          <piao-attachment
+            [title]="approvazioneAttachmentLabels['title']"
+            [subTitle]="approvazioneAttachmentLabels['subTitle']"
+            [loadAttachment]="approvazioneAttachmentLabels['load']"
+            [form]="form"
+            [formName]="'allegatiApprovazione'"
+            [isRequired]="true"
+            [idPiao]="idPiao"
+            [isDoc]="true"
+            [showDescription]="false"
+            [showName]="false"
+            [codTipologia]="[codTipologia]"
+            [codTipologiaAllegato]="[codTipologiaAllegatoApprovazione]"
+            [sezione]="codTipologia"
+            [isCaricaPiao]="true"
+            [isDettaglio]="isDettaglio"
+          ></piao-attachment>
+        </div>
+
+        <div class="pt-5 pb-5">
+          <piao-attachment
+            [title]="piaoAttachmentLabels['title']"
+            [loadAttachment]="piaoAttachmentLabels['load']"
+            [form]="form"
+            [formName]="'allegatiPiao'"
+            [idPiao]="idPiao"
+            [isDoc]="true"
+            [showDescription]="false"
+            [showName]="false"
+            [codTipologia]="[codTipologia]"
+            [codTipologiaAllegato]="[codTipologiaAllegatoPiao]"
+            [sezione]="codTipologia"
+            [isOnlyAttachment]="true"
+            [isRequired]="true"
+            [isCaricaPiao]="true"
+            [isDettaglio]="isDettaglio"
+          ></piao-attachment>
+        </div>
+
+        <div class="pt-5 pb-5">
+          <piao-attachment
+            [title]="extraAttachmentLabels['title']"
+            [loadAttachment]="extraAttachmentLabels['load']"
+            [idPiao]="idPiao"
+            [isDoc]="true"
+            [showDescription]="false"
+            [showName]="false"
+            [codTipologia]="[codTipologia]"
+            [codTipologiaAllegato]="[codTipologiaAllegatoExtra]"
+            [sezione]="codTipologia"
+            [isCaricaPiao]="true"
+            [isDettaglio]="isDettaglio"
+          ></piao-attachment>
+        </div>
+      </div>
+    </div>
+
+    <!-- Action Buttons -->
+    @if (!isDettaglio) {
+      <div
+        class="d-flex justify-content-end pt-5 pb-5 gap-3"
+        *hasFunzionalita="['PIAO_AGGIORNA_APPR_INPUT_DATA']"
+      >
+        <piao-button
+          [variant]="'secondary-outline'"
+          [size]="'lg-plus'"
+          [customClass]="'fw-bold'"
+          [disabled]="isDraftSaveDisabled"
+          (click)="handleSubmit()"
+        >
+          {{ 'BUTTONS.SAVE_IN_DRAFT' | translate }}
+        </piao-button>
+        <piao-button
+          [disabled]="getDisableButtonValidation()"
+          [variant]="'primary'"
+          [size]="'lg-plus'"
+          (clicked)="handlePublish()"
+        >
+          {{ submitButtonLabel | translate }}
+        </piao-button>
+      </div>
+    }
+  </form>
+</div>
+
+<!-- Modal Confirmation -->
+@if (openModal) {
+  <piao-modal
+    [isIcon]="true"
+    [icon]="iconModal"
+    [iconStyle]="iconStyle"
+    [open]="openModal"
+    [titleButtonConfirm]="'BUTTONS.CONFIRM'"
+    (confirm)="confirmPublish()"
+    (closed)="openModal = false"
+  >
+    <div class="main-dichiarazione">
+      <p class="title-dichiarazione pt-2 pb-4">{{ modalLabels['title'] | translate }}</p>
+      <p class="message-dichiarazione">{{ modalLabels['message'] | translate }}</p>
+    </div>
+  </piao-modal>
+}

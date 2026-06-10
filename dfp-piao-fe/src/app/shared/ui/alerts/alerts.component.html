@@ -1,0 +1,25 @@
+<div class="alert-card">
+  <!-- [class.alert-non-visualizzato]="!visualizzato" -->
+  <div class="alert-content">
+    <!-- Main Content Section -->
+    <div class="alert-main">
+      <!-- Badge -->
+      <div class="alert-badge">
+        <piao-badge [text]="badgeText" [variant]="badgeVariant"></piao-badge>
+      </div>
+
+      <!-- Title -->
+      <h2 class="alert-title">
+        {{ title }}
+      </h2>
+
+      <!-- Description -->
+      <p class="alert-description">{{ description }}</p>
+    </div>
+
+    <!-- Date Section - Right aligned and vertically centered -->
+    <div class="alert-date-container">
+      <span class="alert-date">{{ getRelativeDate() }}</span>
+    </div>
+  </div>
+</div>

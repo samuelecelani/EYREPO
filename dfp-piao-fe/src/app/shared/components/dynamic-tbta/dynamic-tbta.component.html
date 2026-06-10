@@ -1,0 +1,98 @@
+<div class="main">
+  @if (title) {
+    <p class="title">{{ title | translate }}</p>
+  }
+  @if (isDettaglio) {
+    <div class="detail-table-wrapper">
+      <table class="detail-table">
+        <thead>
+          <tr>
+            <th>{{ dynamicTBTAConfig.labelTB | translate }}</th>
+            <th>{{ dynamicTBTAConfig.labelTA | translate }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (x of arrayForm?.controls; track $index) {
+            <tr>
+              <td>{{ x.controls[dynamicTBTAConfig.controlTB].value }}</td>
+              <td>{{ x.controls[dynamicTBTAConfig.controlTA].value }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  } @else {
+    @for (x of arrayForm?.controls; track $index) {
+      @let i = $index + 1;
+
+      <p class="sub-title pt-3">{{ i + '.' }}{{ subTitle | translate }}</p>
+
+      <div class="pb-2">
+        <div class="col-12 col-xl-4 col-lg-6">
+          <piao-text-box
+            [label]="dynamicTBTAConfig.labelTB"
+            [typeInput]="dynamicTBTAConfig.typeTB"
+            [control]="x.controls[dynamicTBTAConfig.controlTB]"
+            [isDetails]="isDettaglio"
+            [id]="nameArrayForm + '-' + dynamicTBTAConfig.idTB + i"
+            [inputClass]="dynamicTBTAConfig.classTB"
+            [maxValidatorLength]="dynamicTBTAConfig.maxValidatorLengthTB"
+            [descTooltip]="dynamicTBTAConfig.descTooltipTB"
+            [containerClass]="'container-width-full'"
+          ></piao-text-box>
+        </div>
+      </div>
+
+      <piao-text-area
+        [label]="dynamicTBTAConfig.labelTA"
+        [control]="x.controls[dynamicTBTAConfig.controlTA]"
+        [isDettaglio]="isDettaglio"
+        [id]="nameArrayForm + '-' + dynamicTBTAConfig.idTA + i"
+        [textAreaClass]="dynamicTBTAConfig.classTA"
+        [maxValidatorLength]="dynamicTBTAConfig.maxValidatorLengthTA"
+        [descTooltip]="dynamicTBTAConfig.descTooltipTA"
+        [containerClass]="'container-width-full'"
+      ></piao-text-area>
+
+      @if (i != 1 && !isDettaglio) {
+        <div class="delete-container">
+          <p></p>
+          <p class="delete-item" (click)="handleOpenModalDelete({ id: x.value.id, index: $index })">
+            {{ 'BUTTONS.DELETE' | translate }}
+            <piao-svg
+              [icon]="'MinusCircle'"
+              [svgContainer]="'svg'"
+              [fillColor]="'#cc334d'"
+            ></piao-svg>
+          </p>
+        </div>
+      }
+    }
+  }
+
+  @if (!isDettaglio) {
+    <div class="pt-4">
+      <piao-card-info
+        [titleCardHeader]="titleCardInfo"
+        [piaoCardHeaderTitleClass]="'title-card-info'"
+        [titleLoadNewForm]="titleLoadNewForm"
+        [loadNewForm]="true"
+        [piaoCardHeaderContainerClass]="'piao-card-info-container-new-form'"
+        (clicked)="handleClickNewForm()"
+      ></piao-card-info>
+    </div>
+  }
+</div>
+
+@if (!isDettaglio) {
+  <piao-modal-delete
+    [icon]="'AlertCircle'"
+    [title]="'MODAL_REMOVE.TITLE'"
+    [message]="'MODAL_REMOVE.MESSAGE'"
+    [subMessage]="'MODAL_REMOVE.CONFIRM_OPERATION'"
+    [openModalDelete]="openModalDelete"
+    [elementToDelete]="elementToDelete"
+    (confirm)="handleRemoveForm($event)"
+    (closed)="handleCloseModalDelete()"
+  ></piao-modal-delete>
+}

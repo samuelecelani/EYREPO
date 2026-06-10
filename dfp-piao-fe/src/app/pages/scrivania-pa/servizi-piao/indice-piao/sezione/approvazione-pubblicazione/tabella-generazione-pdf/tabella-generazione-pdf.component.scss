@@ -1,0 +1,77 @@
+.main {
+  padding-top: 3rem;
+}
+
+.subtitle-pdf {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.table-container {
+  width: auto;
+  overflow-x: auto;
+  overflow-y: auto;
+}
+
+.table-custom {
+  table-layout: fixed;
+  width: 100%;
+}
+
+.table-custom th {
+  height: auto;
+  width: 11rem;
+  min-width: 11rem;
+  max-width: 12rem;
+  padding: 0.75rem;
+  padding-left: 1rem;
+  vertical-align: middle;
+  white-space: pre-line;
+}
+
+.table-custom td {
+  height: auto;
+  width: 11rem;
+  min-width: 11rem;
+  max-width: 12rem;
+  padding: 2rem 0.75rem;
+  vertical-align: middle;
+  white-space: pre-line;
+}
+
+// Aumenta le dimensioni della data, ancora da testare confronto tra - e data effettiva
+.table-custom tbody td:nth-child(1) {
+  width: 20rem;
+  max-width: 20rem;
+}
+
+.table-custom thead th:nth-child(1) {
+  width: 20rem;
+  max-width: 20rem;
+  padding-left: 1.25rem;
+}
+
+.table-custom thead tr {
+  border-bottom: 2px solid #5c6f82;
+}
+
+.table-custom tbody tr {
+  border-bottom: 2px solid #c8cacc;
+}
+
+.button-content {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-weight: 600;
+}
+
+.main button.btn {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.main button.primary {
+  color: #2567cf;
+}

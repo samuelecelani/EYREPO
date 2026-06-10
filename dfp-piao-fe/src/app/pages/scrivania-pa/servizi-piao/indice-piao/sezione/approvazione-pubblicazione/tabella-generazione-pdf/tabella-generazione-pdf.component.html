@@ -1,0 +1,54 @@
+<div class="main">
+  <p class="subtitle-pdf">{{ title | translate }}</p>
+  <br />
+
+  <div class="table-container pt-1 pb-5">
+    <table class="table-custom">
+      <thead>
+        <tr>
+          <th>{{ descTh | translate }}</th>
+          <th>{{ dateTh | translate }}</th>
+          <th>{{ stateTh | translate }}</th>
+          @if (
+           ( allegatoStatus() !== 'IN_GENERAZIONE'&& allegatoStatus()!== 'DA_GENERARE' )||
+            (allegatoStatus() === 'DA_GENERARE' && !isDettaglio)
+          ) {
+            <th>{{ actionTh | translate }}</th>
+          }
+        </tr>
+      </thead>
+      <tbody>
+        @for (x of arrayForm(); track $index) {
+          <tr>
+            <td>{{ x.codDocumento }}</td>
+            <td>{{ x.createdTs ? (x.createdTs | date: 'dd/MM/yyyy') : '-' }}</td>
+            <td>
+              <piao-status [status]="x.status"></piao-status>
+            </td>
+            <td>
+              @if (x.status === 'DA_GENERARE' && !isDettaglio) {
+                <button type="button" class="btn btn-success" (click)="clickGeneratePDF()">
+                  {{ generateButton | translate }}
+                  <span class="button-content">
+                    <piao-svg
+                      [icon]="'ExchangeCircle'"
+                      [iconPosition]="'right'"
+                      [fillColor]="'#ffffff'"
+                    ></piao-svg>
+                  </span>
+                </button>
+              } @else if (x.status === 'GENERATO') {
+                <button type="button" class="primary" (click)="handleDownloadPiaoPDF()">
+                  <span class="button-content">
+                    {{ buttonDownload | translate }}
+                    <piao-svg [icon]="'Download'" [fillColor]="'#2567CF'"></piao-svg>
+                  </span>
+                </button>
+              }
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

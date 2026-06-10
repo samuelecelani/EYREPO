@@ -1,0 +1,47 @@
+.hr-novita {
+  border: 0.0625rem solid #003366;
+}
+
+.results-headline {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.results-title {
+  margin: 0;
+  font-size: 2.1rem;
+  font-weight: 500;
+  line-height: 1.25;
+  color: #17324d;
+}
+
+.results-counter {
+  margin-left: auto;
+  text-align: right;
+  font-size: 0.8rem;
+  color: #5c6f82;
+  white-space: nowrap;
+}
+
+.results-headline-only-counter {
+  justify-content: flex-end;
+}
+
+.empty-state {
+  margin: 1.5rem 0 0;
+  font-size: 1rem;
+  color: #5c6f82;
+}
+
+@media (max-width: 900px) {
+  .results-headline {
+    align-items: flex-end;
+  }
+
+  .results-title {
+    font-size: 1.75rem;
+  }
+}

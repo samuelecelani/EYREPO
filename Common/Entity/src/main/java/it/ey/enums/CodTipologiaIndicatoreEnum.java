@@ -1,0 +1,23 @@
+package it.ey.enums;
+
+
+public enum CodTipologiaIndicatoreEnum {
+    OVP, //Sezione21
+
+    //Sezione22
+    PERFORMANCE,
+    ACCESSI_DIGITALE,
+    ACCESSI_FISICI,
+    SEMPLIFICAZIONE,
+    PARI_OPPORTUNITA,
+    PERFORMANCE_ORGANIZZATIVA,
+    PERFORMANCE_INDIVIDUALE,
+
+    //Sezione23
+    OBIETTIVO_GENERALE,
+    MISURA_GENERALE,
+    OBIETTIVO_PREVENZIONE,
+    MISURA_PREVENZIONE,
+
+}
+

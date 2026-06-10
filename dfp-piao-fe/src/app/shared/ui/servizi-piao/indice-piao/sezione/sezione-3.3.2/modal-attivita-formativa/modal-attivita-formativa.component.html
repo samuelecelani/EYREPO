@@ -1,0 +1,121 @@
+<div class="main">
+  <p class="title">{{ 'SEZIONE_332.MODAL.TITLE' | translate }}</p>
+  <p class="riga-subtitle pt-2">
+    {{ getRowLabel() }}
+  </p>
+  <form [formGroup]="formGroup">
+    <div class="pt-3">
+      <div class="row">
+        <!-- Left Column -->
+        <div class="col-12 col-xl-6">
+          <div class="pt-2">
+            <piao-dropdown
+              [dropdown]="dropdownTipologiaAttivita"
+              [title]="labelTipologiaAttivita"
+              [idName]="'idTipologiaAttivita'"
+              [formControl]="formGroup.controls['idTipologiaAttivita']"
+              [isTooltip]="true"
+              [dropContainerClass]="'container-width-full'"
+              [isRequired]="true"
+            ></piao-dropdown>
+          </div>
+
+          <div class="pt-2">
+            <piao-dropdown
+              [dropdown]="dropdownAreaTematica"
+              [title]="labelAreaTematica"
+              [idName]="'idAreaTematica'"
+              [formControl]="formGroup.controls['idAreaTematica']"
+              [isTooltip]="true"
+              [dropContainerClass]="'container-width-full'"
+              [isRequired]="true"
+            ></piao-dropdown>
+          </div>
+
+          <div class="pt-2">
+            <piao-text-box
+              [label]="labelNumeroNonDirigenti"
+              [typeInput]="'text'"
+              [inputClass]="'input'"
+              [control]="formGroup.controls['numeroNonDirigenti']"
+              [id]="'numeroNonDirigenti'"
+              [maxValidatorLength]="10"
+              [descTooltip]="labelNumeroNonDirigenti"
+              [containerClass]="'container-width-full'"
+              [required]="true"
+            ></piao-text-box>
+          </div>
+        </div>
+
+        <!-- Right Column -->
+        <div class="col-12 col-xl-6">
+          <div class="pt-2">
+            <piao-dropdown
+              [dropdown]="dropdownAmbitoCompetenza"
+              [title]="labelAmbitoCompetenza"
+              [idName]="'idAmbitoCompetenza'"
+              [formControl]="formGroup.controls['idAmbitoCompetenza']"
+              [isTooltip]="true"
+              [dropContainerClass]="'container-width-full'"
+              [isRequired]="true"
+            ></piao-dropdown>
+          </div>
+
+          <div class="pt-2">
+            <piao-text-box
+              [label]="labelNumeroDirigenti"
+              [typeInput]="'text'"
+              [inputClass]="'input'"
+              [control]="formGroup.controls['numeroDirigenti']"
+              [id]="'numeroDirigenti'"
+              [maxValidatorLength]="10"
+              [descTooltip]="labelNumeroDirigenti"
+              [containerClass]="'container-width-full'"
+              [required]="true"
+            ></piao-text-box>
+          </div>
+
+          <div class="pt-2">
+            <piao-text-box
+              [label]="labelOreFormazione"
+              [typeInput]="'text'"
+              [inputClass]="'input'"
+              [control]="formGroup.controls['oreFormazione']"
+              [id]="'oreFormazione'"
+              [maxValidatorLength]="10"
+              [descTooltip]="labelOreFormazione"
+              [containerClass]="'container-width-full'"
+              [required]="true"
+            ></piao-text-box>
+          </div>
+        </div>
+      </div>
+
+      <!-- Verifica dell'apprendimento -->
+      <div class="pt-4">
+        <label class="label">
+          {{ 'SEZIONE_332.MODAL.VERIFICA_APPRENDIMENTO' | translate }}
+          <span class="required">*</span>
+          <piao-tooltip
+            [descTooltip]="labelVerificaApprendimento"
+            [icon]="'InfoCircle'"
+          ></piao-tooltip>
+        </label>
+        <div class="content-choice pt-2">
+          @for (x of inputContent; track $index) {
+            <label class="radio-option">
+              <input
+                type="radio"
+                [formControlName]="x.formControlName"
+                [value]="x.value"
+                name="verificaApprendimento"
+              />
+              <span class="custom-radio"></span>
+              <span class="label-text">{{ x.label | translate }}</span>
+            </label>
+          }
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

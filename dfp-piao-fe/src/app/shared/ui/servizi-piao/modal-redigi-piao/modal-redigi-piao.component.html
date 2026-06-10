@@ -1,0 +1,65 @@
+<div class="main">
+  <p class="title">{{ 'SCRIVANIA_PA.SERVIZI_PIAO.MODAL.REDIGI.TITLE' | translate }}</p>
+  <p class="sub-title">{{ 'SCRIVANIA_PA.SERVIZI_PIAO.MODAL.REDIGI.SUB_TITLE' | translate }}</p>
+  <form [formGroup]="formGroup">
+    <div class="content-choice">
+      @for (x of inputContent; track $index) {
+        <label class="radio-option">
+          <input
+            type="radio"
+            [formControlName]="x.formControlName"
+            [value]="x.value"
+            name="choice"
+            (change)="handleChoice(x.value)"
+          />
+          <span class="custom-radio"></span>
+          <span class="label-text">{{ x.label | translate }}</span>
+        </label>
+      }
+    </div>
+
+    <!-- Warning alert tipologia diversa -->
+    @if (showWarningAlert) {
+      <div class="warning-alert">
+        <piao-svg
+          [icon]="'WarningCircle'"
+          [fillColor]="'#CC7A00'"
+          [svgContainer]="'icon-svg'"
+        ></piao-svg>
+        <div class="toast-message">{{ warningMessage }}</div>
+      </div>
+    }
+
+    @if (formGroup.controls['choice'].value) {
+      <div class="pt-4">
+        <p class="alert-label pb-2">
+          {{ 'MESSAGE.ALERT_MANDATORY_FIELDS' | translate }}
+        </p>
+        <piao-dropdown
+          [idName]="'triennio'"
+          [formControl]="formGroup.controls['triennio']"
+          [dropdown]="triennioOptions"
+          [title]="triennioLabel"
+          [dropContainerClass]="'container-width-25'"
+          [isRequired]="true"
+          [isTranslate]="false"
+          [isReadOnly]="isTriennioReadOnly"
+        ></piao-dropdown>
+      </div>
+    }
+
+    @if (showChoiceNumberOfEmployees) {
+      <div class="pt-3 pb-3">
+        <piao-dropdown
+          [idName]="'numberOfEmployess'"
+          [formControl]="formGroup.controls['numberOfEmployess']"
+          [dropdown]="dropDown"
+          [title]="titleDropdown"
+          [dropContainerClass]="'container-width-25'"
+          [isRequired]="true"
+          (isChange)="handleDropdownChange()"
+        ></piao-dropdown>
+      </div>
+    }
+  </form>
+</div>

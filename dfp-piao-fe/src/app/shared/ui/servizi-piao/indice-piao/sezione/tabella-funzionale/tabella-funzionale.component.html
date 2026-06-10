@@ -1,0 +1,120 @@
+<div class="container-tabella-funzionale">
+  @if (tabelleFunzionaliArray.length === 0) {
+    @if (isDettaglio) {
+      <p class="no-value">{{ labelNotFound | translate }}</p>
+    } @else {
+      <p class="load-form" (click)="handleOpenTabellaModal()">
+        {{ titleElenco | translate }}
+      </p>
+    }
+  } @else {
+    <div class="table-elenco-container pt-2">
+      <table class="table-elenco">
+        <thead>
+          <tr>
+            <th>{{ 'TABELLA_FUNZIONALE.MODAL.CODICE_LABEL' | translate }}</th>
+            <th>{{ 'TABELLA_FUNZIONALE.MODAL.OVP_LABEL' | translate }}</th>
+            <th>{{ 'TABELLA_FUNZIONALE.MODAL.DENOMINAZIONE_LABEL' | translate }}</th>
+            <th>{{ 'TABELLA_FUNZIONALE.MODAL.RESPONSABILE_LABEL' | translate }}</th>
+            <th>{{ 'TABELLA_FUNZIONALE.MODAL.STAKEHOLDER_LABEL' | translate }}</th>
+            <th>{{ 'TABELLA_FUNZIONALE.MODAL.DIMENSIONI_LABEL' | translate }}</th>
+            <th>{{ 'TABELLA_FUNZIONALE.MODAL.FORMULA_LABEL' | translate }}</th>
+            <th>{{ 'TABELLA_FUNZIONALE.MODAL.POLARITA_LABEL' | translate }}</th>
+            <th>{{ 'TABELLA_FUNZIONALE.MODAL.BASELINE_LABEL' | translate }}</th>
+            <th>{{ 'TABELLA_FUNZIONALE.MODAL.TARGET_N1_LABEL' | translate }}</th>
+            <th>{{ 'TABELLA_FUNZIONALE.MODAL.TARGET_N2_LABEL' | translate }}</th>
+            <th>{{ 'TABELLA_FUNZIONALE.MODAL.TARGET_N3_LABEL' | translate }}</th>
+            <th>{{ 'TABELLA_FUNZIONALE.MODAL.FONTE_LABEL' | translate }}</th>
+            @if (!isDettaglio) {
+              <th>{{ 'TABELLA_FUNZIONALE.MODAL.AZIONI_LABEL' | translate }}</th>
+            }
+          </tr>
+        </thead>
+        <tbody>
+          @for (
+            tabella of tabelleFunzionaliArray.controls;
+            track trackByTabellaId($index, tabella);
+            let i = $index
+          ) {
+            <tr>
+              <td>{{ setCodice(tabella.get('idOVP')?.value || undefined, $index) }}</td>
+              <td>{{ getOVPLabel(tabella.get('idOVP')?.value || undefined) }}</td>
+              <td>{{ tabella.get('denominazioneSintetica')?.value || '' }}</td>
+              <td>{{ tabella.get('responsabileAmministrativo')?.value || '' }}</td>
+              <td>{{ getStakeholderLabel(tabella.get('idStakeholder')?.value || undefined) }}</td>
+              <td>{{ tabella.get('dimensioni')?.value || '' }}</td>
+              <td>{{ tabella.get('formula')?.value || '' }}</td>
+              <td>{{ tabella.get('polarita')?.value || '' }}</td>
+              <td>{{ tabella.get('baseline')?.value || '' }}</td>
+              <td>{{ tabella.get('targetAnnoN1')?.value || '' }}</td>
+              <td>{{ tabella.get('targetAnnoN2')?.value || '' }}</td>
+              <td>{{ tabella.get('targetAnnoN3')?.value || '' }}</td>
+              <td>{{ tabella.get('fonte')?.value || '' }}</td>
+
+              @if (!isDettaglio) {
+                <td class="col-azioni">
+                  <piao-azioni
+                    [idSelected]="tabella.get('id')?.value || ''"
+                    [isTitle]="false"
+                    [verticalEllipsis]="getActionsFor(i)"
+                  ></piao-azioni>
+                </td>
+              }
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+
+    @if (!isDettaglio) {
+      <p class="d-flex justify-content-end pt-3">
+        <span>
+          <p class="load-form" (click)="handleOpenTabellaModal()">
+            {{ labelAddElenco | translate }}
+            <piao-svg
+              [icon]="'PlusCircle'"
+              [fillColor]="'#0066cc'"
+              [svgContainer]="'svg'"
+            ></piao-svg>
+          </p>
+        </span>
+      </p>
+    }
+  }
+</div>
+
+@if (openModalTabella) {
+  <piao-modal
+    [isIcon]="true"
+    [icon]="icon"
+    [iconStyle]="iconStyle"
+    [open]="openModalTabella"
+    [disabledButtonConfirm]="disabledButtonConfirm"
+    (closed)="this.openModalTabella = false"
+    (confirm)="handleAddTabellaFunzionale(); openModalTabella = false"
+  >
+    <piao-modal-tabella-funzionale
+      #child
+      [piaoDTO]="piaoDTO"
+      [tabellaToEdit]="tabellaToEdit"
+      [lenghtArray]="tabellaIndex"
+      [ovpOptions]="ovpOptions"
+      [stakeholderOptions]="stakeholderOptions"
+      [codTipologiaFK]="codTipologiaFK"
+      [idEntitaFK]="idEntitaFK"
+    ></piao-modal-tabella-funzionale>
+  </piao-modal>
+}
+
+@if (openModalDelete) {
+  <piao-modal-delete
+    [icon]="'AlertCircle'"
+    [title]="'MODAL_REMOVE.TITLE'"
+    [message]="'MODAL_REMOVE.MESSAGE'"
+    [subMessage]="'MODAL_REMOVE.CONFIRM_OPERATION'"
+    [openModalDelete]="openModalDelete"
+    [elementToDelete]="elementToDelete"
+    (confirm)="handleRemoveForm($event)"
+    (closed)="handleCloseModalDelete()"
+  ></piao-modal-delete>
+}

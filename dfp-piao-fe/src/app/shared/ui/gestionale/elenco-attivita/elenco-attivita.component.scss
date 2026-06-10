@@ -1,0 +1,215 @@
+.title {
+  font-weight: 400;
+  font-size: 2.6rem;
+  color: #1a1a1a;
+  padding-bottom: 0;
+  margin: 0;
+}
+
+.list-header {
+  display: block;
+  margin-bottom: 2rem;
+}
+
+.results-counter {
+  display: block;
+  width: 100%;
+  margin-top: 0.5rem;
+  margin-bottom: 0;
+  text-align: right;
+}
+
+.table-att-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.table-att {
+  width: 100%;
+  min-width: 72rem;
+  border-collapse: collapse;
+  font-family: inherit;
+}
+
+.table-att td {
+  padding-top: 0.5rem;
+  height: 4.6875rem;
+}
+
+.table-att thead tr {
+  border-bottom: 2px solid #5c6f82;
+}
+
+.table-att tbody tr {
+  border-bottom: 1px solid #5c6f82;
+}
+
+.table-att th {
+  width: 16rem;
+  font-size: 1rem;
+  padding-bottom: 0.5rem;
+  font-weight: 600;
+  text-align: left;
+  white-space: pre-line;
+}
+
+.table-att td:nth-child(1) {
+  width: 16rem;
+  font-size: 0.9rem;
+  font-family: 'Roboto Mono';
+  font-weight: 600;
+  text-align: left;
+  white-space: pre-line;
+}
+
+.table-att td:nth-child(2) {
+  width: 16rem;
+  font-size: 0.9rem;
+  font-weight: 400;
+  font-size: 1rem;
+  text-align: left;
+}
+
+.table-att td:nth-child(3) {
+  width: 16rem;
+  font-size: 0.9rem;
+  font-weight: 400;
+  font-size: 1rem;
+  text-align: left;
+}
+
+.table-att td:nth-child(4) {
+  width: 16rem;
+  font-size: 0.9rem;
+  font-weight: 400;
+  font-size: 1rem;
+  text-align: left;
+}
+
+.table-att td:nth-child(5) {
+  width: 16rem;
+  font-weight: 400;
+  text-align: left;
+}
+
+.table-att th.actions-header,
+.table-att td.actions-cell {
+  width: 8rem;
+  text-align: right;
+}
+
+.table-att td.actions-cell {
+  padding-right: 0.5rem;
+}
+
+.table-att td.actions-cell piao-azioni {
+  display: inline-flex;
+  justify-content: flex-end;
+}
+
+.table-att-piao {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: inherit;
+}
+
+.table-att-piao tr {
+  border-top: 1px solid black;
+}
+
+.table-att-piao td {
+  padding-top: 0.5rem;
+  height: 4.6875rem;
+}
+
+.table-att-piao th {
+  width: 16rem;
+  padding-bottom: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-align: left;
+  white-space: pre-line;
+}
+
+.table-att-piao td:nth-child(1) {
+  width: 16rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-align: left;
+  white-space: pre-line;
+}
+
+.table-att-piao td:nth-child(2) {
+  width: 16rem;
+  font-weight: 400;
+  font-size: 0.9rem;
+  text-align: left;
+  white-space: normal; /* permette il wrap */
+  overflow-wrap: anywhere; /* consente di spezzare ovunque per evitare overflow */
+  word-break: break-word; /* fallback per Safari vecchi e alcuni UA */
+}
+
+.table-att-piao td:nth-child(3) {
+  width: 16rem;
+  font-size: 0.9rem;
+  font-weight: 400;
+  font-size: 1rem;
+  text-align: left;
+}
+
+.table-att-piao td:nth-child(4) {
+  width: 16rem;
+  font-size: 0.9rem;
+  font-weight: 400;
+  font-size: 1rem;
+  text-align: left;
+}
+
+.table-att-piao td:nth-child(5) {
+  width: 16rem;
+  font-size: 0.9rem;
+  font-weight: 400;
+  font-size: 1rem;
+  text-align: left;
+}
+
+.table-att-piao td:nth-child(6) {
+  width: 16rem;
+  font-weight: 400;
+  text-align: left;
+}
+
+.button {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 2rem;
+}
+
+.modal-main {
+  width: 40rem;
+}
+
+.modal-title {
+  font-weight: 400;
+  font-size: 2rem;
+}
+
+.modal-message {
+  font-size: 1rem;
+}
+
+@media (max-width: 1024px) {
+  .table-att {
+    min-width: 62rem;
+  }
+
+  .modal-main {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .table-att {
+    min-width: 56rem;
+  }
+}

@@ -1,0 +1,56 @@
+<piao-modal
+  [isIcon]="true"
+  [icon]="icon"
+  [iconStyle]="'icon-modal'"
+  [open]="open"
+  [titleButtonConfirm]="'BUTTONS.SAVE'"
+  [disabledButtonConfirm]="isFormInvalid"
+  [showButtonCloseOutline]="true"
+  [showButtonCancel]="false"
+  (closed)="handleClose()"
+  (confirm)="handleSave()"
+>
+  <div class="modal-add-entity-content">
+    <p class="title">{{ modalTitle | translate }}</p>
+    <p class="sub-title">{{ modalSubTitle | translate }}</p>
+
+    @if (formGroup) {
+      <form [formGroup]="formGroup">
+        <div class="form-row">
+          <piao-text-box
+            [label]="labelField1"
+            [typeInput]="'text'"
+            [inputClass]="'input'"
+            [control]="formGroup.controls['field1']"
+            [maxValidatorLength]="250"
+            [id]="'field1'"
+            [descTooltip]="labelField1"
+            [containerClass]="'container-width-25'"
+            [required]="true"
+          >
+          </piao-text-box>
+          <piao-text-box
+            [label]="labelField2"
+            [typeInput]="'text'"
+            [inputClass]="'input'"
+            [control]="formGroup.controls['field2']"
+            [maxValidatorLength]="500"
+            [id]="'field2'"
+            [containerClass]="'container-width-25'"
+            [descTooltip]="labelField2"
+          >
+          </piao-text-box>
+        </div>
+      </form>
+    }
+
+    <div class="pt-2">
+      <piao-card-alert
+        [icon]="iconWarning"
+        [titleCardHeader]="'MODAL_ADD_ENTITY.ALERT_TITLE'"
+        [subTitleCardHeader]="alertMessage"
+        [subTitleClass]="'subTitle-card-alert-modalAdd'"
+      ></piao-card-alert>
+    </div>
+  </div>
+</piao-modal>

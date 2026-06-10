@@ -1,0 +1,157 @@
+<div class="main">
+  <p class="title" [innerHTML]="title | translate"></p>
+  <p class="subTitle-xs pt-2" [innerHTML]="subtitle | translate"></p>
+
+  <piao-card-alert
+    class="pt-4"
+    [icon]="'WarningCircle'"
+    [titleCardHeader]="'SCRIVANIA_DFP.GESTIONE_PIAO.SCARICO_MASSIVO.ALERT.TITLE'"
+    [subTitleCardHeader]="'SCRIVANIA_DFP.GESTIONE_PIAO.SCARICO_MASSIVO.ALERT.SUBTITLE'"
+  ></piao-card-alert>
+
+  <p class="alert-label pt-4">
+    {{ 'SCRIVANIA_DFP.GESTIONE_PIAO.SCARICO_MASSIVO.MANDATORY_HINT' | translate }}
+  </p>
+
+  <form [formGroup]="form" class="filters-form pt-4">
+    <div class="row align-items-end g-3">
+      <div class="col-12 col-lg-4">
+        <piao-dropdown
+          [title]="'SCRIVANIA_DFP.GESTIONE_PIAO.SCARICO_MASSIVO.FILTERS.TIPOLOGIA' | translate"
+          [dropContainerClass]="'container-width-full'"
+          [dropdown]="tipologiaOptions"
+          [formControl]="tipologiaControl"
+        ></piao-dropdown>
+      </div>
+      <div class="col-12 col-lg-4">
+        <piao-dropdown
+          [title]="'SCRIVANIA_DFP.GESTIONE_PIAO.SCARICO_MASSIVO.FILTERS.TRIENNIO' | translate"
+          [dropContainerClass]="'container-width-full'"
+          [dropdown]="triennioOptions"
+          [formControl]="triennioControl"
+        ></piao-dropdown>
+      </div>
+      <div class="col-12 col-lg-4 filters-actions">
+        <piao-button [variant]="'secondary-outline'" [size]="'sm'" (clicked)="resetFilters()">
+          {{ 'SCRIVANIA_DFP.GESTIONE_PIAO.SCARICO_MASSIVO.FILTERS.RESET' | translate }}
+        </piao-button>
+        <piao-button
+          [variant]="'primary'"
+          [size]="'sm'"
+          [disabled]="form.invalid"
+          (clicked)="search()"
+        >
+          {{ 'SCRIVANIA_DFP.GESTIONE_PIAO.SCARICO_MASSIVO.FILTERS.SEARCH' | translate }}
+        </piao-button>
+      </div>
+    </div>
+  </form>
+
+  <div class="results-section pt-5">
+    <p class="subTitle-bold">
+      {{ 'SCRIVANIA_DFP.GESTIONE_PIAO.SCARICO_MASSIVO.RESULTS.TITLE' | translate }}
+    </p>
+
+    <div class="results-toolbar pt-3">
+      <span class="results-search-info">
+        {{
+          'SCRIVANIA_DFP.GESTIONE_PIAO.SCARICO_MASSIVO.RESULTS.SEARCH_INFO'
+            | translate: { count: totalItems(), query: searchedQuery() }
+        }}
+      </span>
+      <span class="results-total">
+        {{
+          'SCRIVANIA_DFP.GESTIONE_PIAO.SCARICO_MASSIVO.RESULTS.TOTAL'
+            | translate: { count: paginatedRows().length, total: totalItems() }
+        }}
+      </span>
+    </div>
+
+    <div class="table-container pt-3">
+      <table class="table-custom">
+        <thead>
+          <tr>
+            <th>
+              <span class="select-all-label" (click)="toggleSelectAll()">
+                {{
+                  'SCRIVANIA_DFP.GESTIONE_PIAO.SCARICO_MASSIVO.RESULTS.TABLE.SELECT_ALL' | translate
+                }}
+              </span>
+            </th>
+            <th>
+              {{
+                'SCRIVANIA_DFP.GESTIONE_PIAO.SCARICO_MASSIVO.RESULTS.TABLE.NOME_PIAO' | translate
+              }}
+            </th>
+            <th>
+              {{
+                'SCRIVANIA_DFP.GESTIONE_PIAO.SCARICO_MASSIVO.RESULTS.TABLE.TIPOLOGIA' | translate
+              }}
+            </th>
+            <th>
+              {{ 'SCRIVANIA_DFP.GESTIONE_PIAO.SCARICO_MASSIVO.RESULTS.TABLE.AZIONI' | translate }}
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (row of paginatedRows(); track row.id) {
+            <tr>
+              <td class="td-checkbox">
+                <label class="checkbox-wrapper">
+                  <input
+                    type="checkbox"
+                    [checked]="row.selected"
+                    (change)="toggleRow(row, $event)"
+                  />
+                </label>
+              </td>
+              <td>{{ row.nomePiao }}</td>
+              <td>{{ row.tipologia }}</td>
+              <td>
+                <a class="action-link" (click)="scaricaPiao(row)">
+                  {{
+                    'SCRIVANIA_DFP.GESTIONE_PIAO.SCARICO_MASSIVO.RESULTS.TABLE.SCARICA_PIAO'
+                      | translate
+                  }}
+                  <piao-svg
+                    [icon]="'Download'"
+                    [fillColor]="'#0066cc'"
+                    [svgContainer]="'svg'"
+                  ></piao-svg>
+                </a>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <div class="pagination-row">
+      <div class="pagination-container">
+        <piao-pagination
+          [totalItems]="totalItems()"
+          [itemsPerPage]="itemsPerPage"
+          [currentPage]="currentPage()"
+          (pageChange)="onPageChange($event)"
+        ></piao-pagination>
+      </div>
+      <span
+        class="selected-count"
+        [innerHTML]="
+          'SCRIVANIA_DFP.GESTIONE_PIAO.SCARICO_MASSIVO.RESULTS.SELECTED'
+            | translate: { count: selectedCount() }
+        "
+      ></span>
+    </div>
+
+    <div class="download-all-actions pt-3">
+      <piao-button
+        [variant]="'primary'"
+        [disabled]="selectedCount() === 0"
+        (clicked)="scaricaTutti()"
+      >
+        {{ 'SCRIVANIA_DFP.GESTIONE_PIAO.SCARICO_MASSIVO.RESULTS.DOWNLOAD_ALL' | translate }}
+      </piao-button>
+    </div>
+  </div>
+</div>

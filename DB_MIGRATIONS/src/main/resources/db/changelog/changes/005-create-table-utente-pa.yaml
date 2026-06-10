@@ -1,0 +1,41 @@
+databaseChangeLog:
+  - changeSet:
+      id: 005-create-table-utente-pa
+      author: developer
+      comment: "Creazione tabella UtentePa con foreign key"
+      changes:
+        - createTable:
+            tableName: UtentePa
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: pk_utente_pa
+                    nullable: false
+              - column:
+                  name: codicePa
+                  type: VARCHAR(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: idUtenteRuoloPa
+                  type: BIGINT
+                  
+        - addForeignKeyConstraint:
+            baseTableName: UtentePa
+            baseColumnNames: idUtenteRuoloPa
+            constraintName: fk_utentepa_utente
+            referencedTableName: utenteRuoloPa
+            referencedColumnNames: id
+            onDelete: CASCADE
+            onUpdate: CASCADE
+            
+        - createIndex:
+            tableName: UtentePa
+            indexName: idx_utentepa_codicepa
+            columns:
+              - column:
+                  name: codicePa

@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: iam-cm
+data:
+  KEYKLOACK_URL: {{ $.Values.iam.issuerUrl }}
+  KEYKLOACK_CLIENT_ID: {{ $.Values.iam.clientid}}
+  LOGIN_TYPE: "openid"
+  LOCAL_STORAGE_TOKEN: "access_token"
+  TOKEN_HEADER: "Authorization"
+  TOKEN_HEADER_PREFIX: ""
+  OPENID_ISSUER_URL: {{ $.Values.iam.issuerUrl }}
+  OPENID_REDIRECT_URI: {{ $.Values.iam.redirectUri }}
+  OPENID_LOGOUT_URL: {{ $.Values.iam.logoutUrl }}
+  OPENID_POSTLOGOUT_REDIRECT_URI: {{ $.Values.iam.redirectUri }}
+  OPENID_CLIENTID: {{ $.Values.iam.clientid}}
+  OPENID_RESPONSE_TYPE: "code"
+  OPENID_SCOPE: "openid profile"
+  OPENID_OIDC: "true"
+  OPENID_SHOW_DEBUG_INFO: "true"
+  OPENID_REQUIRE_HTTPS: "false"
+  OPENID_SKIP_ISSUER_CHECK: "true"
+  OPENID_STRICT_DISCOVERY_DOC_VALIDATION: "true"
+  OPENID_PRESERVE_REQUEST_ROUTE: "true"
+  OPENID_TIMEOUT_FACTOR: "0.7"

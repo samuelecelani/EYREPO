@@ -1,0 +1,38 @@
+.main {
+  width: 60rem;
+}
+
+.title {
+  padding-top: 0.25rem;
+  font-size: 2rem;
+}
+
+.sub_title {
+  padding-top: 0.25rem;
+  font-size: 1.25rem;
+}
+
+.radio_title {
+  padding-top: 2rem;
+  font-size: 1rem;
+}
+
+.radio {
+  padding-top: 2rem;
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+.radio-options {
+  display: block;
+  padding-top: 2.5rem;
+  color: black;
+}
+
+@media (max-width: 1220px) {
+  .main {
+    max-width: 100%;
+  }
+}

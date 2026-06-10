@@ -1,0 +1,18 @@
+.main {
+  width: 40rem;
+}
+
+.title {
+  font-weight: 400;
+  font-size: 2rem;
+}
+
+.message {
+  font-size: 1rem;
+}
+
+@media (max-width: 820px) {
+  .main {
+    width: 100%;
+  }
+}

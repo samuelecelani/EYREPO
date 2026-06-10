@@ -1,0 +1,50 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-top: 1rem;
+  width: 44rem;
+}
+
+.title {
+  font-weight: 400;
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.sub-title {
+  color: #333;
+  font-weight: 400;
+  margin-top: 1.5rem;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  white-space: pre-line;
+}
+
+@media (max-width: 1220px) {
+  .main {
+    max-width: 100%;
+  }
+  ::ng-deep piao-text-area {
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+}
+
+.title-modal {
+  font-weight: 400;
+  font-size: 2rem;
+  padding-bottom: 1rem;
+}
+
+.sub-title-modal {
+  font-weight: 400;
+  font-size: 1.2rem;
+  white-space: pre-line;
+}
+
+.content-select {
+  padding-top: 2rem;
+  display: flex;
+  justify-content: flex-start;
+}

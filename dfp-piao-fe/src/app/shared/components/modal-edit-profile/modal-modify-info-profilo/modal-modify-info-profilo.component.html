@@ -1,0 +1,49 @@
+<div [ngClass]="main">
+  <p class="title-modal">{{ title | translate }}</p>
+
+  @if (formGroup) {
+    <form [formGroup]="formGroup">
+      <div class="contanier-full">
+        <div class="row g-3">
+          <div class="col-12 col-lg-6">
+            <piao-text-box
+              [label]="labelQualifica | translate"
+              [typeInput]="'text'"
+              [inputClass]="'input'"
+              [control]="formGroup.controls['qualifica']"
+              [maxValidatorLength]="250"
+              [id]="'qualifica'"
+            >
+            </piao-text-box>
+          </div>
+
+          <div class="col-12 col-lg-6">
+            <piao-text-box
+              [label]="labelPhoneNumber | translate"
+              [typeInput]="'tel'"
+              [inputClass]="'input'"
+              [control]="formGroup.controls['telefono']"
+              [maxValidatorLength]="30"
+              [id]="'telefono'"
+            >
+            </piao-text-box>
+          </div>
+        </div>
+
+        <div class="row g-2 mt-2">
+          <div class="col-12 col-lg-6">
+            <piao-text-box
+              [label]="labelEmail | translate"
+              [typeInput]="'email'"
+              [inputClass]="'input'"
+              [control]="formGroup.controls['email']"
+              [maxValidatorLength]="250"
+              [id]="'email'"
+            >
+            </piao-text-box>
+          </div>
+        </div>
+      </div>
+    </form>
+  }
+</div>

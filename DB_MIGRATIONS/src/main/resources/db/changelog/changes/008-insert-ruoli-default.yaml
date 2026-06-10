@@ -1,0 +1,50 @@
+databaseChangeLog:
+  - changeSet:
+      id: 008-insert-ruoli-default
+      author: developer
+      comment: "Inserimento ruoli di default nel sistema"
+      changes:
+        - insert:
+            tableName: Ruolo
+            columns:
+              - column:
+                  name: codRuolo
+                  value: "ADMIN"
+              - column:
+                  name: descrizione
+                  value: "Amministratore di sistema"
+                  
+        - insert:
+            tableName: Ruolo
+            columns:
+              - column:
+                  name: codRuolo
+                  value: "RESPONSABILE"
+              - column:
+                  name: descrizione
+                  value: "Responsabile PIAO"
+                  
+        - insert:
+            tableName: Ruolo
+            columns:
+              - column:
+                  name: codRuolo
+                  value: "OPERATORE"
+              - column:
+                  name: descrizione
+                  value: "Operatore standard"
+                  
+        - insert:
+            tableName: Ruolo
+            columns:
+              - column:
+                  name: codRuolo
+                  value: "LETTORE"
+              - column:
+                  name: descrizione
+                  value: "Lettore sola visualizzazione"
+      
+      rollback:
+        - delete:
+            tableName: Ruolo
+            where: codRuolo IN ('ADMIN', 'RESPONSABILE', 'OPERATORE', 'LETTORE')

@@ -1,0 +1,208 @@
+@if (isFormReady) {
+  <div class="main">
+    <p class="title">{{ 'SEZIONE_32.TITLE' | translate }}</p>
+
+    <p class="subTitle pt-4">{{ parteGeneraleTitle | translate }}</p>
+
+    <div class="accordion-section pt-4">
+      <piao-accordion [index]="1" [title]="titleAccordion1" [isOpen]="false">
+        <div class="accordion-content pt-10 pb-3">
+          <piao-text-area
+            [label]="
+              isDettaglio
+                ? descrizioneContestoRiferimentoLabelDettaglio
+                : descrizioneContestoRiferimentoLabel
+            "
+            [descTooltip]="infoTooltipContesto"
+            [control]="form.controls['descrizioneContestoRiferimento']"
+            [id]="'descrizioneContestoRiferimento'"
+            [textAreaClass]="'text-area'"
+            [maxValidatorLength]="20000"
+            [containerClass]="'container-width-full'"
+            [required]="true"
+            [isDettaglio]="isDettaglio"
+          ></piao-text-area>
+        </div>
+      </piao-accordion>
+
+      <piao-accordion [index]="2" [title]="titleAccordion2" [isOpen]="false">
+        <div class="accordion-content pt-10 pb-3">
+          <piao-text-area
+            [label]="
+              isDettaglio
+                ? descrizioneObiettiviLavoroAgileLabelDettaglio
+                : descrizioneObiettiviLavoroAgileLabel
+            "
+            [descTooltip]="infoTooltipObiettivi"
+            [control]="form.controls['descrizioneObiettiviLavoroAgile']"
+            [id]="'descrizioneObiettiviLavoroAgile'"
+            [textAreaClass]="'text-area'"
+            [maxValidatorLength]="20000"
+            [containerClass]="'container-width-full'"
+            [required]="true"
+            [isDettaglio]="isDettaglio"
+          ></piao-text-area>
+        </div>
+      </piao-accordion>
+
+      <piao-accordion [index]="3" [title]="titleAccordion3" [isOpen]="false">
+        <div class="accordion-content pt-10 pb-3">
+          <piao-text-area
+            [label]="
+              isDettaglio
+                ? descrizioneStatoAttuazioneLabelDettaglio
+                : descrizioneStatoAttuazioneLabel
+            "
+            [control]="form.controls['descrizioneStatoAttuazione']"
+            [id]="'descrizioneStatoAttuazione'"
+            [textAreaClass]="'text-area'"
+            [maxValidatorLength]="20000"
+            [containerClass]="'container-width-full'"
+            [required]="true"
+            [isDettaglio]="isDettaglio"
+          ></piao-text-area>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="accordion-content pt-10 pb-3">
+          <piao-text-area
+            [label]="
+              isDettaglio
+                ? descrizioneFattoriAbilitantiLabelDettaglio
+                : descrizioneFattoriAbilitantiLabel
+            "
+            [descTooltip]="infoTooltipFattoriAbilitanti"
+            [control]="form.controls['descrizioneFattoriAbilitanti']"
+            [id]="'descrizioneFattoriAbilitanti'"
+            [textAreaClass]="'text-area'"
+            [maxValidatorLength]="20000"
+            [containerClass]="'container-width-full'"
+            [required]="true"
+            [isDettaglio]="isDettaglio"
+          ></piao-text-area>
+
+          <div class="pt-3 pb-3">
+            <piao-card-info
+              [icon]="'HelpInfo'"
+              [piaoCardHeaderContainerClass]="'piao-card-info-alert-container-white'"
+              [titleCardHeader]="cardInfoTitle"
+              [subTitleCardHeader]="cardInfoSubTitle"
+              [piaoCardHeaderTitleClass]="'title-card-info-ovp'"
+              [loadNewForm]="false"
+            ></piao-card-info>
+          </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="accordion-content pt-10 pb-3">
+          <p class="section-title">{{ descrizionePersonaleAgileTitle | translate }}</p>
+          <piao-text-area
+            [label]="descrizionePersonaleAgileLabel"
+            [control]="form.controls['descrizionePersonaleAgile']"
+            [id]="'descrizionePersonaleAgile'"
+            [textAreaClass]="'text-area'"
+            [maxValidatorLength]="20000"
+            [containerClass]="'container-width-full'"
+            [required]="true"
+            [isDettaglio]="isDettaglio"
+          ></piao-text-area>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="accordion-content pt-10 pb-3">
+          <p class="section-title">{{ descrizioneGiornateLavorateTitle | translate }}</p>
+          <piao-text-area
+            [label]="
+              isDettaglio
+                ? descrizioneGiornateLavorateLabelDettaglio
+                : descrizioneGiornateLavorateLabel
+            "
+            [control]="form.controls['descrizioneGiornateLavorate']"
+            [id]="'descrizioneGiornateLavorate'"
+            [textAreaClass]="'text-area'"
+            [maxValidatorLength]="20000"
+            [containerClass]="'container-width-full'"
+            [required]="true"
+            [isDettaglio]="isDettaglio"
+          ></piao-text-area>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="accordion-content pt-10 pb-3">
+          <p class="section-title">{{ descrizioneLivelloSoddisfazioneTitle | translate }}</p>
+          <piao-text-area
+            [label]="
+              isDettaglio
+                ? descrizioneLivelloSoddisfazioneLabelDettaglio
+                : descrizioneLivelloSoddisfazioneLabel
+            "
+            [control]="form.controls['descrizioneLivelloSoddisfazione']"
+            [id]="'descrizioneLivelloSoddisfazione'"
+            [textAreaClass]="'text-area'"
+            [maxValidatorLength]="20000"
+            [containerClass]="'container-width-full'"
+            [required]="!isDettaglio"
+            [isDettaglio]="isDettaglio"
+          ></piao-text-area>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="accordion-content pt-10 pb-3">
+          <p class="section-title">{{ descrizioneContributiTitle | translate }}</p>
+          <piao-text-area
+            [label]="isDettaglio ? descrizioneContributiLabelDettaglio : descrizioneContributiLabel"
+            [descTooltip]="infoTooltipContributi"
+            [control]="form.controls['descrizioneContributi']"
+            [id]="'descrizioneContributi'"
+            [textAreaClass]="'text-area'"
+            [maxValidatorLength]="20000"
+            [containerClass]="'container-width-full'"
+            [required]="true"
+            [isDettaglio]="isDettaglio"
+          ></piao-text-area>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="accordion-content pt-10 pb-3">
+          <p class="section-title">{{ descrizioneImpattiTitle | translate }}</p>
+          <piao-text-area
+            [label]="descrizioneImpattiLabel"
+            [control]="form.controls['descrizioneImpatti']"
+            [id]="'descrizioneImpatti'"
+            [textAreaClass]="'text-area'"
+            [maxValidatorLength]="20000"
+            [containerClass]="'container-width-full'"
+            [required]="!isDettaglio"
+            [isDettaglio]="isDettaglio"
+          ></piao-text-area>
+        </div>
+      </piao-accordion>
+    </div>
+
+    <div class="pt-5">
+      <p class="subTitle">{{ parteFunzionaleTitle | translate }}</p>
+      <p class="title-section pt-3">
+        {{
+          (isDettaglio ? tabellaParteFunzionaleTitleDettaglio : tabellaParteFunzionaleTitle)
+            | translate
+        }}
+      </p>
+
+      <div class="pt-2">
+        <piao-tabella-funzionale
+          [form]="form"
+          [codTipologiaFK]="codTipologiaFK"
+          [idEntitaFK]="piaoDTO.idSezione32 || null"
+          [testoSezione]="testoSezione"
+          [isDettaglio]="isDettaglio"
+        ></piao-tabella-funzionale>
+      </div>
+    </div>
+  </div>
+}

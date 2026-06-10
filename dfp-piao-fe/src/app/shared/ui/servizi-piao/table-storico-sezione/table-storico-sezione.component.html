@@ -1,0 +1,82 @@
+<div [ngClass]="main">
+  <p class="title-modal">
+    {{ title | translate }}
+  </p>
+
+  <p class="sub-title-modal">
+    {{ subTitle | translate }}
+  </p>
+
+  <div class="table-container pt-5">
+    <table class="table-custom">
+      <thead>
+        <tr>
+          <th>
+            {{
+              'SCRIVANIA_PA.SERVIZI_PIAO.INDICE_PIAO.SEZIONE.ACTIONS.TABLE_STORICO_SEZIONI.ID_TH'
+                | translate
+            }}
+          </th>
+
+          <th>
+            {{
+              'SCRIVANIA_PA.SERVIZI_PIAO.INDICE_PIAO.SEZIONE.ACTIONS.TABLE_STORICO_SEZIONI.NOME_COGNOME_TH'
+                | translate
+            }}
+          </th>
+
+          <th>
+            {{
+              'SCRIVANIA_PA.SERVIZI_PIAO.INDICE_PIAO.SEZIONE.ACTIONS.TABLE_STORICO_SEZIONI.PROFILO_TH'
+                | translate
+            }}
+          </th>
+
+          <th>
+            {{
+              'SCRIVANIA_PA.SERVIZI_PIAO.INDICE_PIAO.SEZIONE.ACTIONS.TABLE_STORICO_SEZIONI.DATA_TH'
+                | translate
+            }}
+          </th>
+
+          <th>
+            {{
+              'SCRIVANIA_PA.SERVIZI_PIAO.INDICE_PIAO.SEZIONE.ACTIONS.TABLE_STORICO_SEZIONI.SEZIONE_SOTTOSEZIONE_TH'
+                | translate
+            }}
+          </th>
+
+          <th>
+            {{
+              'SCRIVANIA_PA.SERVIZI_PIAO.INDICE_PIAO.SEZIONE.ACTIONS.TABLE_STORICO_SEZIONI.CAMPI_MODIFICATI_TH'
+                | translate
+            }}
+          </th>
+        </tr>
+      </thead>
+
+      <tbody>
+        @for (row of tabellaStatoStorico; let i = $index; track row.id) {
+          <tr>
+            <td>
+              <strong>{{ i + 1 }}</strong>
+            </td>
+            <td>{{ row.nomeCognome ? row.nomeCognome : '-' }}</td>
+            <td>{{ row.profilo ? row.profilo : '-' }}</td>
+            <td>{{ row.dataModifica ? (row.dataModifica | date: 'dd/MM/yyyy') : '-' }}</td>
+            <td>
+              {{ row.testoSezione ? formatDotNumberSezione(row.testoSezione) : '-' }}
+            </td>
+            <td>{{ row.campiModificati | formatCampiModificati: row.codTipologiaFK }}</td>
+          </tr>
+        }
+
+        @if (!tableData || tableData.length === 0) {
+          <tr>
+            <td colspan="6" style="text-align: center">Nessuno storico disponibile</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

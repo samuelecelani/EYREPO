@@ -1,0 +1,36 @@
+<div [ngClass]="main">
+  <p class="title-small">{{ title | translate }}</p>
+  <p class="riga-subtitle pt-3">{{ subTitle | translate }} {{ lenghtArray + 1 }}</p>
+  <form [formGroup]="formGroup">
+    <div class="container-full pt-2">
+      <div class="row">
+        <div class="col-12 col-lg-6">
+          <piao-text-box
+            [label]="labelUnitaOrganizzativa"
+            [typeInput]="'text'"
+            [inputClass]="'input'"
+            [control]="formGroup.controls['unitaOrganizzativa']"
+            [maxValidatorLength]="200"
+            [id]="'unitaOrganizzativa'"
+            [containerClass]="'container-width-full'"
+            [required]="true"
+          >
+          </piao-text-box>
+        </div>
+        <div class="col-12 col-lg-6">
+          <piao-text-box
+            [label]="labelNRisorseUmane"
+            [typeInput]="'text'"
+            [inputClass]="'input'"
+            [control]="formGroup.controls['numRisorseUmane']"
+            [maxValidatorLength]="50"
+            [id]="'numRisorseUmane'"
+            [containerClass]="'container-width-full'"
+            [required]="true"
+          >
+          </piao-text-box>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

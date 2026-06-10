@@ -1,0 +1,81 @@
+trigger:
+  - main  # o il tuo branch
+
+pool:
+  name: 'Default'  # Per PowerShell Desktop. Usa 'ubuntu-latest' + pwsh per PowerShell Core
+
+steps:
+  - checkout: self
+    fetchDepth: 0
+    fetchTags: true
+
+  - task: PowerShell@2
+    displayName: 'Crea branch main pulito e push su GitHub'
+    env:
+      SYSTEM_ACCESSTOKEN: $(System.AccessToken)
+      GITHUB_TOKEN: $(GITHUB_TOKEN)
+    inputs:
+      pwsh: true 
+      targetType: inline
+      script: |
+        $ErrorActionPreference = 'Stop'
+        Write-Host "PowerShell version: $($PSVersionTable.PSVersion)"
+
+        # Validazione del token: deve esistere e non deve essere il macro non espanso
+        $token = $env:GITHUB_TOKEN
+        if ([string]::IsNullOrWhiteSpace($token) -or $token -match '^\$\(.*\)$') {
+          Write-Error "GITHUB_TOKEN non e' definito nella pipeline. Crealo come secret variable in Azure DevOps (Pipeline -> Edit -> Variables) con un Personal Access Token GitHub (scope 'repo'). Il valore deve essere SOLO il PAT (es. ghp_xxx), senza prefissi."
+          exit 1
+        }
+
+        # Disabilita prompt interattivi di git / credential manager
+        $env:GIT_TERMINAL_PROMPT = '0'
+        $env:GCM_INTERACTIVE = 'Never'
+
+        # Checkout del branch main corrente
+        git checkout -B main origin/main
+        if ($LASTEXITCODE -ne 0) { throw "git checkout main fallito" }
+
+        Write-Host "Creazione di un nuovo branch main pulito senza storia problematica..."
+
+        $currentCommit = git rev-parse HEAD
+        Write-Host "Commit corrente: $currentCommit"
+
+        git checkout --orphan main-clean
+        if ($LASTEXITCODE -ne 0) { throw "git checkout --orphan fallito" }
+
+        git add -A
+        if ($LASTEXITCODE -ne 0) { throw "git add fallito" }
+
+        git -c user.email="pipeline@azuredevops.local" -c user.name="Azure Pipeline" commit -m "Initial commit - repository pulito senza file di build"
+        if ($LASTEXITCODE -ne 0) { throw "git commit fallito" }
+
+        git branch -M main
+        if ($LASTEXITCODE -ne 0) { throw "git branch -M main fallito" }
+
+        Write-Host "Branch main pulito creato con successo!"
+
+        # Rimuovi remote eventualmente residui da run precedenti (agent self-hosted)2
+        git remote remove github-eyrepo 2>$null
+
+        # Aggiungi i remote GitHub usando il token (username 'x-access-token')
+        git remote add github-eyrepo "https://x-access-token:$token@github.com/samuelecelani/EYREPO.git"
+
+        Write-Host "Push su GitHub EYREPO..."
+        git push github-eyrepo main --force
+        if ($LASTEXITCODE -ne 0) { throw "Push su EYREPO fallito" }
+        
+        # Rimuovi remote eventualmente residui da run precedenti (agent self-hosted)2
+        git remote remove github-BIPRepo 2>$null
+
+        # Aggiungi i remote GitHub usando il token (username 'x-access-token')
+        git remote add github-BIPRepo "https://x-access-token:$token@github.com/BIPRepo/dfp-piao.git"
+
+        Write-Host "Push su GitHub BIPRepo..."
+        git push github-BIPRepo main --force
+        if ($LASTEXITCODE -ne 0) { throw "Push su BIPRepo fallito" }
+        
+
+        Write-Host "Push completato con successo su i repository!"
+
+

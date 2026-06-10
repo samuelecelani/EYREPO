@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: bff-cm
+data:
+  spring.application.name: PIAO
+  IS_PRODUCTION: "false"
+  MOCK_MINERVA: "false"
+  URL_IPA: "https://ac-api-coll.dfp.gov.it"
+  URL_PUBLIC_MINERVA: "https://minerva-coll.dfp.gov.it"
+  URL_OPENCMS: "https://piaocoll.dfp.gov.it"
+  PDF_LOW_TEXT_THRESHOLD: "35"
+  PDF_MIN_TOTAL_CHARS: "800"
+  PDF_MIN_DENSITY_PER_KB: "2.0"
+  PDF_MAX_LOW_PAGES_PCT: "70"
+  WEBCLIENT_MAX_BUFFER_KB: "512"
+  PUBLIC_API_ENDPOINT: "/area-riservata/api/piao/bff"
+  ANTIVIRUS_ENABLED: "true"
+  S3_BUCKET_DEFINITIVE: "dfp-coll-files-trusted"
+  SSE_HEARTBEAT_INTERVAL_SECONDS: "25"

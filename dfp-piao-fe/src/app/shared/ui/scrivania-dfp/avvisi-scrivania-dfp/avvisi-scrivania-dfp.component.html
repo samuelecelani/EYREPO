@@ -1,0 +1,48 @@
+<div class="avvisi-container">
+  <h2 class="avvisi-title">Avvisi e comunicazioni</h2>
+  <piao-button
+    class="vedi-tutti-btn"
+    [variant]="'primary-outline'"
+    [size]="'md'"
+    (clicked)="handleGoToAvvisi()"
+  >
+    VEDI TUTTI
+  </piao-button>
+  <button type="button" class="vedi-tutti-link" (click)="handleGoToAvvisi()">
+    <span>VEDI TUTTI</span>
+    <piao-svg [icon]="'ArrowRight'" [fillColor]="'#0066cc'"></piao-svg>
+  </button>
+</div>
+
+<hr class="avvisi-divider" />
+
+@if (avvisiQuery.status() === 'loading') {
+  <div class="loading-state">Caricamento avvisi...</div>
+}
+
+@if (avvisiQuery.status() === 'error') {
+  <div class="error-state">Errore nel caricamento degli avvisi</div>
+}
+
+@if (avvisiQuery.status() === 'success') {
+  @if (cards().length === 0) {
+    <p class="empty-state">Non sono presenti avvisi o comunicazioni.</p>
+  } @else {
+    @for (card of cards(); track card.id; let i = $index) {
+      @if (i > 0) {
+        <hr class="hr-avvisi pt-3" />
+      }
+      <piao-news
+        [icon]="card.icon"
+        [badgeText]="card.badgeText"
+        [badgeVariant]="card.badgeVariant"
+        [title]="card.title"
+        [titleLink]="card.detailLink"
+        [description]="card.description"
+        [date]="card.date"
+        [readMoreLink]="card.detailLink"
+      ></piao-news>
+    }
+    <hr class="hr-avvisi" />
+  }
+}

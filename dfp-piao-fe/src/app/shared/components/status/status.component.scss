@@ -1,0 +1,62 @@
+.status-badge {
+  display: inline-flex;
+  padding: 0.125rem 0.125rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  border-radius: var(--bs-border-radius-pill);
+  background-color: #fff;
+  border: 2px solid;
+}
+
+.status-validata {
+  color: var(--bs-success);
+  border-color: var(--bs-success);
+}
+
+.status-da-compilare {
+  color: var(--bs-warning);
+  border-color: var(--bs-warning);
+}
+
+.status-in-compilazione {
+  color: #0066cc;
+  border-color: #0066cc;
+}
+
+.status-in-validazione {
+  color: #8700d9;
+  border-color: #8700d9;
+}
+
+.status-compilata {
+  color: #2f475e;
+  border-color: #2f475e;
+}
+
+.status-richiesta-approvazione {
+  color: #ff5733;
+  border-color: #ff5733;
+  font-size: 0.81rem;
+}
+
+.status-in-generazione {
+  color: #c1c334;
+  border-color: #c1c334;
+  font-size: 0.81rem;
+}
+
+.status-badge.semplificato {
+  color: #c5c7c9;
+  border-color: #c5c7c9;
+}
+
+.status-generato {
+  color: #008055;
+  border-color: #008055;
+}
+.status-pubblicato {
+  color: #003366;
+  border-color: #003366;
+}
